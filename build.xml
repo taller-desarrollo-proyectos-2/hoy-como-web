@@ -7,13 +7,14 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<dependency>
-    <groupId>javax.persistence</groupId>
-    <artifactId>persistence-api</artifactId>
-    <version>1.0</version>
-</dependency>
 <project name="hoy-como-play" default="default" basedir=".">
     <description>Builds, tests, and runs the project hoy-como-play.</description>
+
+    <dependency>
+        <groupId>javax.persistence</groupId>
+        <artifactId>persistence-api</artifactId>
+        <version>1.0</version>
+    </dependency>
     <import file="nbproject/build-impl.xml"/>
 
     <!--
