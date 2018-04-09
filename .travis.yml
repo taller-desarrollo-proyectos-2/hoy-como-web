@@ -1,3 +1,8 @@
 language: java
 jdk:
     - oraclejdk8
+
+before_script:
+    - wget http://downloads.typesafe.com/play/${PLAY_VERSION}/play-${PLAY_VERSION}.zip
+    - unzip -q play-${PLAY_VERSION}.zip
+    - sudo apt-get install jq
