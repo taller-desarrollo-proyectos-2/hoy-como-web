@@ -9,12 +9,6 @@
 <!-- in the project's Project Properties dialog box.-->
 <project name="hoy-como-play" default="default" basedir=".">
     <description>Builds, tests, and runs the project hoy-como-play.</description>
-
-    <dependency>
-        <groupId>javax.persistence</groupId>
-        <artifactId>persistence-api</artifactId>
-        <version>1.0</version>
-    </dependency>
     <import file="nbproject/build-impl.xml"/>
 
     <!--
