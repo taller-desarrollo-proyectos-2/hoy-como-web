@@ -1,4 +1,6 @@
-/nbproject/private/
-/nbproject/
-/project/
-/target/
+nbproject/private/
+nbproject/
+project
+target
+.idea
+

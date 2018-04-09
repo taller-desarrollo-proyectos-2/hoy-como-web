@@ -1,7 +1,12 @@
 package models;
 
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
 import play.db.ebean.Model;
+
+import java.util.List;
 
 /**
  *
@@ -14,12 +19,16 @@ public class Plate extends Model{
     private Long id;
     
     private String name;
+
+    @ManyToMany
+    private List<Category> categories;
+
+    @OneToMany
+    private List<Optional> optionals;
     
     private float price;
-    
-    private float promoPrice;
-    
-    private boolean isOnPromo;
+
+    private Promo promo;
 
     public Long getId() {
         return id;
@@ -37,30 +46,37 @@ public class Plate extends Model{
         this.name = name;
     }
 
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<Optional> getOptionals() {
+        return optionals;
+    }
+
+    public void setOptionals(List<Optional> optionals) {
+        this.optionals = optionals;
+    }
+
     public float getPrice() {
-        if(this.isOnPromo) return this.getPromoPrice();
         return price;
+    }
+
+    public Promo getPromo() {
+        return promo;
+    }
+
+    public void setPromo(Promo promo) {
+        this.promo = promo;
     }
 
     public void setPrice(float price) {
         this.price = price;
     }
 
-    public float getPromoPrice() {
-        return promoPrice;
-    }
-
-    public void setPromoPrice(float promoPrice) {
-        this.promoPrice = promoPrice;
-    }
-
-    public boolean isIsOnPromo() {
-        return isOnPromo;
-    }
-
-    public void setIsOnPromo(boolean isOnPromo) {
-        this.isOnPromo = isOnPromo;
-    }
-    
     
 }
