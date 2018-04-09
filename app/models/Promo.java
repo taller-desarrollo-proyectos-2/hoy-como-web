@@ -1,5 +1,6 @@
 package models;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.ManyToMany;
 
@@ -7,14 +8,17 @@ import javax.persistence.ManyToMany;
  *
  * @author facundocaldora
  */
-public class Combo {
-    
+public class Promo {
+
+    private Date startAt;
+
+    private Date endAt;
+
     private String name;
-    
-    private float price;
-    
-    @ManyToMany
-    private List<Plate> plates;
+
+    private float percentage;
+
+    private float discountAmount;
 
     public String getName() {
         return name;
@@ -24,20 +28,35 @@ public class Combo {
         this.name = name;
     }
 
-    public float getPrice() {
-        return price;
+    public Date getStartAt() {
+        return startAt;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setStartAt(Date startAt) {
+        this.startAt = startAt;
     }
 
-    public List<Plate> getPlates() {
-        return plates;
+    public Date getEndAt() {
+        return endAt;
     }
 
-    public void setPlates(List<Plate> plates) {
-        this.plates = plates;
+    public void setEndAt(Date endAt) {
+        this.endAt = endAt;
     }
-    
+
+    public float getPercentage() {
+        return percentage;
+    }
+
+    public void setPercentage(float percentage) {
+        this.percentage = percentage;
+    }
+
+    public float getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(float discountAmount) {
+        this.discountAmount = discountAmount;
+    }
 }
