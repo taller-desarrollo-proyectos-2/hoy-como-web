@@ -1,5 +1,6 @@
 package models;
 
+import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
@@ -9,11 +10,16 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "USER_TYPE")
 public class User extends Model {
 
+    public interface Creation{
+    }
+
     @Id
     private Long id;
 
+    @Constraints.Required(groups = Creation.class)
     private String username;
 
+    @Constraints.Required(groups = Creation.class)
     private String password;
 
     public User(String username, String password){
@@ -43,5 +49,9 @@ public class User extends Model {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public static User findByUsername(String username){
+        return FIND
     }
 }
