@@ -1,6 +1,10 @@
-language: java
+language: scala
+
 jdk:
     - oraclejdk8
 
-script:
-  - sbt ++2.10.2
+scala:
+  - 2.11.8
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
