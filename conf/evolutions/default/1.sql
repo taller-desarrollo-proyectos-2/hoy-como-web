@@ -11,6 +11,7 @@ create table category (
 
 create table commerce (
   id                        bigint auto_increment not null,
+  name                      varchar(255),
   company_id                bigint,
   license_id                bigint,
   constraint pk_commerce primary key (id))

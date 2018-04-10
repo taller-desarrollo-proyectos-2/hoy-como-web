@@ -2,6 +2,7 @@ package controllers.api.v1;
 
 import annotations.Authenticate;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import exceptions.CreationException;
 import models.BackofficeUser;
 import models.User;
 import play.Logger;
@@ -30,6 +31,9 @@ public class BackofficeUsers extends Controller {
             UsersService.create(user);
 
             return ok(Json.toJson(user));
+        }catch(CreationException e){
+            logger.error(e.getMessage());
+            return badRequest(JsonNodeFactory.instance.objectNode().put("message", e.getMessage()));
         }catch(Exception e){
             logger.error("Error while creating backoffice user", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error while creating backoffice user"));
