@@ -11,14 +11,16 @@ import play.db.ebean.Model;
  */
 @Entity
 public class Commerce extends Model{
-    
+
+    protected static final Finder<Long, Commerce> FIND = new Finder<>(Long.class, Commerce.class);
+
     @Id
     private Long id;
     
     @ManyToOne
     private Company company;
 
-    @OneToMany
+    @ManyToMany
     private List<Category> categories;
     
     @OneToMany

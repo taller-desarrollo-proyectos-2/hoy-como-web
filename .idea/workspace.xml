@@ -2,9 +2,165 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ecd6e283-363b-451c-a39e-5454316ef0f0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules/hoy-como-web-build.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/hoy-como-web.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/annotations/Authenticate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/annotations/AuthenticateAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/api/v1/Authorization.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/api/v1/BackofficeUsers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/api/v1/Commerces.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/exceptions/CreationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/UsersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__org_apache_httpcomponents_httpclient_4_0_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_apache_httpcomponents_httpclient_4_0_1_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__org_apache_httpcomponents_httpcore_4_0_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_apache_httpcomponents_httpcore_4_0_1_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/hoy-como-web-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/hoy-como-web-build.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/hoy-como-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/hoy-como-web.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/play2_project_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/play2_project_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/v1/Authorization.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/BackofficeUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/BackofficeUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Commerce.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Commerce.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Company.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/MobileUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/MobileUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Request.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/Plate.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Plate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/conf/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/routes" beforeDir="false" afterPath="$PROJECT_DIR$/conf/routes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/plugins.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/project/plugins.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/default/hoy-como-web-build/scala_2.10/sbt_0.13/0.1-SNAPSHOT/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/default/hoy-como-web-build/scala_2.10/sbt_0.13/0.1-SNAPSHOT/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/default/hoy-como-web-build/scala_2.10/sbt_0.13/0.1-SNAPSHOT/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/default/hoy-como-web-build/scala_2.10/sbt_0.13/0.1-SNAPSHOT/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-docs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-docs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-sources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-sources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/resolution-cache/reports/default-hoy-como-web-build-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/$global/update/$global/inputs" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/$global/update/$global/inputs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/$global/update/$global/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/$global/update/$global/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/$global/update/$global/output" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/$global/update/$global/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/compile/dependencyClasspath/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/compile/dependencyClasspath/$global/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/compile/externalDependencyClasspath/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/compile/externalDependencyClasspath/$global/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/compile/managedClasspath/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/compile/managedClasspath/$global/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/runtime/dependencyClasspath/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/runtime/dependencyClasspath/$global/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/runtime/externalDependencyClasspath/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/runtime/externalDependencyClasspath/$global/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/runtime/fullClasspath/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/runtime/fullClasspath/$global/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/runtime/managedClasspath/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/runtime/managedClasspath/$global/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/.history" beforeDir="false" afterPath="$PROJECT_DIR$/target/.history" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/hoy-como-play/hoy-como-play$sources_2.10/1.0-SNAPSHOT/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/hoy-como-play/hoy-como-play$sources_2.10/1.0-SNAPSHOT/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/hoy-como-play/hoy-como-play$sources_2.10/1.0-SNAPSHOT/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/hoy-como-play/hoy-como-play$sources_2.10/1.0-SNAPSHOT/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/hoy-como-play/hoy-como-play_2.10/1.0-SNAPSHOT/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/hoy-como-play/hoy-como-play_2.10/1.0-SNAPSHOT/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/hoy-como-play/hoy-como-play_2.10/1.0-SNAPSHOT/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/hoy-como-play/hoy-como-play_2.10/1.0-SNAPSHOT/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-docs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-docs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-sources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-sources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play$sources_2.10-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-docs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-docs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-sources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-sources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resolution-cache/reports/hoy-como-play-hoy-como-play_2.10-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/cache/hoy-como-web/compile/play_instrumentation" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/cache/hoy-como-web/compile/play_instrumentation" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/Routes$$anonfun$documentation$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/Routes$$anonfun$documentation$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/Routes$$anonfun$routes$1$$anonfun$applyOrElse$1$$anonfun$apply$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/Routes$$anonfun$routes$1$$anonfun$applyOrElse$1$$anonfun$apply$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/Routes$$anonfun$routes$1$$anonfun$applyOrElse$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/Routes$$anonfun$routes$1$$anonfun$applyOrElse$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/Routes$$anonfun$routes$1$$anonfun$applyOrElse$2$$anonfun$apply$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/Routes$$anonfun$routes$1$$anonfun$applyOrElse$2$$anonfun$apply$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/Routes$$anonfun$routes$1$$anonfun$applyOrElse$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/Routes$$anonfun$routes$1$$anonfun$applyOrElse$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/Routes$$anonfun$routes$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/Routes$$anonfun$routes$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/Routes$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/Routes$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/Routes.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/Routes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/ReverseApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/ReverseAssets.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/ReverseAssets.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/javascript/ReverseApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/javascript/ReverseAssets.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/javascript/ReverseAssets.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/ref/ReverseApplication$$anonfun$index$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/ref/ReverseApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/ref/ReverseAssets$$anonfun$at$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/ref/ReverseAssets$$anonfun$at$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/ref/ReverseAssets.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/ref/ReverseAssets.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/routes$javascript.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/routes$javascript.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/routes$ref.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/routes$ref.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/routes.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/controllers/routes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/routes" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes/routes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/views/html/index$$anonfun$f$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/views/html/index$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/views/html/index.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/views/html/main$$anonfun$f$1$$anonfun$apply$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/views/html/main$$anonfun$f$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/views/html/main$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes/views/html/main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes$$anonfun$documentation$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes$$anonfun$documentation$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes$$anonfun$routes$1$$anonfun$applyOrElse$1$$anonfun$apply$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes$$anonfun$routes$1$$anonfun$applyOrElse$1$$anonfun$apply$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes$$anonfun$routes$1$$anonfun$applyOrElse$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes$$anonfun$routes$1$$anonfun$applyOrElse$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes$$anonfun$routes$1$$anonfun$applyOrElse$2$$anonfun$apply$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes$$anonfun$routes$1$$anonfun$applyOrElse$2$$anonfun$apply$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes$$anonfun$routes$1$$anonfun$applyOrElse$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes$$anonfun$routes$1$$anonfun$applyOrElse$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes$$anonfun$routes$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes$$anonfun$routes$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/Routes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/ReverseApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/ReverseAssets.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/ReverseAssets.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/javascript/ReverseApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/javascript/ReverseAssets.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/javascript/ReverseAssets.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/ref/ReverseApplication$$anonfun$index$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/ref/ReverseApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/ref/ReverseAssets$$anonfun$at$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/ref/ReverseAssets$$anonfun$at$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/ref/ReverseAssets.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/ref/ReverseAssets.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/routes$javascript.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/routes$javascript.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/routes$ref.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/routes$ref.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/routes.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/classes_managed/controllers/routes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/views/html/index$$anonfun$f$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/views/html/index$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/views/html/index.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/views/html/main$$anonfun$f$1$$anonfun$apply$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/views/html/main$$anonfun$f$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/views/html/main$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/classes_managed/views/html/main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/src_managed/main/controllers/routes.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/src_managed/main/controllers/routes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/src_managed/main/routes_reverseRouting.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/src_managed/main/routes_reverseRouting.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/src_managed/main/routes_routing.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.10/src_managed/main/routes_routing.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/src_managed/main/views/html/index.template.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.10/src_managed/main/views/html/main.template.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/ivyConfiguration/$global/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/ivyConfiguration/$global/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/update/$global/inputs" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/update/$global/inputs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/update/$global/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/update/$global/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/update/$global/output" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/update/$global/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/updateClassifiers/$global/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/updateClassifiers/$global/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compile/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compile/$global/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/copyResources/$global/copy-resources" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/copyResources/$global/copy-resources" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/copyResources/$global/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/copyResources/$global/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/dependencyClasspath/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/dependencyClasspath/$global/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/externalDependencyClasspath/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/externalDependencyClasspath/$global/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/incCompileSetup/$global/inc_compile" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/incCompileSetup/$global/inc_compile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/managedClasspath/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/managedClasspath/$global/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/runtime/dependencyClasspath/$global/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/runtime/externalDependencyClasspath/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/runtime/externalDependencyClasspath/$global/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/runtime/managedClasspath/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/runtime/managedClasspath/$global/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/test/externalDependencyClasspath/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/test/externalDependencyClasspath/$global/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/test/managedClasspath/$global/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/test/managedClasspath/$global/export" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
@@ -22,40 +178,125 @@
     </projectState>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Plate.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/models/Plate.java">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="BackofficeUsers.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/BackofficeUsers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+            <state relative-caret-position="300">
+              <caret line="20" column="34" lean-forward="true" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlateType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/PlateType.java">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file leaf-file-name="Commerces.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/Commerces.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UsersService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/services/UsersService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BackofficeUser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/BackofficeUser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="Commerce.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/Commerce.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+            <state relative-caret-position="345">
+              <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Combo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/Combo.java">
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+            <state relative-caret-position="270">
+              <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Authorization.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/Authorization.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="plugins.sbt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/plugins.sbt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="1.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/conf/evolutions/default/1.sql">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="Company.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/Company.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="33" selection-start-line="33" selection-end-line="33" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>dependenc</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,7 +304,39 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/app/models/Promo.java" />
+        <option value="$PROJECT_DIR$/app/models/Category.java" />
+        <option value="$PROJECT_DIR$/app/models/License.java" />
+        <option value="$PROJECT_DIR$/app/models/Order.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/test/ApplicationTest.java" />
+        <option value="$PROJECT_DIR$/build.xml" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/project/plugins.sbt" />
+        <option value="$PROJECT_DIR$/app/api/v1/User.java" />
+        <option value="$PROJECT_DIR$/app/api/v1/Companies.java" />
+        <option value="$PROJECT_DIR$/app/models/Company.java" />
+        <option value="$PROJECT_DIR$/conf/application.conf" />
+        <option value="$PROJECT_DIR$/app/api/v1/Commerces.java" />
+        <option value="$PROJECT_DIR$/build.sbt" />
+        <option value="$PROJECT_DIR$/app/models/Optional.java" />
+        <option value="$PROJECT_DIR$/app/models/Commerce.java" />
         <option value="$PROJECT_DIR$/app/models/Plate.java" />
+        <option value="$PROJECT_DIR$/app/models/Request.java" />
+        <option value="$PROJECT_DIR$/app/api/v1/Authorization.java" />
+        <option value="$PROJECT_DIR$/app/api/v1/Users.java" />
+        <option value="$PROJECT_DIR$/app/api/v1/BackofficeUsers.java" />
+        <option value="$PROJECT_DIR$/app/exceptions/CreationException.java" />
+        <option value="$PROJECT_DIR$/app/services/UsersService.java" />
+        <option value="$PROJECT_DIR$/app/models/User.java" />
+        <option value="$PROJECT_DIR$/app/models/BackofficeUser.java" />
+        <option value="$PROJECT_DIR$/app/models/MobileUser.java" />
+        <option value="$PROJECT_DIR$/conf/routes" />
+        <option value="$PROJECT_DIR$/app/annotations/Authenticate.java" />
+        <option value="$PROJECT_DIR$/app/annotations/AuthenticateAction.java" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/Authorization.java" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/Commerces.java" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/BackofficeUsers.java" />
       </list>
     </option>
   </component>
@@ -83,8 +356,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -101,7 +374,47 @@
               <item name="hoy-como-play" type="b2602c69:ProjectViewProjectNode" />
               <item name="hoy-como-web" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="annotations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hoy-como-play" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hoy-como-web" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="v1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hoy-como-play" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hoy-como-web" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="exceptions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hoy-como-play" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hoy-como-web" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hoy-como-play" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hoy-como-web" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hoy-como-play" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hoy-como-web" type="462c0819:PsiDirectoryNode" />
+              <item name="conf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hoy-como-play" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hoy-como-web" type="462c0819:PsiDirectoryNode" />
+              <item name="conf" type="462c0819:PsiDirectoryNode" />
+              <item name="default" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hoy-como-play" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hoy-como-web" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -116,6 +429,17 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/build.sbt" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="controllers.api.v1" />
+      <recent name="controllers" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="exceptions" />
+      <recent name="annotations" />
+      <recent name="models" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -148,6 +472,17 @@
         <value defaultName="singleModule" />
       </option>
       <patterns />
+    </configuration>
+    <configuration name="debug" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="9999" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="9999" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -195,40 +530,18 @@
             </list>
           </value>
         </entry>
-        <entry>
-          <key>
-            <ExternalProjectPojo>
-              <option name="name" value="hoy-como-web" />
-              <option name="path" value="$PROJECT_DIR$" />
-            </ExternalProjectPojo>
-          </key>
-          <value>
-            <list>
-              <ExternalProjectPojo>
-                <option name="name" value="hoy-como-web" />
-                <option name="path" value="$PROJECT_DIR$" />
-              </ExternalProjectPojo>
-              <ExternalProjectPojo>
-                <option name="name" value="hoy-como-web-build" />
-                <option name="path" value="$PROJECT_DIR$/project" />
-              </ExternalProjectPojo>
-            </list>
-          </value>
-        </entry>
       </map>
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4567337790000" />
-        <entry key="$PROJECT_DIR$/build.sbt" value="2134486055" />
+        <entry key="$PROJECT_DIR$/build.sbt" value="1331675654" />
         <entry key="$PROJECT_DIR$/project/build.properties" value="3089063533" />
-        <entry key="$PROJECT_DIR$/project/plugins.sbt" value="3306277794" />
+        <entry key="$PROJECT_DIR$/project/plugins.sbt" value="302660459" />
       </map>
     </option>
     <option name="projectSyncType">
       <map>
         <entry key="$PROJECT_DIR$/../contApp" value="PREVIEW" />
-        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
       </map>
     </option>
   </component>
@@ -242,50 +555,51 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1523147030189</updated>
-      <workItem from="1523147070440" duration="897000" />
+      <workItem from="1523147070440" duration="23672000" />
+      <workItem from="1523394924105" duration="300000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="897000" />
+    <option name="totallyTimeSpent" value="23972000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="sbt" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info id="Capture Tool" />
-      <window_info id="Designer" />
-      <window_info anchor="bottom" id="Build" weight="0.32900944" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="sbt" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.32900944" />
+      <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39976415" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info id="Image Layers" />
-      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Spring" />
-      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
-      <window_info anchor="bottom" id="sbt-shell-toolwindow" />
-      <window_info anchor="right" id="Bean Validation" />
-      <window_info anchor="right" id="Gradle" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="sbt-shell-toolwindow" order="7" />
+      <window_info anchor="right" id="Bean Validation" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" id="Gradle" order="3" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32900944" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -294,28 +608,457 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/PlateType.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Commerce.java">
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/BackofficeUsers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+        <state relative-caret-position="405">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Combo.java">
+    <entry file="file://$PROJECT_DIR$/app/models/BackofficeUser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Commerce.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="31" lean-forward="true" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/annotations/AuthenticateAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="40" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.play/play-java-ebean_2.10/srcs/play-java-ebean_2.10-2.2.4-sources.jar!/play/db/ebean/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2715">
+          <caret line="225" column="35" selection-start-line="225" selection-start-column="35" selection-end-line="225" selection-end-column="35" />
+          <folding>
+            <element signature="e#6280#6281#0" expanded="true" />
+            <element signature="e#6333#6334#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/evolutions/default/1.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Company.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Category.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/Authorization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Promo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding>
+            <element signature="e#573#574#0" expanded="true" />
+            <element signature="e#603#604#0" expanded="true" />
+            <element signature="e#647#648#0" expanded="true" />
+            <element signature="e#685#686#0" expanded="true" />
+            <element signature="e#715#716#0" expanded="true" />
+            <element signature="e#743#744#0" expanded="true" />
+            <element signature="e#783#784#0" expanded="true" />
+            <element signature="e#817#818#0" expanded="true" />
+            <element signature="e#897#898#0" expanded="true" />
+            <element signature="e#930#931#0" expanded="true" />
+            <element signature="e#981#982#0" expanded="true" />
+            <element signature="e#1025#1026#0" expanded="true" />
+            <element signature="e#1065#1066#0" expanded="true" />
+            <element signature="e#1102#1103#0" expanded="true" />
+            <element signature="e#1161#1162#0" expanded="true" />
+            <element signature="e#1213#1214#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/License.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#320#321#0" expanded="true" />
+            <element signature="e#354#355#0" expanded="true" />
+            <element signature="e#382#383#0" expanded="true" />
+            <element signature="e#421#422#0" expanded="true" />
+            <element signature="e#458#459#0" expanded="true" />
+            <element signature="e#516#517#0" expanded="true" />
+            <element signature="e#568#569#0" expanded="true" />
+            <element signature="e#602#603#0" expanded="true" />
+            <element signature="e#633#634#0" expanded="true" />
+            <element signature="e#680#681#0" expanded="true" />
+            <element signature="e#720#721#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/IntegrationTest.java" />
+    <entry file="file://$PROJECT_DIR$/test/ApplicationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nbproject/build-impl.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1387">
+          <caret line="228" column="71" selection-start-line="228" selection-start-column="71" selection-end-line="228" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="81" selection-start-line="10" selection-start-column="81" selection-end-line="10" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/application.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.play/play_2.10/srcs/play_2.10-2.2.4-sources.jar!/play/mvc/Security.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.play/play_2.10/srcs/play_2.10-2.2.4-sources.jar!/play/mvc/Results.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="783" column="25" selection-start-line="783" selection-start-column="25" selection-end-line="783" selection-end-column="25" />
+          <folding>
+            <element signature="e#22684#22685#0" expanded="true" />
+            <element signature="e#22757#22758#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.auth0/java-jwt/srcs/java-jwt-3.3.0-sources.jar!/com/auth0/jwt/interfaces/Verification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.auth0/java-jwt/srcs/java-jwt-3.3.0-sources.jar!/com/auth0/jwt/JWT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.auth0/java-jwt/srcs/java-jwt-3.3.0-sources.jar!/com/auth0/jwt/JWTVerifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="350" column="22" selection-start-line="350" selection-start-column="22" selection-end-line="350" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.sbt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Optional.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#261#262#0" expanded="true" />
+            <element signature="e#295#296#0" expanded="true" />
+            <element signature="e#323#324#0" expanded="true" />
+            <element signature="e#354#355#0" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
+            <element signature="e#421#422#0" expanded="true" />
+            <element signature="e#453#454#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.hibernate.javax.persistence/hibernate-jpa-2.0-api/srcs/hibernate-jpa-2.0-api-1.0.1.Final-sources.jar!/javax/persistence/OneToMany.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="91" column="18" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Plate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        <state relative-caret-position="805">
+          <caret line="85" column="35" selection-start-line="85" selection-start-column="35" selection-end-line="85" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#766#767#0" expanded="true" />
+            <element signature="e#799#800#0" expanded="true" />
+            <element signature="e#1508#1509#0" expanded="true" />
+            <element signature="e#1558#1559#0" expanded="true" />
+            <element signature="e#1598#1599#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Request.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="13" column="20" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1262#1263#0" expanded="true" />
+            <element signature="e#1291#1292#0" expanded="true" />
+            <element signature="e#1335#1336#0" expanded="true" />
+            <element signature="e#1371#1372#0" expanded="true" />
+            <element signature="e#1402#1403#0" expanded="true" />
+            <element signature="e#1431#1432#0" expanded="true" />
+            <element signature="e#1473#1474#0" expanded="true" />
+            <element signature="e#1509#1510#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.play/play_2.10/srcs/play_2.10-2.2.4-sources.jar!/play/api/controllers/Assets.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/exceptions/CreationException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding>
+            <element signature="e#123#124#0" expanded="true" />
+            <element signature="e#145#146#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/scala-2.10/src_managed/main/controllers/api/v1/routes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/MobileUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/routes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="67" lean-forward="true" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.play/play_2.10/srcs/play_2.10-2.2.4-sources.jar!/play/mvc/Action.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/annotations/Authenticate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Category.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/annotations/AuthenticateAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="40" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.play/play-java-ebean_2.10/srcs/play-java-ebean_2.10-2.2.4-sources.jar!/play/db/ebean/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2715">
+          <caret line="225" column="35" selection-start-line="225" selection-start-column="35" selection-end-line="225" selection-end-column="35" />
+          <folding>
+            <element signature="e#6280#6281#0" expanded="true" />
+            <element signature="e#6333#6334#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/evolutions/default/1.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Company.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Commerce.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/plugins.sbt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/Authorization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/BackofficeUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/UsersService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/Commerces.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/BackofficeUsers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="34" lean-forward="true" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

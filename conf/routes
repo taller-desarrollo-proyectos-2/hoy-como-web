@@ -4,3 +4,17 @@
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+
+# BACKOFFICE USERS
+
+POST        /api/v1/backoffice/users        controllers.api.v1.BackofficeUsers.create()
+
+
+# AUTHENTICATE
+
+POST        /api/v1/authenticate            controllers.api.v1.Authorization.authenticate()
+
+# COMMERCE
+
+POST        /api/v1/commerce                controllers.api.v1.Commerces.create()

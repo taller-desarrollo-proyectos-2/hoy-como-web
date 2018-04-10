@@ -10,6 +10,8 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "USER_TYPE")
 public class User extends Model {
 
+    protected static final Finder<Long, User> FIND = new Finder<>(Long.class, User.class);
+
     public interface Creation{
     }
 
@@ -21,6 +23,9 @@ public class User extends Model {
 
     @Constraints.Required(groups = Creation.class)
     private String password;
+
+    public User(){
+    }
 
     public User(String username, String password){
         this.username = username;
@@ -52,6 +57,10 @@ public class User extends Model {
     }
 
     public static User findByUsername(String username){
-        return FIND
+        return FIND.where().eq("username", username).findUnique();
+    }
+
+    public static User findByIdAndType(Long id, String[] types){
+        return FIND.where().eq("id", id).in("USER_TYPE", types).findUnique();
     }
 }

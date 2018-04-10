@@ -1,3 +1,6 @@
 [0m[[0mdebug[0m] [0mCopy resource mappings: [0m
 [0m[[0mdebug[0m] [0m	(/Users/facundocaldora/workspace/hoy-como-web/conf/application.conf,/Users/facundocaldora/workspace/hoy-como-web/target/scala-2.10/classes/application.conf)[0m
+[0m[[0mdebug[0m] [0m	(/Users/facundocaldora/workspace/hoy-como-web/conf/evolutions,/Users/facundocaldora/workspace/hoy-como-web/target/scala-2.10/classes/evolutions)[0m
 [0m[[0mdebug[0m] [0m	(/Users/facundocaldora/workspace/hoy-como-web/conf/routes,/Users/facundocaldora/workspace/hoy-como-web/target/scala-2.10/classes/routes)[0m
+[0m[[0mdebug[0m] [0m	(/Users/facundocaldora/workspace/hoy-como-web/conf/evolutions/default,/Users/facundocaldora/workspace/hoy-como-web/target/scala-2.10/classes/evolutions/default)[0m
+[0m[[0mdebug[0m] [0m	(/Users/facundocaldora/workspace/hoy-como-web/conf/evolutions/default/1.sql,/Users/facundocaldora/workspace/hoy-como-web/target/scala-2.10/classes/evolutions/default/1.sql)[0m

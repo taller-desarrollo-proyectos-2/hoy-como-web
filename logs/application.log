@@ -1,0 +1,252 @@
+2018-04-09 16:11:01,782 - [INFO] - from play in pool-4-thread-4 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2018-04-09 16:11:08,870 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-09 16:11:11,670 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-09 16:14:09,191 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-09 16:14:09,913 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-09 16:14:09,997 - [ERROR] - from authorization-api in play-akka.actor.default-dispatcher-11 
+Error intentando autenticarse
+java.lang.RuntimeException: Cannot instantiate class models.User. It must have a default constructor
+	at play.data.Form.blankInstance(Form.java:90) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at play.data.Form.bind(Form.java:306) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at play.data.Form.bindFromRequest(Form.java:216) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at controllers.api.v1.Authorization.authenticate(Authorization.java:23) ~[classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$3$$anonfun$apply$3.apply(routes_routing.scala:69) [classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$3$$anonfun$apply$3.apply(routes_routing.scala:69) [classes/:na]
+	at play.core.Router$HandlerInvoker$$anon$7$$anon$2.invocation(Router.scala:183) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.Router$Routes$$anon$1.invocation(Router.scala:377) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:56) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$3.apply(JavaAction.scala:91) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$3.apply(JavaAction.scala:90) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.FPromiseHelper$$anonfun$flatMap$1.apply(FPromiseHelper.scala:82) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.FPromiseHelper$$anonfun$flatMap$1.apply(FPromiseHelper.scala:82) [play_2.10-2.2.4.jar:2.2.4]
+	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:251) [scala-library.jar:na]
+	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:249) [scala-library.jar:na]
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library.jar:na]
+	at play.core.j.HttpExecutionContext$$anon$2.run(HttpExecutionContext.scala:37) [play_2.10-2.2.4.jar:2.2.4]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:42) [akka-actor_2.10.jar:2.2.0]
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:386) [akka-actor_2.10.jar:2.2.0]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) [scala-library.jar:na]
+Caused by: java.lang.InstantiationException: null
+	at sun.reflect.InstantiationExceptionConstructorAccessorImpl.newInstance(InstantiationExceptionConstructorAccessorImpl.java:48) ~[na:1.8.0_71]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422) ~[na:1.8.0_71]
+	at java.lang.Class.newInstance(Class.java:442) ~[na:1.8.0_71]
+	at play.data.Form.blankInstance(Form.java:88) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	... 22 common frames omitted
+
+2018-04-09 16:15:46,329 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-09 16:15:47,232 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-09 16:15:47,274 - [ERROR] - from authorization-api in play-akka.actor.default-dispatcher-11 
+Error intentando autenticarse
+java.lang.RuntimeException: Cannot instantiate class models.User. It must have a default constructor
+	at play.data.Form.blankInstance(Form.java:90) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at play.data.Form.bind(Form.java:306) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at play.data.Form.bindFromRequest(Form.java:216) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at controllers.api.v1.Authorization.authenticate(Authorization.java:23) ~[classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$3$$anonfun$apply$3.apply(routes_routing.scala:69) [classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$3$$anonfun$apply$3.apply(routes_routing.scala:69) [classes/:na]
+	at play.core.Router$HandlerInvoker$$anon$7$$anon$2.invocation(Router.scala:183) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.Router$Routes$$anon$1.invocation(Router.scala:377) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:56) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$3.apply(JavaAction.scala:91) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$3.apply(JavaAction.scala:90) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.FPromiseHelper$$anonfun$flatMap$1.apply(FPromiseHelper.scala:82) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.FPromiseHelper$$anonfun$flatMap$1.apply(FPromiseHelper.scala:82) [play_2.10-2.2.4.jar:2.2.4]
+	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:251) [scala-library.jar:na]
+	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:249) [scala-library.jar:na]
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library.jar:na]
+	at play.core.j.HttpExecutionContext$$anon$2.run(HttpExecutionContext.scala:37) [play_2.10-2.2.4.jar:2.2.4]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:42) [akka-actor_2.10.jar:2.2.0]
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:386) [akka-actor_2.10.jar:2.2.0]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) [scala-library.jar:na]
+Caused by: java.lang.InstantiationException: null
+	at sun.reflect.InstantiationExceptionConstructorAccessorImpl.newInstance(InstantiationExceptionConstructorAccessorImpl.java:48) ~[na:1.8.0_71]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422) ~[na:1.8.0_71]
+	at java.lang.Class.newInstance(Class.java:442) ~[na:1.8.0_71]
+	at play.data.Form.blankInstance(Form.java:88) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	... 22 common frames omitted
+
+2018-04-09 16:17:10,164 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-09 16:17:10,844 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-09 16:17:10,894 - [ERROR] - from authorization-api in play-akka.actor.default-dispatcher-13 
+Error intentando autenticarse
+java.lang.RuntimeException: Cannot instantiate class models.User. It must have a default constructor
+	at play.data.Form.blankInstance(Form.java:90) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at play.data.Form.bind(Form.java:306) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at play.data.Form.bindFromRequest(Form.java:216) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at controllers.api.v1.Authorization.authenticate(Authorization.java:23) ~[classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$3$$anonfun$apply$3.apply(routes_routing.scala:69) [classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$3$$anonfun$apply$3.apply(routes_routing.scala:69) [classes/:na]
+	at play.core.Router$HandlerInvoker$$anon$7$$anon$2.invocation(Router.scala:183) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.Router$Routes$$anon$1.invocation(Router.scala:377) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:56) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$3.apply(JavaAction.scala:91) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$3.apply(JavaAction.scala:90) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.FPromiseHelper$$anonfun$flatMap$1.apply(FPromiseHelper.scala:82) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.FPromiseHelper$$anonfun$flatMap$1.apply(FPromiseHelper.scala:82) [play_2.10-2.2.4.jar:2.2.4]
+	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:251) [scala-library.jar:na]
+	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:249) [scala-library.jar:na]
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library.jar:na]
+	at play.core.j.HttpExecutionContext$$anon$2.run(HttpExecutionContext.scala:37) [play_2.10-2.2.4.jar:2.2.4]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:42) [akka-actor_2.10.jar:2.2.0]
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:386) [akka-actor_2.10.jar:2.2.0]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) [scala-library.jar:na]
+Caused by: java.lang.InstantiationException: null
+	at sun.reflect.InstantiationExceptionConstructorAccessorImpl.newInstance(InstantiationExceptionConstructorAccessorImpl.java:48) ~[na:1.8.0_71]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422) ~[na:1.8.0_71]
+	at java.lang.Class.newInstance(Class.java:442) ~[na:1.8.0_71]
+	at play.data.Form.blankInstance(Form.java:88) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	... 22 common frames omitted
+
+2018-04-09 16:18:46,186 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-09 16:18:47,432 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-09 16:18:47,531 - [ERROR] - from authorization-api in play-akka.actor.default-dispatcher-14 
+Error intentando autenticarse
+java.lang.RuntimeException: Cannot instantiate class models.User. It must have a default constructor
+	at play.data.Form.blankInstance(Form.java:90) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at play.data.Form.bind(Form.java:306) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at play.data.Form.bindFromRequest(Form.java:216) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at controllers.api.v1.Authorization.authenticate(Authorization.java:23) ~[classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$3$$anonfun$apply$3.apply(routes_routing.scala:69) [classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$3$$anonfun$apply$3.apply(routes_routing.scala:69) [classes/:na]
+	at play.core.Router$HandlerInvoker$$anon$7$$anon$2.invocation(Router.scala:183) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.Router$Routes$$anon$1.invocation(Router.scala:377) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:56) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$3.apply(JavaAction.scala:91) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$3.apply(JavaAction.scala:90) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.FPromiseHelper$$anonfun$flatMap$1.apply(FPromiseHelper.scala:82) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.FPromiseHelper$$anonfun$flatMap$1.apply(FPromiseHelper.scala:82) [play_2.10-2.2.4.jar:2.2.4]
+	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:251) [scala-library.jar:na]
+	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:249) [scala-library.jar:na]
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library.jar:na]
+	at play.core.j.HttpExecutionContext$$anon$2.run(HttpExecutionContext.scala:37) [play_2.10-2.2.4.jar:2.2.4]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:42) [akka-actor_2.10.jar:2.2.0]
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:386) [akka-actor_2.10.jar:2.2.0]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) [scala-library.jar:na]
+Caused by: java.lang.InstantiationException: null
+	at sun.reflect.InstantiationExceptionConstructorAccessorImpl.newInstance(InstantiationExceptionConstructorAccessorImpl.java:48) ~[na:1.8.0_71]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422) ~[na:1.8.0_71]
+	at java.lang.Class.newInstance(Class.java:442) ~[na:1.8.0_71]
+	at play.data.Form.blankInstance(Form.java:88) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	... 22 common frames omitted
+
+2018-04-09 16:19:46,902 - [ERROR] - from authorization-api in play-akka.actor.default-dispatcher-15 
+Error intentando autenticarse
+java.lang.RuntimeException: Cannot instantiate class models.User. It must have a default constructor
+	at play.data.Form.blankInstance(Form.java:90) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at play.data.Form.bind(Form.java:306) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at play.data.Form.bindFromRequest(Form.java:216) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	at controllers.api.v1.Authorization.authenticate(Authorization.java:23) ~[classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$3$$anonfun$apply$3.apply(routes_routing.scala:69) [classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$3$$anonfun$apply$3.apply(routes_routing.scala:69) [classes/:na]
+	at play.core.Router$HandlerInvoker$$anon$7$$anon$2.invocation(Router.scala:183) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.Router$Routes$$anon$1.invocation(Router.scala:377) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:56) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$3.apply(JavaAction.scala:91) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.JavaAction$$anon$3.apply(JavaAction.scala:90) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.FPromiseHelper$$anonfun$flatMap$1.apply(FPromiseHelper.scala:82) [play_2.10-2.2.4.jar:2.2.4]
+	at play.core.j.FPromiseHelper$$anonfun$flatMap$1.apply(FPromiseHelper.scala:82) [play_2.10-2.2.4.jar:2.2.4]
+	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:251) [scala-library.jar:na]
+	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:249) [scala-library.jar:na]
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library.jar:na]
+	at play.core.j.HttpExecutionContext$$anon$2.run(HttpExecutionContext.scala:37) [play_2.10-2.2.4.jar:2.2.4]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:42) [akka-actor_2.10.jar:2.2.0]
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:386) [akka-actor_2.10.jar:2.2.0]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) [scala-library.jar:na]
+Caused by: java.lang.InstantiationException: null
+	at sun.reflect.InstantiationExceptionConstructorAccessorImpl.newInstance(InstantiationExceptionConstructorAccessorImpl.java:48) ~[na:1.8.0_71]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422) ~[na:1.8.0_71]
+	at java.lang.Class.newInstance(Class.java:442) ~[na:1.8.0_71]
+	at play.data.Form.blankInstance(Form.java:88) ~[play-java_2.10-2.2.4.jar:2.2.4]
+	... 22 common frames omitted
+
+2018-04-09 16:19:58,961 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-09 16:19:59,600 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-09 16:22:53,471 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-09 16:22:54,214 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-09 16:24:35,158 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-09 16:24:35,766 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-09 16:25:40,776 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-09 16:25:41,754 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-09 16:28:54,797 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-09 16:28:55,406 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-09 16:29:21,023 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-09 16:29:21,213 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-09 16:31:31,337 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-09 16:31:31,948 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-09 16:31:56,470 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-09 16:31:56,715 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-09 16:32:18,476 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-09 16:32:18,711 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+

@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Order extends Model {
+public class Request extends Model {
 
     public enum Status{
         @EnumValue("ON_PREPARATION")

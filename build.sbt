@@ -6,6 +6,7 @@ libraryDependencies ++= Seq(
   javaJdbc,
   javaEbean,
   cache,
+  "mysql" % "mysql-connector-java" % "5.1.38",
   "com.auth0" % "java-jwt" % "3.3.0",
   "org.mindrot" % "jbcrypt" % "0.3m"
 )
