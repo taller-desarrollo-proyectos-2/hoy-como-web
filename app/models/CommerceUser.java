@@ -1,6 +1,8 @@
 package models;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import play.data.validation.Constraints;
+import play.libs.Json;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -22,5 +24,14 @@ public class CommerceUser extends BackofficeUser {
 
     public void setCommerce(Commerce commerce) {
         this.commerce = commerce;
+    }
+
+    @Override
+    public JsonNode getPanel(){
+        return Json.parse("[{\n" +
+                "\t\t\"showName\": \"Menu\",\n" +
+                "\t\t\"route\": \"/web/plates/commerce/:id\",\n" +
+                "\t\t\"icon\": \"glyphicons glyphicons-fast-food\"\n" +
+                "\t}]");
     }
 }

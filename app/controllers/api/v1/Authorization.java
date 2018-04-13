@@ -47,7 +47,8 @@ public class Authorization extends Controller {
                     .sign(Algorithm.HMAC256(ConfigFactory.load().getString("application.secret")));
 
             response().setHeader("authorization", "Bearer " + token);
-            return ok();
+
+            return ok(dbUser.getPanel());
         }catch(Exception e){
             logger.error("Error intentando autenticarse", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Internal error attempting to log in"));

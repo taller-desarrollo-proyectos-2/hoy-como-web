@@ -1,6 +1,10 @@
 package models;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import play.data.validation.Constraints;
+import play.libs.Json;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -40,5 +44,17 @@ public class BackofficeUser extends User {
 
     public static BackofficeUser findByUsername(String username){
         return FIND.where().eq("username", username).findUnique();
+    }
+
+    public JsonNode getPanel(){
+        return Json.parse("[{\n" +
+                "\t\t\"showName\": \"Comercios\",\n" +
+                "\t\t\"route\": \"/web/commerces\",\n" +
+                "\t\t\"icon\": \"glyphicon glyphicon-cutlery\"\n" +
+                "\t},{\n" +
+                "\t\t\"showName\": \"Usuarios\",\n" +
+                "\t\t\"route\": \"/web/commerce/users\",\n" +
+                "\t\t\"icon\": \"glyphicon glyphicon-user\"\n" +
+                "\t}]");
     }
 }
