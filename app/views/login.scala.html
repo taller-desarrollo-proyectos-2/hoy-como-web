@@ -1,39 +1,25 @@
 
-<div class="controller login" ng-controller="mainCtrl">
-  <div class="container-fluid login-view">
-    <div class="loginContainer">
-    <div class="centerContent">
-        <div class="logoContainer">
-            <h1>HOY COMO</h1>
+<div class="login-view" ng-controller="mainCtrl">
+  <div class="container-fluid">
+    <div class="login-container">
+        <div class="center-content">
+            <div class="logoContainer">
+                <h1>HOY COMO</h1>
+            </div>
+            <p>Inicie sesion para comenzar</p>
+            <div class="form-group has-feedback">
+              <input type="email" class="form-control" placeholder="Usuario" ng-model="args.mail">
+              <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+              <input type="password" class="form-control" placeholder="Contraseña" ng-model="args.password">
+              <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div>
+                <button class="btn btn-default btn-block btn-flat" ng-click="login()">Ingresar</button>
+            </div>
         </div>
-                <p>Inicie sesion para comenzar</p>
-
-                <form >
-                  <div class="form-group has-feedback">
-                    <input type="email" class="form-control" placeholder="Usuario" ng-model="args.mail">
-                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                  </div>
-                  <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Contraseña" ng-model="args.password">
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-8">
-                        <!--
-                      <div class="checkbox icheck">
-                        <label>
-                          <input type="checkbox"> Remember Me
-                        </label>
-                      </div>
-                        -->
-                    </div>
-                    <div class="col-xs-4">
-                      <button class="btn btn-default btn-block btn-flat" ng-click="authenticate()">Ingresar</button>
-                    </div>
-                  </div>
-                </form>
-    </div>
-              </div>
+        </div>
   </div>
 
 </div>
