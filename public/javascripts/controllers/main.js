@@ -5,16 +5,22 @@ hoyComoApp.controller('mainCtrl', function ($scope, $http, $window, $rootScope) 
 
     $scope.user = {};
 
-    $scope.$on("login", function (event, args) {    
-        $http.post("/api/v1/authenticate", $scope.user)
-        .success(function(data) {  
+    $scope.$on("login", function (event, args) {   
+        
+        $http({
+            url: "/api/v1/authenticate",
+            data: $scope.user,
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).success(function(data){
             $rootScope.menu = data;
             $scope.content = "/dash";
         }).error(function(err){
             $scope.content = "/login";
-            // toastr.error(err);
         });
-            $scope.content = "/dash";
     });
     
     $scope.$on("logout", function (event, args) {
