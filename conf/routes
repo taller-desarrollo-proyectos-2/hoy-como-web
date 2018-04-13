@@ -18,3 +18,7 @@ POST        /api/v1/authenticate            controllers.api.v1.Authorization.aut
 # COMMERCE
 
 POST        /api/v1/commerce                controllers.api.v1.Commerces.create()
+
+# VIEWS
+
+GET         /                       controllers.web.Dash.showMainScreen()
