@@ -11,6 +11,8 @@ public class BackofficeUser extends User {
     @OneToOne
     private Commerce commerce;
 
+    public BackofficeUser(){ super(); }
+
     public BackofficeUser(String username, String password) {
         super(username, password);
     }
@@ -22,4 +24,7 @@ public class BackofficeUser extends User {
     public void setCommerce(Commerce commerce) {
         this.commerce = commerce;
     }
+
+
+
 }

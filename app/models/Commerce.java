@@ -11,14 +11,18 @@ import play.db.ebean.Model;
  */
 @Entity
 public class Commerce extends Model{
-    
+
+    protected static final Finder<Long, Commerce> FIND = new Finder<>(Long.class, Commerce.class);
+
     @Id
     private Long id;
-    
+
+    private String name;
+
     @ManyToOne
     private Company company;
 
-    @OneToMany
+    @ManyToMany
     private List<Category> categories;
     
     @OneToMany
@@ -65,5 +69,13 @@ public class Commerce extends Model{
 
     public void setLicense(License license) {
         this.license = license;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

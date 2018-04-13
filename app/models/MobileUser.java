@@ -2,16 +2,17 @@ package models;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Entity
 @DiscriminatorValue("MOBILE")
 public class MobileUser extends User {
 
-    @OneToMany
+    @ManyToMany
     private List<Commerce> favourites;
+
+    public MobileUser(){ super (); }
 
     public MobileUser(String username, String password) {
         super(username, password);
@@ -24,4 +25,6 @@ public class MobileUser extends User {
     public void setFavourites(List<Commerce> favourites) {
         this.favourites = favourites;
     }
+
+
 }

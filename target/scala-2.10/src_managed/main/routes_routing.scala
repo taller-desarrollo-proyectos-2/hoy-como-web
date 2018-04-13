@@ -1,6 +1,6 @@
 // @SOURCE:/Users/facundocaldora/workspace/hoy-como-web/conf/routes
-// @HASH:9c24f09449355737d0bfbe9ca53280febbd777c7
-// @DATE:Sat Mar 31 15:19:20 ART 2018
+// @HASH:abf057e502359a0575a240483417dc695c9e0183
+// @DATE:Mon Apr 09 16:22:46 ART 2018
 
 
 import play.core._
@@ -29,13 +29,21 @@ lazy val defaultPrefix = { if(Routes.prefix.endsWith("/")) "" else "/" }
 
 
 // @LINE:6
-private[this] lazy val controllers_Application_index0 = Route("GET", PathPattern(List(StaticPart(Routes.prefix))))
+private[this] lazy val controllers_Assets_at0 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
         
 
-// @LINE:9
-private[this] lazy val controllers_Assets_at1 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
+// @LINE:11
+private[this] lazy val controllers_api_v1_BackofficeUsers_create1 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("api/v1/backoffice/users"))))
         
-def documentation = List(("""GET""", prefix,"""controllers.Application.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
+
+// @LINE:16
+private[this] lazy val controllers_api_v1_Authorization_authenticate2 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("api/v1/authenticate"))))
+        
+
+// @LINE:20
+private[this] lazy val controllers_api_v1_Commerces_create3 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("api/v1/commerce"))))
+        
+def documentation = List(("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """api/v1/backoffice/users""","""controllers.api.v1.BackofficeUsers.create()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """api/v1/authenticate""","""controllers.api.v1.Authorization.authenticate()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """api/v1/commerce""","""controllers.api.v1.Commerces.create()""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
   case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
   case l => s ++ l.asInstanceOf[List[(String,String,String)]] 
 }}
@@ -44,17 +52,33 @@ def documentation = List(("""GET""", prefix,"""controllers.Application.index()""
 def routes:PartialFunction[RequestHeader,Handler] = {
 
 // @LINE:6
-case controllers_Application_index0(params) => {
-   call { 
-        invokeHandler(controllers.Application.index(), HandlerDef(this, "controllers.Application", "index", Nil,"GET", """ Home page""", Routes.prefix + """"""))
+case controllers_Assets_at0(params) => {
+   call(Param[String]("path", Right("/public")), params.fromPath[String]("file", None)) { (path, file) =>
+        invokeHandler(controllers.Assets.at(path, file), HandlerDef(this, "controllers.Assets", "at", Seq(classOf[String], classOf[String]),"GET", """ Map static resources from the /public folder to the /assets URL path""", Routes.prefix + """assets/$file<.+>"""))
    }
 }
         
 
-// @LINE:9
-case controllers_Assets_at1(params) => {
-   call(Param[String]("path", Right("/public")), params.fromPath[String]("file", None)) { (path, file) =>
-        invokeHandler(controllers.Assets.at(path, file), HandlerDef(this, "controllers.Assets", "at", Seq(classOf[String], classOf[String]),"GET", """ Map static resources from the /public folder to the /assets URL path""", Routes.prefix + """assets/$file<.+>"""))
+// @LINE:11
+case controllers_api_v1_BackofficeUsers_create1(params) => {
+   call { 
+        invokeHandler(controllers.api.v1.BackofficeUsers.create(), HandlerDef(this, "controllers.api.v1.BackofficeUsers", "create", Nil,"POST", """""", Routes.prefix + """api/v1/backoffice/users"""))
+   }
+}
+        
+
+// @LINE:16
+case controllers_api_v1_Authorization_authenticate2(params) => {
+   call { 
+        invokeHandler(controllers.api.v1.Authorization.authenticate(), HandlerDef(this, "controllers.api.v1.Authorization", "authenticate", Nil,"POST", """""", Routes.prefix + """api/v1/authenticate"""))
+   }
+}
+        
+
+// @LINE:20
+case controllers_api_v1_Commerces_create3(params) => {
+   call { 
+        invokeHandler(controllers.api.v1.Commerces.create(), HandlerDef(this, "controllers.api.v1.Commerces", "create", Nil,"POST", """""", Routes.prefix + """api/v1/commerce"""))
    }
 }
         

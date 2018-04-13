@@ -1,0 +1,62 @@
+2018-04-10 19:01:31,093 - [INFO] - from play in pool-4-thread-4 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2018-04-10 19:01:39,612 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-10 19:01:42,082 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-10 19:02:34,702 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-10 19:02:35,954 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-10 19:06:16,139 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-10 19:06:18,155 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-10 19:06:18,313 - [ERROR] - from backoffice-users-api in play-akka.actor.default-dispatcher-5 
+Error while creating backoffice user
+exceptions.CreationException: Username already taken.
+	at services.UsersService.create(UsersService.java:12) ~[classes/:na]
+	at controllers.api.v1.BackofficeUsers.create(BackofficeUsers.java:30) ~[classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$2$$anonfun$apply$2.apply(routes_routing.scala:65) [classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$2$$anonfun$apply$2.apply(routes_routing.scala:65) [classes/:na]
+	at play.core.Router$HandlerInvoker$$anon$7$$anon$2.invocation(Router.scala:183) [play_2.10.jar:2.2.6]
+	at play.core.Router$Routes$$anon$1.invocation(Router.scala:377) [play_2.10.jar:2.2.6]
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:56) [play_2.10.jar:2.2.6]
+	at annotations.AuthenticateAction.call(AuthenticateAction.java:39) [classes/:na]
+	at play.core.j.JavaAction$$anon$3.apply(JavaAction.scala:91) [play_2.10.jar:2.2.6]
+	at play.core.j.JavaAction$$anon$3.apply(JavaAction.scala:90) [play_2.10.jar:2.2.6]
+	at play.core.j.FPromiseHelper$$anonfun$flatMap$1.apply(FPromiseHelper.scala:82) [play_2.10.jar:2.2.6]
+	at play.core.j.FPromiseHelper$$anonfun$flatMap$1.apply(FPromiseHelper.scala:82) [play_2.10.jar:2.2.6]
+	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:251) [scala-library.jar:na]
+	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:249) [scala-library.jar:na]
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library.jar:na]
+	at play.core.j.HttpExecutionContext$$anon$2.run(HttpExecutionContext.scala:37) [play_2.10.jar:2.2.6]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:42) [akka-actor_2.10.jar:2.2.0]
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:386) [akka-actor_2.10.jar:2.2.0]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) [scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) [scala-library.jar:na]
+
+2018-04-10 19:08:06,617 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-10 19:08:07,985 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2018-04-10 19:08:08,171 - [ERROR] - from backoffice-users-api in play-akka.actor.default-dispatcher-12 
+Username already taken.
+
+2018-04-10 19:11:59,440 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/hoyComo?#characterEncoding=UTF-8&useSSL=false
+
+2018-04-10 19:12:01,263 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+

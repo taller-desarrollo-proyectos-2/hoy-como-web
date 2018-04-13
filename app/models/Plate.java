@@ -1,8 +1,9 @@
 package models;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 import play.db.ebean.Model;
 
@@ -12,6 +13,7 @@ import java.util.List;
  *
  * @author facundocaldora
  */
+@Entity
 public class Plate extends Model{
     
     
@@ -20,10 +22,13 @@ public class Plate extends Model{
     
     private String name;
 
+    @ManyToOne
+    private Commerce commerce;
+
     @ManyToMany
     private List<Category> categories;
 
-    @OneToMany
+    @ManyToMany
     private List<Optional> optionals;
     
     private float price;
@@ -78,5 +83,11 @@ public class Plate extends Model{
         this.price = price;
     }
 
-    
+    public Commerce getCommerce() {
+        return commerce;
+    }
+
+    public void setCommerce(Commerce commerce) {
+        this.commerce = commerce;
+    }
 }
