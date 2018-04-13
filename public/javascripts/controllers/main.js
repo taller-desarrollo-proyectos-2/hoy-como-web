@@ -1,12 +1,11 @@
 
-hoyComoApp.controller('mainCtrl', function ($scope, $http, $window, $rootScope) {
+hoyComoApp.controller('mainCtrl', function ($scope, $http, $window, $rootScope, toastr) {
 
     $scope.content = "/login";
 
     $scope.user = {};
 
     $scope.$on("login", function (event, args) {   
-        
         $http({
             url: "/api/v1/authenticate",
             data: $scope.user,
@@ -19,13 +18,12 @@ hoyComoApp.controller('mainCtrl', function ($scope, $http, $window, $rootScope) 
             $rootScope.menu = data;
             $scope.content = "/dash";
         }).error(function(err){
-            $scope.content = "/login";
+            toastr.error(err.message);
         });
     });
     
     $scope.$on("logout", function (event, args) {
             $scope.content = "/login";
-
     });
         
 });
@@ -41,9 +39,9 @@ hoyComoApp.controller('loginCtrl', function ($scope, $http, $filter, $window, $r
 
 hoyComoApp.controller('dashCtrl', function ($scope, $http, $filter, $window, $rootScope) {
 
-        $scope.menu = $rootScope.menu;
-    // $scope.menu = [{showName: 'Comercios', route: '/fruta', icon: 'ti-panel'}, {showName: 'la vida', route: '/lavida', icon: 'ti-rocket'}];
+    $scope.menu = $rootScope.menu;
 
+    //se setea la primera opcion al entrar, deberia guardarse la que esta seleccionada
     $scope.dashContent = $scope.menu[0].route;
 
     $scope.logOut = function(){
