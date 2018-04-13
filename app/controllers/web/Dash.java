@@ -14,5 +14,13 @@ public class Dash extends Controller {
       public static Result showMainScreen() {
             return ok(views.html.main.render());
         }
+      
+      public static Result showLogin() {
+            return ok(views.html.login.render());
+        }
+      
+      public static Result showDash() {
+            return ok(views.html.dash.render());
+        }
     
 }
