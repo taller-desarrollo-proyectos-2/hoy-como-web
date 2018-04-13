@@ -69,8 +69,7 @@ hoyComoApp.controller('dashCtrl', function ($scope, $http, $filter, $window, $ro
     };
 
     $scope.isActive = function(route){
-        if($scope.dashContent === route) return true;
-        return false;
+        return $scope.dashContent === route;
     };
 });
 
