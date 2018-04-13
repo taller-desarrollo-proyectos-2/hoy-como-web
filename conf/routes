@@ -23,6 +23,12 @@ GET         /api/v1/commerces               controllers.api.v1.Commerces.list()
 
 # VIEWS
 
-GET         /                      controllers.web.Dash.showMainScreen()
-GET         /login                 controllers.web.Dash.showLogin()
-GET         /dash                  controllers.web.Dash.showDash()
+GET         /                               controllers.web.Dash.showMainScreen()
+GET         /login                          controllers.web.Dash.showLogin()
+GET         /dash                           controllers.web.Dash.showDash()
+
+## ------------------------    WEB    --------------------------------------
+
+# COMMERCE
+
+GET         /web/commerces                  controllers.web.Commerces.showCommerces()
