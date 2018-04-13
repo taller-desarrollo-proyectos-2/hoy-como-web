@@ -1,6 +1,6 @@
 // @SOURCE:/Users/facundocaldora/workspace/hoy-como-web/conf/routes
-// @HASH:abf057e502359a0575a240483417dc695c9e0183
-// @DATE:Mon Apr 09 16:22:46 ART 2018
+// @HASH:711876e4224d4b68923ddc471d48726b59e8f56d
+// @DATE:Fri Apr 13 14:22:11 ART 2018
 
 package controllers;
 

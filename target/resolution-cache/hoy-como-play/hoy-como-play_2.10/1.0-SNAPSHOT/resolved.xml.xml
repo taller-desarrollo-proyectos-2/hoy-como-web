@@ -4,7 +4,7 @@
 		module="hoy-como-play_2.10"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20180413120747"
+		publication="20180413135210"
 	>
 		<description>
 		hoy-como-play
@@ -34,15 +34,15 @@
 	<dependencies>
 		<dependency org="org.scala-lang" name="scala-compiler" rev="2.10.3" conf="scala-tool->default,optional(default)"/>
 		<dependency org="org.scala-lang" name="scala-library" rev="2.10.3" conf="scala-tool->default,optional(default);compile->default(compile)"/>
-		<dependency org="com.typesafe.play" name="play-java-jdbc_2.10" rev="2.2.6" conf="compile->default(compile)"/>
-		<dependency org="com.typesafe.play" name="play-java-ebean_2.10" rev="2.2.6" conf="compile->default(compile)"/>
-		<dependency org="com.typesafe.play" name="play-cache_2.10" rev="2.2.6" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.play" name="play-java-jdbc_2.10" rev="2.2.4" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.play" name="play-java-ebean_2.10" rev="2.2.4" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.play" name="play-cache_2.10" rev="2.2.4" conf="compile->default(compile)"/>
 		<dependency org="mysql" name="mysql-connector-java" rev="5.1.38" conf="compile->default(compile)"/>
 		<dependency org="com.auth0" name="java-jwt" rev="3.3.0" conf="compile->default(compile)"/>
 		<dependency org="org.mindrot" name="jbcrypt" rev="0.3m" conf="compile->default(compile)"/>
-		<dependency org="com.typesafe.play" name="play_2.10" rev="2.2.6" conf="compile->default(compile)"/>
-		<dependency org="com.typesafe.play" name="play-test_2.10" rev="2.2.6" conf="test->default(compile)"/>
-		<dependency org="com.typesafe.play" name="play-docs_2.10" rev="2.2.6" conf="docs->default(compile)"/>
-		<dependency org="com.typesafe.play" name="play-java_2.10" rev="2.2.6" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.play" name="play_2.10" rev="2.2.4" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.play" name="play-test_2.10" rev="2.2.4" conf="test->default(compile)"/>
+		<dependency org="com.typesafe.play" name="play-docs_2.10" rev="2.2.4" conf="docs->default(compile)"/>
+		<dependency org="com.typesafe.play" name="play-java_2.10" rev="2.2.4" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>
