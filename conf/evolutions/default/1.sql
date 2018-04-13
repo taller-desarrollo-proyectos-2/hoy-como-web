@@ -13,6 +13,7 @@ create table commerce (
   id                        bigint auto_increment not null,
   name                      varchar(255),
   company_id                bigint,
+  business_name             varchar(255),
   license_id                bigint,
   constraint pk_commerce primary key (id))
 ;
