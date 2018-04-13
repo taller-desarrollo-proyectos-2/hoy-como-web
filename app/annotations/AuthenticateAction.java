@@ -31,7 +31,7 @@ public class AuthenticateAction extends Action<Authenticate> {
             User user = User.findByIdAndType(userId, this.configuration.types());
 
             if(user == null){
-                return F.Promise.pure(unauthorized());
+                return F.Promise.pure(forbidden());
             }
 
             ctx.args.put("user", user);

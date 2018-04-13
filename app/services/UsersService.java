@@ -1,14 +1,14 @@
 package services;
 
 import exceptions.CreationException;
-import models.User;
+import models.BackofficeUser;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class UsersService {
 
-    public static void create(User user) throws CreationException {
+    public static void create(BackofficeUser user) throws CreationException {
         //Me fijo que no exista alguno con ese nombre de usuario.
-        if(User.findByUsername(user.getUsername()) != null){
+        if(BackofficeUser.findByUsername(user.getUsername()) != null){
             throw new CreationException("Username already taken.");
         }
         //Seteo la password hasheada

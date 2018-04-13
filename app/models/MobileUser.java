@@ -1,8 +1,8 @@
 package models;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import play.db.ebean.Model;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -12,12 +12,6 @@ public class MobileUser extends User {
     @ManyToMany
     private List<Commerce> favourites;
 
-    public MobileUser(){ super (); }
-
-    public MobileUser(String username, String password) {
-        super(username, password);
-    }
-
     public List<Commerce> getFavourites() {
         return favourites;
     }
@@ -25,6 +19,5 @@ public class MobileUser extends User {
     public void setFavourites(List<Commerce> favourites) {
         this.favourites = favourites;
     }
-
 
 }
