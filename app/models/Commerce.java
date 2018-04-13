@@ -22,6 +22,8 @@ public class Commerce extends Model{
     @ManyToOne
     private Company company;
 
+    private String businessName;
+
     @ManyToMany
     private List<Category> categories;
     
@@ -77,5 +79,21 @@ public class Commerce extends Model{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public static Commerce findByProperty(String property, Object value){
+        return FIND.where().eq(property, value).findUnique();
+    }
+
+    public static List<Commerce> findAll(){
+        return FIND.all();
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 }

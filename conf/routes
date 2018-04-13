@@ -18,10 +18,11 @@ POST        /api/v1/authenticate/facebook   controllers.api.v1.Authorization.fac
 
 # COMMERCE
 
-POST        /api/v1/commerce                controllers.api.v1.Commerces.create()
+POST        /api/v1/commerces               controllers.api.v1.Commerces.create()
+GET         /api/v1/commerces               controllers.api.v1.Commerces.list()
 
 # VIEWS
 
-GET         /                        controllers.web.Dash.showMainScreen()
+GET         /                      controllers.web.Dash.showMainScreen()
 GET         /login                 controllers.web.Dash.showLogin()
 GET         /dash                  controllers.web.Dash.showDash()

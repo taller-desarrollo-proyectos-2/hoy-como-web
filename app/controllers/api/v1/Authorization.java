@@ -36,8 +36,8 @@ public class Authorization extends Controller {
                 return notFound(JsonNodeFactory.instance.objectNode().put("message", "Usuario no encontrado"));
             }
             if(!BCrypt.checkpw(user.getPassword(), dbUser.getPassword())){
-                logger.error("Intentando loguearse con una contrasena incorrecta");
-                return unauthorized(JsonNodeFactory.instance.objectNode().put("message", "Not a valid username or password"));
+                logger.info("Intentando loguearse con una contrasena incorrecta");
+                return unauthorized(JsonNodeFactory.instance.objectNode().put("message", "Usuario o contraseña incorrectos"));
             }
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.MINUTE, 60);
@@ -51,7 +51,7 @@ public class Authorization extends Controller {
             return ok(dbUser.getPanel());
         }catch(Exception e){
             logger.error("Error intentando autenticarse", e);
-            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Internal error attempting to log in"));
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando loguearse"));
         }
     }
 
@@ -79,7 +79,7 @@ public class Authorization extends Controller {
             return ok();
         }catch(Exception e ){
             logger.error("Error interno intentando autenticarse con facebook", e);
-            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Internal error attempting to log in"));
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando loguearse"));
         }
 
     }
