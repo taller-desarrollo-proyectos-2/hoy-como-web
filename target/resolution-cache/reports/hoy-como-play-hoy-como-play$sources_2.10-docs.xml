@@ -7,15 +7,15 @@
 		revision="1.0-SNAPSHOT"
 		conf="docs"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20180413120754"/>
+		date="20180413125941"/>
 	<dependencies>
 		<module organisation="com.typesafe.play" name="play-docs_2.10">
-			<revision name="2.2.6" status="release" pubdate="20150421130248" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="37">
-				<metadata-artifact status="no" details="" size="2548" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-docs_2.10/ivy-2.2.6.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-docs_2.10/2.2.6/play-docs_2.10-2.2.6.pom"/>
-				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.6" rev-constraint-default="2.2.6" rev-constraint-dynamic="2.2.6" callerrev="1.0-SNAPSHOT"/>
+			<revision name="2.2.4" status="release" pubdate="20150421132339" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="37">
+				<metadata-artifact status="no" details="" size="2548" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-docs_2.10/ivy-2.2.4.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-docs_2.10/2.2.4/play-docs_2.10-2.2.4.pom"/>
+				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.4" rev-constraint-default="2.2.4" rev-constraint-dynamic="2.2.4" callerrev="1.0-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="play-docs_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="3785" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-docs_2.10/srcs/play-docs_2.10-2.2.6-sources.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-docs_2.10/2.2.6/play-docs_2.10-2.2.6-sources.jar"/>
+					<artifact name="play-docs_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="3785" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-docs_2.10/srcs/play-docs_2.10-2.2.4-sources.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-docs_2.10/2.2.4/play-docs_2.10-2.2.4-sources.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
@@ -123,15 +123,15 @@
 			</revision>
 		</module>
 		<module organisation="com.typesafe.play" name="play_2.10">
-			<revision name="2.2.6" status="release" pubdate="20150421115016" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="1">
-				<metadata-artifact status="no" details="" size="7248" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play_2.10/ivy-2.2.6.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play_2.10/2.2.6/play_2.10-2.2.6.pom"/>
-				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.6" rev-constraint-default="2.2.6" rev-constraint-dynamic="2.2.6" callerrev="1.0-SNAPSHOT"/>
+			<revision name="2.2.4" status="release" pubdate="20150421133045" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="1">
+				<metadata-artifact status="no" details="" size="7248" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play_2.10/ivy-2.2.4.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play_2.10/2.2.4/play_2.10-2.2.4.pom"/>
+				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.4" rev-constraint-default="2.2.4" rev-constraint-dynamic="2.2.4" callerrev="1.0-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="play_2.10" type="jar" ext="jar" status="no" details="" size="3803798" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play_2.10/jars/play_2.10-2.2.6.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play_2.10/2.2.6/play_2.10-2.2.6.jar"/>
+					<artifact name="play_2.10" type="jar" ext="jar" status="no" details="" size="3802512" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play_2.10/jars/play_2.10-2.2.4.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play_2.10/2.2.4/play_2.10-2.2.4.jar"/>
 					</artifact>
-					<artifact name="play_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="365796" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play_2.10/srcs/play_2.10-2.2.6-sources.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play_2.10/2.2.6/play_2.10-2.2.6-sources.jar"/>
+					<artifact name="play_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="365308" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play_2.10/srcs/play_2.10-2.2.4-sources.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play_2.10/2.2.4/play_2.10-2.2.4-sources.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
@@ -416,15 +416,15 @@
 			</revision>
 		</module>
 		<module organisation="com.typesafe.play" name="play-json_2.10">
-			<revision name="2.2.6" status="release" pubdate="20150421125047" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="12">
-				<metadata-artifact status="no" details="" size="3694" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-json_2.10/ivy-2.2.6.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-json_2.10/2.2.6/play-json_2.10-2.2.6.pom"/>
-				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.6" rev-constraint-default="2.2.6" rev-constraint-dynamic="2.2.6" callerrev="1.0-SNAPSHOT"/>
+			<revision name="2.2.4" status="release" pubdate="20150421114824" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="12">
+				<metadata-artifact status="no" details="" size="3694" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-json_2.10/ivy-2.2.4.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-json_2.10/2.2.4/play-json_2.10-2.2.4.pom"/>
+				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.4" rev-constraint-default="2.2.4" rev-constraint-dynamic="2.2.4" callerrev="1.0-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="play-json_2.10" type="jar" ext="jar" status="no" details="" size="623498" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-json_2.10/jars/play-json_2.10-2.2.6.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-json_2.10/2.2.6/play-json_2.10-2.2.6.jar"/>
+					<artifact name="play-json_2.10" type="jar" ext="jar" status="no" details="" size="623498" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-json_2.10/jars/play-json_2.10-2.2.4.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-json_2.10/2.2.4/play-json_2.10-2.2.4.jar"/>
 					</artifact>
-					<artifact name="play-json_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="27579" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-json_2.10/srcs/play-json_2.10-2.2.6-sources.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-json_2.10/2.2.6/play-json_2.10-2.2.6-sources.jar"/>
+					<artifact name="play-json_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="27579" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-json_2.10/srcs/play-json_2.10-2.2.4-sources.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-json_2.10/2.2.4/play-json_2.10-2.2.4-sources.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
@@ -508,43 +508,43 @@
 			</revision>
 		</module>
 		<module organisation="com.typesafe.play" name="play-datacommons_2.10">
-			<revision name="2.2.6" status="release" pubdate="20150421130916" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="14">
-				<metadata-artifact status="no" details="" size="2428" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-datacommons_2.10/ivy-2.2.6.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-datacommons_2.10/2.2.6/play-datacommons_2.10-2.2.6.pom"/>
-				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.6" rev-constraint-default="2.2.6" rev-constraint-dynamic="2.2.6" callerrev="1.0-SNAPSHOT"/>
+			<revision name="2.2.4" status="release" pubdate="20150421124031" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="14">
+				<metadata-artifact status="no" details="" size="2428" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-datacommons_2.10/ivy-2.2.4.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-datacommons_2.10/2.2.4/play-datacommons_2.10-2.2.4.pom"/>
+				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.4" rev-constraint-default="2.2.4" rev-constraint-dynamic="2.2.4" callerrev="1.0-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="play-datacommons_2.10" type="jar" ext="jar" status="no" details="" size="5198" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-datacommons_2.10/jars/play-datacommons_2.10-2.2.6.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-datacommons_2.10/2.2.6/play-datacommons_2.10-2.2.6.jar"/>
+					<artifact name="play-datacommons_2.10" type="jar" ext="jar" status="no" details="" size="5198" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-datacommons_2.10/jars/play-datacommons_2.10-2.2.4.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-datacommons_2.10/2.2.4/play-datacommons_2.10-2.2.4.jar"/>
 					</artifact>
-					<artifact name="play-datacommons_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="1355" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-datacommons_2.10/srcs/play-datacommons_2.10-2.2.6-sources.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-datacommons_2.10/2.2.6/play-datacommons_2.10-2.2.6-sources.jar"/>
+					<artifact name="play-datacommons_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="1355" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-datacommons_2.10/srcs/play-datacommons_2.10-2.2.4-sources.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-datacommons_2.10/2.2.4/play-datacommons_2.10-2.2.4-sources.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="com.typesafe.play" name="play-functional_2.10">
-			<revision name="2.2.6" status="release" pubdate="20150421121414" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="13">
-				<metadata-artifact status="no" details="" size="2425" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-functional_2.10/ivy-2.2.6.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-functional_2.10/2.2.6/play-functional_2.10-2.2.6.pom"/>
-				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.6" rev-constraint-default="2.2.6" rev-constraint-dynamic="2.2.6" callerrev="1.0-SNAPSHOT"/>
+			<revision name="2.2.4" status="release" pubdate="20150421130707" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="13">
+				<metadata-artifact status="no" details="" size="2425" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-functional_2.10/ivy-2.2.4.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-functional_2.10/2.2.4/play-functional_2.10-2.2.4.pom"/>
+				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.4" rev-constraint-default="2.2.4" rev-constraint-dynamic="2.2.4" callerrev="1.0-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="play-functional_2.10" type="jar" ext="jar" status="no" details="" size="366840" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-functional_2.10/jars/play-functional_2.10-2.2.6.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-functional_2.10/2.2.6/play-functional_2.10-2.2.6.jar"/>
+					<artifact name="play-functional_2.10" type="jar" ext="jar" status="no" details="" size="366840" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-functional_2.10/jars/play-functional_2.10-2.2.4.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-functional_2.10/2.2.4/play-functional_2.10-2.2.4.jar"/>
 					</artifact>
-					<artifact name="play-functional_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="9027" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-functional_2.10/srcs/play-functional_2.10-2.2.6-sources.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-functional_2.10/2.2.6/play-functional_2.10-2.2.6-sources.jar"/>
+					<artifact name="play-functional_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="9027" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-functional_2.10/srcs/play-functional_2.10-2.2.4-sources.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-functional_2.10/2.2.4/play-functional_2.10-2.2.4-sources.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="com.typesafe.play" name="play-iteratees_2.10">
-			<revision name="2.2.6" status="release" pubdate="20150421123356" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="9">
-				<metadata-artifact status="no" details="" size="2661" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-iteratees_2.10/ivy-2.2.6.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-iteratees_2.10/2.2.6/play-iteratees_2.10-2.2.6.pom"/>
-				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.6" rev-constraint-default="2.2.6" rev-constraint-dynamic="2.2.6" callerrev="1.0-SNAPSHOT"/>
+			<revision name="2.2.4" status="release" pubdate="20150421122819" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="9">
+				<metadata-artifact status="no" details="" size="2661" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-iteratees_2.10/ivy-2.2.4.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-iteratees_2.10/2.2.4/play-iteratees_2.10-2.2.4.pom"/>
+				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.4" rev-constraint-default="2.2.4" rev-constraint-dynamic="2.2.4" callerrev="1.0-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="play-iteratees_2.10" type="jar" ext="jar" status="no" details="" size="716673" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-iteratees_2.10/jars/play-iteratees_2.10-2.2.6.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-iteratees_2.10/2.2.6/play-iteratees_2.10-2.2.6.jar"/>
+					<artifact name="play-iteratees_2.10" type="jar" ext="jar" status="no" details="" size="716673" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-iteratees_2.10/jars/play-iteratees_2.10-2.2.4.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-iteratees_2.10/2.2.4/play-iteratees_2.10-2.2.4.jar"/>
 					</artifact>
-					<artifact name="play-iteratees_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="29563" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-iteratees_2.10/srcs/play-iteratees_2.10-2.2.6-sources.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-iteratees_2.10/2.2.6/play-iteratees_2.10-2.2.6-sources.jar"/>
+					<artifact name="play-iteratees_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="29563" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-iteratees_2.10/srcs/play-iteratees_2.10-2.2.4-sources.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-iteratees_2.10/2.2.4/play-iteratees_2.10-2.2.4-sources.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
@@ -580,15 +580,15 @@
 			</revision>
 		</module>
 		<module organisation="com.typesafe.play" name="templates_2.10">
-			<revision name="2.2.6" status="release" pubdate="20150421121204" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="5">
-				<metadata-artifact status="no" details="" size="2537" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/templates_2.10/ivy-2.2.6.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/templates_2.10/2.2.6/templates_2.10-2.2.6.pom"/>
-				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.6" rev-constraint-default="2.2.6" rev-constraint-dynamic="2.2.6" callerrev="1.0-SNAPSHOT"/>
+			<revision name="2.2.4" status="release" pubdate="20150421132150" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="5">
+				<metadata-artifact status="no" details="" size="2537" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/templates_2.10/ivy-2.2.4.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/templates_2.10/2.2.4/templates_2.10-2.2.4.pom"/>
+				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.4" rev-constraint-default="2.2.4" rev-constraint-dynamic="2.2.4" callerrev="1.0-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="templates_2.10" type="jar" ext="jar" status="no" details="" size="39142" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/templates_2.10/jars/templates_2.10-2.2.6.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/templates_2.10/2.2.6/templates_2.10-2.2.6.jar"/>
+					<artifact name="templates_2.10" type="jar" ext="jar" status="no" details="" size="39142" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/templates_2.10/jars/templates_2.10-2.2.4.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/templates_2.10/2.2.4/templates_2.10-2.2.4.jar"/>
 					</artifact>
-					<artifact name="templates_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="2232" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/templates_2.10/srcs/templates_2.10-2.2.6-sources.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/templates_2.10/2.2.6/templates_2.10-2.2.6-sources.jar"/>
+					<artifact name="templates_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="2232" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/templates_2.10/srcs/templates_2.10-2.2.4-sources.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/templates_2.10/2.2.4/templates_2.10-2.2.4-sources.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
@@ -653,29 +653,29 @@
 			</revision>
 		</module>
 		<module organisation="com.typesafe.play" name="play-exceptions">
-			<revision name="2.2.6" status="release" pubdate="20150421130303" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="4">
-				<metadata-artifact status="no" details="" size="2241" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-exceptions/ivy-2.2.6.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-exceptions/2.2.6/play-exceptions-2.2.6.pom"/>
-				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.6" rev-constraint-default="2.2.6" rev-constraint-dynamic="2.2.6" callerrev="1.0-SNAPSHOT"/>
+			<revision name="2.2.4" status="release" pubdate="20150421125632" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="4">
+				<metadata-artifact status="no" details="" size="2241" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-exceptions/ivy-2.2.4.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-exceptions/2.2.4/play-exceptions-2.2.4.pom"/>
+				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.4" rev-constraint-default="2.2.4" rev-constraint-dynamic="2.2.4" callerrev="1.0-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="play-exceptions" type="jar" ext="jar" status="no" details="" size="4574" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-exceptions/jars/play-exceptions-2.2.6.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-exceptions/2.2.6/play-exceptions-2.2.6.jar"/>
+					<artifact name="play-exceptions" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="2148" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-exceptions/srcs/play-exceptions-2.2.4-sources.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-exceptions/2.2.4/play-exceptions-2.2.4-sources.jar"/>
 					</artifact>
-					<artifact name="play-exceptions" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="2148" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-exceptions/srcs/play-exceptions-2.2.6-sources.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-exceptions/2.2.6/play-exceptions-2.2.6-sources.jar"/>
+					<artifact name="play-exceptions" type="jar" ext="jar" status="no" details="" size="4571" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/play-exceptions/jars/play-exceptions-2.2.4.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/play-exceptions/2.2.4/play-exceptions-2.2.4.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="com.typesafe.play" name="sbt-link">
-			<revision name="2.2.6" status="release" pubdate="20150421115741" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="2">
-				<metadata-artifact status="no" details="" size="2392" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/sbt-link/ivy-2.2.6.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/sbt-link/2.2.6/sbt-link-2.2.6.pom"/>
-				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.6" rev-constraint-default="2.2.6" rev-constraint-dynamic="2.2.6" callerrev="1.0-SNAPSHOT"/>
+			<revision name="2.2.4" status="release" pubdate="20150421132937" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="2">
+				<metadata-artifact status="no" details="" size="2392" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/sbt-link/ivy-2.2.4.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/sbt-link/2.2.4/sbt-link-2.2.4.pom"/>
+				<caller organisation="hoy-como-play" name="hoy-como-play$sources_2.10" conf="docs" rev="2.2.4" rev-constraint-default="2.2.4" rev-constraint-dynamic="2.2.4" callerrev="1.0-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="sbt-link" type="jar" ext="jar" status="no" details="" size="8774" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/sbt-link/jars/sbt-link-2.2.6.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/sbt-link/2.2.6/sbt-link-2.2.6.jar"/>
+					<artifact name="sbt-link" type="jar" ext="jar" status="no" details="" size="8774" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/sbt-link/jars/sbt-link-2.2.4.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/sbt-link/2.2.4/sbt-link-2.2.4.jar"/>
 					</artifact>
-					<artifact name="sbt-link" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="4674" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/sbt-link/srcs/sbt-link-2.2.6-sources.jar">
-						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/sbt-link/2.2.6/sbt-link-2.2.6-sources.jar"/>
+					<artifact name="sbt-link" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="4674" time="0" location="/Users/facundocaldora/.ivy2/cache/com.typesafe.play/sbt-link/srcs/sbt-link-2.2.4-sources.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/play/sbt-link/2.2.4/sbt-link-2.2.4-sources.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>

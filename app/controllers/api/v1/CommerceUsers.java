@@ -4,6 +4,7 @@ import annotations.Authenticate;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import exceptions.CreationException;
 import models.BackofficeUser;
+import models.CommerceUser;
 import models.User;
 import play.Logger;
 import play.data.Form;
@@ -12,21 +13,21 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import services.UsersService;
 
-public class BackofficeUsers extends Controller {
+public class CommerceUsers extends Controller {
 
     private static Logger.ALogger logger = Logger.of("backoffice-users-api");
 
     @Authenticate(types = "BACKOFFICE")
     public static Result create(){
         try {
-            Form<BackofficeUser> form = Form.form(BackofficeUser.class, User.Creation.class).bindFromRequest();
-
+            Form<CommerceUser> form = Form.form(CommerceUser.class, BackofficeUser.Creation.class).bindFromRequest();
+            //Chequeo que se hayan enviado los parametros necesarios
             if (form.hasErrors()) {
-                logger.info("Intento de creacion de usuario backoffice con parametros incorrectos", form.errorsAsJson());
+                logger.info("Intento de creacion de usuario de comercio con parametros incorrectos", form.errorsAsJson());
                 return badRequest(form.errorsAsJson());
             }
 
-            BackofficeUser user = form.get();
+            CommerceUser user = form.get();
 
             UsersService.create(user);
 

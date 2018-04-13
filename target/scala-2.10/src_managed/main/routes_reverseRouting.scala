@@ -1,6 +1,6 @@
 // @SOURCE:/Users/facundocaldora/workspace/hoy-como-web/conf/routes
-// @HASH:abf057e502359a0575a240483417dc695c9e0183
-// @DATE:Mon Apr 09 16:22:46 ART 2018
+// @HASH:711876e4224d4b68923ddc471d48726b59e8f56d
+// @DATE:Fri Apr 13 14:22:11 ART 2018
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -31,29 +31,30 @@ def at(file:String): Call = {
 }
                   
 
-// @LINE:20
+// @LINE:21
+// @LINE:17
 // @LINE:16
 // @LINE:11
 package controllers.api.v1 {
 
 // @LINE:11
-class ReverseBackofficeUsers {
+class ReverseCommerceUsers {
     
 
 // @LINE:11
 def create(): Call = {
-   Call("POST", _prefix + { _defaultPrefix } + "api/v1/backoffice/users")
+   Call("POST", _prefix + { _defaultPrefix } + "api/v1/commerce/users")
 }
                                                 
     
 }
                           
 
-// @LINE:20
+// @LINE:21
 class ReverseCommerces {
     
 
-// @LINE:20
+// @LINE:21
 def create(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "api/v1/commerce")
 }
@@ -62,9 +63,16 @@ def create(): Call = {
 }
                           
 
+// @LINE:17
 // @LINE:16
 class ReverseAuthorization {
     
+
+// @LINE:17
+def facebookAuthenticate(): Call = {
+   Call("POST", _prefix + { _defaultPrefix } + "api/v1/authenticate/facebook")
+}
+                                                
 
 // @LINE:16
 def authenticate(): Call = {
@@ -101,21 +109,22 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 }
         
 
-// @LINE:20
+// @LINE:21
+// @LINE:17
 // @LINE:16
 // @LINE:11
 package controllers.api.v1.javascript {
 
 // @LINE:11
-class ReverseBackofficeUsers {
+class ReverseCommerceUsers {
     
 
 // @LINE:11
 def create : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.api.v1.BackofficeUsers.create",
+   "controllers.api.v1.CommerceUsers.create",
    """
       function() {
-      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "api/v1/backoffice/users"})
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "api/v1/commerce/users"})
       }
    """
 )
@@ -124,11 +133,11 @@ def create : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
-// @LINE:20
+// @LINE:21
 class ReverseCommerces {
     
 
-// @LINE:20
+// @LINE:21
 def create : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.api.v1.Commerces.create",
    """
@@ -142,9 +151,21 @@ def create : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
+// @LINE:17
 // @LINE:16
 class ReverseAuthorization {
     
+
+// @LINE:17
+def facebookAuthenticate : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.api.v1.Authorization.facebookAuthenticate",
+   """
+      function() {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "api/v1/authenticate/facebook"})
+      }
+   """
+)
+                        
 
 // @LINE:16
 def authenticate : JavascriptReverseRoute = JavascriptReverseRoute(
@@ -182,30 +203,31 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 }
         
 
-// @LINE:20
+// @LINE:21
+// @LINE:17
 // @LINE:16
 // @LINE:11
 package controllers.api.v1.ref {
 
 
 // @LINE:11
-class ReverseBackofficeUsers {
+class ReverseCommerceUsers {
     
 
 // @LINE:11
 def create(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.api.v1.BackofficeUsers.create(), HandlerDef(this, "controllers.api.v1.BackofficeUsers", "create", Seq(), "POST", """""", _prefix + """api/v1/backoffice/users""")
+   controllers.api.v1.CommerceUsers.create(), HandlerDef(this, "controllers.api.v1.CommerceUsers", "create", Seq(), "POST", """""", _prefix + """api/v1/commerce/users""")
 )
                       
     
 }
                           
 
-// @LINE:20
+// @LINE:21
 class ReverseCommerces {
     
 
-// @LINE:20
+// @LINE:21
 def create(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.api.v1.Commerces.create(), HandlerDef(this, "controllers.api.v1.Commerces", "create", Seq(), "POST", """""", _prefix + """api/v1/commerce""")
 )
@@ -214,9 +236,16 @@ def create(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 }
                           
 
+// @LINE:17
 // @LINE:16
 class ReverseAuthorization {
     
+
+// @LINE:17
+def facebookAuthenticate(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.api.v1.Authorization.facebookAuthenticate(), HandlerDef(this, "controllers.api.v1.Authorization", "facebookAuthenticate", Seq(), "POST", """""", _prefix + """api/v1/authenticate/facebook""")
+)
+                      
 
 // @LINE:16
 def authenticate(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(

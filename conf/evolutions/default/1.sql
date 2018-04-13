@@ -56,6 +56,7 @@ create table request (
 create table user (
   USER_TYPE                 varchar(31) not null,
   id                        bigint auto_increment not null,
+  token                     varchar(255),
   username                  varchar(255),
   password                  varchar(255),
   commerce_id               bigint,
