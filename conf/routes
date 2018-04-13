@@ -22,6 +22,9 @@ POST        /api/v1/commerce                controllers.api.v1.Commerces.create(
 
 # VIEWS
 
-GET         /                        controllers.web.Dash.showMainScreen()
-GET         /login                 controllers.web.Dash.showLogin()
-GET         /dash                  controllers.web.Dash.showDash()
+GET         /                               controllers.web.Dash.showMainScreen()
+GET         /login                          controllers.web.Dash.showLogin()
+GET         /dash                           controllers.web.Dash.showDash()
+
+##Commerces
+GET         /web/commerces                  controllers.web.Commerces.showCommerces()
