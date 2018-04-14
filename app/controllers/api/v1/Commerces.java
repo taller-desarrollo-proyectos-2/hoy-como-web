@@ -3,19 +3,14 @@ package controllers.api.v1;
 import annotations.Authenticate;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import exceptions.CreationException;
-import models.BackofficeUser;
 import models.Commerce;
-import models.User;
 import play.Logger;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
-import play.mvc.Http;
 import play.mvc.Result;
 import services.CommerceServices;
 import services.SerializerService;
-
-import java.util.List;
 /*
 API Comercios
  */
@@ -26,7 +21,7 @@ public class Commerces extends Controller {
     /*
      *  Lista todos los comercios.
      */
-    @Authenticate(types = { "BACKOFFICE", "MOBILE" })
+    @Authenticate(types = { "BACKOFFICE", "FACEBOOK" })
     public static Result list(){
         try {
             return ok(SerializerService.serializeList(Commerce.findAll()));
@@ -42,7 +37,7 @@ public class Commerces extends Controller {
     @Authenticate(types = "BACKOFFICE")
     public static Result create(){
         try {
-            Form<Commerce> form = Form.form(Commerce.class).bindFromRequest();
+            Form<Commerce> form = Form.form(Commerce.class, Commerce.Creation.class).bindFromRequest();
             //Chequeo que el json tenga errores
             if (form.hasErrors()) {
                 logger.info("Parametros incorrectos para la creacion del comercio", form.errorsAsJson());
@@ -62,7 +57,7 @@ public class Commerces extends Controller {
 
     }
 
-    @Authenticate(types = "BACKOFFICE")
+    @Authenticate(types = {"BACKOFFICE", "FACEBOOK"})
     public static Result get(Long id){
         try{
             Commerce dbCommerce = Commerce.findByProperty("id", id);

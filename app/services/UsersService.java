@@ -13,6 +13,9 @@ public class UsersService {
         if(BackofficeUser.findByUsername(user.getUsername()) != null){
             throw new CreationException("Nombre de usuario ya utilizado.");
         }
+        if(CommerceUser.findByProperty("commerce.id", user.getCommerce().getId()) != null){
+            throw new CreationException("Ya existe un usuario para ese comercio");
+        }
         if(Commerce.findByProperty("id", user.getCommerce().getId()) == null){
             throw new CreationException("Comercio inexistente para asociar al usuario");
         }

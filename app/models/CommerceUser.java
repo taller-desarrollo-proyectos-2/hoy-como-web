@@ -41,4 +41,8 @@ public class CommerceUser extends BackofficeUser {
     public static List<CommerceUser> findAll(){
         return FIND.all();
     }
+
+    public static CommerceUser findByProperty(String property, Object value){
+        return FIND.where().eq(property, value).findUnique();
+    }
 }

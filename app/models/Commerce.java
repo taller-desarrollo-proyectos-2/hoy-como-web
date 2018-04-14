@@ -3,6 +3,7 @@ package models;
 import java.util.List;
 import javax.persistence.*;
 
+import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 /**
@@ -14,6 +15,8 @@ public class Commerce extends Model{
 
     protected static final Finder<Long, Commerce> FIND = new Finder<>(Long.class, Commerce.class);
 
+    public interface Creation{}
+
     @Id
     private Long id;
 
@@ -22,6 +25,7 @@ public class Commerce extends Model{
     @ManyToOne
     private Company company;
 
+    @Constraints.Required(groups = {Commerce.Creation.class})
     private String businessName;
 
     @ManyToMany
