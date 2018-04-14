@@ -14,8 +14,9 @@ hoyComoApp.controller('mainCtrl', function ($scope, $http, $window, $rootScope, 
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
-        }).success(function(data){
+        }).success(function(data, status, headers, config){
             $rootScope.menu = data;
+            $rootScope.auth = headers('authorization');
             $scope.content = "/dash";
         }).error(function(err){
             toastr.error(err.message);
