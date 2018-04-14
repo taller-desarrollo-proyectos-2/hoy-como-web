@@ -26,7 +26,7 @@ public class Commerces extends Controller {
     /*
      *  Lista todos los comercios.
      */
-    @Authenticate(types = "BACKOFFICE")
+    @Authenticate(types = { "BACKOFFICE", "MOBILE" })
     public static Result list(){
         try {
             return ok(SerializerService.serializeList(Commerce.findAll()));
@@ -53,12 +53,22 @@ public class Commerces extends Controller {
             CommerceServices.create(commerce);
             return ok(Json.toJson(commerce));
         }catch(CreationException e){
-            logger.error("Intentando crear un comercio con nombre ya existente", e);
+            logger.error(e.getMessage());
             return badRequest(JsonNodeFactory.instance.objectNode().put("message", e.getMessage()));
         }catch(Exception e){
             logger.error("Error interno intentando crear comercio", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando crear comercio"));
         }
 
+    }
+
+    @Authenticate(types = "BACKOFFICE")
+    public static Result delete(){
+        try{
+            return ok();
+        }catch(Exception e){
+            logger.error("Error interno intentando borrar usuarios", e);
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando eliminar usuario"));
+        }
     }
 }

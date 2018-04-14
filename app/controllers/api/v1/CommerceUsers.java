@@ -39,7 +39,7 @@ public class CommerceUsers extends Controller {
             return badRequest(JsonNodeFactory.instance.objectNode().put("message", e.getMessage()));
         }catch(Exception e){
             logger.error("Error while creating backoffice user", e);
-            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error while creating backoffice user"));
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando crear usuario"));
         }
     }
 
