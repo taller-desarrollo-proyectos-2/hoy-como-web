@@ -63,9 +63,13 @@ public class Commerces extends Controller {
     }
 
     @Authenticate(types = "BACKOFFICE")
-    public static Result delete(){
+    public static Result get(Long id){
         try{
-            return ok();
+            Commerce dbCommerce = Commerce.findByProperty("id", id);
+            if(dbCommerce == null){
+                return notFound(JsonNodeFactory.instance.objectNode().put("message", "Comercio con id "+ id + " no encontrado"));
+            }
+            return ok(Json.toJson(dbCommerce));
         }catch(Exception e){
             logger.error("Error interno intentando borrar usuarios", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando eliminar usuario"));
