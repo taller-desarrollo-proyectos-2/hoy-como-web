@@ -4,6 +4,7 @@ import annotations.Authenticate;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import exceptions.CreationException;
 import models.BackofficeUser;
+import models.Commerce;
 import models.CommerceUser;
 import models.User;
 import play.Logger;
@@ -11,6 +12,7 @@ import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import services.SerializerService;
 import services.UsersService;
 
 public class CommerceUsers extends Controller {
@@ -38,6 +40,16 @@ public class CommerceUsers extends Controller {
         }catch(Exception e){
             logger.error("Error while creating backoffice user", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error while creating backoffice user"));
+        }
+    }
+
+    @Authenticate(types = "BACKOFFICE")
+    public static Result list(){
+        try{
+            return ok(SerializerService.serializeList(CommerceUser.findAll()));
+        }catch(Exception e){
+            logger.error("Error interno intentando listar usuarios", e);
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando listar usuarios"));
         }
     }
 }

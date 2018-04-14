@@ -8,11 +8,14 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue("COMMERCE")
 @Table(name = "user")
 public class CommerceUser extends BackofficeUser {
+
+    protected static final Finder<Long, CommerceUser> FIND = new Finder<>(Long.class, CommerceUser.class);
 
     @OneToOne
     @Constraints.Required(groups = Creation.class)
@@ -33,5 +36,9 @@ public class CommerceUser extends BackofficeUser {
                 "\t\t\"route\": \"/web/plates/commerce/:id\",\n" +
                 "\t\t\"icon\": \"glyphicons glyphicons-fast-food\"\n" +
                 "\t}]");
+    }
+
+    public static List<CommerceUser> findAll(){
+        return FIND.all();
     }
 }
