@@ -34,3 +34,4 @@ GET         /dash                           controllers.web.Dash.showDash()
 # COMMERCE
 
 GET         /web/commerces                  controllers.web.Commerces.showCommerces()
+GET         /web/commerce/users             controllers.web.Users.showUsers()
