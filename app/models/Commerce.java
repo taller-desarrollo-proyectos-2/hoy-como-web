@@ -37,6 +37,17 @@ public class Commerce extends Model{
     @OneToOne
     private License license;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Phone> phones;
+
+    private String email;
+
+    @OneToMany
+    private List<OpeningTime> times;
+
     public Long getId() {
         return id;
     }
@@ -99,5 +110,37 @@ public class Commerce extends Model{
 
     public void setBusinessName(String businessName) {
         this.businessName = businessName;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public List<OpeningTime> getTimes() {
+        return times;
+    }
+
+    public void setTimes(List<OpeningTime> times) {
+        this.times = times;
+    }
+
+    public List<Phone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
