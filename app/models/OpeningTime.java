@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.sql.Time;
 import java.util.Date;
 
 @Entity
@@ -34,11 +35,11 @@ public class OpeningTime extends Model {
 
     private Day day;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date from;
+    @Temporal(TemporalType.TIME)
+    private Time fromHour;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date to;
+    @Temporal(TemporalType.TIME)
+    private Time toHour;
 
     public Long getId() {
         return id;
@@ -48,20 +49,20 @@ public class OpeningTime extends Model {
         this.id = id;
     }
 
-    public Date getFrom() {
-        return from;
+    public Time getFromHour() {
+        return fromHour;
     }
 
-    public void setFrom(Date from) {
-        this.from = from;
+    public void setFromHour(Time fromHour) {
+        this.fromHour = fromHour;
     }
 
-    public Date getTo() {
-        return to;
+    public Time getToHour() {
+        return toHour;
     }
 
-    public void setTo(Date to) {
-        this.to = to;
+    public void setToHour(Time toHour) {
+        this.toHour = toHour;
     }
 
     public Day getDay() {

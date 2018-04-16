@@ -45,8 +45,11 @@ public class Commerce extends Model{
 
     private String email;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<OpeningTime> times;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Location location;
 
     public Long getId() {
         return id;
@@ -142,5 +145,13 @@ public class Commerce extends Model{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }

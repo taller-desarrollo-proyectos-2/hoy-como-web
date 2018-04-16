@@ -4,6 +4,11 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
     $scope.commerces = [];
 
     index();
+    $scope.daySelected = {};
+    //Cambiar por consulta back-end;
+    $scope.days = [
+        "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO", "TODOS LOS DÍAS"
+    ];
     
     function index(){
         $http({
@@ -49,4 +54,23 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
             toastr.error("La razon social no puede estar vacia.");
         }
     };
+
+    $scope.addCurrentTime = function(){
+        if(!$scope.currentCommerce.times){
+            $scope.currentCommerce.times = [];
+        }
+        if($scope.daySelected && $scope.from && $scope.to) {
+            $scope.currentCommerce.times.push({
+                "day": $scope.daySelected,
+                "fromHour": $scope.from,
+                "toHour": $scope.to
+            });
+        }else{
+            toastr.error("Seleccione un día y un horario de comienzo y fin.");
+        }
+    }
+
+    $scope.deleteTime = function(index){
+        $scope.currentCommerce.times.splice(index, 1);
+    }
 });

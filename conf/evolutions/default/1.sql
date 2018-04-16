@@ -3,6 +3,14 @@
 
 # --- !Ups
 
+create table address (
+  id                        bigint auto_increment not null,
+  street                    varchar(255),
+  number                    integer,
+  additional_information    varchar(255),
+  constraint pk_address primary key (id))
+;
+
 create table category (
   id                        bigint auto_increment not null,
   name                      varchar(255),
@@ -15,6 +23,9 @@ create table commerce (
   company_id                bigint,
   business_name             varchar(255),
   license_id                bigint,
+  address_id                bigint,
+  email                     varchar(255),
+  location_id               bigint,
   constraint pk_commerce primary key (id))
 ;
 
@@ -31,10 +42,34 @@ create table license (
   constraint pk_license primary key (id))
 ;
 
+create table location (
+  id                        bigint auto_increment not null,
+  lat                       double,
+  lng                       double,
+  constraint pk_location primary key (id))
+;
+
+create table opening_time (
+  id                        bigint auto_increment not null,
+  commerce_id               bigint not null,
+  day                       varchar(9),
+  from_hour                 time,
+  to_hour                   time,
+  constraint ck_opening_time_day check (day in ('VIERNES','LUNES','DOMINGO','MARTES','SABADO','MIERCOLES','JUEVES')),
+  constraint pk_opening_time primary key (id))
+;
+
 create table optional (
   id                        bigint auto_increment not null,
   name                      varchar(255),
   constraint pk_optional primary key (id))
+;
+
+create table phone (
+  id                        bigint auto_increment not null,
+  commerce_id               bigint not null,
+  number                    varchar(255),
+  constraint pk_phone primary key (id))
 ;
 
 create table plate (
@@ -98,12 +133,20 @@ alter table commerce add constraint fk_commerce_company_1 foreign key (company_i
 create index ix_commerce_company_1 on commerce (company_id);
 alter table commerce add constraint fk_commerce_license_2 foreign key (license_id) references license (id) on delete restrict on update restrict;
 create index ix_commerce_license_2 on commerce (license_id);
-alter table plate add constraint fk_plate_commerce_3 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
-create index ix_plate_commerce_3 on plate (commerce_id);
-alter table request add constraint fk_request_user_4 foreign key (user_id) references user (id) on delete restrict on update restrict;
-create index ix_request_user_4 on request (user_id);
-alter table user add constraint fk_user_commerce_5 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
-create index ix_user_commerce_5 on user (commerce_id);
+alter table commerce add constraint fk_commerce_address_3 foreign key (address_id) references address (id) on delete restrict on update restrict;
+create index ix_commerce_address_3 on commerce (address_id);
+alter table commerce add constraint fk_commerce_location_4 foreign key (location_id) references location (id) on delete restrict on update restrict;
+create index ix_commerce_location_4 on commerce (location_id);
+alter table opening_time add constraint fk_opening_time_commerce_5 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_opening_time_commerce_5 on opening_time (commerce_id);
+alter table phone add constraint fk_phone_commerce_6 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_phone_commerce_6 on phone (commerce_id);
+alter table plate add constraint fk_plate_commerce_7 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_plate_commerce_7 on plate (commerce_id);
+alter table request add constraint fk_request_user_8 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_request_user_8 on request (user_id);
+alter table user add constraint fk_user_commerce_9 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_user_commerce_9 on user (commerce_id);
 
 
 
@@ -131,6 +174,8 @@ alter table user_commerce add constraint fk_user_commerce_commerce_02 foreign ke
 
 SET FOREIGN_KEY_CHECKS=0;
 
+drop table address;
+
 drop table category;
 
 drop table commerce;
@@ -141,7 +186,13 @@ drop table company;
 
 drop table license;
 
+drop table location;
+
+drop table opening_time;
+
 drop table optional;
+
+drop table phone;
 
 drop table plate;
 
