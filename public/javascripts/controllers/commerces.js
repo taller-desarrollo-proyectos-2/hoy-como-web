@@ -5,6 +5,7 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
 
     index();
     $scope.daySelected = {};
+    $scope.actualPhone = {};
     //Cambiar por consulta back-end;
     $scope.days = [
         "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO", "TODOS LOS DÍAS"
@@ -32,7 +33,8 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
     
     $scope.createCommerce = function(commerce){
         if(commerce.businessName){
-            commerce.phones = [].push($scope.actualPhone)
+            commerce.phones = [];
+            commerce.phones.push($scope.actualPhone);
             $http({
                 url: "/api/v1/commerces",
                 data: commerce,

@@ -40,8 +40,8 @@ public class Commerces extends Controller {
             Form<Commerce> form = Form.form(Commerce.class, Commerce.Creation.class).bindFromRequest();
             //Chequeo que el json tenga errores
             if (form.hasErrors()) {
-                logger.info("Parametros incorrectos para la creacion del comercio", form.errorsAsJson());
-                return badRequest(form.errorsAsJson());
+                logger.error("Parametros incorrectos para la creacion del comercio", form.errorsAsJson());
+                return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Error en los parametros de la creacion"));
             }
             //Obtengo y guardo el comercio
             Commerce commerce = form.get();
