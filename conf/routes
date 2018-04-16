@@ -9,6 +9,7 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 # COMMERCE USERS
 
 POST        /api/v1/commerce/users        controllers.api.v1.CommerceUsers.create()
+GET         /api/v1/commerce/users        controllers.api.v1.CommerceUsers.list()
 
 
 # AUTHENTICATE
@@ -18,10 +19,19 @@ POST        /api/v1/authenticate/facebook   controllers.api.v1.Authorization.fac
 
 # COMMERCE
 
-POST        /api/v1/commerce                controllers.api.v1.Commerces.create()
+POST        /api/v1/commerces               controllers.api.v1.Commerces.create()
+GET         /api/v1/commerces               controllers.api.v1.Commerces.list()
+GET         /api/v1/commerces/:id           controllers.api.v1.Commerces.get(id : Long)
 
 # VIEWS
 
-GET         /                        controllers.web.Dash.showMainScreen()
-GET         /login                 controllers.web.Dash.showLogin()
-GET         /dash                  controllers.web.Dash.showDash()
+GET         /                               controllers.web.Dash.showMainScreen()
+GET         /login                          controllers.web.Dash.showLogin()
+GET         /dash                           controllers.web.Dash.showDash()
+
+## ------------------------    WEB    --------------------------------------
+
+# COMMERCE
+
+GET         /web/commerces                  controllers.web.Commerces.showCommerces()
+GET         /web/commerce/users             controllers.web.Users.showUsers()

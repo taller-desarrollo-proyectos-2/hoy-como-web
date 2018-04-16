@@ -3,6 +3,7 @@ package models;
 import java.util.List;
 import javax.persistence.*;
 
+import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 /**
@@ -14,6 +15,8 @@ public class Commerce extends Model{
 
     protected static final Finder<Long, Commerce> FIND = new Finder<>(Long.class, Commerce.class);
 
+    public interface Creation{}
+
     @Id
     private Long id;
 
@@ -21,6 +24,9 @@ public class Commerce extends Model{
 
     @ManyToOne
     private Company company;
+
+    @Constraints.Required(groups = {Commerce.Creation.class})
+    private String businessName;
 
     @ManyToMany
     private List<Category> categories;
@@ -77,5 +83,21 @@ public class Commerce extends Model{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public static Commerce findByProperty(String property, Object value){
+        return FIND.where().eq(property, value).findUnique();
+    }
+
+    public static List<Commerce> findAll(){
+        return FIND.all();
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 }

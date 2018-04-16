@@ -5,32 +5,43 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- Tell the browser to be responsive to screen width -->
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">        
-        <script src="assets/plugins/angularJS/angular.min.js"></script>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">    
+         <!-- Bootstrap CSS -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="assets/css/sb-admin.css" rel="stylesheet">
+        <link href="assets/css/main.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         
+        <!-- jQuery -->
+        <script src="assets/plugins/jquery/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+        
+        <!-- Angular -->
+        <script src="assets/plugins/angular/angular.min.js" type="text/javascript"></script>
+        
+        <!-- toastr -->
+        <link rel="stylesheet" href="assets/plugins/toastr/angular-toastr.min.css">
+        <script src="assets/plugins/toastr/angular-toastr.tpls.js"></script>
+
+        <!-- Stylesheets -->
+        <link href="assets/css/main.css" rel="stylesheet" />
+
+
+        <!-- controllers -->
         <script src="assets/javascripts/angular-app.js"></script>
         <script src="assets/javascripts/controllers/main.js"></script>
-        
-        <!-- Bootstrap core CSS     -->
-    <link href="assets/stylesheets/tim/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Animation library for notifications   -->
-    <link href="assets/stylesheets/tim/animate.min.css" rel="stylesheet"/>
-
-    <!--  Paper Dashboard core CSS    -->
-    <link href="assets/stylesheets/tim/paper-dashboard.css" rel="stylesheet"/>
+        <script src="assets/javascripts/controllers/commerces.js"></script>
+        <script src="assets/javascripts/controllers/users.js"></script>
 
 
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="assets/stylesheets/main.css" rel="stylesheet" />
-
-
-    <!--  Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-    <link href="assets/stylesheets/tim/themify-icons.css" rel="stylesheet">
     </head>
-    <body class="main-dynamic" ng-controller="mainCtrl">
+    <body class="main-dynamic" ng-controller="mainCtrl" style="margin-top: 0px !important;">
         <div class="main-dynamic" style="padding:0%;" ng-include="content"></div>
     </body>
 </html>

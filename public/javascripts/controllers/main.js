@@ -1,40 +1,26 @@
-//hoyComoApp.controller('mainCtrl', function ($scope, $http, $window) {
-//    
-//    
-//    $scope.menu = [{showName: 'Comercios', route: '/login', icon: 'ti-panel'}, {showName: 'la vida', route: '/lavida', icon: 'ti-rocket'}];
-//        
-//        
-//    $scope.content = "/login";
-//    
-//    $scope.setContent = function(route){
-//        $scope.dashContent = route;
-//    };
-//
-//    $scope.isActive = function(route){
-//        if($scope.dashContent === route) return true;
-//        return false;
-//    };
-//    
-//    $scope.login = function (){
-//        $scope.content = "/login";
-//    };
-//    
-//});
 
-hoyComoApp.controller('mainCtrl', function ($scope, $http, $window, $rootScope) {
+hoyComoApp.controller('mainCtrl', function ($scope, $http, $window, $rootScope, toastr) {
 
-//    $http.get("/api/isAuthenticated")
-//        .success(function(data) { 
-//            $scope.content = "/dash";
-//        }).error(function(){
-//            $scope.content = "/login";
-//        });
+    $scope.content = "/login";
 
-        $scope.content = "/login";
+    $scope.user = {};
 
-        
-    $scope.$on("login", function (event, args) {    
+    $scope.$on("login", function (event, args) {   
+        $http({
+            url: "/api/v1/authenticate",
+            data: $scope.user,
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).success(function(data, status, headers, config){
+            $rootScope.menu = data;
+            $rootScope.auth = headers('authorization');
             $scope.content = "/dash";
+        }).error(function(err){
+            toastr.error(err.message);
+        });
     });
     
     $scope.$on("logout", function (event, args) {
@@ -54,9 +40,9 @@ hoyComoApp.controller('loginCtrl', function ($scope, $http, $filter, $window, $r
 
 hoyComoApp.controller('dashCtrl', function ($scope, $http, $filter, $window, $rootScope) {
 
-        
-    $scope.menu = [{showName: 'Comercios', route: '/fruta', icon: 'ti-panel'}, {showName: 'la vida', route: '/lavida', icon: 'ti-rocket'}];
+    $scope.menu = $rootScope.menu;
 
+    //se setea la primera opcion al entrar, deberia guardarse la que esta seleccionada
     $scope.dashContent = $scope.menu[0].route;
 
     $scope.logOut = function(){

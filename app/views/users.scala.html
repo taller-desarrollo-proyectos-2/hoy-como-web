@@ -1,0 +1,73 @@
+<div class="container screen-container" ng-controller="usersCtrl">
+    
+        <div class="row">
+        <div class="col-md-12 col-lg-12 page-header center-elems">
+                <h1>
+                    Usuarios
+                </h1>
+                <button class="btn btn-primary pull-right" style="margin-left:auto" ng-click="toggleCreateModal()">Agregar</button>
+    
+        </div>
+        </div>
+        
+        <div class="row">
+        <div class="col-md-12 col-lg-12">
+    
+            <div class="card">
+                <div class="card-content table-responsive">
+                    <table class="table">
+                    <thead>
+                            <th>Usuario</th>
+                            <th>Comercio</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="user in users">
+                                <td>{{user.username}}</td>
+                                <td>{{user.commerce.businessName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        
+        <div class="modal fade" id="usersModal" tabindex="-1" role="dialog" aria-labelledby="userCreateModal" aria-hidden="true">
+            <div class="modal-dialog"> 
+               <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 ng-if="!editModal" class="modal-title" id="commercesModalTitle">Agregar Usuario</h4>
+                        <h4 ng-if="editModal" class="modal-title" id="commercesModalTitle">Editar Usuario</h4>
+    
+                    </div>
+                    <div class="modal-body">
+                        <div class="row m-bottom-10">
+                           <label  class="col-sm-6 control-label">Usuario</label>
+                           <div class="col-sm-6">
+                               <input type="text" class="form-control" ng-model='currentUser.username'>
+                           </div>
+                       </div>
+                       <div class="row m-bottom-10">
+                            <label  class="col-sm-6 control-label">Contraseña</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" ng-model='currentUser.password'>
+                            </div>
+                        </div>
+                        <div class="row m-bottom-10">
+                                <label  class="col-sm-6 control-label">Comercio</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" ng-options="commerce as commerce.businessName for commerce in commerces track by commerce.id" ng-model="currentUser.commerce"></select>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
+                        <button ng-if="!editModal" type="button" class="btn btn-primary pull-left"  ng-click="createUser(currentUser)">Agregar</button>
+                        <button ng-if="editModal" type="button" class="btn btn-primary pull-left"  ng-click="updateUser (currentUser)">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
