@@ -32,6 +32,7 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
     
     $scope.createCommerce = function(commerce){
         if(commerce.businessName){
+            commerce.phones = [].push($scope.actualPhone)
             $http({
                 url: "/api/v1/commerces",
                 data: commerce,
