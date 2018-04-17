@@ -1,17 +1,19 @@
 package models;
 
 import com.avaje.ebean.annotation.EnumValue;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import play.db.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.sql.Time;
+import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
 public class OpeningTime extends Model {
+
+    private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
     public enum Day{
         @EnumValue("LUNES")
@@ -35,11 +37,19 @@ public class OpeningTime extends Model {
 
     private Day day;
 
-    @Temporal(TemporalType.TIME)
-    private Time fromHour;
+    @Transient
+    @JsonIgnore
+    private String from;
 
-    @Temporal(TemporalType.TIME)
-    private Time toHour;
+    @Transient
+    @JsonIgnore
+    private String to;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fromHour;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date toHour;
 
     public Long getId() {
         return id;
@@ -49,19 +59,19 @@ public class OpeningTime extends Model {
         this.id = id;
     }
 
-    public Time getFromHour() {
+    public Date getFromHour() {
         return fromHour;
     }
 
-    public void setFromHour(Time fromHour) {
+    public void setFromHour(Date fromHour) {
         this.fromHour = fromHour;
     }
 
-    public Time getToHour() {
+    public Date getToHour() {
         return toHour;
     }
 
-    public void setToHour(Time toHour) {
+    public void setToHour(Date toHour) {
         this.toHour = toHour;
     }
 
@@ -71,5 +81,31 @@ public class OpeningTime extends Model {
 
     public void setDay(Day day) {
         this.day = day;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        try {
+            this.fromHour = formatter.parse(from);
+        }catch(Exception e){
+            System.out.println("Error tratando de formatear la fecha");
+        }
+        this.from = from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        try {
+            this.toHour = formatter.parse(to);
+        }catch(Exception e){
+            System.out.println("Error tratando de formatear la fecha" +  e.getMessage());
+        }
+        this.to = to;
     }
 }

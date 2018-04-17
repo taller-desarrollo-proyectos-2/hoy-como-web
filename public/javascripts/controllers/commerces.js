@@ -1,6 +1,6 @@
 
-hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootScope, toastr) {
-  
+hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter) {
+    //var dateFormat = require(['dateformat']);
     $scope.commerces = [];
 
     index();
@@ -50,7 +50,6 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
                 index();
                 toastr.success("Comercio creado con exito.");
             }).error(function(err){
-                $("#commercesModal").modal("toggle");
                 toastr.error(err.message);
             });
         } else {
@@ -65,8 +64,8 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
         if($scope.daySelected && $scope.from && $scope.to) {
             $scope.currentCommerce.times.push({
                 "day": $scope.daySelected,
-                "fromHour": $scope.from,
-                "toHour": $scope.to
+                "from": $filter('date')($scope.from, 'yyyy-MM-ddTHH:mm:ss'),
+                "to": $filter('date')($scope.to, 'yyyy-MM-ddTHH:mm:ss')
             });
         }else{
             toastr.error("Seleccione un día y un horario de comienzo y fin.");

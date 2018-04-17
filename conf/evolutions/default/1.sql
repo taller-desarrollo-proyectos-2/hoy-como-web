@@ -53,8 +53,8 @@ create table opening_time (
   id                        bigint auto_increment not null,
   commerce_id               bigint not null,
   day                       varchar(9),
-  from_hour                 time,
-  to_hour                   time,
+  from_hour                 datetime,
+  to_hour                   datetime,
   constraint ck_opening_time_day check (day in ('VIERNES','LUNES','DOMINGO','MARTES','SABADO','MIERCOLES','JUEVES')),
   constraint pk_opening_time primary key (id))
 ;

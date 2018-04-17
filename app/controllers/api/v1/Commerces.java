@@ -1,6 +1,7 @@
 package controllers.api.v1;
 
 import annotations.Authenticate;
+import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import exceptions.CreationException;
 import models.Commerce;
@@ -36,6 +37,7 @@ public class Commerces extends Controller {
      */
     @Authenticate(types = "BACKOFFICE")
     public static Result create(){
+        Ebean.beginTransaction();
         try {
             Form<Commerce> form = Form.form(Commerce.class, Commerce.Creation.class).bindFromRequest();
             //Chequeo que el json tenga errores
@@ -46,6 +48,7 @@ public class Commerces extends Controller {
             //Obtengo y guardo el comercio
             Commerce commerce = form.get();
             CommerceServices.create(commerce);
+            Ebean.commitTransaction();
             return ok(Json.toJson(commerce));
         }catch(CreationException e){
             logger.error(e.getMessage());
@@ -53,6 +56,8 @@ public class Commerces extends Controller {
         }catch(Exception e){
             logger.error("Error interno intentando crear comercio", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando crear comercio"));
+        }finally{
+            Ebean.endTransaction();
         }
 
     }

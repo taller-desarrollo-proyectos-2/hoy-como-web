@@ -1,17 +1,13 @@
 package services;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.maps.GeocodingApi;
 import com.google.maps.GeocodingApiRequest;
 import com.google.maps.model.GeocodingResult;
 import exceptions.CreationException;
-import models.Address;
 import models.Commerce;
 import models.Location;
 import play.Logger;
 
-import java.io.IOException;
 
 public class CommerceServices {
 
