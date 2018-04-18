@@ -1,12 +1,19 @@
 package models;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
 import play.db.ebean.Model;
+
+import java.util.List;
 
 /**
  *
  * @author facundocaldora
  */
+@Entity
 public class Plate extends Model{
     
     
@@ -14,12 +21,19 @@ public class Plate extends Model{
     private Long id;
     
     private String name;
+
+    @ManyToOne
+    private Commerce commerce;
+
+    @ManyToMany
+    private List<Category> categories;
+
+    @ManyToMany
+    private List<Optional> optionals;
     
     private float price;
-    
-    private float promoPrice;
-    
-    private boolean isOnPromo;
+
+    private Promo promo;
 
     public Long getId() {
         return id;
@@ -37,30 +51,43 @@ public class Plate extends Model{
         this.name = name;
     }
 
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<Optional> getOptionals() {
+        return optionals;
+    }
+
+    public void setOptionals(List<Optional> optionals) {
+        this.optionals = optionals;
+    }
+
     public float getPrice() {
-        if(this.isOnPromo) return this.getPromoPrice();
         return price;
+    }
+
+    public Promo getPromo() {
+        return promo;
+    }
+
+    public void setPromo(Promo promo) {
+        this.promo = promo;
     }
 
     public void setPrice(float price) {
         this.price = price;
     }
 
-    public float getPromoPrice() {
-        return promoPrice;
+    public Commerce getCommerce() {
+        return commerce;
     }
 
-    public void setPromoPrice(float promoPrice) {
-        this.promoPrice = promoPrice;
+    public void setCommerce(Commerce commerce) {
+        this.commerce = commerce;
     }
-
-    public boolean isIsOnPromo() {
-        return isOnPromo;
-    }
-
-    public void setIsOnPromo(boolean isOnPromo) {
-        this.isOnPromo = isOnPromo;
-    }
-    
-    
 }
