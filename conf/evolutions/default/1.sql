@@ -62,6 +62,7 @@ create table opening_time (
 create table optional (
   id                        bigint auto_increment not null,
   name                      varchar(255),
+  price                     float,
   constraint pk_optional primary key (id))
 ;
 
