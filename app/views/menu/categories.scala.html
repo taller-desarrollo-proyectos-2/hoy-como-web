@@ -1,0 +1,63 @@
+<div class="container screen-container" ng-controller="categpriesCtrl">
+    
+        <div class="row">
+        <div class="col-md-12 col-lg-12 page-header center-elems">
+                <h1>
+                    Categorias
+                </h1>
+                <button class="btn btn-primary pull-right" style="margin-left:auto" ng-click="toggleCreateModal()">Agregar</button>
+    
+        </div>
+        </div>
+        
+        <div class="row">
+        <div class="col-md-12 col-lg-12">
+    
+            <div class="card">
+                <div class="card-content table-responsive">
+                    <table class="table">
+                    <thead>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="category in categories">
+                                <td>{{category.number}}</td>
+                                <td>{{category.name}}</td>
+                                <td>boton magico</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        
+        <div class="modal fade" id="categoriesModal" tabindex="-1" role="dialog" aria-labelledby="categoriesCreateModal" aria-hidden="true">
+            <div class="modal-dialog"> 
+               <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 ng-if="!editModal" class="modal-title" id="commercesModalTitle">Agregar Categoria</h4>
+                        <h4 ng-if="editModal" class="modal-title" id="commercesModalTitle">Editar Categoria</h4>
+    
+                    </div>
+                    <div class="modal-body">
+                        <div class="row m-bottom-10">
+                           <label  class="col-sm-6 control-label">Nombre</label>
+                           <div class="col-sm-6">
+                               <input type="text" class="form-control" ng-model='currentCategory.name'>
+                           </div>
+                       </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
+                        <button ng-if="!editModal" type="button" class="btn btn-primary pull-left"  ng-click="createCategory(currentCategory)">Agregar</button>
+                        <button ng-if="editModal" type="button" class="btn btn-primary pull-left"  ng-click="updateCategory(currentCategory)">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
