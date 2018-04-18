@@ -65,7 +65,6 @@ public class Authorization extends Controller {
             }
 
             FacebookUser user = form.get();
-            //TO DO - VALIDATE FACEBOOK USER
             user = FacebookUser.createIfNecessary(user);
 
             Calendar cal = Calendar.getInstance();

@@ -1,9 +1,15 @@
 
-hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootScope, toastr) {
-  
+hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter) {
+    //var dateFormat = require(['dateformat']);
     $scope.commerces = [];
 
     index();
+    $scope.daySelected = {};
+    $scope.actualPhone = {};
+    //Cambiar por consulta back-end;
+    $scope.days = [
+        "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO", "TODOS LOS DÍAS"
+    ];
     
     function index(){
         $http({
@@ -27,6 +33,8 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
     
     $scope.createCommerce = function(commerce){
         if(commerce.businessName){
+            commerce.phones = [];
+            commerce.phones.push($scope.actualPhone);
             $http({
                 url: "/api/v1/commerces",
                 data: commerce,
@@ -42,11 +50,29 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
                 index();
                 toastr.success("Comercio creado con exito.");
             }).error(function(err){
-                $("#commercesModal").modal("toggle");
                 toastr.error(err.message);
             });
         } else {
             toastr.error("La razon social no puede estar vacia.");
         }
     };
+
+    $scope.addCurrentTime = function(){
+        if(!$scope.currentCommerce.times){
+            $scope.currentCommerce.times = [];
+        }
+        if($scope.daySelected && $scope.from && $scope.to) {
+            $scope.currentCommerce.times.push({
+                "day": $scope.daySelected,
+                "from": $filter('date')($scope.from, 'yyyy-MM-ddTHH:mm:ss'),
+                "to": $filter('date')($scope.to, 'yyyy-MM-ddTHH:mm:ss')
+            });
+        }else{
+            toastr.error("Seleccione un día y un horario de comienzo y fin.");
+        }
+    }
+
+    $scope.deleteTime = function(index){
+        $scope.currentCommerce.times.splice(index, 1);
+    }
 });

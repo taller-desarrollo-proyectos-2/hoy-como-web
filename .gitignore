@@ -2,6 +2,7 @@ nbproject/private/
 nbproject/
 project/project/
 project/target/
+node_modules/
 target/
 .idea/
 .settings/

@@ -13,6 +13,8 @@ public class Optional extends Model {
 
     private String name;
 
+    private float price;
+
     public Long getId() {
         return id;
     }
@@ -27,5 +29,13 @@ public class Optional extends Model {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 }

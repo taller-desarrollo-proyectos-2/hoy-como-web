@@ -56,6 +56,43 @@
                                 <input type="text" class="form-control" ng-model='currentCommerce.name'>
                             </div>
                         </div>
+                        <div class="row m-bottom-10">
+                            <label  class="col-sm-6 control-label">Calle</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" ng-model='currentCommerce.address.street'>
+                            </div>
+                        </div>
+                        <div class="row m-bottom-10">
+                            <label  class="col-sm-6 control-label">Numero</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" ng-model='currentCommerce.address.number'>
+                            </div>
+                        </div>
+                        <div class="row m-bottom-10">
+                            <label  class="col-sm-6 control-label">Correo electrónico</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" ng-model='currentCommerce.email'>
+                            </div>
+                        </div>
+                        <div class="row m-bottom-10">
+                            <label  class="col-sm-6 control-label">Numero de telefono</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" ng-model='actualPhone.number'>
+                            </div>
+                        </div>
+                        <div class="row m-bottom-10" >
+                            <label  class="col-sm-6 control-label">Horarios de atencion</label>
+                            <div class="col-sm-6 ">
+                                <select class="col-sm-12" ng-options="day for day in days" ng-model="daySelected"></select>
+                                <input style="margin-top:3px"  type="time" ng-model="from" />
+                                <input style="margin-top:3px"  type="time" ng-model="to">
+                                <button style="margin-top:3px" type="button" ng-click="addCurrentTime()">Agregar</button>
+                            </div>
+                            <div class="col-sm-12" ng-repeat="time in currentCommerce.times">
+                                <label class="" >{{time.day}} - Desde {{time.from | date : 'HH:mm'}} Hasta {{time.to | date : 'HH:mm'}}</label>
+                                <i class="glyphicon glyphicon-remove" style="cursor:pointer" ng-click="deleteTime($index)"></i>
+                            </div>
+                        </div>
                         
                     </div>
                     <div class="modal-footer">
