@@ -2,6 +2,7 @@
 hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter) {
     $scope.plates = [];
     $scope.currentPlate = {};
+    $scope.categories = [];
 
     indexPlates();
     indexCategories();
@@ -40,15 +41,37 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
     };
 
     $scope.toggleCategoryCreationModal = function() {
-        $scope.category = {};
+        $scope.currentCategory = {};
         $("#platesModal").modal("toggle");
         $("#categoriesModal").modal("toggle");
     };
 
     $scope.backToPlatesModal = function() {
-        $scope.category = {};
+        $scope.currentCategory = {};
         $("#categoriesModal").modal("toggle");
         $("#platesModal").modal("toggle");
+    };
+
+    $scope.createCategory = function(){
+        $http({
+            url: "/api/v1/categories",
+            data: $scope.currentCategory,
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'authorization' : $rootScope.auth
+            }
+        }).success(function(data){
+            $scope.currentPlate.category = data;
+            $scope.currentCategory = {};
+            $("#categoriesModal").modal("toggle");
+            $("#platesModal").modal("toggle");
+            indexCategories();
+            toastr.success("Categoria creado con exito.");
+        }).error(function(err){
+            toastr.error(err.message);
+        });
     };
 
 
