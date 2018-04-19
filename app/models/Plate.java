@@ -6,6 +6,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.avaje.ebean.ExpressionList;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
@@ -94,6 +95,7 @@ public class Plate extends Model{
         this.price = price;
     }
 
+    @JsonIgnore
     public Commerce getCommerce() {
         return commerce;
     }

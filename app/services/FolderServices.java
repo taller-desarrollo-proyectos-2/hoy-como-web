@@ -29,4 +29,8 @@ public class FolderServices {
             }
         }
     }
+
+    public static boolean fileExists(String fileName){
+        return new File(fileName).exists();
+    }
 }
