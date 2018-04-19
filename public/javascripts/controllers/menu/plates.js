@@ -103,6 +103,11 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             if (document.getElementById('fileInput').files.item(0)) formData.append("pictureFileName", document.getElementById('fileInput').files.item(0).name); 
             if($scope.currentPlate.category) formData.append("category.id", $scope.currentPlate.category.id);
             if($scope.currentPlate.optionals) formData.append("optionals.id", [1,2]);
+            var index = 0;
+            for (var opt of $scope.currentPlate.optionals) {
+                formData.append("optionals[" + index + "].id", opt.id);
+                index++;
+            }
             xhr = new XMLHttpRequest();
             xhr.addEventListener('load', createFinish, false);
             xhr.open('POST',"/api/v1/plates");
