@@ -1,4 +1,4 @@
-<div class="container screen-container" ng-controller="categpriesCtrl">
+<div class="container screen-container" ng-controller="categoriesCtrl">
     
         <div class="row">
         <div class="col-md-12 col-lg-12 page-header center-elems">
@@ -54,8 +54,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
-                        <button ng-if="!editModal" type="button" class="btn btn-primary pull-left"  ng-click="createCategory(currentCategory)">Agregar</button>
-                        <button ng-if="editModal" type="button" class="btn btn-primary pull-left"  ng-click="updateCategory(currentCategory)">Guardar</button>
+                        <button ng-if="!editModal" type="button" class="btn btn-primary pull-left"  ng-click="createCategory()">Agregar</button>
+                        <button ng-if="editModal" type="button" class="btn btn-primary pull-left"  ng-click="updateCategory()">Guardar</button>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 
-hoyComoApp.controller('paltesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter) {
+hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter) {
     $scope.plates = [];
 
     index();

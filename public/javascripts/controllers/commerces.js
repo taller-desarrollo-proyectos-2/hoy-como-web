@@ -1,6 +1,5 @@
 
 hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter) {
-    //var dateFormat = require(['dateformat']);
     $scope.commerces = [];
 
     index();
