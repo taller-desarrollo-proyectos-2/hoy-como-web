@@ -71,7 +71,7 @@ public class Categories extends Controller {
                 return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Error en los parametros de modificacion de la categoria"));
             }
             Category category = form.get();
-            //Se crea la categoria para el comercio especificado
+            //Se actualiza la categoria para el comercio especificado
             CategoriesServices.update(id, category, commerceUser.getCommerce());
             Ebean.commitTransaction();
             return ok(Json.toJson(category));
