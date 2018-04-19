@@ -31,6 +31,13 @@ create table commerce (
   constraint pk_commerce primary key (id))
 ;
 
+create table commerce_category (
+  id                        bigint auto_increment not null,
+  name                      varchar(5),
+  constraint ck_commerce_category_name check (name in ('MILAS')),
+  constraint pk_commerce_category primary key (id))
+;
+
 create table company (
   id                        bigint auto_increment not null,
   name                      varchar(255),
@@ -105,10 +112,10 @@ create table user (
 ;
 
 
-create table commerce_category (
+create table commerce_commerce_category (
   commerce_id                    bigint not null,
-  category_id                    bigint not null,
-  constraint pk_commerce_category primary key (commerce_id, category_id))
+  commerce_category_id           bigint not null,
+  constraint pk_commerce_commerce_category primary key (commerce_id, commerce_category_id))
 ;
 
 create table plate_optional (
@@ -153,9 +160,9 @@ create index ix_user_commerce_11 on user (commerce_id);
 
 
 
-alter table commerce_category add constraint fk_commerce_category_commerce_01 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+alter table commerce_commerce_category add constraint fk_commerce_commerce_category_commerce_01 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
 
-alter table commerce_category add constraint fk_commerce_category_category_02 foreign key (category_id) references category (id) on delete restrict on update restrict;
+alter table commerce_commerce_category add constraint fk_commerce_commerce_category_commerce_category_02 foreign key (commerce_category_id) references commerce_category (id) on delete restrict on update restrict;
 
 alter table plate_optional add constraint fk_plate_optional_plate_01 foreign key (plate_id) references plate (id) on delete restrict on update restrict;
 
@@ -178,6 +185,8 @@ drop table address;
 drop table category;
 
 drop table commerce;
+
+drop table commerce_commerce_category;
 
 drop table commerce_category;
 
