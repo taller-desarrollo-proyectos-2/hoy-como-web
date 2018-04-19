@@ -23,8 +23,10 @@ public class FolderServices {
 
     public static void createMediaFolder(){
         File file = new File("media");
-        if(!file.mkdir()){
-            logger.error("Error intentando crear carpeta medias");
+        if(!file.exists()){
+            if(!file.mkdir()) {
+                logger.error("Error intentando crear carpeta medias");
+            }
         }
     }
 }
