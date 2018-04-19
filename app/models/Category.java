@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.ExpressionList;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
@@ -52,6 +53,7 @@ public class Category extends Model {
         return FIND.where().eq(property, value).findUnique();
     }
 
+    @JsonIgnore
     public Commerce getCommerce() {
         return commerce;
     }
