@@ -6,7 +6,7 @@ import play.libs.Json;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class CommerceUser extends BackofficeUser {
 
     protected static final Finder<Long, CommerceUser> FIND = new Finder<>(Long.class, CommerceUser.class);
 
-    @OneToOne
+    @ManyToOne
     @Constraints.Required(groups = Creation.class)
     private Commerce commerce;
 
