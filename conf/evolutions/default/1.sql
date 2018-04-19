@@ -81,6 +81,7 @@ create table plate (
   name                      varchar(255),
   commerce_id               bigint,
   price                     float,
+  picture_file_name         varchar(255),
   constraint pk_plate primary key (id))
 ;
 
@@ -108,12 +109,6 @@ create table commerce_category (
   commerce_id                    bigint not null,
   category_id                    bigint not null,
   constraint pk_commerce_category primary key (commerce_id, category_id))
-;
-
-create table plate_category (
-  plate_id                       bigint not null,
-  category_id                    bigint not null,
-  constraint pk_plate_category primary key (plate_id, category_id))
 ;
 
 create table plate_optional (
@@ -162,10 +157,6 @@ alter table commerce_category add constraint fk_commerce_category_commerce_01 fo
 
 alter table commerce_category add constraint fk_commerce_category_category_02 foreign key (category_id) references category (id) on delete restrict on update restrict;
 
-alter table plate_category add constraint fk_plate_category_plate_01 foreign key (plate_id) references plate (id) on delete restrict on update restrict;
-
-alter table plate_category add constraint fk_plate_category_category_02 foreign key (category_id) references category (id) on delete restrict on update restrict;
-
 alter table plate_optional add constraint fk_plate_optional_plate_01 foreign key (plate_id) references plate (id) on delete restrict on update restrict;
 
 alter table plate_optional add constraint fk_plate_optional_optional_02 foreign key (optional_id) references optional (id) on delete restrict on update restrict;
@@ -203,8 +194,6 @@ drop table optional;
 drop table phone;
 
 drop table plate;
-
-drop table plate_category;
 
 drop table plate_optional;
 

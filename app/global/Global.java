@@ -5,6 +5,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import play.Application;
 import play.GlobalSettings;
 import play.Logger;
+import services.FolderServices;
 
 public class Global extends GlobalSettings {
 
@@ -19,6 +20,7 @@ public class Global extends GlobalSettings {
                 rootUser.setPassword(BCrypt.hashpw("root", BCrypt.gensalt()));
                 rootUser.save();
             }
+            FolderServices.createMediaFolder();
         }catch(Exception e){
             logger.error("Error inicializando el usuario root", e);
         }

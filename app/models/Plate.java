@@ -5,9 +5,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.avaje.ebean.ExpressionList;
+import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -15,18 +18,23 @@ import java.util.List;
  */
 @Entity
 public class Plate extends Model{
-    
+
+    protected static final Finder<Long, Plate> FIND = new Finder<>(Long.class, Plate.class);
+
+    public interface Creation{}
     
     @Id
     private Long id;
-    
+
+    @Constraints.Required(groups = Creation.class)
     private String name;
 
     @ManyToOne
     private Commerce commerce;
 
     @ManyToMany
-    private List<Category> categories;
+    @Constraints.Required(groups = Creation.class)
+    private Category category;
 
     @ManyToMany
     private List<Optional> optionals;
@@ -34,6 +42,9 @@ public class Plate extends Model{
     private float price;
 
     private Promo promo;
+
+    @Constraints.Required(groups = Creation.class)
+    private String pictureFileName;
 
     public Long getId() {
         return id;
@@ -51,12 +62,12 @@ public class Plate extends Model{
         this.name = name;
     }
 
-    public List<Category> getCategories() {
-        return categories;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public List<Optional> getOptionals() {
@@ -89,5 +100,32 @@ public class Plate extends Model{
 
     public void setCommerce(Commerce commerce) {
         this.commerce = commerce;
+    }
+
+    public String getPictureFileName() {
+        return pictureFileName;
+    }
+
+    public void setPictureFileName(String pictureFileName) {
+        this.pictureFileName = pictureFileName;
+    }
+
+    public static Plate findByProperty(String property, Object value){
+        return FIND.where().eq(property, value).findUnique();
+    }
+    public static Plate findByProperties(List<String> properties, List<Object> values){
+        ExpressionList<Plate> exp = FIND.where();
+        for(int i=0; i<properties.size(); i++){
+            exp.eq(properties.get(i), values.get(i));
+        }
+        return exp.findUnique();
+    }
+
+    public static List<Plate> findListByProperty(String property, Object value){
+        return FIND.where().eq(property, value).findList();
+    }
+
+    public static List<Plate> findListByMap(Map<String, Object> map){
+        return FIND.where().allEq(map).findList();
     }
 }
