@@ -105,7 +105,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             if($scope.currentPlate.optionals) formData.append("optionals.id", [1,2]);
             var index = 0;
             for (var opt of $scope.currentPlate.optionals) {
-                formData.append('optionals[${index}].id', opt.id);
+                formData.append('optionals[' + index + '].id', opt.id);
                 index++;
             }
             xhr = new XMLHttpRequest();
