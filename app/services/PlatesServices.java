@@ -19,6 +19,7 @@ public class PlatesServices {
         if(Plate.findByProperties(Arrays.asList("name", "commerce.id"), Arrays.asList(plate.getName(), commerce.getId())) != null){
             throw new CreationException("Nombre de plato ya utilizado");
         }
+        plate.setCommerce(commerce);
         plate.save();
     }
 
