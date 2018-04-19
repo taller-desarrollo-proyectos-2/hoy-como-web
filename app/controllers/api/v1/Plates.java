@@ -46,10 +46,7 @@ public class Plates extends Controller {
                     logger.error("Imagen con nombre ya utilizado");
                     return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Nombre de imagen ya utilizado"));
                 }
-                if(pictureFilePart.getFile().renameTo(new File(FolderServices.getCommerceFolder(commerceUser.getCommerce()) + pictureFilePart.getFilename()))){
-                    logger.error("Error creando imagen de plato");
-                    return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Error creando la imagen del plato"));
-                }
+                pictureFilePart.getFile().renameTo(new File(FolderServices.getCommerceFolder(commerceUser.getCommerce()) + pictureFilePart.getFilename()));
             }else{
                 logger.error("Intentando crear un plato sin imagen");
                 return badRequest(JsonNodeFactory.instance.objectNode().put("message", "No es posible crear un plato sin imagen"));

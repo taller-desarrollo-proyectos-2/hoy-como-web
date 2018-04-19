@@ -55,3 +55,6 @@ GET         /dash                           controllers.web.Dash.showDash()
 
 GET         /web/commerces                  controllers.web.Commerces.showCommerces()
 GET         /web/commerce/users             controllers.web.Users.showUsers()
+GET         /web/categories                 controllers.web.Menu.showCategories()
+GET         /web/optionals                  controllers.web.Menu.showOptionals()
+GET         /web/plates                     controllers.web.Menu.showPlates()
