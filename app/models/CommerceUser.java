@@ -34,7 +34,7 @@ public class CommerceUser extends BackofficeUser {
         return Json.parse("[{\n" +
                 "\t\t\"showName\": \"Categorias\",\n" +
                 "\t\t\"route\": \"/web/categories\",\n" +
-                "\t\t\"icon\": \"glyphicons glyphicons-fast-food\"\n" +
+                "\t\t\"icon\": \"glyphicons glyphicons-plate-of-food\"\n" +
                 "\t},{\n" +
                 "\t\t\"showName\": \"Platos\",\n" +
                 "\t\t\"route\": \"/web/plates\",\n" +

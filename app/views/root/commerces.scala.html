@@ -19,11 +19,15 @@
                             <thead>
                                     <th>Razon social</th>
                                     <th>Nombre</th>
+                                    <th>Acciones</th>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="commerce in commerces">
                                         <td>{{commerce.businessName}}</td>
                                         <td>{{commerce.name}}</td>
+                                        <td>
+                                            <a style="cursor:pointer;" ng-click="toggleEditModal(commerce)">Editar</a>
+                                        </td>
                                     </tr>
                                 </tbody>
                     </table>
@@ -83,13 +87,13 @@
                         <div class="row m-bottom-10" >
                             <label  class="col-sm-6 control-label">Horarios de atencion</label>
                             <div class="col-sm-6 ">
-                                <select class="col-sm-12" ng-options="day for day in days" ng-model="daySelected"></select>
+                                <select class="col-sm-12 form-control" ng-options="day for day in days" ng-model="daySelected"></select>
                                 <input style="margin-top:3px"  type="time" ng-model="from" />
                                 <input style="margin-top:3px"  type="time" ng-model="to">
                                 <button style="margin-top:3px" type="button" ng-click="addCurrentTime()">Agregar</button>
                             </div>
                             <div class="col-sm-12" ng-repeat="time in currentCommerce.times">
-                                <label class="" >{{time.day}} - Desde {{time.from | date : 'HH:mm'}} Hasta {{time.to | date : 'HH:mm'}}</label>
+                                <label class="" >{{time.day}} - Desde {{time.from | date : 'HH:mm'}}{{time.fromHour | date : 'HH:mm'}} Hasta {{time.to | date : 'HH:mm'}}{{time.toHour | date : 'HH:mm'}}</label>
                                 <i class="glyphicon glyphicon-remove" style="cursor:pointer" ng-click="deleteTime($index)"></i>
                             </div>
                         </div>
@@ -97,8 +101,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
-                        <button ng-if="!editModal" type="button" class="btn btn-primary pull-left"  ng-click="createCommerce(currentCommerce)">Agregar</button>
-                        <button ng-if="editModal" type="button" class="btn btn-primary pull-left"  ng-click="updateCommerce(currentCommerce)">Guardar</button>
+                        <button ng-if="!editModal" type="button" class="btn btn-primary pull-left"  ng-click="createCommerce()">Agregar</button>
+                        <button ng-if="editModal" type="button" class="btn btn-primary pull-left"  ng-click="updateCommerce()">Guardar</button>
                     </div>
                 </div>
             </div>

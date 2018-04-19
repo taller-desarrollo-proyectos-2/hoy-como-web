@@ -21,7 +21,10 @@
                                 <tr ng-repeat="category in categories">
                                     <td>{{category.number}}</td>
                                     <td>{{category.name}}</td>
-                                    <td>boton magico</td>
+                                    <td>
+                                        <a style="cursor:pointer;" ng-click="toggleEditModal(category)">Editar</a>,
+                                        <a style="cursor:pointer;" ng-click="delete(category)">Borrar</a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

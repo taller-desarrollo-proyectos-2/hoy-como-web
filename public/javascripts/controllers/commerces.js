@@ -27,18 +27,51 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
     }
 
     $scope.toggleCreateModal = function() {
+        if($scope.editModal) $scope.currentCommerce = {};
         $scope.editModal = false;
         $("#commercesModal").modal("toggle");
     };
+
+    $scope.toggleEditModal = function(commerce) {
+        $scope.editModal = true;
+        angular.copy(commerce, $scope.currentCommerce);
+        $("#commercesModal").modal("toggle");
+    };
     
-    $scope.createCommerce = function(commerce){
-        if(commerce.businessName){
-            commerce.phones = [];
-            commerce.phones.push($scope.actualPhone);
+    $scope.createCommerce = function(){
+        if($scope.currentCommerce.businessName){
+            $scope.currentCommerce.phones = [];
+            $scope.currentCommerce.phones.push($scope.actualPhone);
             $http({
                 url: "/api/v1/commerces",
-                data: commerce,
+                data: $scope.currentCommerce,
                 method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'authorization' : $rootScope.auth
+                }
+            }).success(function(){
+                $scope.currentCommerce = {};
+                $("#commercesModal").modal("toggle");
+                index();
+                toastr.success("Comercio creado con exito.");
+            }).error(function(err){
+                toastr.error(err.message);
+            });
+        } else {
+            toastr.error("La razon social no puede estar vacia.");
+        }
+    };
+
+    $scope.updateCommerce = function(){
+        if($scope.currentCommerce.businessName){
+            $scope.currentCommerce.phones = [];
+            $scope.currentCommerce.phones.push($scope.actualPhone);
+            $http({
+                url: "/api/v1/commerces",
+                data: $scope.currentCommerce,
+                method: "PUT",
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',

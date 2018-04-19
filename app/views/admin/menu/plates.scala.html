@@ -53,13 +53,15 @@
                     <div class="row m-bottom-10">
                         <label  class="col-sm-6 control-label">Precio</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" ng-model='currentPlate.price'>
+                            <input type="number" class="form-control" ng-model='currentPlate.price'>
                         </div>
                     </div>
                     <div class="row m-bottom-10">
                         <label  class="col-sm-6 control-label">Imagen</label>
                         <div class="col-sm-6">
-                            <input type="file" class="form-control" ng-model='currentPlate.price'>
+                            <form enctype="multipart/form-data" id="plateForm">
+                                <input id="fileInput" type="file" class="form-control" name="picture" form="plateForm">
+                            </form>
                         </div>
                     </div>
                     <div class="row m-bottom-10">
