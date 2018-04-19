@@ -60,9 +60,34 @@
                             </div>
                         </div>
                         <div class="row m-bottom-10">
-                            <label  class="col-sm-6 control-label">Comercio</label>
+                            <label  class="col-sm-6 control-label">Imagen</label>
                             <div class="col-sm-6">
-                                <select class="form-control" ng-options="commerce as commerce.businessName for commerce in commerces track by commerce.id" ng-model="currentUser.commerce"></select>
+                                <input type="file" class="form-control" ng-model='currentPlate.price'>
+                            </div>
+                        </div>
+                        <div ng-if="!currentDelivery.forPickUp" class="row m-bottom-10">
+                            <label  class="col-sm-6 control-label">Categoria</label>
+                            <div class="col-sm-6" style="display:flex;">
+                                <div style="width:80%;">
+                                    <ui-select ng-model="data.customer" >
+                                        <ui-select-match placeholder="Seleccione..">
+                                            <span ng-bind="$select.selected.name"></span>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="customer in (customers | filter: $select.search) track by customer.id">
+                                            <!--<span ng-bind="plate.name"></span>-->
+                                            <div ng-bind-html="customer.name | highlight: $select.search"></div>
+                                            <small>
+                                              Telefono: {{customer.phoneNumber}}
+                                            </small><br>
+                                            <small>
+                                              Direccion: {{customer.address}}
+                                            </small>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div style=" width:20%;">
+                                        <button class="btn btn-primary pull-right" ng-click="toggleCategoryCreationModal()">+</button>
+                                </div>
                             </div>
                         </div>
                     </div>

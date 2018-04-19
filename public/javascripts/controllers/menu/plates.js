@@ -1,6 +1,7 @@
 
 hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter) {
     $scope.plates = [];
+    $scope.currentPlate = {};
 
     index();
 
@@ -17,4 +18,9 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             toastr.error(err.message);
         });
     }
+
+    $scope.toggleCreateModal = function() {
+        $scope.editModal = false;
+        $("#platesModal").modal("toggle");
+    };
 });

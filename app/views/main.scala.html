@@ -1,46 +1,52 @@
 <html ng-app="hoyComo">
     <head>
         <title>HOY COMO</title>
-        <link rel="shortcut icon" href="assets/images/favicon.png">
+        <link rel="shortcut icon" href=@routes.Assets.at("images/favicon.png")>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">    
          <!-- Bootstrap CSS -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href=@routes.Assets.at("css/bootstrap.min.css") rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="assets/css/sb-admin.css" rel="stylesheet">
-        <link href="assets/css/main.css" rel="stylesheet">
+        <link href=@routes.Assets.at("css/sb-admin.css") rel="stylesheet">
+        <link href=@routes.Assets.at("css/main.css") rel="stylesheet">
 
         <!-- Custom Fonts -->
-        <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href=@routes.Assets.at("plugins/font-awesome/css/font-awesome.min.css") rel="stylesheet" type="text/css">
         
         <!-- jQuery -->
-        <script src="assets/plugins/jquery/jquery.js"></script>
+        <script src=@routes.Assets.at("plugins/jquery/jquery.js")></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+        <script src=@routes.Assets.at("plugins/bootstrap/bootstrap.min.js")></script>
         
         <!-- Angular -->
-        <script src="assets/plugins/angular/angular.min.js" type="text/javascript"></script>
+        <script src=@routes.Assets.at("plugins/angular/angular.min.js") type="text/javascript"></script>
 
         <!-- toastr -->
-        <link rel="stylesheet" href="assets/plugins/toastr/angular-toastr.min.css">
-        <script src="assets/plugins/toastr/angular-toastr.tpls.js"></script>
+        <link rel="stylesheet" href=@routes.Assets.at("plugins/toastr/angular-toastr.min.css")>
+        <script src=@routes.Assets.at("plugins/toastr/angular-toastr.tpls.js")></script>
+
+        <!-- ui-select -->
+        <script type="text/javascript" src=@routes.Assets.at("plugins/ui-select/select.js")></script>
+        <script type="text/javascript" src=@routes.Assets.at("plugins/ui-select/angular-sanitize.js")></script>
+        <link rel="stylesheet" href=@routes.Assets.at("plugins/ui-select/select2.css") type="text/css"/>
+        <link rel="stylesheet" href=@routes.Assets.at("plugins/ui-select/select.css") type="text/css"/>
 
         <!-- Stylesheets -->
-        <link href="assets/css/main.css" rel="stylesheet" />
+        <link href=@routes.Assets.at("css/main.css") rel="stylesheet" />
 
 
         <!-- controllers -->
-        <script src="assets/javascripts/angular-app.js"></script>
-        <script src="assets/javascripts/controllers/main.js"></script>
-        <script src="assets/javascripts/controllers/commerces.js"></script>
-        <script src="assets/javascripts/controllers/users.js"></script>
-        <script src="assets/javascripts/controllers/menu/categories.js"></script>
-        <script src="assets/javascripts/controllers/menu/plates.js"></script>
-        <script src="assets/javascripts/controllers/menu/optionals.js"></script>
+        <script src=@routes.Assets.at("javascripts/angular-app.js")></script>
+        <script src=@routes.Assets.at("javascripts/controllers/main.js")></script>
+        <script src=@routes.Assets.at("javascripts/controllers/commerces.js")></script>
+        <script src=@routes.Assets.at("javascripts/controllers/users.js")></script>
+        <script src=@routes.Assets.at("javascripts/controllers/menu/categories.js")></script>
+        <script src=@routes.Assets.at("javascripts/controllers/menu/plates.js")></script>
+        <script src=@routes.Assets.at("javascripts/controllers/menu/optionals.js")></script>
 
 
     </head>
