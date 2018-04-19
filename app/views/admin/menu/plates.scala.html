@@ -15,13 +15,19 @@
             <div class="card-content table-responsive">
                 <table class="table">
                 <thead>
+                        <th>Imagen</th>
                         <th>Nombre</th>
                         <th>Precio</th>
                         <th>Categoria</th>
                         <th>Acciones</th>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="plate in plates">
+                        <tr class="plate-item" ng-repeat="plate in plates">
+                            <td>
+                                <div class="image-cropper">
+                                    <img ng-src="/api/v1/plates/picute/{{plate.pictureFileName}}" class="rounded" />
+                                </div>
+                            </td>
                             <td>{{plate.name}}</td>
                             <td>{{plate.price}}</td>
                             <td>{{plate.category.name}}</td>
