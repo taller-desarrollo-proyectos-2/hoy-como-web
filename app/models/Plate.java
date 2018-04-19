@@ -30,7 +30,7 @@ public class Plate extends Model{
     @ManyToOne
     private Commerce commerce;
 
-    @OneToMany
+    @ManyToOne
     @Constraints.Required(groups = Creation.class)
     private Category category;
 
