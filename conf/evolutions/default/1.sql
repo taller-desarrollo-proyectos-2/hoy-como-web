@@ -65,6 +65,7 @@ create table optional (
   id                        bigint auto_increment not null,
   name                      varchar(255),
   price                     float,
+  commerce_id               bigint,
   constraint pk_optional primary key (id))
 ;
 
@@ -80,6 +81,7 @@ create table plate (
   name                      varchar(255),
   commerce_id               bigint,
   price                     float,
+  picture_file_name         varchar(255),
   constraint pk_plate primary key (id))
 ;
 
@@ -107,12 +109,6 @@ create table commerce_category (
   commerce_id                    bigint not null,
   category_id                    bigint not null,
   constraint pk_commerce_category primary key (commerce_id, category_id))
-;
-
-create table plate_category (
-  plate_id                       bigint not null,
-  category_id                    bigint not null,
-  constraint pk_plate_category primary key (plate_id, category_id))
 ;
 
 create table plate_optional (
@@ -144,24 +140,22 @@ alter table commerce add constraint fk_commerce_location_5 foreign key (location
 create index ix_commerce_location_5 on commerce (location_id);
 alter table opening_time add constraint fk_opening_time_commerce_6 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
 create index ix_opening_time_commerce_6 on opening_time (commerce_id);
-alter table phone add constraint fk_phone_commerce_7 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
-create index ix_phone_commerce_7 on phone (commerce_id);
-alter table plate add constraint fk_plate_commerce_8 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
-create index ix_plate_commerce_8 on plate (commerce_id);
-alter table request add constraint fk_request_user_9 foreign key (user_id) references user (id) on delete restrict on update restrict;
-create index ix_request_user_9 on request (user_id);
-alter table user add constraint fk_user_commerce_10 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
-create index ix_user_commerce_10 on user (commerce_id);
+alter table optional add constraint fk_optional_commerce_7 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_optional_commerce_7 on optional (commerce_id);
+alter table phone add constraint fk_phone_commerce_8 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_phone_commerce_8 on phone (commerce_id);
+alter table plate add constraint fk_plate_commerce_9 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_plate_commerce_9 on plate (commerce_id);
+alter table request add constraint fk_request_user_10 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_request_user_10 on request (user_id);
+alter table user add constraint fk_user_commerce_11 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_user_commerce_11 on user (commerce_id);
 
 
 
 alter table commerce_category add constraint fk_commerce_category_commerce_01 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
 
 alter table commerce_category add constraint fk_commerce_category_category_02 foreign key (category_id) references category (id) on delete restrict on update restrict;
-
-alter table plate_category add constraint fk_plate_category_plate_01 foreign key (plate_id) references plate (id) on delete restrict on update restrict;
-
-alter table plate_category add constraint fk_plate_category_category_02 foreign key (category_id) references category (id) on delete restrict on update restrict;
 
 alter table plate_optional add constraint fk_plate_optional_plate_01 foreign key (plate_id) references plate (id) on delete restrict on update restrict;
 
@@ -200,8 +194,6 @@ drop table optional;
 drop table phone;
 
 drop table plate;
-
-drop table plate_category;
 
 drop table plate_optional;
 

@@ -26,7 +26,7 @@ public class CommerceUsers extends Controller {
             //Chequeo que se hayan enviado los parametros necesarios
             if (form.hasErrors()) {
                 logger.info("Intento de creacion de usuario de comercio con parametros incorrectos", form.errorsAsJson());
-                return badRequest(form.errorsAsJson());
+                return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Errores en los campos de creacion"));
             }
 
             CommerceUser user = form.get();

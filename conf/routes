@@ -29,6 +29,19 @@ POST        /api/v1/categories              controllers.api.v1.Categories.create
 GET         /api/v1/categories              controllers.api.v1.Categories.list()
 PUT         /api/v1/categories/:id          controllers.api.v1.Categories.update(id : Long)
 
+# OPTIONALS
+
+POST        /api/v1/optionals               controllers.api.v1.Optionals.create()
+GET         /api/v1/optionals               controllers.api.v1.Optionals.list()
+PUT         /api/v1/optionals/:id           controllers.api.v1.Optionals.update(id : Long)
+DELETE      /api/v1/optionals/:id           controllers.api.v1.Optionals.delete(id : Long)
+
+# PLATES
+
+POST        /api/v1/plates                  controllers.api.v1.Plates.create()
+GET         /api/v1/plates                  controllers.api.v1.Plates.list()
+PUT         /api/v1/plates/:id              controllers.api.v1.Plates.update(id : Long)
+
 # VIEWS
 
 GET         /                               controllers.web.Dash.showMainScreen()

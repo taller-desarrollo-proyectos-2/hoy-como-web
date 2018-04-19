@@ -4,59 +4,59 @@ import annotations.Authenticate;
 import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import exceptions.CreationException;
+import exceptions.DeleteException;
 import exceptions.UpdateException;
-import models.Category;
 import models.CommerceUser;
+import models.Optional;
 import play.Logger;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
-import services.CategoriesServices;
+import services.OptionalsService;
 import services.SerializerService;
 
-public class Categories extends Controller {
+public class Optionals extends Controller {
 
-    private static Logger.ALogger logger = Logger.of("categories-api");
+    private static Logger.ALogger logger = Logger.of("optionals-api");
 
     @Authenticate(types = "COMMERCE")
     public static Result create(){
         Ebean.beginTransaction();
         try {
             CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
-            Form<Category> form = Form.form(Category.class, Category.Creation.class).bindFromRequest();
+            Form<Optional> form = Form.form(Optional.class, Optional.Creation.class).bindFromRequest();
 
             if (form.hasErrors()) {
-                logger.error("Error en el json de creacion de categorias", form.errorsAsJson());
-                return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Error en los parametros de creacion de la categoria"));
+                logger.error("Error en el json de creacion de opcionales", form.errorsAsJson());
+                return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Error en los parametros de creacion de opcionales"));
             }
 
-            Category category = form.get();
-            //Se crea la categoria para el comercio especificado
-            CategoriesServices.create(category, commerceUser.getCommerce());
+            Optional optional = form.get();
+            //Se crea el opcional para el comercio especificado
+            OptionalsService.create(optional, commerceUser.getCommerce());
             Ebean.commitTransaction();
-            return ok(Json.toJson(category));
+            return ok(Json.toJson(optional));
         }catch(CreationException e){
             logger.error(e.getMessage());
             return badRequest(JsonNodeFactory.instance.objectNode().put("message", e.getMessage()));
         }catch(Exception e){
-            logger.error("Error interno intentando crear categoria", e);
-            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando crear categoria"));
+            logger.error("Error interno intentando crear opcional", e);
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando crear opcional"));
         }finally{
             Ebean.endTransaction();
         }
-
     }
 
     @Authenticate(types = "COMMERCE")
     public static Result list(){
         try{
             CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
-            return ok(SerializerService.serializeList(Category.findListByProperty("commerce.id", commerceUser.getCommerce().getId())));
+            return ok(SerializerService.serializeList(Optional.findListByProperty("commerce.id", commerceUser.getCommerce().getId())));
         }catch(Exception e){
             logger.error("Error listando categorias", e);
-            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando listar categorias"));
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando listar opcionales"));
         }
     }
 
@@ -65,22 +65,22 @@ public class Categories extends Controller {
         Ebean.beginTransaction();
         try {
             CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
-            Form<Category> form = Form.form(Category.class).bindFromRequest();
+            Form<Optional> form = Form.form(Optional.class).bindFromRequest();
             if (form.hasErrors()) {
-                logger.error("Error en el json de modificacion de categorias", form.errorsAsJson());
-                return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Error en los parametros de modificacion de la categoria"));
+                logger.error("Error en el json de modificacion de opcionales", form.errorsAsJson());
+                return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Error en los parametros de modificacion del opcional"));
             }
-            Category category = form.get();
-            //Se actualiza la categoria para el comercio especificado
-            CategoriesServices.update(id, category, commerceUser.getCommerce());
+            Optional optional = form.get();
+
+            OptionalsService.update(id, optional, commerceUser.getCommerce());
             Ebean.commitTransaction();
-            return ok(Json.toJson(category));
+            return ok(Json.toJson(optional));
         }catch(UpdateException e){
-            logger.error("Error actualizando la categoria", e.getMessage());
+            logger.error("Error actualizando el opcional", e.getMessage());
             return badRequest(JsonNodeFactory.instance.objectNode().put("message",e.getMessage()));
         }catch(Exception e){
             logger.error("Error interno intentando actualizar", e);
-            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando actualizar la categoria"));
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando actualizar el opcional"));
         }finally{
             Ebean.endTransaction();
         }
@@ -89,9 +89,14 @@ public class Categories extends Controller {
     @Authenticate(types = "COMMERCE")
     public static Result delete(Long id){
         Ebean.beginTransaction();
-        try{
+        try {
+            CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
+            OptionalsService.delete(id, commerceUser.getCommerce());
             Ebean.commitTransaction();
             return ok();
+        }catch(DeleteException e){
+            logger.error("Error borrando el opcional", e);
+            return badRequest(JsonNodeFactory.instance.objectNode().put("message", e.getMessage()));
         }catch(Exception e){
             logger.error("Error interno borrando la categoria", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando borrar la categoria"));
