@@ -42,6 +42,10 @@ public class Plates extends Controller {
             Http.MultipartFormData.FilePart pictureFilePart = formData.getFile("picture");
 
             if (pictureFilePart != null) {
+                if(FolderServices.fileExists(FolderServices.getCommerceFolder(commerceUser.getCommerce()) + pictureFilePart.getFilename())){
+                    logger.error("Imagen con nombre ya utilizado");
+                    return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Nombre de imagen ya utilizado"));
+                }
                 if(pictureFilePart.getFile().renameTo(new File(FolderServices.getCommerceFolder(commerceUser.getCommerce()) + pictureFilePart.getFilename()))){
                     logger.error("Error creando imagen de plato");
                     return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Error creando la imagen del plato"));
