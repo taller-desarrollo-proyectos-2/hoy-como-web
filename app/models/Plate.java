@@ -1,9 +1,6 @@
 package models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.avaje.ebean.ExpressionList;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,7 +30,7 @@ public class Plate extends Model{
     @ManyToOne
     private Commerce commerce;
 
-    @ManyToMany
+    @OneToMany
     @Constraints.Required(groups = Creation.class)
     private Category category;
 
