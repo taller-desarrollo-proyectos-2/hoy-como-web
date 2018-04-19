@@ -1,5 +1,6 @@
 
 hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter) {
+    
     $scope.plates = [];
     $scope.currentPlate = {};
     $scope.categories = [];

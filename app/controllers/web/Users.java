@@ -12,6 +12,6 @@ import play.mvc.Controller;
 public class Users extends Controller {
     
       public static Result showUsers() {
-            return ok(views.html.users.render());
+            return ok(views.html.root.users.render());
       }
 }

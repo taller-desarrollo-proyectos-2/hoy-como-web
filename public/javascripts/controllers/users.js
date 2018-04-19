@@ -21,12 +21,6 @@ hoyComoApp.controller('usersCtrl', function ($scope, $http, $window, $rootScope,
         });
     }
 
-    $scope.toggleCreateModal = function() {
-        $scope.editModal = false;
-        $scope.currentCommerce = {};
-        $("#commercesModal").modal("toggle");
-    };
-
     function indexUsers(){
         $http({
             url: "/api/v1/commerce/users",
@@ -43,7 +37,6 @@ hoyComoApp.controller('usersCtrl', function ($scope, $http, $window, $rootScope,
 
     $scope.toggleCreateModal = function() {
         $scope.editModal = false;
-        $scope.currentUser = {};
         $("#usersModal").modal("toggle");
     };
     
@@ -63,7 +56,6 @@ hoyComoApp.controller('usersCtrl', function ($scope, $http, $window, $rootScope,
                 indexUsers();
                 toastr.success("Usuario creado con exito.");
             }).error(function(err){
-                $("#usersModal").modal("toggle");
                 toastr.error(err.message);
             });
     };

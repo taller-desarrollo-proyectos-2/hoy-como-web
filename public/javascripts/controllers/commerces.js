@@ -1,6 +1,8 @@
 
 hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter) {
     $scope.commerces = [];
+    $scope.currentCommerce = {};
+
 
     index();
     $scope.daySelected = {};
@@ -26,7 +28,6 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
 
     $scope.toggleCreateModal = function() {
         $scope.editModal = false;
-        $scope.currentCommerce = {};
         $("#commercesModal").modal("toggle");
     };
     

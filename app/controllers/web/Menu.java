@@ -12,14 +12,14 @@ import play.mvc.Controller;
 public class Menu extends Controller {
     
     public static Result showCategories() {
-        return ok(views.html.menu.categories.render());
+        return ok(views.html.admin.menu.categories.render());
     }
 
     public static Result showOptionals() {
-        return ok(views.html.menu.optionals.render());
+        return ok(views.html.admin.menu.optionals.render());
     }
 
     public static Result showPlates() {
-        return ok(views.html.menu.plates.render());
+        return ok(views.html.admin.menu.plates.render());
     }
 }
