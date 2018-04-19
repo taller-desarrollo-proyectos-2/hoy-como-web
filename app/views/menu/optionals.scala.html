@@ -1,18 +1,14 @@
 <div class="container screen-container" ng-controller="optionalsCtrl">
-    
         <div class="row">
-        <div class="col-md-12 col-lg-12 page-header center-elems">
-                <h1>
-                    Opcionales
-                </h1>
-                <button class="btn btn-primary pull-right" style="margin-left:auto" ng-click="toggleCreateModal()">Agregar</button>
-    
+            <div class="col-md-12 col-lg-12 page-header center-elems">
+                    <h1>
+                        Opcionales
+                    </h1>
+                    <button class="btn btn-primary pull-right" style="margin-left:auto" ng-click="toggleCreateModal()">Agregar</button>
+            </div>
         </div>
-        </div>
-        
         <div class="row">
         <div class="col-md-12 col-lg-12">
-    
             <div class="card">
                 <div class="card-content table-responsive">
                     <table class="table">
@@ -34,14 +30,13 @@
         </div>
         </div>
         
-        
         <div class="modal fade" id="optionalsModal" tabindex="-1" role="dialog" aria-labelledby="optionalsCreateModal" aria-hidden="true">
             <div class="modal-dialog"> 
                <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 ng-if="!editModal" class="modal-title" id="commercesModalTitle">Agregar Opcional</h4>
-                        <h4 ng-if="editModal" class="modal-title" id="commercesModalTitle">Editar opcional</h4>
+                        <h4 ng-if="!editModal" class="modal-title">Agregar Opcional</h4>
+                        <h4 ng-if="editModal" class="modal-title">Editar opcional</h4>
     
                     </div>
                     <div class="modal-body">
@@ -60,8 +55,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
-                        <button ng-if="!editModal" type="button" class="btn btn-primary pull-left"  ng-click="createOptional(currentOptional)">Agregar</button>
-                        <button ng-if="editModal" type="button" class="btn btn-primary pull-left"  ng-click="updateOptional(currentOptional)">Guardar</button>
+                        <button ng-if="!editModal" type="button" class="btn btn-primary pull-left" ng-click="createOptional()">Agregar</button>
+                        <button ng-if="editModal" type="button" class="btn btn-primary pull-left" ng-click="updateOptional()">Guardar</button>
                     </div>
                 </div>
             </div>

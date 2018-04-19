@@ -3,9 +3,10 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
     $scope.plates = [];
     $scope.currentPlate = {};
 
-    index();
+    indexPlates();
+    indexCategories();
 
-    function index(){
+    function indexPlates(){
         $http({
             url: "/api/v1/plates",
             method: "GET",
@@ -19,8 +20,36 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
         });
     }
 
+    function indexCategories(){
+        $http({
+            url: "/api/v1/categories",
+            method: "GET",
+            headers: {
+                'authorization' : $rootScope.auth
+            }
+        }).success(function(data, status, headers, config){
+            $scope.categories = data;
+        }).error(function(err){
+            toastr.error(err.message);
+        });
+    }
+
     $scope.toggleCreateModal = function() {
         $scope.editModal = false;
         $("#platesModal").modal("toggle");
     };
+
+    $scope.toggleCategoryCreationModal = function() {
+        $scope.category = {};
+        $("#platesModal").modal("toggle");
+        $("#categoriesModal").modal("toggle");
+    };
+
+    $scope.backToPlatesModal = function() {
+        $scope.category = {};
+        $("#categoriesModal").modal("toggle");
+        $("#platesModal").modal("toggle");
+    };
+
+
 });
