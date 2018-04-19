@@ -42,7 +42,10 @@ public class Plates extends Controller {
             Http.MultipartFormData.FilePart pictureFilePart = formData.getFile("picture");
 
             if (pictureFilePart != null) {
-                new File(FolderServices.getCommerceFolder(commerceUser.getCommerce()) + pictureFilePart.getFilename());
+                if(new File(FolderServices.getCommerceFolder(commerceUser.getCommerce()) + pictureFilePart.getFilename()).createNewFile()){
+                    logger.error("Error creando imagen de plato");
+                    return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Error creando la imagen del plato"));
+                }
             }else{
                 logger.error("Intentando crear un plato sin imagen");
                 return badRequest(JsonNodeFactory.instance.objectNode().put("message", "No es posible crear un plato sin imagen"));
