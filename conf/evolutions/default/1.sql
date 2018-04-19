@@ -14,6 +14,8 @@ create table address (
 create table category (
   id                        bigint auto_increment not null,
   name                      varchar(255),
+  number                    integer,
+  commerce_id               bigint,
   constraint pk_category primary key (id))
 ;
 
@@ -130,24 +132,26 @@ create table user_commerce (
   commerce_id                    bigint not null,
   constraint pk_user_commerce primary key (user_id, commerce_id))
 ;
-alter table commerce add constraint fk_commerce_company_1 foreign key (company_id) references company (id) on delete restrict on update restrict;
-create index ix_commerce_company_1 on commerce (company_id);
-alter table commerce add constraint fk_commerce_license_2 foreign key (license_id) references license (id) on delete restrict on update restrict;
-create index ix_commerce_license_2 on commerce (license_id);
-alter table commerce add constraint fk_commerce_address_3 foreign key (address_id) references address (id) on delete restrict on update restrict;
-create index ix_commerce_address_3 on commerce (address_id);
-alter table commerce add constraint fk_commerce_location_4 foreign key (location_id) references location (id) on delete restrict on update restrict;
-create index ix_commerce_location_4 on commerce (location_id);
-alter table opening_time add constraint fk_opening_time_commerce_5 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
-create index ix_opening_time_commerce_5 on opening_time (commerce_id);
-alter table phone add constraint fk_phone_commerce_6 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
-create index ix_phone_commerce_6 on phone (commerce_id);
-alter table plate add constraint fk_plate_commerce_7 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
-create index ix_plate_commerce_7 on plate (commerce_id);
-alter table request add constraint fk_request_user_8 foreign key (user_id) references user (id) on delete restrict on update restrict;
-create index ix_request_user_8 on request (user_id);
-alter table user add constraint fk_user_commerce_9 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
-create index ix_user_commerce_9 on user (commerce_id);
+alter table category add constraint fk_category_commerce_1 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_category_commerce_1 on category (commerce_id);
+alter table commerce add constraint fk_commerce_company_2 foreign key (company_id) references company (id) on delete restrict on update restrict;
+create index ix_commerce_company_2 on commerce (company_id);
+alter table commerce add constraint fk_commerce_license_3 foreign key (license_id) references license (id) on delete restrict on update restrict;
+create index ix_commerce_license_3 on commerce (license_id);
+alter table commerce add constraint fk_commerce_address_4 foreign key (address_id) references address (id) on delete restrict on update restrict;
+create index ix_commerce_address_4 on commerce (address_id);
+alter table commerce add constraint fk_commerce_location_5 foreign key (location_id) references location (id) on delete restrict on update restrict;
+create index ix_commerce_location_5 on commerce (location_id);
+alter table opening_time add constraint fk_opening_time_commerce_6 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_opening_time_commerce_6 on opening_time (commerce_id);
+alter table phone add constraint fk_phone_commerce_7 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_phone_commerce_7 on phone (commerce_id);
+alter table plate add constraint fk_plate_commerce_8 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_plate_commerce_8 on plate (commerce_id);
+alter table request add constraint fk_request_user_9 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_request_user_9 on request (user_id);
+alter table user add constraint fk_user_commerce_10 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_user_commerce_10 on user (commerce_id);
 
 
 

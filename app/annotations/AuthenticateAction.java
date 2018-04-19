@@ -38,7 +38,7 @@ public class AuthenticateAction extends Action<Authenticate> {
                 return F.Promise.pure(forbidden());
             }
 
-            ctx.args.put("user", user);
+            ctx.args.put("userId", user.getId());
 
             return delegate.call(ctx);
         }catch(Exception e){
