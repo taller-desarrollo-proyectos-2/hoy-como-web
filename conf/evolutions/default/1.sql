@@ -87,6 +87,7 @@ create table plate (
   id                        bigint auto_increment not null,
   name                      varchar(255),
   commerce_id               bigint,
+  category_id               bigint,
   price                     float,
   picture_file_name         varchar(255),
   constraint pk_plate primary key (id))
@@ -153,10 +154,12 @@ alter table phone add constraint fk_phone_commerce_8 foreign key (commerce_id) r
 create index ix_phone_commerce_8 on phone (commerce_id);
 alter table plate add constraint fk_plate_commerce_9 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
 create index ix_plate_commerce_9 on plate (commerce_id);
-alter table request add constraint fk_request_user_10 foreign key (user_id) references user (id) on delete restrict on update restrict;
-create index ix_request_user_10 on request (user_id);
-alter table user add constraint fk_user_commerce_11 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
-create index ix_user_commerce_11 on user (commerce_id);
+alter table plate add constraint fk_plate_category_10 foreign key (category_id) references category (id) on delete restrict on update restrict;
+create index ix_plate_category_10 on plate (category_id);
+alter table request add constraint fk_request_user_11 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_request_user_11 on request (user_id);
+alter table user add constraint fk_user_commerce_12 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_user_commerce_12 on user (commerce_id);
 
 
 
