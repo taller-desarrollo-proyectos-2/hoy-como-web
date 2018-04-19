@@ -110,4 +110,17 @@ public class Plates extends Controller {
             Ebean.endTransaction();
         }
     }
+
+    @Authenticate(types = {"COMMERCE", "FACEBOOK"})
+    public static Result getImage(String fileName){
+        try{
+            CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
+            if(!FolderServices.fileExists(FolderServices.getCommerceFolder(commerceUser.getCommerce()) + fileName)){
+                return notFound(JsonNodeFactory.instance.objectNode().put("message", "Archivo no encontrado"));
+            }
+            return ok(FolderServices.getFile(FolderServices.getCommerceFolder(commerceUser.getCommerce()) + fileName));
+        }catch(Exception e){
+            return internalServerError();
+        }
+    }
 }
