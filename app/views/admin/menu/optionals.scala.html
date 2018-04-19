@@ -21,7 +21,10 @@
                             <tr ng-repeat="optional in optionals">
                                 <td>{{optional.name}}</td>
                                 <td>{{optional.price}}</td>
-                                <td>boton magico</td>
+                                <td>
+                                    <a style="cursor:pointer;" ng-click="toggleEditModal(optional)">Editar</a>,
+                                    <a style="cursor:pointer;" ng-click="deleteOptional(optional)">Borrar</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

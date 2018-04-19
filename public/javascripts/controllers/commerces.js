@@ -2,6 +2,7 @@
 hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter) {
     $scope.commerces = [];
     $scope.currentCommerce = {};
+    $scope.editModal = true;
 
 
     index();

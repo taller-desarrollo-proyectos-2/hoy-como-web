@@ -31,7 +31,10 @@
                             <td>{{plate.name}}</td>
                             <td>{{plate.price}}</td>
                             <td>{{plate.category.name}}</td>
-                            <td>boton magico</td>
+                            <td>
+                                <a style="cursor:pointer;" ng-click="toggleEditModal(plate)">Editar</a>,
+                                <a style="cursor:pointer;" ng-click="delete(plate)">Borrar</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
