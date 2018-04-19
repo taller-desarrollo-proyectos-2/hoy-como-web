@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.ExpressionList;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
@@ -53,6 +54,7 @@ public class Optional extends Model {
         this.price = price;
     }
 
+    @JsonIgnore
     public Commerce getCommerce() {
         return commerce;
     }

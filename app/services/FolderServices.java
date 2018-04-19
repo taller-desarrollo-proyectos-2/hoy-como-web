@@ -33,4 +33,8 @@ public class FolderServices {
     public static boolean fileExists(String fileName){
         return new File(fileName).exists();
     }
+
+    public static File getFile(String fileName){
+        return new File(fileName);
+    }
 }
