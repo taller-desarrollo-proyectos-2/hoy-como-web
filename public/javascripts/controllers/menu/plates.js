@@ -60,6 +60,12 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
         $("#platesModal").modal("toggle");
     };
 
+    $scope.toggleEditModal = function(plate) {
+        $scope.editModal = true;
+        angular.copy(plate, $scope.currentPlate);
+        $("#platesModal").modal("toggle");
+    };
+
     $scope.toggleInCreationModal = function(modal) {
         $scope.currentCategory = {};
         $("#platesModal").modal("toggle");
@@ -132,34 +138,43 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
     }
 
     $scope.updatePlate = function (){
-        var formData = new FormData($('#plateForm').get(0)); 
-        Object.keys($scope.currentPlate).forEach(function(key) {
-            formData.append(key,$scope.currentPlate[key]);
-        });
-        var pictureFileName = document.getElementById('fileInput').files.item(0).name; 
-        formData.append("pictureFileName", pictureFileName);
-        xhr = new XMLHttpRequest();
-        xhr.addEventListener('load', updateFinish, false);
-        xhr.open('PUT',"/api/v1/plates");
-        xhr.setRequestHeader('Accept','application/json, text/plain, */*');
-        xhr.setRequestHeader('authorization', $rootScope.auth);
-        xhr.send(formData);
+        if($scope.currentPlate.category != undefined && $scope.currentPlate.name != undefined && $scope.currentPlate.price != undefined){
+            var formData = new FormData($('#plateForm').get(0)); 
+            if($scope.currentPlate.name) formData.append("name", $scope.currentPlate.name);
+            if($scope.currentPlate.price) formData.append("price", $scope.currentPlate.price);
+            if (document.getElementById('fileInput').files.item(0)) formData.append("pictureFileName", document.getElementById('fileInput').files.item(0).name); 
+            if($scope.currentPlate.category) formData.append("category.id", $scope.currentPlate.category.id);
+            if($scope.currentPlate.optionals) formData.append("optionals.id", [1,2]);
+            var index = 0;
+            for (var opt of $scope.currentPlate.optionals) {
+                formData.append('optionals[' + index + '].id', opt.id);
+                index++;
+            }
+            xhr = new XMLHttpRequest();
+            xhr.addEventListener('load', updateFinished, false);
+            xhr.open('PUT',"/api/v1/plates/" + $scope.currentPlate.id);
+            xhr.setRequestHeader('Accept','application/json, text/plain, */*');
+            xhr.setRequestHeader('authorization', $rootScope.auth);
+            xhr.send(formData);
+        } else {
+            toastr.error("El nombre, la categoria y el precio no pueden estar vacios.");
+        }
     };
     
-    function updateFinish(e){ 
+    function updateFinished(e){ 
         if(this.status === 200){
             $('#plateForm').get(0).reset();
-            toastr.success("Plato creado con exito.");
+            toastr.success("Plato actualizado con exito.");
             $scope.currentPlate = {};
             $("#platesModal").modal("toggle");
             indexPlates();
         } else {
-            toastr.error("No se pudo crear el plato.");
+            toastr.error("No se pudo actualizar el plato.");
         }
     }
 
     $scope.addOptional = function (optional){
-        if(!optionalOnList(optional)){
+        if(!optionalInList(optional)){
             $scope.currentPlate.optionals.push(optional);
         } else {
             toastr.error("El opcional ya se encuentra agregado.");
@@ -171,12 +186,26 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
         $scope.currentPlate.optionals.splice(index, 1);
     };
 
-    function optionalOnList(optional){
+    function optionalInList(optional){
         for(var option of $scope.currentPlate.optionals){
             if(option.id == optional.id) return true;
         }
         return false;
     }
 
+    $scope.deletePlate = function(plate){
+        $http({
+            url: "/api/v1/plates/" + plate.id,
+            method: "DELETE",
+            headers: {
+                'authorization' : $rootScope.auth
+            }
+        }).success(function(){
+            index();
+            toastr.success("Plato eliminado con exito.");
+        }).error(function(err){
+            toastr.error(err.message);
+        });
+    };
 
 });

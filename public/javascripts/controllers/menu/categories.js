@@ -2,6 +2,7 @@
 hoyComoApp.controller('categoriesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter) {
     $scope.categories = [];
     $scope.currentCategory = {};
+    $scope.editModal = true;
 
     index();
 
@@ -20,6 +21,7 @@ hoyComoApp.controller('categoriesCtrl', function ($scope, $http, $window, $rootS
     }
 
     $scope.toggleCreateModal = function() {
+        if($scope.editModal) $scope.currentCategory = {};
         $scope.editModal = false;
         $("#categoriesModal").modal("toggle");
     };
