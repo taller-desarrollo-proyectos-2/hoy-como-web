@@ -25,12 +25,12 @@ public class OptionalsService {
         if(Commerce.findByProperty("id", commerce.getId()) == null){
             throw new UpdateException("Comercio con id inexistente");
         }
-        if(Optional.findByProperties(Arrays.asList("name", "commerce.id"), Arrays.asList(optional.getName(), commerce.getId())) != null){
-            throw new UpdateException("Nombre de categoria ya utilizado");
-        }
         Optional dbOptional = Optional.findByProperty("id", id);
         if(dbOptional == null){
             throw new UpdateException("Categoria con id inexistente");
+        }
+        if(!dbOptional.getName().equals(optional.getName()) && Optional.findByProperties(Arrays.asList("name", "commerce.id"), Arrays.asList(optional.getName(), commerce.getId())) != null){
+            throw new UpdateException("Nombre de categoria ya utilizado");
         }
         optional.setId(id);
         optional.setCommerce(commerce);
@@ -38,9 +38,10 @@ public class OptionalsService {
     }
 
     public static void delete(Long id, Commerce commerce) throws DeleteException{
-        if(Optional.findByProperties(Arrays.asList("id", "commerce.id"), Arrays.asList(id, commerce.getId())) == null){
+        Optional dbOptional = Optional.findByProperties(Arrays.asList("id", "commerce.id"), Arrays.asList(id, commerce.getId()));
+        if(dbOptional == null){
             throw new DeleteException("Opcional de id inexistente o perteneciente a otro comercio");
         }
-        Optional.findByProperty("id", id).delete();
+        dbOptional.delete();
     }
 }

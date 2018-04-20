@@ -15,7 +15,7 @@ import java.util.Map;
  * @author facundocaldora
  */
 @Entity
-public class Plate extends Model{
+public class  Plate extends Model{
 
     protected static final Finder<Long, Plate> FIND = new Finder<>(Long.class, Plate.class);
 

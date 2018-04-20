@@ -27,12 +27,12 @@ public class CategoriesServices {
         if(Commerce.findByProperty("id", commerce.getId()) == null){
             throw new UpdateException("Comercio con id inexistente");
         }
-        if(Category.findByProperties(Arrays.asList("name", "commerce.id"), Arrays.asList(category.getName(), commerce.getId())) != null){
-            throw new UpdateException("Nombre de categoria ya utilizado");
-        }
         Category dbCategory = Category.findByProperty("id", id);
         if(dbCategory == null){
             throw new UpdateException("Categoria con id inexistente");
+        }
+        if(!dbCategory.getName().equals(category.getName()) && Category.findByProperties(Arrays.asList("name", "commerce.id"), Arrays.asList(category.getName(), commerce.getId())) != null){
+            throw new UpdateException("Nombre de categoria ya utilizado");
         }
         if(dbCategory.getNumber() != category.getNumber()){
             if(category.getNumber() > Category.findListByProperty("commerce.id", commerce.getId()).size()){

@@ -27,6 +27,7 @@ public class User extends Model {
     }
 
     public static User findByIdAndType(Long id, String[] types){
-        return FIND.where().eq("id", id).in("USER_TYPE", types).findUnique();
+        // CAST to Object[] to suppress warning.
+        return FIND.where().eq("id", id).in("USER_TYPE", (Object[])types).findUnique();
     }
 }

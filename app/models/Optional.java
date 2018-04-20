@@ -27,7 +27,7 @@ public class Optional extends Model {
     @Constraints.Required(groups = Creation.class)
     private float price;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne
     private Commerce commerce;
 
     public Long getId() {
