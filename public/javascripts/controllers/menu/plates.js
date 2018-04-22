@@ -1,12 +1,12 @@
 
-hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter) {
+hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter, fileReader) {
     
     $scope.plates = [];
     $scope.currentPlate = {};
     $scope.categories = [];
     $scope.editModal = true;
     $scope.selected = {};
-
+    $scope.imageSrc = "assets/images/uploadImage.png";
 
     indexPlates();
     indexCategories();
@@ -55,12 +55,18 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
     }
 
     $scope.toggleCreateModal = function() {
-        if($scope.editModal) $scope.currentPlate = {optionals : []};
+        if($scope.editModal){
+            $('#plateForm').get(0).reset();
+            $scope.imageSrc = "assets/images/uploadImage.png";
+            $scope.currentPlate = {optionals : []};
+        }
         $scope.editModal = false;
         $("#platesModal").modal("toggle");
     };
 
     $scope.toggleEditModal = function(plate) {
+        $('#plateForm').get(0).reset();
+        $scope.imageSrc = "assets/images/uploadImage.png";
         $scope.editModal = true;
         angular.copy(plate, $scope.currentPlate);
         $("#platesModal").modal("toggle");
@@ -209,3 +215,79 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
     };
 
 });
+
+hoyComoApp.directive("ngFileSelect", function(fileReader, $timeout) {
+    return {
+      scope: {
+        ngModel: '='
+      },
+      link: function($scope, el) {
+        function getFile(file) {
+          fileReader.readAsDataUrl(file, $scope)
+            .then(function(result) {
+              $timeout(function() {
+                $scope.ngModel = result;
+              });
+            }).catch(function(err){
+                $scope.ngModel = "assets/images/uploadImage.png";
+            });
+        }
+
+        el.bind("change", function(e) {
+          var file = (e.srcElement || e.target).files[0];
+          getFile(file);
+        });
+      }
+    };
+  });
+
+  hoyComoApp.factory("fileReader", function($q, $log) {
+    var onLoad = function(reader, deferred, scope) {
+      return function() {
+        scope.$apply(function() {
+          deferred.resolve(reader.result);
+        });
+      };
+    };
+  
+    var onError = function(reader, deferred, scope) {
+      return function() {
+        scope.$apply(function() {
+          deferred.reject(reader.result);
+        });
+      };
+    };
+  
+    var onProgress = function(reader, scope) {
+      return function(event) {
+        scope.$broadcast("fileProgress", {
+          total: event.total,
+          loaded: event.loaded
+        });
+      };
+    };
+  
+    var getReader = function(deferred, scope) {
+      var reader = new FileReader();
+      reader.onload = onLoad(reader, deferred, scope);
+      reader.onerror = onError(reader, deferred, scope);
+      reader.onprogress = onProgress(reader, scope);
+      return reader;
+    };
+  
+    var readAsDataURL = function(file, scope) {
+      var deferred = $q.defer();
+  
+      var reader = getReader(deferred, scope);
+      if(file) {
+        reader.readAsDataURL(file);
+      } else{
+          return $q.reject();
+      }
+      return deferred.promise;
+    };
+  
+    return {
+      readAsDataUrl: readAsDataURL
+    };
+  });
