@@ -4,39 +4,42 @@
             <h1>
                 Platos
             </h1>
-            <input type="search" class="form-control pull-right" style="margin-left:auto; width: 20%; margin-right: 10px;">
+            <input style="margin-left:auto; width: 20%; margin-right: 10px;" type="search" class="pull-right form-control" placeholder="Buscar.." ng-model="search" ng-change="filterFeed()">
             <button class="btn btn-primary pull-right"  ng-click="toggleCreateModal()">Agregar</button>
         </div>
     </div>
-    
+    <style>
+            input[type="search"]::-webkit-search-cancel-button {
+              -webkit-appearance: searchfield-cancel-button;
+            }
+          </style>
     <div class="row">
     <div class="col-md-12 col-lg-12">
-
         <div class="card">
             <div class="card-content table-responsive">
                 <table class="table">
                 <thead>
-                        <th>Imagen</th>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Categoria</th>
-                        <th>Activo</th>
-                        <th>Acciones</th>
+                        <th class="col-sm-1">Imagen</th>
+                        <th class="col-sm-3">Nombre</th>
+                        <th class="col-sm-2">Precio</th>
+                        <th class="col-sm-2">Categoria</th>
+                        <th class="col-sm-1" style="text-align: center;">Activo</th>
+                        <th class="col-sm-3" style="text-align: center;">Acciones</th>
                     </thead>
                     <tbody>
-                        <tr class="plate-item" ng-repeat="plate in plates">
+                        <tr class="plate-item" ng-repeat="plate in showingPlates">
                             <td>
                                 <div class="image-cropper">
                                     <img ng-src="/api/v1/plates/picture/{{plate.pictureFileName}}" class="rounded"/>
                                 </div>
                             </td>
                             <td>{{plate.name}}</td>
-                            <td>{{plate.price}}</td>
+                            <td>$ {{plate.price}}</td>
                             <td>{{plate.category.name}}</td>
-                            <td>
+                            <td style="text-align: center;">
                                 <input ng-model='plate.isActive' ng-click="updatePlateActive(plate)" type='checkbox'>
                             </td>
-                            <td>
+                            <td style="text-align: center;">
                                 <a style="cursor:pointer;" ng-click="toggleEditModal(plate)">Editar</a>,
                                 <a style="cursor:pointer;" ng-click="deletePlate(plate)">Borrar</a>
                             </td>

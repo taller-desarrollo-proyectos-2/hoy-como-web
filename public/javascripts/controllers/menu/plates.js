@@ -21,6 +21,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             }
         }).success(function(data, status, headers, config){
             $scope.plates = data;
+            $scope.showingPlates = data;
         }).error(function(err){
             toastr.error(err.message);
         });
@@ -58,7 +59,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
         if($scope.editModal){
             $('#plateForm').get(0).reset();
             $scope.imageSrc = "assets/images/uploadImage.png";
-            $scope.currentPlate = {optionals : []};
+            $scope.currentPlate = {optionals : [], glutenFree: false};
         }
         $scope.editModal = false;
         $("#platesModal").modal("toggle");
@@ -138,7 +139,6 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             if($scope.currentPlate.price) formData.append("price", $scope.currentPlate.price);
             if (document.getElementById('fileInput').files.item(0)) formData.append("pictureFileName", document.getElementById('fileInput').files.item(0).name); 
             if($scope.currentPlate.category) formData.append("category.id", $scope.currentPlate.category.id);
-            if($scope.currentPlate.optionals) formData.append("optionals.id", [1,2]);
             var index = 0;
             for (var opt of $scope.currentPlate.optionals) {
                 formData.append('optionals[' + index + '].id', opt.id);
@@ -176,7 +176,6 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             if($scope.currentPlate.price) formData.append("price", $scope.currentPlate.price);
             if (document.getElementById('fileInput').files.item(0)) formData.append("pictureFileName", document.getElementById('fileInput').files.item(0).name); 
             if($scope.currentPlate.category) formData.append("category.id", $scope.currentPlate.category.id);
-            if($scope.currentPlate.optionals) formData.append("optionals.id", [1,2]);
             var index = 0;
             for (var opt of $scope.currentPlate.optionals) {
                 formData.append('optionals[' + index + '].id', opt.id);
@@ -261,6 +260,22 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             toastr.error(err.message);
         });
     };
+
+    $scope.search = "";
+	
+	$scope.filterFeed = function (){
+		if ($scope.search === ""){
+			$scope.showingPlates = $scope.plates;			
+		} else {
+			var auxList = [];
+			for(var plate of $scope.plates){
+				if(plate.name.toUpperCase().includes($scope.search.toUpperCase())){
+					auxList.push(plate);
+				}
+			}
+			$scope.showingPlates = auxList;
+		}
+	};
 
 });
 
