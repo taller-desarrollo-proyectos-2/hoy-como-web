@@ -107,6 +107,27 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
         });
     };
 
+    $scope.createOptional = function(){
+        $http({
+            url: "/api/v1/optionals",
+            data: $scope.currentOptional,
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'authorization' : $rootScope.auth
+            }
+        }).success(function(data){
+            $scope.addOptional(data);
+            $("#optionalsModal").modal("toggle");
+            $("#platesModal").modal("toggle");
+            indexOptionals();
+            toastr.success("Opcional creado con exito.");
+        }).error(function(err){
+            toastr.error(err.message);
+        });
+    };
+
     $scope.createPlate = function (){
         if($scope.currentPlate.category != undefined && $scope.currentPlate.name != undefined && $scope.currentPlate.price != undefined){
             var formData = new FormData($('#plateForm').get(0)); 
