@@ -66,7 +66,6 @@
                             <input type="number" class="form-control m-bottom-10" ng-model='currentPlate.price' >
                             <label  class="m-top-10 control-label">Imagen</label>
                             <form enctype="multipart/form-data" id="plateForm">
-                                <!-- <input id="fileInput" type="file" class="form-control" name="picture" form="plateForm"> -->
                                 <input id="fileInput" type="file" class="form-control" name="picture" form="plateForm" ng-file-select="onFileSelect($files)" ng-model="imageSrc">
                             </form>
                         </div>
@@ -75,6 +74,18 @@
                             <img style="max-height:200px; max-width: 100%;" ng-if="!currentPlate.pictureFileName" ng-src="{{imageSrc}}">
                         </div>
                     </div>
+                    <div class="row m-bottom-10">
+                        <div class="col-sm-12">
+                            <label  class="control-label">Descripción</label>
+                            <input type="text" class="form-control m-bottom-10" ng-model='currentPlate.description' >
+                        </div>
+                    </div>
+                    <div class="row m-bottom-10">
+                            <label class="col-sm-6 control-label">Gluten free</label>
+                            <div class="col-sm-6">
+                                <input type="checkbox" ng-model='currentPlate.glutenFree' >
+                            </div>
+                        </div>
                     <div class="row m-bottom-10">
                         <label class="col-sm-6 control-label">Categoria</label>
                         <div class="col-sm-6" style="display:flex;">

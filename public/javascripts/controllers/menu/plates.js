@@ -111,6 +111,9 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
         if($scope.currentPlate.category != undefined && $scope.currentPlate.name != undefined && $scope.currentPlate.price != undefined){
             var formData = new FormData($('#plateForm').get(0)); 
             if($scope.currentPlate.name) formData.append("name", $scope.currentPlate.name);
+            if($scope.currentPlate.description) formData.append("description", $scope.currentPlate.description);
+            formData.append("glutenFree", $scope.currentPlate.glutenFree);
+            formData.append("isActive", true);
             if($scope.currentPlate.price) formData.append("price", $scope.currentPlate.price);
             if (document.getElementById('fileInput').files.item(0)) formData.append("pictureFileName", document.getElementById('fileInput').files.item(0).name); 
             if($scope.currentPlate.category) formData.append("category.id", $scope.currentPlate.category.id);
@@ -147,6 +150,8 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
         if($scope.currentPlate.category != undefined && $scope.currentPlate.name != undefined && $scope.currentPlate.price != undefined){
             var formData = new FormData($('#plateForm').get(0)); 
             if($scope.currentPlate.name) formData.append("name", $scope.currentPlate.name);
+            formData.append("glutenFree", $scope.currentPlate.glutenFree);
+            if($scope.currentPlate.description) formData.append("description", $scope.currentPlate.description);
             if($scope.currentPlate.price) formData.append("price", $scope.currentPlate.price);
             if (document.getElementById('fileInput').files.item(0)) formData.append("pictureFileName", document.getElementById('fileInput').files.item(0).name); 
             if($scope.currentPlate.category) formData.append("category.id", $scope.currentPlate.category.id);
