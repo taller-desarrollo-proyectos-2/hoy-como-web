@@ -4,35 +4,42 @@
             <h1>
                 Platos
             </h1>
-            <input type="search" class="form-control pull-right" style="margin-left:auto; width: 20%; margin-right: 10px;">
+            <input style="margin-left:auto; width: 20%; margin-right: 10px;" type="search" class="pull-right form-control" placeholder="Buscar.." ng-model="search" ng-change="filterFeed()">
             <button class="btn btn-primary pull-right"  ng-click="toggleCreateModal()">Agregar</button>
         </div>
     </div>
-    
+    <style>
+            input[type="search"]::-webkit-search-cancel-button {
+              -webkit-appearance: searchfield-cancel-button;
+            }
+          </style>
     <div class="row">
     <div class="col-md-12 col-lg-12">
-
         <div class="card">
             <div class="card-content table-responsive">
                 <table class="table">
                 <thead>
-                        <th>Imagen</th>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Categoria</th>
-                        <th>Acciones</th>
+                        <th class="col-sm-1">Imagen</th>
+                        <th class="col-sm-3">Nombre</th>
+                        <th class="col-sm-2">Precio</th>
+                        <th class="col-sm-2">Categoria</th>
+                        <th class="col-sm-1" style="text-align: center;">Activo</th>
+                        <th class="col-sm-3" style="text-align: center;">Acciones</th>
                     </thead>
                     <tbody>
-                        <tr class="plate-item" ng-repeat="plate in plates">
+                        <tr class="plate-item" ng-repeat="plate in showingPlates">
                             <td>
                                 <div class="image-cropper">
-                                    <img ng-src="/api/v1/plates/picture/{{plate.pictureFileName}}" class="rounded" />
+                                    <img ng-src="/api/v1/plates/picture/{{plate.pictureFileName}}" class="rounded"/>
                                 </div>
                             </td>
                             <td>{{plate.name}}</td>
-                            <td>{{plate.price}}</td>
+                            <td>$ {{plate.price}}</td>
                             <td>{{plate.category.name}}</td>
-                            <td>
+                            <td style="text-align: center;">
+                                <input ng-model='plate.isActive' ng-click="updatePlateActive(plate)" type='checkbox'>
+                            </td>
+                            <td style="text-align: center;">
                                 <a style="cursor:pointer;" ng-click="toggleEditModal(plate)">Editar</a>,
                                 <a style="cursor:pointer;" ng-click="deletePlate(plate)">Borrar</a>
                             </td>
@@ -62,7 +69,6 @@
                             <input type="number" class="form-control m-bottom-10" ng-model='currentPlate.price' >
                             <label  class="m-top-10 control-label">Imagen</label>
                             <form enctype="multipart/form-data" id="plateForm">
-                                <!-- <input id="fileInput" type="file" class="form-control" name="picture" form="plateForm"> -->
                                 <input id="fileInput" type="file" class="form-control" name="picture" form="plateForm" ng-file-select="onFileSelect($files)" ng-model="imageSrc">
                             </form>
                         </div>
@@ -71,6 +77,18 @@
                             <img style="max-height:200px; max-width: 100%;" ng-if="!currentPlate.pictureFileName" ng-src="{{imageSrc}}">
                         </div>
                     </div>
+                    <div class="row m-bottom-10">
+                        <div class="col-sm-12">
+                            <label  class="control-label">Descripción</label>
+                            <input type="text" class="form-control m-bottom-10" ng-model='currentPlate.description' >
+                        </div>
+                    </div>
+                    <div class="row m-bottom-10">
+                            <label class="col-sm-6 control-label">Gluten free</label>
+                            <div class="col-sm-6">
+                                <input type="checkbox" ng-model='currentPlate.glutenFree' >
+                            </div>
+                        </div>
                     <div class="row m-bottom-10">
                         <label class="col-sm-6 control-label">Categoria</label>
                         <div class="col-sm-6" style="display:flex;">
@@ -170,7 +188,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-right" ng-click="backToPlatesModal('#optionalsModal')">Volver</button>
-                        <button type="button" class="btn btn-primary pull-left"  ng-click="createCategory()">Agregar</button>
+                        <button type="button" class="btn btn-primary pull-left"  ng-click="createOptional()">Agregar</button>
                     </div>
                 </div>
             </div>
