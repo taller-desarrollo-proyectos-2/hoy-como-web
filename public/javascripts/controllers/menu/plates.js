@@ -179,6 +179,28 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
         }
     }
 
+    $scope.updatePlateActive = function (plate){
+        var data = {
+            "id" : plate.id,
+            "isActive" : plate.isActive
+        };
+        $http({
+            url: "/api/plates/" + plate.id,
+            data: data,
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).success(function(){
+            var state = (plate.isVisible) ? "" : "des";
+            toastr.success("Plato " + state +"activado con exito.");
+            indexPlates();
+        }).error(function(err){
+            toastr.error(err.message);
+        });
+    };
+
     $scope.addOptional = function (optional){
         if(!optionalInList(optional)){
             $scope.currentPlate.optionals.push(optional);

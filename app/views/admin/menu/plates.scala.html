@@ -20,18 +20,22 @@
                         <th>Nombre</th>
                         <th>Precio</th>
                         <th>Categoria</th>
+                        <th>Activo</th>
                         <th>Acciones</th>
                     </thead>
                     <tbody>
                         <tr class="plate-item" ng-repeat="plate in plates">
                             <td>
                                 <div class="image-cropper">
-                                    <img ng-src="/api/v1/plates/picture/{{plate.pictureFileName}}" class="rounded" />
+                                    <img ng-src="/api/v1/plates/picture/{{plate.pictureFileName}}" class="rounded"/>
                                 </div>
                             </td>
                             <td>{{plate.name}}</td>
                             <td>{{plate.price}}</td>
                             <td>{{plate.category.name}}</td>
+                            <td>
+                                <input ng-model='plate.isActive' ng-click="updatePlateActive(plate)" type='checkbox'>
+                            </td>
                             <td>
                                 <a style="cursor:pointer;" ng-click="toggleEditModal(plate)">Editar</a>,
                                 <a style="cursor:pointer;" ng-click="deletePlate(plate)">Borrar</a>
