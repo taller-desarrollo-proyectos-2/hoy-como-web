@@ -254,7 +254,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
                 'authorization' : $rootScope.auth
             }
         }).success(function(){
-            index();
+            indexPlates();
             toastr.success("Plato eliminado con exito.");
         }).error(function(err){
             toastr.error(err.message);

@@ -34,7 +34,7 @@ public class  Plate extends Model{
     @Constraints.Required(groups = Creation.class)
     private Category category;
 
-    @ManyToMany(mappedBy = "plates")
+    @ManyToMany
     private List<Optional> optionals;
     
     private Float price;

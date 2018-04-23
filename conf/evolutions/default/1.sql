@@ -119,10 +119,10 @@ create table commerce_commerce_category (
   constraint pk_commerce_commerce_category primary key (commerce_id, commerce_category_id))
 ;
 
-create table optional_plate (
-  optional_id                    bigint not null,
+create table plate_optional (
   plate_id                       bigint not null,
-  constraint pk_optional_plate primary key (optional_id, plate_id))
+  optional_id                    bigint not null,
+  constraint pk_plate_optional primary key (plate_id, optional_id))
 ;
 
 create table request_plate (
@@ -167,9 +167,9 @@ alter table commerce_commerce_category add constraint fk_commerce_commerce_categ
 
 alter table commerce_commerce_category add constraint fk_commerce_commerce_category_commerce_category_02 foreign key (commerce_category_id) references commerce_category (id) on delete restrict on update restrict;
 
-alter table optional_plate add constraint fk_optional_plate_optional_01 foreign key (optional_id) references optional (id) on delete restrict on update restrict;
+alter table plate_optional add constraint fk_plate_optional_plate_01 foreign key (plate_id) references plate (id) on delete restrict on update restrict;
 
-alter table optional_plate add constraint fk_optional_plate_plate_02 foreign key (plate_id) references plate (id) on delete restrict on update restrict;
+alter table plate_optional add constraint fk_plate_optional_optional_02 foreign key (optional_id) references optional (id) on delete restrict on update restrict;
 
 alter table request_plate add constraint fk_request_plate_request_01 foreign key (request_id) references request (id) on delete restrict on update restrict;
 
@@ -203,13 +203,13 @@ drop table opening_time;
 
 drop table optional;
 
-drop table optional_plate;
-
-drop table user_commerce;
-
 drop table phone;
 
 drop table plate;
+
+drop table plate_optional;
+
+drop table user_commerce;
 
 drop table request;
 

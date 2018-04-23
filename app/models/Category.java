@@ -30,7 +30,7 @@ public class Category extends Model {
 
     private int number;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne
     private Commerce commerce;
 
     public Long getId() {

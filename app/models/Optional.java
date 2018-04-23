@@ -27,9 +27,6 @@ public class Optional extends Model {
     @ManyToOne
     private Commerce commerce;
 
-    @ManyToMany
-    private List<Plate> plates;
-
     public Long getId() {
         return id;
     }
@@ -76,14 +73,5 @@ public class Optional extends Model {
 
     public static List<Optional> findListByProperty(String property, Object value){
         return FIND.where().eq(property, value).findList();
-    }
-
-    @JsonIgnore
-    public List<Plate> getPlates() {
-        return plates;
-    }
-
-    public void setPlates(List<Plate> plates) {
-        this.plates = plates;
     }
 }

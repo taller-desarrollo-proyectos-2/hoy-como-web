@@ -57,16 +57,15 @@ public class PlatesServices {
             throw new DeleteException("Plato de id inexistente o perteneciente a otro comercio");
         }
         //Elimino el archivo imagen
-        //new File(FolderServices.getCommerceFolder(commerce) + dbPlate.getPictureFileName()).delete();
+        new File(FolderServices.getCommerceFolder(commerce) + dbPlate.getPictureFileName()).delete();
         for(Plate plate : commerce.getPlates()){
             if(plate.getName().equals(dbPlate.getName())){
                 commerce.getPlates().remove(plate);
                 break;
             }
         }
-        commerce.update();
         //dbPlate.setCommerce(Commerce.findByProperty("id", dbPlate.getCommerce().getId()));
-        //dbPlate.deleteManyToManyAssociations("optionals");
-        //Plate.findByProperty("id", id).delete();
+        dbPlate.deleteManyToManyAssociations("optionals");
+        dbPlate.delete();
     }
 }

@@ -128,14 +128,14 @@ public class Plates extends Controller {
                 commerce = commerceUser.getCommerce();
             }
             if(commerce == null){
-                logger.error("Comercio no encontrado, buscando imagen");
+                logger.error("Comercio no encontrado buscando imagen");
                 return badRequest(JsonNodeFactory.instance.objectNode().put("message", "El comercio buscado para la imagen no existe."));
             }
             if(!FolderServices.fileExists(FolderServices.getCommerceFolder(commerce) + fileName)){
                 logger.error("Imagen no encontrada para el comercio: ", commerce.getBusinessName());
                 return notFound(JsonNodeFactory.instance.objectNode().put("message", "Archivo no encontrado"));
             }
-            return ok(FolderServices.getFile(FolderServices.getCommerceFolder(commerceUser.getCommerce()) + fileName));
+            return ok(FolderServices.getFile(FolderServices.getCommerceFolder(commerce) + fileName));
         }catch(Exception e){
             logger.error("Error intentando obtener imagen ", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno buscando imagen de plato"));
