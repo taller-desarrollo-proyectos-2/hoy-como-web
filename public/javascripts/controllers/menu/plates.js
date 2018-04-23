@@ -160,6 +160,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             $('#plateForm').get(0).reset();
             toastr.success("Plato creado con exito.");
             $scope.currentPlate = {};
+            $scope.imageSrc = "assets/images/uploadImage.png";
             $("#platesModal").modal("toggle");
             indexPlates();
         } else {
