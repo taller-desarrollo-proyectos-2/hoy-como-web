@@ -21,9 +21,12 @@ public class AuthenticateAction extends Action<Authenticate> {
             String token;
             if(ctx.request().headers().containsKey("authorization")){
                 token = ctx.request().headers().get("authorization")[0];
-            }else{
+            }else if(ctx.session().containsKey("authorization")){
+                token = ctx.session().get("authorization");
+            }else {
                 return F.Promise.pure(unauthorized());
             }
+
             token = token.split(" ")[1];
 
             DecodedJWT decoded = JWT.require(Algorithm.HMAC256(ConfigFactory.load().getString("application.secret")))

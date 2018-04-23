@@ -5,10 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -29,6 +26,9 @@ public class Optional extends Model {
 
     @ManyToOne
     private Commerce commerce;
+
+    @ManyToMany
+    private List<Plate> plates;
 
     public Long getId() {
         return id;
@@ -76,5 +76,14 @@ public class Optional extends Model {
 
     public static List<Optional> findListByProperty(String property, Object value){
         return FIND.where().eq(property, value).findList();
+    }
+
+    @JsonIgnore
+    public List<Plate> getPlates() {
+        return plates;
+    }
+
+    public void setPlates(List<Plate> plates) {
+        this.plates = plates;
     }
 }

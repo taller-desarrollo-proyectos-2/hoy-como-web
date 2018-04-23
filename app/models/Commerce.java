@@ -31,7 +31,7 @@ public class Commerce extends Model{
     @ManyToMany
     private List<CommerceCategory> categories;
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Plate> plates;
 
     @OneToOne

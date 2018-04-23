@@ -28,6 +28,7 @@ GET         /api/v1/commerces/:id           controllers.api.v1.Commerces.get(id 
 POST        /api/v1/categories              controllers.api.v1.Categories.create()
 GET         /api/v1/categories              controllers.api.v1.Categories.list()
 PUT         /api/v1/categories/:id          controllers.api.v1.Categories.update(id : Long)
+DELETE      /api/v1/categories/:id          controllers.api.v1.Categories.delete(id : Long)
 
 # OPTIONALS
 
@@ -42,6 +43,7 @@ POST        /api/v1/plates                  controllers.api.v1.Plates.create()
 GET         /api/v1/plates                  controllers.api.v1.Plates.list()
 PUT         /api/v1/plates/:id              controllers.api.v1.Plates.update(id : Long)
 GET         /api/v1/plates/picture/:fileName controllers.api.v1.Plates.getImage(fileName : String)
+DELETE      /api/v1/plates/:id              controllers.api.v1.Plates.delete(id : Long)
 
 # VIEWS
 

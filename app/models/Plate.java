@@ -34,12 +34,18 @@ public class  Plate extends Model{
     @Constraints.Required(groups = Creation.class)
     private Category category;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "plates")
     private List<Optional> optionals;
     
-    private float price;
+    private Float price;
 
     private Promo promo;
+
+    private Boolean active;
+
+    private Boolean glutenFree;
+
+    private String description;
 
     @Constraints.Required(groups = Creation.class)
     private String pictureFileName;
@@ -90,6 +96,30 @@ public class  Plate extends Model{
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public Boolean isActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Boolean isGlutenFree() {
+        return glutenFree;
+    }
+
+    public void setGlutenFree(Boolean glutenFree) {
+        this.glutenFree =  glutenFree;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @JsonIgnore

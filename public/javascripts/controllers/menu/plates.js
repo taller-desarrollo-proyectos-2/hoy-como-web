@@ -135,7 +135,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             if($scope.currentPlate.name) formData.append("name", $scope.currentPlate.name);
             if($scope.currentPlate.description) formData.append("description", $scope.currentPlate.description);
             formData.append("glutenFree", $scope.currentPlate.glutenFree);
-            formData.append("isActive", true);
+            formData.append("active", true);
             if($scope.currentPlate.price) formData.append("price", $scope.currentPlate.price);
             if (document.getElementById('fileInput').files.item(0)) formData.append("pictureFileName", document.getElementById('fileInput').files.item(0).name); 
             if($scope.currentPlate.category) formData.append("category.id", $scope.currentPlate.category.id);
@@ -172,6 +172,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             var formData = new FormData($('#plateForm').get(0)); 
             if($scope.currentPlate.name) formData.append("name", $scope.currentPlate.name);
             formData.append("glutenFree", $scope.currentPlate.glutenFree);
+            formData.append("active", $scope.currentPlate.active);
             if($scope.currentPlate.description) formData.append("description", $scope.currentPlate.description);
             if($scope.currentPlate.price) formData.append("price", $scope.currentPlate.price);
             if (document.getElementById('fileInput').files.item(0)) formData.append("pictureFileName", document.getElementById('fileInput').files.item(0).name); 
@@ -206,11 +207,10 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
 
     $scope.updatePlateActive = function (plate){
         var data = {
-            "id" : plate.id,
-            "isActive" : plate.isActive
+            "active" : plate.active
         };
         $http({
-            url: "/api/plates/" + plate.id,
+            url: "/api/v1/plates/" + plate.id,
             data: data,
             method: "PUT",
             headers: {
@@ -218,7 +218,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
                 'Accept': 'application/json'
             }
         }).success(function(){
-            var state = (plate.isVisible) ? "" : "des";
+            var state = (plate.active) ? "" : "des";
             toastr.success("Plato " + state +"activado con exito.");
             indexPlates();
         }).error(function(err){

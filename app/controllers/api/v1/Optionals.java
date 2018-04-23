@@ -98,8 +98,8 @@ public class Optionals extends Controller {
             logger.error("Error borrando el opcional", e);
             return badRequest(JsonNodeFactory.instance.objectNode().put("message", e.getMessage()));
         }catch(Exception e){
-            logger.error("Error interno borrando la categoria", e);
-            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando borrar la categoria"));
+            logger.error("Error interno borrando el pocional", e);
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando borrar el opcional"));
         }finally {
             Ebean.endTransaction();
         }

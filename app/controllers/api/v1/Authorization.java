@@ -10,6 +10,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import play.Logger;
 import play.data.Form;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
 
 import java.util.Calendar;
@@ -48,6 +49,7 @@ public class Authorization extends Controller {
 
             response().setHeader("authorization", "Bearer " + token);
 
+            Http.Context.current().session().put("authorization", "Bearer " + token);
             return ok(dbUser.getPanel());
         }catch(Exception e){
             logger.error("Error intentando autenticarse", e);

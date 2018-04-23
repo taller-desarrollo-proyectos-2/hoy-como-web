@@ -1,9 +1,12 @@
 package services;
 
 import exceptions.CreationException;
+import exceptions.DeleteException;
 import exceptions.UpdateException;
 import models.Category;
 import models.Commerce;
+import models.Plate;
+import org.h2.command.dml.Delete;
 
 import java.util.Arrays;
 import java.util.List;
@@ -65,5 +68,16 @@ public class CategoriesServices {
             category.setNumber(category.getNumber() + 1);
             category.update();
         }
+    }
+
+    public static void delete(Long id, Commerce commerce) throws DeleteException {
+        Category dbCategory = Category.findByProperties(Arrays.asList("id", "commerce.id"), Arrays.asList(id, commerce.getId()));
+        if(dbCategory == null){
+            throw new DeleteException("Categoria de id inexistente o perteneciente a otro comercio");
+        }
+        if(!Plate.findListByProperty("category.id", id).isEmpty()){
+            throw new DeleteException("No se puede borrar la categoria, pertenece a algun plato");
+        }
+        dbCategory.delete();
     }
 }

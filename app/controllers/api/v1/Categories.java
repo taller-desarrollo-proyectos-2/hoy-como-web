@@ -4,6 +4,7 @@ import annotations.Authenticate;
 import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import exceptions.CreationException;
+import exceptions.DeleteException;
 import exceptions.UpdateException;
 import models.Category;
 import models.CommerceUser;
@@ -89,9 +90,14 @@ public class Categories extends Controller {
     @Authenticate(types = "COMMERCE")
     public static Result delete(Long id){
         Ebean.beginTransaction();
-        try{
+        try {
+            CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
+            CategoriesServices.delete(id, commerceUser.getCommerce());
             Ebean.commitTransaction();
             return ok();
+        }catch(DeleteException e){
+            logger.error(e.getMessage());
+            return badRequest(JsonNodeFactory.instance.objectNode().put("message", e.getMessage()));
         }catch(Exception e){
             logger.error("Error interno borrando la categoria", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando borrar la categoria"));

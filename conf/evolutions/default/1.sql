@@ -1,6 +1,3 @@
-# --- Created by Ebean DDL
-# To stop Ebean DDL generation, remove this comment and start using Evolutions
-
 # --- !Ups
 
 create table address (
@@ -89,6 +86,9 @@ create table plate (
   commerce_id               bigint,
   category_id               bigint,
   price                     float,
+  active                    tinyint(1) default 0,
+  gluten_free               tinyint(1) default 0,
+  description               varchar(255),
   picture_file_name         varchar(255),
   constraint pk_plate primary key (id))
 ;
@@ -119,10 +119,10 @@ create table commerce_commerce_category (
   constraint pk_commerce_commerce_category primary key (commerce_id, commerce_category_id))
 ;
 
-create table plate_optional (
-  plate_id                       bigint not null,
+create table optional_plate (
   optional_id                    bigint not null,
-  constraint pk_plate_optional primary key (plate_id, optional_id))
+  plate_id                       bigint not null,
+  constraint pk_optional_plate primary key (optional_id, plate_id))
 ;
 
 create table request_plate (
@@ -167,9 +167,9 @@ alter table commerce_commerce_category add constraint fk_commerce_commerce_categ
 
 alter table commerce_commerce_category add constraint fk_commerce_commerce_category_commerce_category_02 foreign key (commerce_category_id) references commerce_category (id) on delete restrict on update restrict;
 
-alter table plate_optional add constraint fk_plate_optional_plate_01 foreign key (plate_id) references plate (id) on delete restrict on update restrict;
+alter table optional_plate add constraint fk_optional_plate_optional_01 foreign key (optional_id) references optional (id) on delete restrict on update restrict;
 
-alter table plate_optional add constraint fk_plate_optional_optional_02 foreign key (optional_id) references optional (id) on delete restrict on update restrict;
+alter table optional_plate add constraint fk_optional_plate_plate_02 foreign key (plate_id) references plate (id) on delete restrict on update restrict;
 
 alter table request_plate add constraint fk_request_plate_request_01 foreign key (request_id) references request (id) on delete restrict on update restrict;
 
@@ -203,11 +203,13 @@ drop table opening_time;
 
 drop table optional;
 
+drop table optional_plate;
+
+drop table user_commerce;
+
 drop table phone;
 
 drop table plate;
-
-drop table plate_optional;
 
 drop table request;
 

@@ -5,8 +5,10 @@ import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import exceptions.CreationException;
+import exceptions.DeleteException;
 import exceptions.UpdateException;
 import models.Category;
+import models.Commerce;
 import models.CommerceUser;
 import models.Plate;
 import play.Logger;
@@ -99,9 +101,9 @@ public class Plates extends Controller {
             //Se actualiza el plato para el comercio especificado
             PlatesServices.update(id, plate, commerceUser.getCommerce());
             Ebean.commitTransaction();
-            return ok(Json.toJson(plate));
+            return ok(Json.toJson(Plate.findByProperty("id", id)));
         }catch(UpdateException e){
-            logger.error("Error actualizando el plato", e.getMessage());
+            logger.error(e.getMessage());
             return badRequest(JsonNodeFactory.instance.objectNode().put("message",e.getMessage()));
         }catch(Exception e){
             logger.error("Error interno intentando actualizar", e);
@@ -115,12 +117,47 @@ public class Plates extends Controller {
     public static Result getImage(String fileName){
         try{
             CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
-            if(!FolderServices.fileExists(FolderServices.getCommerceFolder(commerceUser.getCommerce()) + fileName)){
+            Commerce commerce;
+            if(commerceUser == null){
+                if(!request().queryString().containsKey("commerceId")){
+                    logger.error("Es necesario especificar un id de comercio");
+                    return badRequest(JsonNodeFactory.instance.objectNode().put("message", "El id del comercio es necesario para buscar la imagen"));
+                }
+                commerce = Commerce.findByProperty("id", Long.valueOf(request().queryString().get("commerceId")[0]));
+            }else{
+                commerce = commerceUser.getCommerce();
+            }
+            if(commerce == null){
+                logger.error("Comercio no encontrado, buscando imagen");
+                return badRequest(JsonNodeFactory.instance.objectNode().put("message", "El comercio buscado para la imagen no existe."));
+            }
+            if(!FolderServices.fileExists(FolderServices.getCommerceFolder(commerce) + fileName)){
+                logger.error("Imagen no encontrada para el comercio: ", commerce.getBusinessName());
                 return notFound(JsonNodeFactory.instance.objectNode().put("message", "Archivo no encontrado"));
             }
             return ok(FolderServices.getFile(FolderServices.getCommerceFolder(commerceUser.getCommerce()) + fileName));
         }catch(Exception e){
-            return internalServerError();
+            logger.error("Error intentando obtener imagen ", e);
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno buscando imagen de plato"));
+        }
+    }
+
+    @Authenticate(types = "COMMERCE")
+    public static Result delete(Long id){
+        Ebean.beginTransaction();
+        try {
+            CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
+            PlatesServices.delete(id, commerceUser.getCommerce());
+            Ebean.commitTransaction();
+            return ok();
+        }catch(DeleteException e){
+            logger.error("Error borrando el plato", e);
+            return badRequest(JsonNodeFactory.instance.objectNode().put("message", e.getMessage()));
+        }catch(Exception e){
+            logger.error("Error interno borrando el plato", e);
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando borrar el plato"));
+        }finally {
+            Ebean.endTransaction();
         }
     }
 }

@@ -5,6 +5,7 @@ import exceptions.DeleteException;
 import exceptions.UpdateException;
 import models.Commerce;
 import models.Optional;
+import models.Plate;
 
 import java.util.Arrays;
 
@@ -41,6 +42,9 @@ public class OptionalsService {
         Optional dbOptional = Optional.findByProperties(Arrays.asList("id", "commerce.id"), Arrays.asList(id, commerce.getId()));
         if(dbOptional == null){
             throw new DeleteException("Opcional de id inexistente o perteneciente a otro comercio");
+        }
+        if(!Plate.findListByProperty("optionals.id", id).isEmpty()){
+            throw new DeleteException("No se puede borrar el opcional, pertenece a algun plato");
         }
         dbOptional.delete();
     }
