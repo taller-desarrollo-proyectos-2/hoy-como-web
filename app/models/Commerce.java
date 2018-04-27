@@ -29,9 +29,9 @@ public class Commerce extends Model{
     private String businessName;
 
     @ManyToMany
-    private List<Category> categories;
+    private List<CommerceCategory> categories;
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Plate> plates;
 
     @OneToOne
@@ -75,11 +75,11 @@ public class Commerce extends Model{
         this.plates = plates;
     }
 
-    public List<Category> getCategories() {
+    public List<CommerceCategory> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Category> categories) {
+    public void setCategories(List<CommerceCategory> categories) {
         this.categories = categories;
     }
 

@@ -1,0 +1,196 @@
+<div class="container screen-container" ng-controller="platesCtrl">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 page-header center-elems">
+            <h1>
+                Platos
+            </h1>
+            <input style="margin-left:auto; width: 20%; margin-right: 10px;" type="search" class="pull-right form-control" placeholder="Buscar.." ng-model="search" ng-change="filterFeed()">
+            <button class="btn btn-primary pull-right"  ng-click="toggleCreateModal()">Agregar</button>
+        </div>
+    </div>
+    <style>
+            input[type="search"]::-webkit-search-cancel-button {
+              -webkit-appearance: searchfield-cancel-button;
+            }
+          </style>
+    <div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-content table-responsive">
+                <table class="table">
+                <thead>
+                        <th class="col-sm-1">Imagen</th>
+                        <th class="col-sm-3">Nombre</th>
+                        <th class="col-sm-2">Precio</th>
+                        <th class="col-sm-2">Categoria</th>
+                        <th class="col-sm-1" style="text-align: center;">Activo</th>
+                        <th class="col-sm-3" style="text-align: center;">Acciones</th>
+                    </thead>
+                    <tbody>
+                        <tr class="plate-item" ng-repeat="plate in showingPlates">
+                            <td>
+                                <div class="image-cropper">
+                                    <img ng-src="/api/v1/plates/picture/{{plate.pictureFileName}}" class="rounded"/>
+                                </div>
+                            </td>
+                            <td>{{plate.name}}</td>
+                            <td>$ {{plate.price}}</td>
+                            <td>{{plate.category.name}}</td>
+                            <td style="text-align: center;">
+                                <input ng-model='plate.active' ng-click="updatePlateActive(plate)" type='checkbox'>
+                            </td>
+                            <td style="text-align: center;">
+                                <a style="cursor:pointer;" ng-click="toggleEditModal(plate)">Editar</a>,
+                                <a style="cursor:pointer;" ng-click="deletePlate(plate)">Borrar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <!-- Modal platos -->
+    <div class="modal fade" id="platesModal" tabindex="-1" role="dialog" aria-labelledby="plateCreateModal" aria-hidden="true">
+        <div class="modal-dialog"> 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 ng-if="!editModal" class="modal-title">Agregar Plato</h4>
+                    <h4 ng-if="editModal" class="modal-title">Editar Plato</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label  class="control-label">Nombre</label>
+                            <input type="text" class="form-control m-bottom-10" ng-model='currentPlate.name' >
+                            <label  class="m-top-10 control-label">Precio</label>
+                            <input type="number" class="form-control m-bottom-10" ng-model='currentPlate.price' >
+                            <label  class="m-top-10 control-label">Imagen</label>
+                            <form enctype="multipart/form-data" id="plateForm">
+                                <input id="fileInput" type="file" class="form-control" name="picture" form="plateForm" ng-file-select="onFileSelect($files)" ng-model="imageSrc">
+                            </form>
+                        </div>
+                        <div class="col-sm-6" style="display: flex; align-items: center; justify-content: center;">
+                            <img style="max-height:200px; max-width: 100%;" ng-if="currentPlate.pictureFileName" ng-src="/api/v1/plates/picture/{{currentPlate.pictureFileName}}">
+                            <img style="max-height:200px; max-width: 100%;" ng-if="!currentPlate.pictureFileName" ng-src="{{imageSrc}}">
+                        </div>
+                    </div>
+                    <div class="row m-bottom-10">
+                        <div class="col-sm-12">
+                            <label  class="control-label">Descripción</label>
+                            <input type="text" class="form-control m-bottom-10" ng-model='currentPlate.description' >
+                        </div>
+                    </div>
+                    <div class="row m-bottom-10">
+                            <label class="col-sm-6 control-label">Gluten free</label>
+                            <div class="col-sm-6">
+                                <input type="checkbox" ng-model='currentPlate.glutenFree' >
+                            </div>
+                        </div>
+                    <div class="row m-bottom-10">
+                        <label class="col-sm-6 control-label">Categoria</label>
+                        <div class="col-sm-6" style="display:flex;">
+                            <div style="width:80%;">
+                                <ui-select ng-model="currentPlate.category" >
+                                    <ui-select-match placeholder="Seleccione categoria..">
+                                        <span ng-bind="$select.selected.name"></span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="category in (categories | filter: $select.search) track by category.id">
+                                        {{category.name}}<br>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div style=" width:20%;">
+                                <button class="btn btn-primary pull-right" ng-click="toggleInCreationModal('#categoriesModal')">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-bottom-10">
+                        <label class="col-sm-6 control-label">Opcionales</label>
+                        <div class="col-sm-6" style="display:flex;">
+                            <div style="width:80%;">
+                                <ui-select id="1" ng-model="selected.optional" on-select="addOptional($item)" >
+                                    <ui-select-match placeholder="Seleccione opcional..">
+                                        <span ng-bind="$select.selected.name"></span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="optional in (optionals | filter: $select.search) track by optional.id">
+                                        {{optional.name}}<br>
+                                        <small>Precio: $ {{optional.price}}</small>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div style=" width:20%;">
+                                <button class="btn btn-primary pull-right" ng-click="toggleInCreationModal('#optionalsModal')">+</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" ng-repeat="optional in currentPlate.optionals">
+                                <label class="" >{{optional.name}} - $ {{optional.price}}</label>
+                                <i class="glyphicon glyphicon-remove" style="cursor:pointer" ng-click="removeOptional($index)"></i>
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
+                    <button ng-if="!editModal" type="button" class="btn btn-primary pull-left"  ng-click="createPlate()">Agregar</button>
+                    <button ng-if="editModal" type="button" class="btn btn-primary pull-left"  ng-click="updatePlate()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal agregar categoria -->
+    <div class="modal fade" id="categoriesModal" tabindex="-1" role="dialog" aria-labelledby="categoriesCreateModal" aria-hidden="true">
+        <div class="modal-dialog"> 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Agregar Categoria</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row m-bottom-10">
+                        <label  class="col-sm-6 control-label">Nombre</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" ng-model='currentCategory.name'>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-right" ng-click="backToPlatesModal('#categoriesModal')">Volver</button>
+                    <button type="button" class="btn btn-primary pull-left"  ng-click="createCategory()">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal agregar categoria -->
+    <div class="modal fade" id="optionalsModal" tabindex="-1" role="dialog" aria-labelledby="categoriesCreateModal" aria-hidden="true">
+            <div class="modal-dialog"> 
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Agregar Opcional</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row m-bottom-10">
+                            <label  class="col-sm-6 control-label">Nombre</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" ng-model='currentOptional.name'>
+                            </div>
+                        </div>
+                        <div class="row m-bottom-10">
+                            <label  class="col-sm-6 control-label">Precio</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" ng-model='currentOptional.price'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-right" ng-click="backToPlatesModal('#optionalsModal')">Volver</button>
+                        <button type="button" class="btn btn-primary pull-left"  ng-click="createOptional()">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
