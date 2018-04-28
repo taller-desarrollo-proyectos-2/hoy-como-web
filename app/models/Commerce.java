@@ -10,6 +10,7 @@ import com.avaje.ebean.Expr;
 import com.avaje.ebean.ExpressionList;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+import services.FinderService;
 
 /**
  *
@@ -181,15 +182,6 @@ public class Commerce extends Model{
     }
 
     public static List<Commerce> findByMap(Map<String, String[]> map){
-        ExpressionList<Commerce> exp = FIND.where();
-        for(Map.Entry entry: map.entrySet()){
-            exp = exp.conjunction().disjunction();
-            for(String value : map.get(entry.getKey())){
-                exp.eq(entry.getKey().toString(), value);
-            }
-            exp.endJunction();
-            exp.endJunction();
-        }
-        return exp.findList();
+        return FinderService.findByMap(FIND.where(), map).findList();
     }
 }

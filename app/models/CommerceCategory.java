@@ -45,6 +45,10 @@ public class CommerceCategory extends Model {
         this.id = id;
     }
 
+    public static List<CommerceCategory> findAll(){
+        return FIND.all();
+    }
+
     public static void initializeCategories(){
         if(FIND.all().isEmpty()){
             for(String category: categories){

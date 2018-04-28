@@ -22,6 +22,7 @@ import services.PlatesServices;
 import services.SerializerService;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 public class Plates extends Controller {
@@ -75,12 +76,8 @@ public class Plates extends Controller {
         try{
             CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
             Map<String, String[]> queryStrings = request().queryString();
-            Map<String, Object> validatedQuery = PlatesServices.validateQuery(queryStrings);
-            if(commerceUser == null){
-                return ok(SerializerService.serializeList(Plate.findListByMap(validatedQuery)));
-            }else{
-                return ok(SerializerService.serializeList(Plate.findListByProperty("commerce.id", commerceUser.getCommerce().getId())));
-            }
+            List<Plate> plates = PlatesServices.findFilteredPlates(queryStrings, commerceUser);
+            return ok(SerializerService.serializeList(plates));
         }catch(Exception e){
             logger.error("Error listando categorias", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando listar categorias"));

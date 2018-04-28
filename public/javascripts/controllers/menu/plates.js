@@ -14,7 +14,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
 
     function indexPlates(){
         $http({
-            url: "/api/v1/plates",
+            url: "/api/v1/plates?deletedAt=null",
             method: "GET",
             headers: {
                 'authorization' : $rootScope.auth
