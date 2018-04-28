@@ -1,8 +1,13 @@
 package models;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.*;
 
+import com.avaje.ebean.Expr;
+import com.avaje.ebean.ExpressionList;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
@@ -12,6 +17,16 @@ import play.db.ebean.Model;
  */
 @Entity
 public class Commerce extends Model{
+
+    private static final Map<String, String> attributeMap;
+    static {
+        Map<String, String> map = new HashMap();
+        map.put("name", "name");
+        map.put("categories", "categories.name");
+        map.put("lat", "lat");
+        map.put("lng", "lng");
+        attributeMap = Collections.unmodifiableMap(map);
+    }
 
     protected static final Finder<Long, Commerce> FIND = new Finder<>(Long.class, Commerce.class);
 
@@ -153,5 +168,28 @@ public class Commerce extends Model{
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public static Map<String, String[]> validateQuery(Map<String, String[]> query){
+        Map<String, String[]> validatedQuery = new HashMap();
+        for(Map.Entry entry : query.entrySet()){
+            if(attributeMap.containsKey(entry.getKey())){
+                validatedQuery.put(attributeMap.get(entry.getKey()), query.get(entry.getKey()));
+            }
+        }
+        return validatedQuery;
+    }
+
+    public static List<Commerce> findByMap(Map<String, String[]> map){
+        ExpressionList<Commerce> exp = FIND.where();
+        for(Map.Entry entry: map.entrySet()){
+            exp = exp.conjunction().disjunction();
+            for(String value : map.get(entry.getKey())){
+                exp.eq(entry.getKey().toString(), value);
+            }
+            exp.endJunction();
+            exp.endJunction();
+        }
+        return exp.findList();
     }
 }

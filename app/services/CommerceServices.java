@@ -8,6 +8,9 @@ import models.Commerce;
 import models.Location;
 import play.Logger;
 
+import java.util.List;
+import java.util.Map;
+
 
 public class CommerceServices {
 
@@ -32,5 +35,10 @@ public class CommerceServices {
         }
         FolderServices.createCommerceFolder(commerce);
         commerce.save();
+    }
+
+    public static List<Commerce> findFilteredCommerces(Map<String, String[]> queryStrings){
+        Map<String,String[]> validatedQuery = Commerce.validateQuery(queryStrings);
+        return Commerce.findByMap(validatedQuery);
     }
 }

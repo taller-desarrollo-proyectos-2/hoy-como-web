@@ -1,3 +1,6 @@
+# --- Created by Ebean DDL
+# To stop Ebean DDL generation, remove this comment and start using Evolutions
+
 # --- !Ups
 
 create table address (
@@ -30,8 +33,7 @@ create table commerce (
 
 create table commerce_category (
   id                        bigint auto_increment not null,
-  name                      varchar(5),
-  constraint ck_commerce_category_name check (name in ('MILAS')),
+  name                      varchar(255),
   constraint pk_commerce_category primary key (id))
 ;
 
@@ -208,8 +210,6 @@ drop table phone;
 drop table plate;
 
 drop table plate_optional;
-
-drop table user_commerce;
 
 drop table request;
 

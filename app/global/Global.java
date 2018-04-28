@@ -1,6 +1,7 @@
 package global;
 
 import models.BackofficeUser;
+import models.CommerceCategory;
 import org.mindrot.jbcrypt.BCrypt;
 import play.Application;
 import play.GlobalSettings;
@@ -21,6 +22,7 @@ public class Global extends GlobalSettings {
                 rootUser.save();
             }
             FolderServices.createMediaFolder();
+            CommerceCategory.initializeCategories();
         }catch(Exception e){
             logger.error("Error inicializando el usuario root", e);
         }

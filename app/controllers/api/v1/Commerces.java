@@ -12,6 +12,10 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import services.CommerceServices;
 import services.SerializerService;
+
+import java.util.List;
+import java.util.Map;
+
 /*
 API Comercios
  */
@@ -25,7 +29,10 @@ public class Commerces extends Controller {
     @Authenticate(types = { "BACKOFFICE", "FACEBOOK" })
     public static Result list(){
         try {
-            return ok(SerializerService.serializeList(Commerce.findAll()));
+            //Me fijo si tiene filtros
+            Map<String, String[]> queryStrings = request().queryString();
+            List<Commerce> filteredCommerces = CommerceServices.findFilteredCommerces(queryStrings);
+            return ok(SerializerService.serializeList(filteredCommerces));
         }catch(Exception e){
             logger.error("Error interno intentando listar comercios", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando listar comercios"));

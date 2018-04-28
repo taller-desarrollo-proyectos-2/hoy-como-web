@@ -42,7 +42,7 @@ DELETE      /api/v1/optionals/:id           controllers.api.v1.Optionals.delete(
 POST        /api/v1/plates                  controllers.api.v1.Plates.create()
 GET         /api/v1/plates                  controllers.api.v1.Plates.list()
 PUT         /api/v1/plates/:id              controllers.api.v1.Plates.update(id : Long)
-GET         /api/v1/plates/picture/:fileName controllers.api.v1.Plates.getImage(fileName : String)
+GET         /api/v1/plates/:id/picture      controllers.api.v1.Plates.getImage(id : Long)
 DELETE      /api/v1/plates/:id              controllers.api.v1.Plates.delete(id : Long)
 
 # VIEWS
