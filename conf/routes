@@ -30,6 +30,10 @@ GET         /api/v1/categories              controllers.api.v1.Categories.list()
 PUT         /api/v1/categories/:id          controllers.api.v1.Categories.update(id : Long)
 DELETE      /api/v1/categories/:id          controllers.api.v1.Categories.delete(id : Long)
 
+# COMMERCE CATEGORIES
+
+GET         /api/v1/commercecategories      controllers.api.v1.CommerceCategories.list()
+
 # OPTIONALS
 
 POST        /api/v1/optionals               controllers.api.v1.Optionals.create()
