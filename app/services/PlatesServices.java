@@ -42,13 +42,6 @@ public class PlatesServices {
         plate.update();
     }
 
-    public static Map<String, Object> validateQuery(Map<String, String[]> queryParams){
-        for(Map.Entry entry: queryParams.entrySet()){
-
-        }
-        return new HashMap();
-    }
-
     public static void delete(Long id, Commerce commerce) throws DeleteException{
         Plate dbPlate = Plate.findByProperties(Arrays.asList("id", "commerce.id"), Arrays.asList(id, commerce.getId()));
         if(dbPlate == null){
@@ -62,8 +55,8 @@ public class PlatesServices {
                 break;
             }
         }
-        //dbPlate.setCommerce(Commerce.findByProperty("id", dbPlate.getCommerce().getId()));
         dbPlate.deleteManyToManyAssociations("optionals");
+        dbPlate.setActive(false);
         dbPlate.setDeletedAt(new Date());
         dbPlate.update();
     }

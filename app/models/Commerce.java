@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import javax.persistence.*;
 
-import com.avaje.ebean.Expr;
-import com.avaje.ebean.ExpressionList;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import services.FinderService;

@@ -10,7 +10,7 @@ public class FinderService {
         for(Map.Entry entry: map.entrySet()){
             exp = exp.conjunction().disjunction();
             for(String value : map.get(entry.getKey())){
-                exp.eq(entry.getKey().toString(), value);
+                exp.eq(entry.getKey().toString(), value.equals("null") ? null : value);
             }
             exp = exp.endJunction().endJunction();
         }
