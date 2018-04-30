@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import javax.persistence.*;
 
+import com.avaje.ebean.ExpressionList;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import services.FinderService;
@@ -16,6 +17,9 @@ import services.FinderService;
  */
 @Entity
 public class Commerce extends Model{
+
+    private static float LATITUDE_DISTANCE = 0.00002713F;
+    private static float LONGITUDE_DISTANCE = 0.00002695F;
 
     private static final Map<String, String> attributeMap;
     static {
@@ -180,6 +184,15 @@ public class Commerce extends Model{
     }
 
     public static List<Commerce> findByMap(Map<String, String[]> map){
-        return FinderService.findByMap(FIND.where(), map).findList();
+        ExpressionList<Commerce> exp = FIND.where();
+        if(map.containsKey("lat") && map.containsKey("lng")){
+            exp = exp.ge("location.lat", Float.valueOf(map.get("lat")[0]) - LATITUDE_DISTANCE)
+                .le("location.lat", Float.valueOf(map.get("lat")[0]) + LATITUDE_DISTANCE)
+                .ge("location.lng", Float.valueOf(map.get("lng")[0]) - LONGITUDE_DISTANCE)
+                .lt("location.lng", Float.valueOf(map.get("lat")[0]) + LONGITUDE_DISTANCE);
+            map.remove("lat");
+            map.remove("lng");
+        }
+        return FinderService.findByMap(exp, map).findList();
     }
 }
