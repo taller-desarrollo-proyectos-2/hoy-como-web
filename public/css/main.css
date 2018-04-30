@@ -84,3 +84,7 @@
     height: 100%;
     width: auto;
 }
+
+.ui-select-multiple input.ui-select-search { 
+    width:100% !important; cursor: pointer; 
+}

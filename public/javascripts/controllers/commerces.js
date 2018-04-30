@@ -6,6 +6,8 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
 
 
     index();
+    indexCategories();
+    
     $scope.daySelected = {};
     $scope.actualPhone = {};
     //Cambiar por consulta back-end;
@@ -22,6 +24,21 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
             }
         }).success(function(data, status, headers, config){
             $scope.commerces = data;
+        }).error(function(err){
+            toastr.error(err.message);
+        });
+    }
+
+
+    function indexCategories(){
+        $http({
+            url: "/api/v1/commercecategories",
+            method: "GET",
+            headers: {
+                'authorization' : $rootScope.auth
+            }
+        }).success(function(data, status, headers, config){
+            $scope.categories = data;
         }).error(function(err){
             toastr.error(err.message);
         });
