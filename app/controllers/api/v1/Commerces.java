@@ -101,7 +101,7 @@ public class Commerces extends Controller {
         }
     }
 
-    @Authenticate(types = {"COMMERCE", "FACEBOOK"})
+    @Authenticate(types = {"BACKOFFICE", "FACEBOOK"})
     public static Result getImage(Long id){
         try{
             CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
