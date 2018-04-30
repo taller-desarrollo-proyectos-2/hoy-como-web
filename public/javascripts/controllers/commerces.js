@@ -70,8 +70,8 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
                 if($scope.currentCommerce.address.street) formData.append("address.street", $scope.currentCommerce.address.street);
                 if($scope.currentCommerce.address.number) formData.append("address.number", $scope.currentCommerce.address.number);
             }
-            if($scope.actualPhone != {}) formData.append("phones[0].number", $scope.actualPhone);
-            if (document.getElementById('fileInput').files.item(0)) formData.append("commerceFileName", document.getElementById('fileInput').files.item(0).name); 
+            if($scope.actualPhone != {}) formData.append("phones[0].number", $scope.actualPhone.number);
+            if (document.getElementById('fileInput').files.item(0)) formData.append("pictureFileName", document.getElementById('fileInput').files.item(0).name); 
             var index = 0;
             for (var category of $scope.currentCommerce.categories) {
                 formData.append('categories[' + index + '].id', category.id);
