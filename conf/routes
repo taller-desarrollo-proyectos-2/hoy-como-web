@@ -22,6 +22,7 @@ POST        /api/v1/authenticate/facebook   controllers.api.v1.Authorization.fac
 POST        /api/v1/commerces               controllers.api.v1.Commerces.create()
 GET         /api/v1/commerces               controllers.api.v1.Commerces.list()
 GET         /api/v1/commerces/:id           controllers.api.v1.Commerces.get(id : Long)
+GET         /api/v1/commerces/:id/picture   controllers.api.v1.Commerces.getImage(id : Long)
 
 # CATEGORIES
 

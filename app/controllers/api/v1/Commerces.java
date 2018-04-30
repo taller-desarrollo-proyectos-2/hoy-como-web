@@ -5,14 +5,18 @@ import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import exceptions.CreationException;
 import models.Commerce;
+import models.CommerceUser;
 import play.Logger;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
 import services.CommerceServices;
+import services.FolderServices;
 import services.SerializerService;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -54,6 +58,20 @@ public class Commerces extends Controller {
             }
             //Obtengo y guardo el comercio
             Commerce commerce = form.get();
+            //Guardo la imagen del comercio
+            Http.MultipartFormData formData = request().body().asMultipartFormData();
+            Http.MultipartFormData.FilePart pictureFilePart = formData.getFile("picture");
+
+            if (pictureFilePart != null) {
+                if(FolderServices.fileExists(FolderServices.getCommerceFolder(commerce) + pictureFilePart.getFilename())){
+                    logger.error("Imagen con nombre ya utilizado");
+                    return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Nombre de imagen ya utilizado"));
+                }
+                pictureFilePart.getFile().renameTo(new File(FolderServices.getCommerceFolder(commerce) + pictureFilePart.getFilename()));
+            }else{
+                logger.error("Intentando crear un comercio sin imagen");
+                return badRequest(JsonNodeFactory.instance.objectNode().put("message", "No es posible crear un comercio sin imagen"));
+            }
             CommerceServices.create(commerce);
             Ebean.commitTransaction();
             return ok(Json.toJson(commerce));
@@ -80,6 +98,32 @@ public class Commerces extends Controller {
         }catch(Exception e){
             logger.error("Error interno intentando borrar usuarios", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando eliminar usuario"));
+        }
+    }
+
+    @Authenticate(types = {"COMMERCE", "FACEBOOK"})
+    public static Result getImage(Long id){
+        try{
+            CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
+            Commerce commerce = Commerce.findByProperty("id", id);
+            if(commerce == null){
+                logger.info("Intentando buscar un comercio con id inexistente");
+                return notFound(JsonNodeFactory.instance.objectNode().put("message", "Comercio con id no encontrado"));
+            }
+            if(commerceUser != null){
+                if(!commerceUser.getCommerce().equals(commerce)){
+                    logger.error("El id pertenece a un comercio que no es este comercio, o inexistente.");
+                    return badRequest(JsonNodeFactory.instance.objectNode().put("message", "El id del comercio no es este, o es inexistente"));
+                }
+            }
+            if(!FolderServices.fileExists(FolderServices.getCommerceFolder(commerce) + commerce.getPictureFileName())){
+                logger.error("Imagen no encontrada para el comercio: ", commerce.getBusinessName());
+                return notFound(JsonNodeFactory.instance.objectNode().put("message", "Archivo no encontrado"));
+            }
+            return ok(FolderServices.getFile(FolderServices.getCommerceFolder(commerce) + commerce.getPictureFileName()));
+        }catch(Exception e){
+            logger.error("Error intentando obtener imagen ", e);
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno buscando imagen de comercio"));
         }
     }
 }

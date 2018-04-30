@@ -69,6 +69,9 @@ public class Commerce extends Model{
     @OneToOne(cascade = CascadeType.ALL)
     private Location location;
 
+    @Constraints.Required(groups = Commerce.Creation.class)
+    private String pictureFileName;
+
     public Long getId() {
         return id;
     }
@@ -194,5 +197,13 @@ public class Commerce extends Model{
             map.remove("lng");
         }
         return FinderService.findByMap(exp, map).findList();
+    }
+
+    public String getPictureFileName() {
+        return pictureFileName;
+    }
+
+    public void setPictureFileName(String pictureFileName) {
+        this.pictureFileName = pictureFileName;
     }
 }
