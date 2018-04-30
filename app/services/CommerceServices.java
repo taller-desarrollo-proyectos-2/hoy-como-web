@@ -33,7 +33,6 @@ public class CommerceServices {
             logger.error("Error comunicandose con los servidores de google", e);
             throw new CreationException("Error validando direccion del comercio");
         }
-        FolderServices.createCommerceFolder(commerce);
         commerce.save();
     }
 

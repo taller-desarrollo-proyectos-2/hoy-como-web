@@ -56,11 +56,13 @@ public class Commerces extends Controller {
                 logger.error("Parametros incorrectos para la creacion del comercio", form.errorsAsJson());
                 return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Error en los parametros de la creacion"));
             }
-            //Obtengo y guardo el comercio
-            Commerce commerce = form.get();
             //Guardo la imagen del comercio
             Http.MultipartFormData formData = request().body().asMultipartFormData();
             Http.MultipartFormData.FilePart pictureFilePart = formData.getFile("picture");
+            
+            //Obtengo y guardo el comercio
+            Commerce commerce = form.get();
+            FolderServices.createCommerceFolder(commerce);
 
             if (pictureFilePart != null) {
                 if(FolderServices.fileExists(FolderServices.getCommerceFolder(commerce) + pictureFilePart.getFilename())){
