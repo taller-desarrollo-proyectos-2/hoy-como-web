@@ -11,7 +11,7 @@ alter table optional modify price decimal(10,2);
 update plate set price = 0;
 alter table plate modify price decimal(10,2);
 
-alter table commerce add picture_file_name string;
+alter table commerce add picture_file_name varchar(255);
 
 # --- !Downs
 
