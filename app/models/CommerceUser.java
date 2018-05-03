@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @DiscriminatorValue("COMMERCE")
@@ -52,5 +53,10 @@ public class CommerceUser extends BackofficeUser {
 
     public static CommerceUser findByProperty(String property, Object value){
         return FIND.where().eq(property, value).findUnique();
+    }
+
+    @Override
+    public void fillRequestMap(Map<String, String[]> map) {
+        map.put("singleRequests.plate.commerce.id", new String[]{this.getCommerce().getId().toString()});
     }
 }

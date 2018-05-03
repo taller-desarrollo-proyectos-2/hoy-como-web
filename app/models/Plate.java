@@ -48,7 +48,7 @@ public class  Plate extends Model{
     @ManyToMany
     private List<Optional> optionals;
     
-    private Float price;
+    private float price;
 
     private Promo promo;
 

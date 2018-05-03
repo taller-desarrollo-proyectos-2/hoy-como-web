@@ -9,6 +9,7 @@ import play.libs.Json;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.util.Map;
 
 @Entity
 @DiscriminatorValue("BACKOFFICE")
@@ -26,6 +27,11 @@ public class BackofficeUser extends User {
     private String password;
 
     public BackofficeUser(){ super(); }
+
+    @Override
+    public void fillRequestMap(Map<String, String[]> map) {
+
+    }
 
     public String getUsername() {
         return username;

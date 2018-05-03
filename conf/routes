@@ -50,6 +50,12 @@ PUT         /api/v1/plates/:id              controllers.api.v1.Plates.update(id 
 GET         /api/v1/plates/:id/picture      controllers.api.v1.Plates.getImage(id : Long)
 DELETE      /api/v1/plates/:id              controllers.api.v1.Plates.delete(id : Long)
 
+# REQUESTS
+
+POST        /api/v1/requests                controllers.api.v1.Requests.create()
+GET         /api/v1/requests                controllers.api.v1.Requests.list()
+PUT         /api/v1/requests/:id            controllers.api.v1.Requests.update(id : Long)
+
 # VIEWS
 
 GET         /                               controllers.web.Dash.showMainScreen()
