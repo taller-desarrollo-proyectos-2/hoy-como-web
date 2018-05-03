@@ -84,3 +84,12 @@
     height: 100%;
     width: auto;
 }
+
+.ui-select-multiple input.ui-select-search { 
+    width:100% !important; cursor: pointer; 
+}
+
+.no-hover-nav {
+    color: #999 !important;
+    background-color: #222 !important;
+}

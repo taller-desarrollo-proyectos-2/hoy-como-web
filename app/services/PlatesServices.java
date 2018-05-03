@@ -4,13 +4,11 @@ import exceptions.CreationException;
 import exceptions.DeleteException;
 import exceptions.UpdateException;
 import models.Commerce;
+import models.CommerceUser;
 import models.Plate;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class PlatesServices {
 
@@ -44,13 +42,6 @@ public class PlatesServices {
         plate.update();
     }
 
-    public static Map<String, Object> validateQuery(Map<String, String[]> queryParams){
-        for(Map.Entry entry: queryParams.entrySet()){
-
-        }
-        return new HashMap();
-    }
-
     public static void delete(Long id, Commerce commerce) throws DeleteException{
         Plate dbPlate = Plate.findByProperties(Arrays.asList("id", "commerce.id"), Arrays.asList(id, commerce.getId()));
         if(dbPlate == null){
@@ -64,8 +55,17 @@ public class PlatesServices {
                 break;
             }
         }
-        //dbPlate.setCommerce(Commerce.findByProperty("id", dbPlate.getCommerce().getId()));
         dbPlate.deleteManyToManyAssociations("optionals");
-        dbPlate.delete();
+        dbPlate.setActive(false);
+        dbPlate.setDeletedAt(new Date());
+        dbPlate.update();
+    }
+
+    public static List<Plate> findFilteredPlates(Map<String, String[]> map, CommerceUser user){
+        Map<String,String[]> validatedQuery = Plate.validateQuery(map);
+        if(user != null){
+            validatedQuery.put("commerce.id", new String[]{user.getCommerce().getId().toString()});
+        }
+        return Plate.findByMap(validatedQuery);
     }
 }

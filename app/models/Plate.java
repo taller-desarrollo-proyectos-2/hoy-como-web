@@ -6,9 +6,9 @@ import com.avaje.ebean.ExpressionList;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+import services.FinderService;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
@@ -17,6 +17,17 @@ import java.util.Map;
 @Entity
 public class  Plate extends Model{
 
+    private static final Map<String, String> attributeMap;
+    static {
+        Map<String, String> map = new HashMap();
+        map.put("name", "name");
+        map.put("commerce", "commerce.name");
+        map.put("price", "price");
+        map.put("active", "active");
+        map.put("glutenFree", "glutenFree");
+        map.put("deletedAt", "deletedAt");
+        attributeMap = Collections.unmodifiableMap(map);
+    }
     protected static final Finder<Long, Plate> FIND = new Finder<>(Long.class, Plate.class);
 
     public interface Creation{}
@@ -46,6 +57,9 @@ public class  Plate extends Model{
     private Boolean glutenFree;
 
     private String description;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date deletedAt;
 
     @Constraints.Required(groups = Creation.class)
     private String pictureFileName;
@@ -157,4 +171,27 @@ public class  Plate extends Model{
     public static List<Plate> findListByMap(Map<String, Object> map){
         return FIND.where().allEq(map).findList();
     }
+
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public static Map<String, String[]> validateQuery(Map<String,String[]> map){
+        Map<String, String[]> validatedQuery = new HashMap();
+        for(Map.Entry entry : map.entrySet()){
+            if(attributeMap.containsKey(entry.getKey())){
+                validatedQuery.put(attributeMap.get(entry.getKey()), map.get(entry.getKey()));
+            }
+        }
+        return validatedQuery;
+    }
+
+    public static List<Plate> findByMap(Map<String, String[]> map){
+        return FinderService.findByMap(FIND.where(), map).findList();
+    }
+
 }

@@ -22,6 +22,7 @@ import services.PlatesServices;
 import services.SerializerService;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 public class Plates extends Controller {
@@ -75,12 +76,8 @@ public class Plates extends Controller {
         try{
             CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
             Map<String, String[]> queryStrings = request().queryString();
-            Map<String, Object> validatedQuery = PlatesServices.validateQuery(queryStrings);
-            if(commerceUser == null){
-                return ok(SerializerService.serializeList(Plate.findListByMap(validatedQuery)));
-            }else{
-                return ok(SerializerService.serializeList(Plate.findListByProperty("commerce.id", commerceUser.getCommerce().getId())));
-            }
+            List<Plate> plates = PlatesServices.findFilteredPlates(queryStrings, commerceUser);
+            return ok(SerializerService.serializeList(plates));
         }catch(Exception e){
             logger.error("Error listando categorias", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando listar categorias"));
@@ -114,28 +111,25 @@ public class Plates extends Controller {
     }
 
     @Authenticate(types = {"COMMERCE", "FACEBOOK"})
-    public static Result getImage(String fileName){
+    public static Result getImage(Long id){
         try{
             CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
-            Commerce commerce;
-            if(commerceUser == null){
-                if(!request().queryString().containsKey("commerceId")){
-                    logger.error("Es necesario especificar un id de comercio");
-                    return badRequest(JsonNodeFactory.instance.objectNode().put("message", "El id del comercio es necesario para buscar la imagen"));
+            Plate dbPlate = Plate.findByProperty("id", id);
+            if(dbPlate == null){
+                logger.info("Intentando buscar un plato con id inexistente");
+                return notFound(JsonNodeFactory.instance.objectNode().put("message", "Plato con id no encontrado"));
+            }
+            if(commerceUser != null){
+                if(!commerceUser.getCommerce().getPlates().contains(dbPlate)){
+                    logger.error("El id pertenece a un plato que no es de este comercio, o inexistente.");
+                    return badRequest(JsonNodeFactory.instance.objectNode().put("message", "El id del plato no es de este comercio, o es inexistente"));
                 }
-                commerce = Commerce.findByProperty("id", Long.valueOf(request().queryString().get("commerceId")[0]));
-            }else{
-                commerce = commerceUser.getCommerce();
             }
-            if(commerce == null){
-                logger.error("Comercio no encontrado buscando imagen");
-                return badRequest(JsonNodeFactory.instance.objectNode().put("message", "El comercio buscado para la imagen no existe."));
-            }
-            if(!FolderServices.fileExists(FolderServices.getCommerceFolder(commerce) + fileName)){
-                logger.error("Imagen no encontrada para el comercio: ", commerce.getBusinessName());
+            if(!FolderServices.fileExists(FolderServices.getCommerceFolder(dbPlate.getCommerce()) + dbPlate.getPictureFileName())){
+                logger.error("Imagen no encontrada para el comercio: ", dbPlate.getCommerce().getBusinessName());
                 return notFound(JsonNodeFactory.instance.objectNode().put("message", "Archivo no encontrado"));
             }
-            return ok(FolderServices.getFile(FolderServices.getCommerceFolder(commerce) + fileName));
+            return ok(FolderServices.getFile(FolderServices.getCommerceFolder(dbPlate.getCommerce()) + dbPlate.getPictureFileName()));
         }catch(Exception e){
             logger.error("Error intentando obtener imagen ", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno buscando imagen de plato"));

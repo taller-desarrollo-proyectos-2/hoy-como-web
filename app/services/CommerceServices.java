@@ -8,6 +8,9 @@ import models.Commerce;
 import models.Location;
 import play.Logger;
 
+import java.util.List;
+import java.util.Map;
+
 
 public class CommerceServices {
 
@@ -30,7 +33,11 @@ public class CommerceServices {
             logger.error("Error comunicandose con los servidores de google", e);
             throw new CreationException("Error validando direccion del comercio");
         }
-        FolderServices.createCommerceFolder(commerce);
         commerce.save();
+    }
+
+    public static List<Commerce> findFilteredCommerces(Map<String, String[]> queryStrings){
+        Map<String,String[]> validatedQuery = Commerce.validateQuery(queryStrings);
+        return Commerce.findByMap(validatedQuery);
     }
 }
