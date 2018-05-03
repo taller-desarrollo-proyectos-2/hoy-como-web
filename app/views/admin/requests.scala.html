@@ -19,8 +19,7 @@
                         <th class="col-sm-3">Acciones</th>
                     </thead>
                     <tbody>
-                        <!-- <tr ng-repeat="request in requests"> -->
-                        <tr >
+                        <tr ng-repeat="request in requests">
                             <td>{{request.number}}</td>
                             <td>
                                 <span ng-if="request.status == 'WAITING_CONFIRMATION'" class="label label-info">A confirmar</span>
