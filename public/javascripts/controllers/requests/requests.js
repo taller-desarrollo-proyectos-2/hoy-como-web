@@ -21,9 +21,7 @@ hoyComoApp.controller('requestsCtrl', function ($scope, $http, $window, $rootSco
             controller: 'userDetailsCtrl',
             size: "md",
             resolve: {
-              user: () => {
-                  return {name: "agus", address: "roosevelt"}
-              }
+              user: () =>  user
             }
           });
     };  
