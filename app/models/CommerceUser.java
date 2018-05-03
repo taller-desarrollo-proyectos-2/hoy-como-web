@@ -6,7 +6,7 @@ import play.libs.Json;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class CommerceUser extends BackofficeUser {
 
     protected static final Finder<Long, CommerceUser> FIND = new Finder<>(Long.class, CommerceUser.class);
 
-    @OneToOne
+    @ManyToOne
     @Constraints.Required(groups = Creation.class)
     private Commerce commerce;
 
@@ -32,8 +32,16 @@ public class CommerceUser extends BackofficeUser {
     @Override
     public JsonNode getPanel(){
         return Json.parse("[{\n" +
-                "\t\t\"showName\": \"Menu\",\n" +
-                "\t\t\"route\": \"/web/plates/commerce/:id\",\n" +
+                "\t\t\"showName\": \"Categorias\",\n" +
+                "\t\t\"route\": \"/web/categories\",\n" +
+                "\t\t\"icon\": \"glyphicons glyphicons-plate-of-food\"\n" +
+                "\t},{\n" +
+                "\t\t\"showName\": \"Platos\",\n" +
+                "\t\t\"route\": \"/web/plates\",\n" +
+                "\t\t\"icon\": \"glyphicons glyphicons-fast-food\"\n" +
+                "\t},{\n" +
+                "\t\t\"showName\": \"Opcionales\",\n" +
+                "\t\t\"route\": \"/web/optionals\",\n" +
                 "\t\t\"icon\": \"glyphicons glyphicons-fast-food\"\n" +
                 "\t}]");
     }

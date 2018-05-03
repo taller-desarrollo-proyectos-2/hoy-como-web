@@ -12,6 +12,6 @@ import play.mvc.Controller;
 public class Commerces extends Controller {
     
       public static Result showCommerces() {
-            return ok(views.html.commerces.render());
+            return ok(views.html.root.commerces.render());
         }
 }

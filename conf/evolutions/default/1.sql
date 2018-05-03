@@ -1,6 +1,3 @@
-# --- Created by Ebean DDL
-# To stop Ebean DDL generation, remove this comment and start using Evolutions
-
 # --- !Ups
 
 create table address (
@@ -14,6 +11,8 @@ create table address (
 create table category (
   id                        bigint auto_increment not null,
   name                      varchar(255),
+  number                    integer,
+  commerce_id               bigint,
   constraint pk_category primary key (id))
 ;
 
@@ -27,6 +26,13 @@ create table commerce (
   email                     varchar(255),
   location_id               bigint,
   constraint pk_commerce primary key (id))
+;
+
+create table commerce_category (
+  id                        bigint auto_increment not null,
+  name                      varchar(5),
+  constraint ck_commerce_category_name check (name in ('MILAS')),
+  constraint pk_commerce_category primary key (id))
 ;
 
 create table company (
@@ -63,6 +69,7 @@ create table optional (
   id                        bigint auto_increment not null,
   name                      varchar(255),
   price                     float,
+  commerce_id               bigint,
   constraint pk_optional primary key (id))
 ;
 
@@ -77,7 +84,12 @@ create table plate (
   id                        bigint auto_increment not null,
   name                      varchar(255),
   commerce_id               bigint,
+  category_id               bigint,
   price                     float,
+  active                    tinyint(1) default 0,
+  gluten_free               tinyint(1) default 0,
+  description               varchar(255),
+  picture_file_name         varchar(255),
   constraint pk_plate primary key (id))
 ;
 
@@ -101,16 +113,10 @@ create table user (
 ;
 
 
-create table commerce_category (
+create table commerce_commerce_category (
   commerce_id                    bigint not null,
-  category_id                    bigint not null,
-  constraint pk_commerce_category primary key (commerce_id, category_id))
-;
-
-create table plate_category (
-  plate_id                       bigint not null,
-  category_id                    bigint not null,
-  constraint pk_plate_category primary key (plate_id, category_id))
+  commerce_category_id           bigint not null,
+  constraint pk_commerce_commerce_category primary key (commerce_id, commerce_category_id))
 ;
 
 create table plate_optional (
@@ -130,34 +136,36 @@ create table user_commerce (
   commerce_id                    bigint not null,
   constraint pk_user_commerce primary key (user_id, commerce_id))
 ;
-alter table commerce add constraint fk_commerce_company_1 foreign key (company_id) references company (id) on delete restrict on update restrict;
-create index ix_commerce_company_1 on commerce (company_id);
-alter table commerce add constraint fk_commerce_license_2 foreign key (license_id) references license (id) on delete restrict on update restrict;
-create index ix_commerce_license_2 on commerce (license_id);
-alter table commerce add constraint fk_commerce_address_3 foreign key (address_id) references address (id) on delete restrict on update restrict;
-create index ix_commerce_address_3 on commerce (address_id);
-alter table commerce add constraint fk_commerce_location_4 foreign key (location_id) references location (id) on delete restrict on update restrict;
-create index ix_commerce_location_4 on commerce (location_id);
-alter table opening_time add constraint fk_opening_time_commerce_5 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
-create index ix_opening_time_commerce_5 on opening_time (commerce_id);
-alter table phone add constraint fk_phone_commerce_6 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
-create index ix_phone_commerce_6 on phone (commerce_id);
-alter table plate add constraint fk_plate_commerce_7 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
-create index ix_plate_commerce_7 on plate (commerce_id);
-alter table request add constraint fk_request_user_8 foreign key (user_id) references user (id) on delete restrict on update restrict;
-create index ix_request_user_8 on request (user_id);
-alter table user add constraint fk_user_commerce_9 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
-create index ix_user_commerce_9 on user (commerce_id);
+alter table category add constraint fk_category_commerce_1 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_category_commerce_1 on category (commerce_id);
+alter table commerce add constraint fk_commerce_company_2 foreign key (company_id) references company (id) on delete restrict on update restrict;
+create index ix_commerce_company_2 on commerce (company_id);
+alter table commerce add constraint fk_commerce_license_3 foreign key (license_id) references license (id) on delete restrict on update restrict;
+create index ix_commerce_license_3 on commerce (license_id);
+alter table commerce add constraint fk_commerce_address_4 foreign key (address_id) references address (id) on delete restrict on update restrict;
+create index ix_commerce_address_4 on commerce (address_id);
+alter table commerce add constraint fk_commerce_location_5 foreign key (location_id) references location (id) on delete restrict on update restrict;
+create index ix_commerce_location_5 on commerce (location_id);
+alter table opening_time add constraint fk_opening_time_commerce_6 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_opening_time_commerce_6 on opening_time (commerce_id);
+alter table optional add constraint fk_optional_commerce_7 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_optional_commerce_7 on optional (commerce_id);
+alter table phone add constraint fk_phone_commerce_8 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_phone_commerce_8 on phone (commerce_id);
+alter table plate add constraint fk_plate_commerce_9 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_plate_commerce_9 on plate (commerce_id);
+alter table plate add constraint fk_plate_category_10 foreign key (category_id) references category (id) on delete restrict on update restrict;
+create index ix_plate_category_10 on plate (category_id);
+alter table request add constraint fk_request_user_11 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_request_user_11 on request (user_id);
+alter table user add constraint fk_user_commerce_12 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+create index ix_user_commerce_12 on user (commerce_id);
 
 
 
-alter table commerce_category add constraint fk_commerce_category_commerce_01 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
+alter table commerce_commerce_category add constraint fk_commerce_commerce_category_commerce_01 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
 
-alter table commerce_category add constraint fk_commerce_category_category_02 foreign key (category_id) references category (id) on delete restrict on update restrict;
-
-alter table plate_category add constraint fk_plate_category_plate_01 foreign key (plate_id) references plate (id) on delete restrict on update restrict;
-
-alter table plate_category add constraint fk_plate_category_category_02 foreign key (category_id) references category (id) on delete restrict on update restrict;
+alter table commerce_commerce_category add constraint fk_commerce_commerce_category_commerce_category_02 foreign key (commerce_category_id) references commerce_category (id) on delete restrict on update restrict;
 
 alter table plate_optional add constraint fk_plate_optional_plate_01 foreign key (plate_id) references plate (id) on delete restrict on update restrict;
 
@@ -181,6 +189,8 @@ drop table category;
 
 drop table commerce;
 
+drop table commerce_commerce_category;
+
 drop table commerce_category;
 
 drop table company;
@@ -197,9 +207,9 @@ drop table phone;
 
 drop table plate;
 
-drop table plate_category;
-
 drop table plate_optional;
+
+drop table user_commerce;
 
 drop table request;
 
