@@ -43,6 +43,10 @@ public class CommerceUser extends BackofficeUser {
                 "\t\t\"showName\": \"Opcionales\",\n" +
                 "\t\t\"route\": \"/web/optionals\",\n" +
                 "\t\t\"icon\": \"glyphicon glyphicon-cutlery\"\n" +
+                "\t},{\n" +
+                "\t\t\"showName\": \"Pedidos\",\n" +
+                "\t\t\"route\": \"/web/commerce/requests\",\n" +
+                "\t\t\"icon\": \"fa fa-list-alt\"\n" +
                 "\t}]");
     }
 
