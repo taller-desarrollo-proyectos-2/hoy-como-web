@@ -12,6 +12,6 @@ import play.mvc.Controller;
 public class Requests extends Controller {
     
       public static Result showCommerceRequests() {
-            return ok(views.html.admin.commerces.render());
+            return ok(views.html.admin.requests.render());
         }
 }
