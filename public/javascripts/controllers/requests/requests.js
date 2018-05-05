@@ -14,16 +14,30 @@ hoyComoApp.controller('requestsCtrl', function ($scope, $http, $window, $rootSco
         });
     }
 
-    $scope.openUserDetailsModal = (user) =>{
+    $scope.openUserDetailsModal = (user, destination) =>{
         const modalInstance = $uibModal.open({
             animation: true,
             templateUrl: '/assets/javascripts/controllers/requests/userDetailsModal/userinfomodal.html',
             controller: 'userDetailsCtrl',
             size: "md",
             resolve: {
-              user: () =>  user
+              user: () =>  user,
+              destination: () =>  destination
             }
           });
     };  
+
+    $scope.openRequestDetailsModal = (request) =>{
+        const modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: '/assets/javascripts/controllers/requests/requestDetailsModal/requestinfomodal.html',
+            controller: 'requestDetailsCtrl',
+            size: "md",
+            resolve: {
+                singleRequests: () =>  request.singleRequests,
+                number: () =>  request.id
+            }
+          });
+    };
 });
 

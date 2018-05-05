@@ -118,6 +118,11 @@
     background-color: #337ab7;
 }
 
+.icon-info{
+    color: #337ab7;
+    cursor: pointer;
+}
+
 .label-danger{
     background-color: #d9534f;
 }
