@@ -32,6 +32,7 @@ public class Request extends Model {
         map.put("status", "status");
         map.put("userId", "user.id");
         map.put("plateId", "singleRequests.plate.id");
+        map.put("commerceId", "singleRequests.plate.commerce.id");
         attributeMap = Collections.unmodifiableMap(map);
     }
 
