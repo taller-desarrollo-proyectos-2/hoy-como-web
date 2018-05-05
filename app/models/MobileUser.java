@@ -8,12 +8,16 @@ import java.util.Map;
 
 @Entity
 @DiscriminatorValue("MOBILE")
+@Table(name = "user")
 public class MobileUser extends User {
 
     protected static final Finder<Long, MobileUser> FIND = new Finder<>(Long.class, MobileUser.class);
 
     @ManyToMany
     private List<Commerce> favourites;
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
+    private List<Address> addresses;
 
     public List<Commerce> getFavourites() {
         return favourites;
@@ -32,4 +36,11 @@ public class MobileUser extends User {
         map.put("user.id", new String[]{this.getId().toString()});
     }
 
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
 }

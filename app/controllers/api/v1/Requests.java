@@ -3,6 +3,7 @@ package controllers.api.v1;
 import annotations.Authenticate;
 import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import exceptions.CreationException;
 import models.*;
 import play.Logger;
 import play.data.Form;
@@ -55,6 +56,9 @@ public class Requests extends Controller {
             RequestsService.create(request);
             Ebean.commitTransaction();
             return ok(Json.toJson(request));
+        }catch(CreationException e){
+            logger.error(e.getMessage());
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", e.getMessage()));
         }catch(Exception e){
             logger.error("Error interno intentando crear pedido", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando crear pedido"));

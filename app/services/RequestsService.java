@@ -1,5 +1,7 @@
 package services;
 
+import exceptions.CreationException;
+import models.Address;
 import models.Request;
 import models.User;
 
@@ -9,8 +11,11 @@ import java.util.Map;
 
 public class RequestsService {
 
-    public static void create(Request request){
+    public static void create(Request request) throws CreationException {
         //Chequeos previos a la creacion
+        if(request.getDestination().getId() == null){
+            AddressServices.create(request.getDestination(), request.getUser());
+        }
         request.setStatus(Request.Status.WAITING_CONFIRMATION);
         request.setInitAt(new Date());
         request.save();

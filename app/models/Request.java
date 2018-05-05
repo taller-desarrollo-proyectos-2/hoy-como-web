@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.annotation.EnumValue;
+import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import services.FinderService;
 
@@ -41,6 +42,7 @@ public class Request extends Model {
     @Id
     private Long id;
 
+    @Constraints.Required(groups = Creation.class)
     @OneToMany(cascade = CascadeType.ALL)
     private List<SingleRequest> singleRequests;
 
@@ -54,6 +56,10 @@ public class Request extends Model {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date finishedAt;
+
+    @Constraints.Required(groups = Creation.class)
+    @ManyToOne
+    private Address destination;
 
     public Long getId() {
         return id;
@@ -118,5 +124,13 @@ public class Request extends Model {
 
     public static Request findByProperty(String property, Object value){
         return FIND.where().eq(property,value).findUnique();
+    }
+
+    public Address getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Address destination) {
+        this.destination = destination;
     }
 }

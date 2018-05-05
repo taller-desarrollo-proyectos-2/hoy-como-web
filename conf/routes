@@ -11,6 +11,9 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 POST        /api/v1/commerce/users        controllers.api.v1.CommerceUsers.create()
 GET         /api/v1/commerce/users        controllers.api.v1.CommerceUsers.list()
 
+# MOBILE USERS
+
+GET         /api/v1/mobile/users/addresses  controllers.api.v1.MobileUsers.myAddresses()
 
 # AUTHENTICATE
 
