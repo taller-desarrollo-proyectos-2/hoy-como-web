@@ -1,9 +1,19 @@
 
-hoyComoApp.controller('requestsCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter, $uibModal) {
+hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter, $uibModal) {
+    
+    $scope.requests = [];
+    $scope.statusEnum = {
+                        waitingConfirmation: "WAITING_CONFIRMATION",
+                        onPreparation: "ON_PREPARATION", 
+                        cancelledByUser: "CANCELLED_BY_USER", 
+                        cancelledByCommerce: "CANCELLED_BY_COMMERCE", 
+                        delivered: "DELIVERED",
+                        onTheWay: "ON_THE_WAY" 
+                    };
 
     index();
 
-    function index(){
+    function index() {
         $http({
             url: "/api/v1/requests",
             method: "GET"
@@ -13,6 +23,22 @@ hoyComoApp.controller('requestsCtrl', function ($scope, $http, $window, $rootSco
             toastr.error(err.message);
         });
     }
+
+    $scope.updateRequestStatus = (request, status) => {
+        var data = {status: status};
+        $http({
+            url: "/api/v1/requests/" + request.id,
+            method: "PUT",
+            data: data
+        }).success(function(data, status, headers, config){
+            toastr.success("Estado de pedido actualizado con exito.");
+            index();
+        }).error(function(err){
+            toastr.error(err.message);
+        });
+    };
+
+    //--------------- MODALS --------------------//
 
     $scope.openUserDetailsModal = (user, destination) =>{
         const modalInstance = $uibModal.open({
