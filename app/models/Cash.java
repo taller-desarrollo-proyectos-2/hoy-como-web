@@ -9,6 +9,10 @@ public class Cash extends PaymentType {
 
     private float payWith;
 
+    public Cash(float payWith){
+        this.payWith = payWith;
+    }
+
     public float getPayWith() {
         return payWith;
     }

@@ -18,6 +18,13 @@ public class CreditCard extends PaymentType {
     @Temporal(TemporalType.TIMESTAMP)
     private Date expirationDate;
 
+    public CreditCard(int number, String fullName, int code, Date date){
+        this.number = number;
+        this.fullName = fullName;
+        this.code = code;
+        this.expirationDate = date;
+    }
+
     public int getNumber() {
         return number;
     }

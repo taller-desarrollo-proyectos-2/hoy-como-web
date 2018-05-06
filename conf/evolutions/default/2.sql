@@ -18,6 +18,8 @@ alter table request add destination_id bigint;
 
 alter table address add user_id bigint;
 
+alter table request modify status varchar(30);
+
 drop table request_plate;
 
 create table single_request(
@@ -38,6 +40,7 @@ create table single_request_optional(
 create table payment_type (
   PAYMENT_TYPE              varchar(31) not null,
   id                        bigint auto_increment not null,
+  number                    int,
   full_name                 varchar(255),
   expiration_date           datetime,
   pay_with                  varchar(255),
@@ -58,7 +61,7 @@ create index ix_request_destination_1 on request (destination_id);
 alter table address add constraint fk_address_user_16 foreign key (user_id) references user (id) on delete restrict on update restrict;
 create index ix_address_user_1 on address (user_id);
 
-alter table request add contraint fk_request_payment_type_17 foreign key (payment_type_id) references payment_type (id) on delete restrict on update restrict;
+alter table request add constraint fk_request_payment_type_17 foreign key (payment_type_id) references payment_type (id) on delete restrict on update restrict;
 create index ix_request_payment_type_1 on request (payment_type_id);
 
 # --- !Downs
@@ -104,3 +107,7 @@ alter table request drop column destination_id;
 alter table address drop column user_id;
 
 drop table payment_type;
+
+alter table request modify status varchar(20);
+
+alter table request drop column payment_type_id;

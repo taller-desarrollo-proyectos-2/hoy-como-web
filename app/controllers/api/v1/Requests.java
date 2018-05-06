@@ -2,6 +2,7 @@ package controllers.api.v1;
 
 import annotations.Authenticate;
 import com.avaje.ebean.Ebean;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import exceptions.CreationException;
 import models.*;
@@ -14,6 +15,9 @@ import play.mvc.Result;
 import services.RequestsService;
 import services.SerializerService;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +56,16 @@ public class Requests extends Controller {
             }
 
             Request request = form.get();
+            PaymentType payment;
+            if (form.data().get("paymentType.PAYMENT_TYPE").equals("CREDIT_CARD")){
+                payment = new CreditCard(Integer.valueOf(form.data().get("paymentType.number")),
+                                            form.data().get("paymentType.fullName"),
+                                        Integer.valueOf(form.data().get("paymentType.code")),
+                                        new SimpleDateFormat("yyyy-MM-dd").parse(form.data().get("paymentType.expirationDate")));
+            }else{
+                payment = new Cash(Float.valueOf(form.data().get("paymentType.payWith")));
+            }
+            request.setPaymentType(payment);
             request.setUser(mobileUser);
             RequestsService.create(request);
             Ebean.commitTransaction();
