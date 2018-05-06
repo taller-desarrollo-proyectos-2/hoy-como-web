@@ -63,6 +63,10 @@ public class BackofficeUser extends User {
                 "\t\t\"showName\": \"Usuarios\",\n" +
                 "\t\t\"route\": \"/web/commerce/users\",\n" +
                 "\t\t\"icon\": \"glyphicon glyphicon-user\"\n" +
+                "\t},{\n" +
+                "\t\t\"showName\": \"Pedidos\",\n" +
+                "\t\t\"route\": \"/web/root/requests\",\n" +
+                "\t\t\"icon\": \"fa fa-list-alt\"\n" +
                 "\t}]");
     }
 }

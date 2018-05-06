@@ -1,0 +1,81 @@
+<div class="container screen-container" ng-controller="requestsRootCtrl">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 page-header center-elems">
+                    <h1>
+                        Pedidos
+                    </h1>
+                    <select style="margin-left:auto; width: 20%;" class="form-control" ng-change="index()" ng-options="commerce as commerce.businessName for commerce in commerces track by commerce.id" ng-model="currentCommerce">
+                            <option value="" disabled hidden selected>Seleccione comercio..</option>
+                    </select>
+            </div>
+        </div>
+        <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-content table-responsive">
+                    <table class="table">
+                    <thead>
+                            <th class="col-sm-2 align-left">#</th>
+                            <th class="col-sm-2 align-left">Hora inicio</th>
+                            <th class="col-sm-2 align-left">Detalle</th>
+                            <th class="col-sm-2 align-left">Precio</th>
+                            <th class="col-sm-2 align-left">Estado</th>
+                            <th class="col-sm-2 align-left">Usuario</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="request in requests">
+                                <td>{{request.id}}</td>
+                                <td>{{request.initAt | date : "dd/MM HH:mm"}}</td>
+                                <td style="text-align: left;">
+                                    <i ng-click="openRequestDetailsModal(request)" class="icon-info fa fa-info-circle" aria-hidden="true"></i>
+                                </td>
+                                <td>$ 100,00</td>
+                                <td>
+                                    <span ng-if="request.status == statusEnum.waitingConfirmation" class="label label-info">A confirmar</span>
+                                    <span ng-if="request.status == statusEnum.onPreparation" class="label label-warning">Aceptado</span>
+                                    <span ng-if="request.status == statusEnum.onTheWay" class="label label-warning">En camino</span>
+                                    <span ng-if="request.status == statusEnum.delivered" class="label label-success">Entregado</span>
+                                    <span ng-if="request.status == statusEnum.cancelledByUser" class="label label-danger">Canelado</span>
+                                    <span ng-if="request.status == statusEnum.cancelledByCommerce" class="label label-danger">Rechazado</span>
+                                </td>
+                                <td> <a ng-click="openUserDetailsModal(request.user, request.destination)" style="cursor:pointer;">Johnny</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        <div class="modal fade" id="optionalsModal" tabindex="-1" role="dialog" aria-labelledby="optionalsCreateModal" aria-hidden="true">
+            <div class="modal-dialog"> 
+               <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 ng-if="!editModal" class="modal-title">Agregar Opcional</h4>
+                        <h4 ng-if="editModal" class="modal-title">Editar opcional</h4>
+    
+                    </div>
+                    <div class="modal-body">
+                        <div class="row m-bottom-10">
+                           <label  class="col-sm-6 control-label">Nombre</label>
+                           <div class="col-sm-6">
+                               <input type="text" class="form-control" ng-model='currentOptional.name'>
+                           </div>
+                       </div>
+                       <div class="row m-bottom-10">
+                            <label  class="col-sm-6 control-label">Precio</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" ng-model='currentOptional.price'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
+                        <button ng-if="!editModal" type="button" class="btn btn-primary pull-left" ng-click="createOptional()">Agregar</button>
+                        <button ng-if="editModal" type="button" class="btn btn-primary pull-left" ng-click="updateOptional()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

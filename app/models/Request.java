@@ -21,9 +21,9 @@ public class Request extends Model {
         @EnumValue("DELIVERED")
         DELIVERED,
         @EnumValue("CANCELLED_BY_USER")
-        CANCELED_BY_USER,
+        CANCELLED_BY_USER,
         @EnumValue("CANCELLED_BY_COMMERCE")
-        CANCELED_BY_COMMERCE
+        CANCELLED_BY_COMMERCE
     }
 
     private static final Map<String, String> attributeMap;
@@ -32,6 +32,7 @@ public class Request extends Model {
         map.put("status", "status");
         map.put("userId", "user.id");
         map.put("plateId", "singleRequests.plate.id");
+        map.put("commerceId", "singleRequests.plate.commerce.id");
         attributeMap = Collections.unmodifiableMap(map);
     }
 

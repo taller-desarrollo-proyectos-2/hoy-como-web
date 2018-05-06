@@ -1,24 +1,33 @@
-    <div class="modal-header">
-        <h3 class="modal-title">Información de usuario</h3>
-    </div>
-    <div class="modal-body">
-        <div class="row">
-            <div class="col-sm-6">
-                Nombre:
-            </div>
-            <div class="col-sm-6">
-                {{user.name}}
-            </div>
+<div class="modal-header">
+    <h3 class="modal-title">Información de usuario</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-6">
+            Nombre:
         </div>
-        <div class="row">
-            <div class="col-sm-6">
-                Direccion:
-            </div>
-            <div class="col-sm-6">
-                {{user.address}}
-            </div>
+        <div class="col-sm-6">
+            {{user.name}}
         </div>
     </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="cancel()">Cerrar</button>
+    <div class="row">
+        <div class="col-sm-6">
+            Direccion:
+        </div>
+        <div class="col-sm-6">
+            {{destination.street}} {{destination.number}}
+        </div>
     </div>
+    <div ng-if="destination.additionalInformation" class="row">
+        <div class="col-sm-6">
+            Información extra:
+        </div>
+        <div class="col-sm-6">
+            {{destination.additionalInformation}}
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="cancel()">Cerrar</button>
+</div>
+    
