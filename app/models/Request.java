@@ -61,6 +61,9 @@ public class Request extends Model {
     @ManyToOne
     private Address destination;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private PaymentType paymentType;
+
     public Long getId() {
         return id;
     }
@@ -132,5 +135,13 @@ public class Request extends Model {
 
     public void setDestination(Address destination) {
         this.destination = destination;
+    }
+
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
     }
 }
