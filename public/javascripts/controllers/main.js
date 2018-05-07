@@ -26,8 +26,9 @@ if($window.localStorage.getItem("route")){
                 url: "/api/v1/users/myinfo",
                 method: "GET"
             }).success(function(data, status, headers, config){
-                $rootScope.myInfo = { user: data.username, commerce: data.commerce.businessName};
-                $window.localStorage.setItem("myInfo", JSON.stringify($rootScope.myInfo));
+                $rootScope.myInfo = {};
+                $rootScope.myInfo.user = data.username;
+                if (data.commerce) $rootScope.myInfo.commerce = data.commerce.businessName;
                 $scope.content = "/dash";
             })
         }).error(function(err){
@@ -39,11 +40,13 @@ if($window.localStorage.getItem("route")){
             $scope.content = "/login";
             $window.localStorage.removeItem("route");
             $window.localStorage.removeItem("menu");
+            $window.localStorage.removeItem("myInfo");
     });
     
     $scope.$on("reload", function (event, args) {
         $window.localStorage.setItem("route", args);
         $window.localStorage.setItem("menu", JSON.stringify($rootScope.menu));
+        $window.localStorage.setItem("myInfo", JSON.stringify($rootScope.myInfo));
     });
         
 });

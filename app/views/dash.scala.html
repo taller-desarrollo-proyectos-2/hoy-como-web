@@ -14,7 +14,7 @@
                 <a class="navbar-brand">HOY COMO</a>
             </div>
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
+                <li ng-if="myInfo.commerce" class="dropdown">
                     <a class="no-hover-nav"><i class="glyphicon glyphicon-home"></i><span style="cursor: default;"> {{myInfo.commerce}}</span></a>
                 </li>
                 <li class="dropdown">
