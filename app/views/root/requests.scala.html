@@ -38,7 +38,7 @@
                                     <span ng-if="request.status == statusEnum.cancelledByUser" class="label label-danger">Canelado</span>
                                     <span ng-if="request.status == statusEnum.cancelledByCommerce" class="label label-danger">Rechazado</span>
                                 </td>
-                                <td> <a ng-click="openUserDetailsModal(request.user, request.destination)" style="cursor:pointer;">Johnny</a></td>
+                                <td> <a ng-click="openUserDetailsModal(request.user, request.destination)" style="cursor:pointer;">{{request.user.fullName}}</a></td>
                             </tr>
                         </tbody>
                     </table>
