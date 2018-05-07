@@ -1,6 +1,7 @@
 package services;
 
 import exceptions.CreationException;
+import exceptions.UpdateException;
 import models.BackofficeUser;
 import models.Commerce;
 import models.CommerceUser;
@@ -22,5 +23,17 @@ public class UsersService {
         //Seteo la password hasheada
         user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         user.save();
+    }
+
+    public static void update(Long id, CommerceUser user) throws UpdateException{
+        CommerceUser dbUser = CommerceUser.findByProperty("id", id);
+        if(dbUser == null){
+            throw new UpdateException("Usuario con id inexistente");
+        }
+        if(!dbUser.getUsername().equals(user.getUsername()) && CommerceUser.findByProperty("username", user.getUsername()) != null){
+            throw new UpdateException("Nombre de usuario ya utilizado");
+        }
+        user.setId(id);
+        user.update();
     }
 }

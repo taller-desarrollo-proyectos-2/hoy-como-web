@@ -40,7 +40,7 @@ create table single_request_optional(
 create table payment_type (
   PAYMENT_TYPE              varchar(31) not null,
   id                        bigint auto_increment not null,
-  number                    int,
+  number                    varchar(255),
   full_name                 varchar(255),
   expiration_date           datetime,
   pay_with                  varchar(255),

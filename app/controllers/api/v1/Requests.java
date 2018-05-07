@@ -58,7 +58,7 @@ public class Requests extends Controller {
             Request request = form.get();
             PaymentType payment;
             if (form.data().get("paymentType.PAYMENT_TYPE").equals("CREDIT_CARD")){
-                payment = new CreditCard(Integer.valueOf(form.data().get("paymentType.number")),
+                payment = new CreditCard(form.data().get("paymentType.number"),
                                             form.data().get("paymentType.fullName"),
                                         Integer.valueOf(form.data().get("paymentType.code")),
                                         new SimpleDateFormat("yyyy-MM-dd").parse(form.data().get("paymentType.expirationDate")));

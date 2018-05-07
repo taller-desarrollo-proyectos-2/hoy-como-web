@@ -110,14 +110,21 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
             toastr.error("No se pudo crear el comercio.");
         }
     }
-    
+
+    function setTimes(){
+        for(var i =0; i<$scope.currentCommerce.times.length; i++){
+            delete $scope.currentCommerce.times[i].fromHour;
+            delete $scope.currentCommerce.times[i].toHour;
+        }
+    }
 
     $scope.updateCommerce = function(){
         if($scope.currentCommerce.businessName){
+            setTimes();
             $scope.currentCommerce.phones = [];
             $scope.currentCommerce.phones.push($scope.actualPhone);
             $http({
-                url: "/api/v1/commerces",
+                url: "/api/v1/commerces/" + $scope.currentCommerce.id,
                 data: $scope.currentCommerce,
                 method: "PUT",
                 headers: {
