@@ -148,7 +148,6 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             xhr.addEventListener('load', createFinish, false);
             xhr.open('POST',"/api/v1/plates");
             xhr.setRequestHeader('Accept','application/json, text/plain, */*');
-            xhr.setRequestHeader('authorization', $rootScope.auth);
             xhr.send(formData);
         } else {
             toastr.error("El nombre, la categoria y el precio no pueden estar vacios.");
@@ -187,7 +186,6 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             xhr.addEventListener('load', updateFinished, false);
             xhr.open('PUT',"/api/v1/plates/" + $scope.currentPlate.id);
             xhr.setRequestHeader('Accept','application/json, text/plain, */*');
-            xhr.setRequestHeader('authorization', $rootScope.auth);
             xhr.send(formData);
         } else {
             toastr.error("El nombre, la categoria y el precio no pueden estar vacios.");
