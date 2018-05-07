@@ -22,7 +22,17 @@ if($window.localStorage.getItem("route")){
         }).success(function(data, status, headers, config){
             $rootScope.menu = data;
             $rootScope.auth = headers('authorization');
-            $scope.content = "/dash";
+            $http({
+                url: "/api/v1/users/myinfo",
+                data: $scope.user,
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            }).success(function(data, status, headers, config){
+                $scope.content = "/dash";
+            })
         }).error(function(err){
             toastr.error(err.message);
         });
