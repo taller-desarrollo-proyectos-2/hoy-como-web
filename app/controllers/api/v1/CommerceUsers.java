@@ -5,6 +5,7 @@ import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import exceptions.CreationException;
+import exceptions.DeleteException;
 import exceptions.UpdateException;
 import models.BackofficeUser;
 import models.Commerce;
@@ -81,6 +82,24 @@ public class CommerceUsers extends Controller {
         }catch(Exception e){
             logger.error("Error interno intentando listar usuarios", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando listar usuarios"));
+        }
+    }
+
+    @Authenticate(types = "BACKOFFICE")
+    public static Result delete(Long id){
+        Ebean.beginTransaction();
+        try {
+            UsersService.delete(id);
+            Ebean.commitTransaction();
+            return ok();
+        }catch(DeleteException e){
+            logger.error("Error borrando el usuario de comercio", e);
+            return badRequest(JsonNodeFactory.instance.objectNode().put("message", e.getMessage()));
+        }catch(Exception e){
+            logger.error("Error interno borrando el usuario de comercio", e);
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando borrar el usuario de comercio"));
+        }finally {
+            Ebean.endTransaction();
         }
     }
 }

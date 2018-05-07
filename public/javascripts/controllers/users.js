@@ -69,8 +69,12 @@ hoyComoApp.controller('usersCtrl', function ($scope, $http, $window, $rootScope,
     };
 
     $scope.updateUser = function(){
+        delete $scope.currentUser.panel;
+        $scope.currentUser.commerce = {
+            id : $scope.currentUser.commerce.id
+        };
         $http({
-            url: "/api/v1/users/" + $scope.currentUser.id,
+            url: "/api/v1/commerce/users/" + $scope.currentUser.id,
             data: $scope.currentUser,
             method: "PUT",
             headers: {
@@ -81,7 +85,7 @@ hoyComoApp.controller('usersCtrl', function ($scope, $http, $window, $rootScope,
         }).success(function(){
             $scope.currentUser = {};
             $("#usersModal").modal("toggle");
-            index();
+            indexUsers();
             toastr.success("Usuario actualizado con exito.");
         }).error(function(err){
             toastr.error(err.message);
@@ -90,7 +94,7 @@ hoyComoApp.controller('usersCtrl', function ($scope, $http, $window, $rootScope,
 
     $scope.delete = function(user){
         $http({
-            url: "/api/v1/users/" + user.id,
+            url: "/api/v1/commerce/users/" + user.id,
             data: $scope.currentUser,
             method: "DELETE",
             headers: {
@@ -99,7 +103,7 @@ hoyComoApp.controller('usersCtrl', function ($scope, $http, $window, $rootScope,
                 'authorization' : $rootScope.auth
             }
         }).success(function(){
-            index();
+            indexUsers();
             toastr.success("Usuario eliminado con exito.");
         }).error(function(err){
             toastr.error(err.message);

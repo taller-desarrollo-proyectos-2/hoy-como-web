@@ -13,6 +13,7 @@ GET         /api/v1/users/myinfo          controllers.api.v1.Users.myInfo()
 
 POST        /api/v1/commerce/users        controllers.api.v1.CommerceUsers.create()
 PUT         /api/v1/commerce/users/:id    controllers.api.v1.CommerceUsers.update(id : Long)
+DELETE      /api/v1/commerce/users/:id    controllers.api.v1.CommerceUsers.delete(id : Long)
 GET         /api/v1/commerce/users        controllers.api.v1.CommerceUsers.list()
 
 # MOBILE USERS

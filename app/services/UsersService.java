@@ -1,6 +1,7 @@
 package services;
 
 import exceptions.CreationException;
+import exceptions.DeleteException;
 import exceptions.UpdateException;
 import models.BackofficeUser;
 import models.Commerce;
@@ -35,5 +36,13 @@ public class UsersService {
         }
         user.setId(id);
         user.update();
+    }
+
+    public static void delete(Long id) throws DeleteException {
+        CommerceUser dbUser = CommerceUser.findByProperty("id", id);
+        if(dbUser == null){
+            throw new DeleteException("Usuario con id inexistente");
+        }
+        dbUser.delete();
     }
 }
