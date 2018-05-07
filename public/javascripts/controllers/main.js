@@ -4,6 +4,7 @@ hoyComoApp.controller('mainCtrl', function ($scope, $http, $window, $rootScope, 
 if($window.localStorage.getItem("route")){
         $scope.content = "/dash";
         $rootScope.menu = JSON.parse($window.localStorage.getItem("menu"));
+        $rootScope.myInfo = JSON.parse($window.localStorage.getItem("myInfo"));
     } else {
     $scope.content = "/login";
     }
@@ -21,16 +22,12 @@ if($window.localStorage.getItem("route")){
             }
         }).success(function(data, status, headers, config){
             $rootScope.menu = data;
-            $rootScope.auth = headers('authorization');
             $http({
                 url: "/api/v1/users/myinfo",
-                data: $scope.user,
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
+                method: "GET"
             }).success(function(data, status, headers, config){
+                $rootScope.myInfo = { user: data.username, commerce: data.commerce.businessName};
+                $window.localStorage.setItem("myInfo", JSON.stringify($rootScope.myInfo));
                 $scope.content = "/dash";
             })
         }).error(function(err){
@@ -61,13 +58,14 @@ hoyComoApp.controller('loginCtrl', function ($scope, $http, $filter, $window, $r
 });
 
 hoyComoApp.controller('dashCtrl', function ($scope, $http, $filter, $window, $rootScope) {
-
+    $scope.myInfo = $rootScope.myInfo;
+    $scope.commerceName = $rootScope.commerceName;
     $scope.menu = $rootScope.menu;
-if($window.localStorage.getItem("route")){
-    $scope.dashContent = $window.localStorage.getItem("route");
+    if($window.localStorage.getItem("route")){
+        $scope.dashContent = $window.localStorage.getItem("route");
 
-} else {
-    $scope.dashContent = $scope.menu[0].route;
+    } else {
+        $scope.dashContent = $scope.menu[0].route;
     }
     //se setea la primera opcion al entrar, deberia guardarse la que esta seleccionada
 
