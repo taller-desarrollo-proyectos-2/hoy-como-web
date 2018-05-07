@@ -13,6 +13,8 @@ public class MobileUser extends User {
 
     protected static final Finder<Long, MobileUser> FIND = new Finder<>(Long.class, MobileUser.class);
 
+    private String fullName;
+
     @ManyToMany
     private List<Commerce> favourites;
 
@@ -42,5 +44,13 @@ public class MobileUser extends User {
 
     public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

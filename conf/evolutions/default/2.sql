@@ -49,6 +49,8 @@ create table payment_type (
 
 alter table request add payment_type_id bigint;
 
+alter table user add full_name varchar(255);
+
 alter table single_request add constraint fk_single_request_plate_13 foreign key (plate_id) references plate (id) on delete restrict on update restrict;
 create index ix_single_request_plate_1 on single_request (plate_id);
 
@@ -111,3 +113,5 @@ drop table payment_type;
 alter table request modify status varchar(20);
 
 alter table request drop column payment_type_id;
+
+alter table user drop column full_name;
