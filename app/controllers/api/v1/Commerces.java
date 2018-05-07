@@ -106,11 +106,14 @@ public class Commerces extends Controller {
 
             if(formData != null){
                 Http.MultipartFormData.FilePart pictureFilePart = formData.getFile("picture");
-                if(FolderServices.fileExists(FolderServices.getCommerceFolder(commerce) + pictureFilePart.getFilename()) && !Commerce.findByProperty("id", id).getPictureFileName().equals(pictureFilePart.getFilename())){
-                    logger.error("Imagen con nombre ya utilizado");
-                    return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Nombre de imagen ya utilizado"));
+                if(pictureFilePart != null) {
+                    if (FolderServices.fileExists(FolderServices.getCommerceFolder(commerce) + pictureFilePart.getFilename()) && !Commerce.findByProperty("id", id).getPictureFileName().equals(pictureFilePart.getFilename())) {
+                        logger.error("Imagen con nombre ya utilizado");
+                        return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Nombre de imagen ya utilizado"));
+                    }//Elimino el archivo imagen y creo el nuevo
+                    new File(FolderServices.getCommerceFolder(commerce) + Commerce.findByProperty("id", id).getPictureFileName()).delete();
+                    pictureFilePart.getFile().renameTo(new File(FolderServices.getCommerceFolder(commerce) + pictureFilePart.getFilename()));
                 }
-                pictureFilePart.getFile().renameTo(new File(FolderServices.getCommerceFolder(commerce) + pictureFilePart.getFilename()));
             }
 
             CommerceServices.update(id, commerce);
