@@ -103,7 +103,7 @@ public class Commerces extends Controller {
             Http.MultipartFormData formData = request().body().asMultipartFormData();
             //Obtengo y guardo el comercio
             Commerce commerce = form.get();
-
+            
             if(formData != null){
                 Http.MultipartFormData.FilePart pictureFilePart = formData.getFile("picture");
                 if(pictureFilePart != null) {

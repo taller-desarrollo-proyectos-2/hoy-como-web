@@ -169,6 +169,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             toastr.error("No se pudo crear el plato.");
         }
     }
+    
     $('#plateForm').change(function(evt) {
         if(document.getElementById('fileInput').files.item(0)){
             $scope.fotoPreview = true;

@@ -60,8 +60,10 @@ public class CommerceServices {
                 newAndOldPhones.add(phone);
             }
         }
-        if(commerce.getLocation().getId() != null){
-            commerce.setLocation(Location.findByProperty("id", commerce.getLocation().getId()));
+        if(commerce.getLocation() != null){
+            if(commerce.getLocation().getId() != null){
+                commerce.setLocation(Location.findByProperty("id", commerce.getLocation().getId()));
+            }
         }
         if(commerce.getAddress().getId() != null){
             commerce.setAddress(Address.findByProperties(Arrays.asList("id"), Arrays.asList(commerce.getAddress().getId())));
