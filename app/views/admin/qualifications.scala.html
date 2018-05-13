@@ -22,7 +22,15 @@
                         <tbody>
                             <tr ng-repeat="qualification in qualifications">
                                 <td>{{qualification.date}}</td>
-                                <td>{{qualification.rating}}</td>
+                                <td>
+                                    <div class="rating" data-rating="{{qualification.rating}}">
+                                        <i class="star-1">★</i>
+                                        <i class="star-2">★</i>
+                                        <i class="star-3">★</i>
+                                        <i class="star-4">★</i>
+                                        <i class="star-5">★</i>
+                                    </div>
+                                </td>
                                 <td>{{qualification.username}}</td>
                                 <td>{{qualification.comment}}</td>
                                 <td>
