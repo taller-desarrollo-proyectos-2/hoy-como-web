@@ -16,7 +16,7 @@
                             <th class="col-sm-2">Puntaje</th>
                             <th class="col-sm-2">Usuario</th>
                             <th class="col-sm-2">Comentario</th>
-                            <th class="col-sm-2">Replica</th>
+                            <th class="col-sm-2">Réplica</th>
                             <th class="col-sm-2">Pedido</th>
                         </thead>
                         <tbody>
@@ -32,8 +32,8 @@
                                     </div>
                                 </td>
                                 <td>{{qualification.username}}</td>
-                                <td>{{qualification.comment}}</td>
-                                <td>
+                                <td class="truncate">{{qualification.comment}}</td>
+                                <td class="truncate">
                                     <span ng-if="qualification.replica">{{qualification.replica}}</span>
                                     <i ng-if="!qualification.replica" class="icon-info fa fa-comment-o" aria-hidden="true"></i>
                                 </td>

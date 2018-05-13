@@ -1,6 +1,6 @@
 
   .rating {
-    margin: 10px 0;
+    /* margin: 10px 0; */
   }
   
   .rating i {
@@ -100,3 +100,10 @@
       text-shadow: none;
     }
   }
+
+  .truncate{
+    text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+  }
+  
