@@ -1,0 +1,42 @@
+<div class="container screen-container" ng-controller="qualifCtrl">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 page-header center-elems">
+            <h1>
+                Calificaciones
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-content table-responsive">
+                    <table class="table">
+                        <thead>
+                            <th class="col-sm-2">Fecha</th>
+                            <th class="col-sm-2">Puntaje</th>
+                            <th class="col-sm-2">Usuario</th>
+                            <th class="col-sm-2">Comentario</th>
+                            <th class="col-sm-2">Replica</th>
+                            <th class="col-sm-2">Pedido</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qualification in qualifications">
+                                <td>{{qualification.date}}</td>
+                                <td>{{qualification.rating}}</td>
+                                <td>{{qualification.username}}</td>
+                                <td>{{qualification.comment}}</td>
+                                <td>
+                                    <span ng-if="qualification.replica">{{qualification.replica}}</span>
+                                    <i ng-if="!qualification.replica" class="icon-info fa fa-comment-o" aria-hidden="true"></i>
+                                </td>
+                                <td>
+                                    <i ng-click="openRequestDetailsModal(request)" class="icon-info fa fa-info-circle" aria-hidden="true"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
