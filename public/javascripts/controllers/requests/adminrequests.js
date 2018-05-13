@@ -38,6 +38,34 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $window, $ro
         });
     };
 
+    $scope.toggleCancelationModal = (request) =>{
+        $scope.currentRequest = request;
+        $("#cancelationModal").modal("toggle");
+        $scope.cancelationReason = undefined;
+    };
+
+    $scope.cancelRequest = (reason) => {
+        var data = {status: $scope.statusEnum.cancelledByCommerce,
+                    reason: reason};
+        if(reason === undefined || reason === "") {
+            toastr.error("El motivo de cancelación no puede estar vacio.");
+        } else {
+            $http({
+                url: "/api/v1/requests/" + $scope.currentRequest.id,
+                method: "PUT",
+                data: data
+            }).success(function(data, status, headers, config){
+                toastr.success("Pedido cancelado con exito.");
+                $scope.reason = undefined;
+                $scope.currentRequest = undefined;
+                $("#cancelationModal").modal("toggle");
+                index();
+            }).error(function(err){
+                toastr.error(err.message);
+            });
+        }
+    };
+
     //--------------- MODALS --------------------//
 
     $scope.openUserDetailsModal = (user, destination) =>{
