@@ -1,5 +1,5 @@
 
-hoyComoApp.controller('requestsRootCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter, $uibModal) {
+hoyComoApp.controller('requestsRootCtrl', function ($scope, $http, $interval, $window, $rootScope, toastr, $filter, $uibModal) {
     
     $scope.currentCommerce = {};
     $scope.requests = [];
@@ -12,6 +12,8 @@ hoyComoApp.controller('requestsRootCtrl', function ($scope, $http, $window, $roo
                         delivered: "DELIVERED",
                         onTheWay: "ON_THE_WAY" 
                     };
+
+    $scope.polling = undefined;
 
     indexCommerces();
 
@@ -27,16 +29,24 @@ hoyComoApp.controller('requestsRootCtrl', function ($scope, $http, $window, $roo
     }
 
     $scope.index = function() {
-
         $http({
             url: "/api/v1/requests?commerceId=" + $scope.currentCommerce.id,
             method: "GET"
         }).success(function(data, status, headers, config){
             $scope.requests = data;
+            if($scope.polling === undefined){
+                $scope.polling = $interval(function () {
+                    $scope.index();
+                }, 3000);
+            }
         }).error(function(err){
             toastr.error(err.message);
         });
     }
+
+    $scope.$on("$destroy", function () {
+        $interval.cancel($scope.polling);
+    });
 
     $scope.updateRequestStatus = (request, status) => {
         var data = {status: status};

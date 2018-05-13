@@ -1,5 +1,5 @@
 
-hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter, $uibModal) {
+hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $window, $rootScope, toastr, $filter, $uibModal) {
     
     $scope.requests = [];
     $scope.statusEnum = {
@@ -12,6 +12,14 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $window, $ro
                     };
 
     index();
+
+    var polling = $interval(function () {
+        index();
+    }, 3000);
+
+    $scope.$on("$destroy", function () {
+        $interval.cancel(polling);
+    });
 
     function index() {
         $http({
