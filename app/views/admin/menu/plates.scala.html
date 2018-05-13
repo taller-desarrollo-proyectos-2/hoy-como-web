@@ -22,7 +22,7 @@
                         <th class="col-sm-1">Imagen</th>
                         <th class="col-sm-3">Nombre</th>
                         <th class="col-sm-2">Precio</th>
-                        <th class="col-sm-2">Categoria</th>
+                        <th class="col-sm-2">Categoría</th>
                         <th class="col-sm-1" style="text-align: center;">Activo</th>
                         <th class="col-sm-3" style="text-align: center;">Acciones</th>
                     </thead>
@@ -95,7 +95,7 @@
                         <div class="col-sm-6" style="display:flex;">
                             <div style="width:80%;">
                                 <ui-select ng-model="currentPlate.category" >
-                                    <ui-select-match placeholder="Seleccione categoria..">
+                                    <ui-select-match placeholder="Seleccione categoría..">
                                         <span ng-bind="$select.selected.name"></span>
                                     </ui-select-match>
                                     <ui-select-choices repeat="category in (categories | filter: $select.search) track by category.id">
@@ -147,7 +147,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Agregar Categoria</h4>
+                    <h4 class="modal-title">Agregar Categoría</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row m-bottom-10">

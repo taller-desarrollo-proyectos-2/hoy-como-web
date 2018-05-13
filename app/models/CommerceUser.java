@@ -33,7 +33,7 @@ public class CommerceUser extends BackofficeUser {
     @Override
     public JsonNode getPanel(){
         return Json.parse("[{\n" +
-                "\t\t\"showName\": \"Categorias\",\n" +
+                "\t\t\"showName\": \"Categorías\",\n" +
                 "\t\t\"route\": \"/web/categories\",\n" +
                 "\t\t\"icon\": \"glyphicon glyphicon-cutlery\"\n" +
                 "\t},{\n" +
