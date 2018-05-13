@@ -1,0 +1,85 @@
+<div class="container screen-container" ng-controller="requestsAdminCtrl">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 page-header center-elems">
+                <h1>
+                    Pedidos
+                </h1>
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-content table-responsive">
+                <table class="table">
+                <thead>
+                        <th class="col-sm-1 align-left">#</th>
+                        <th class="col-sm-2 align-left">Hora inicio</th>
+                        <th class="col-sm-1 align-left">Detalle</th>
+                        <th class="col-sm-2 align-left">Precio</th>
+                        <th class="col-sm-2 align-left">Estado</th>
+                        <th class="col-sm-2 align-left">Usuario</th>
+                        <th class="col-sm-2 align-left">Acciones</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="request in requests">
+                            <td>{{request.id}}</td>
+                            <td>{{request.initAt | date : "dd/MM HH:mm"}}</td>
+                            <td style="text-align: left;">
+                                <i ng-click="openRequestDetailsModal(request)" class="icon-info fa fa-info-circle" aria-hidden="true"></i>
+                            </td>
+                            <td>$ 100,00</td>
+                            <td>
+                                <span ng-if="request.status == statusEnum.waitingConfirmation" class="label label-info">A confirmar</span>
+                                <span ng-if="request.status == statusEnum.onPreparation" class="label label-warning">Aceptado</span>
+                                <span ng-if="request.status == statusEnum.onTheWay" class="label label-warning">En camino</span>
+                                <span ng-if="request.status == statusEnum.delivered" class="label label-success">Entregado</span>
+                                <span ng-if="request.status == statusEnum.cancelledByUser" class="label label-danger">Canelado</span>
+                                <span ng-if="request.status == statusEnum.cancelledByCommerce" class="label label-danger">Rechazado</span>
+                            </td>
+                            <td> <a ng-click="openUserDetailsModal(request.user, request.destination)" style="cursor:pointer;">{{request.user.fullName}}</a></td>
+                            <td>
+                                <div ng-if="request.status == statusEnum.waitingConfirmation">
+                                    <a style="cursor:pointer;" ng-click="updateRequestStatus(request, statusEnum.onPreparation)">Aceptar</a>,
+                                    <a style="cursor:pointer;" ng-click="toggleCancelationModal(request)">Rechazar</a>
+                                </div>
+                                <div ng-if="request.status == statusEnum.onTheWay">
+                                    <a style="cursor:pointer;" ng-click="updateRequestStatus(request, statusEnum.delivered)">Marcar como entregado</a>,
+                                    <a style="cursor:pointer;" ng-click="toggleCancelationModal(request)">Cancelar</a>
+                                </div>
+                                <div ng-if="request.status == statusEnum.onPreparation">
+                                    <a style="cursor:pointer;" ng-click="updateRequestStatus(request, statusEnum.onTheWay)">Marcar en camino</a>,
+                                    <a style="cursor:pointer;" ng-click="toggleCancelationModal(request)">Cancelar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="modal fade" id="cancelationModal" tabindex="-1" role="dialog" aria-labelledby="cantelationModal" aria-hidden="true">
+        <div class="modal-dialog"> 
+           <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Ingrese motivo de cancelación</h4>
+
+                </div>
+                <div class="modal-body">
+                    <div class="row m-bottom-10">
+                        <div class="col-sm-12">
+                            <label  class="control-label">Motivo</label>
+                            <input type="text" class="form-control m-bottom-10" ng-model='cancelationReason'>
+                        </div>
+                   </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Volver</button>
+                    <button type="button" class="btn btn-primary pull-left" ng-click="cancelRequest(cancelationReason)">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -49,7 +49,7 @@ public class Commerce extends Model{
     @ManyToMany
     private List<CommerceCategory> categories;
     
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     private List<Plate> plates;
 
     @OneToOne
@@ -205,5 +205,13 @@ public class Commerce extends Model{
 
     public void setPictureFileName(String pictureFileName) {
         this.pictureFileName = pictureFileName;
+    }
+
+    public static Commerce findByProperties(List<String> properties, List<Object> values){
+        ExpressionList<Commerce> exp = FIND.where();
+        for(int i=0; i<properties.size(); i++){
+            exp.eq(properties.get(i), values.get(i));
+        }
+        return exp.findUnique();
     }
 }

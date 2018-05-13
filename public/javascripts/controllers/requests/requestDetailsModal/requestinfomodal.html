@@ -1,0 +1,20 @@
+
+<div class="modal-header">
+        <h3 class="modal-title">Información de Pedido # {{requestNumber}}</h3>
+    </div>
+    <div class="modal-body">
+        <div ng-repeat="singleRequest in singleRequests" class="row m-bottom-10">
+            <div class="col-sm-12">
+                - {{singleRequest.quantity}} x {{singleRequest.plate.name}}
+            </div>
+            <div class="col-sm-12" ng-repeat="optional in singleRequest.optionals">
+                + {{optional.name}}
+            </div>
+            <div ng-if="singleRequest.comment" class="col-sm-12">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>{{singleRequest.comment}}
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="cancel()">Cerrar</button>
+    </div>

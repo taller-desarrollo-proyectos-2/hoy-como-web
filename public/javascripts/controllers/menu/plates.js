@@ -7,6 +7,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
     $scope.editModal = true;
     $scope.selected = {};
     $scope.imageSrc = "assets/images/uploadImage.png";
+    $scope.fotoPreview = false;
 
     indexPlates();
     indexCategories();
@@ -60,6 +61,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             $('#plateForm').get(0).reset();
             $scope.imageSrc = "assets/images/uploadImage.png";
             $scope.currentPlate = {optionals : [], glutenFree: false};
+            $scope.fotoPreview = false;
         }
         $scope.editModal = false;
         $("#platesModal").modal("toggle");
@@ -67,6 +69,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
 
     $scope.toggleEditModal = function(plate) {
         $('#plateForm').get(0).reset();
+        $scope.fotoPreview = false;
         $scope.imageSrc = "assets/images/uploadImage.png";
         $scope.editModal = true;
         angular.copy(plate, $scope.currentPlate);
@@ -148,7 +151,6 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             xhr.addEventListener('load', createFinish, false);
             xhr.open('POST',"/api/v1/plates");
             xhr.setRequestHeader('Accept','application/json, text/plain, */*');
-            xhr.setRequestHeader('authorization', $rootScope.auth);
             xhr.send(formData);
         } else {
             toastr.error("El nombre, la categoria y el precio no pueden estar vacios.");
@@ -167,6 +169,14 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             toastr.error("No se pudo crear el plato.");
         }
     }
+    
+    $('#plateForm').change(function(evt) {
+        if(document.getElementById('fileInput').files.item(0)){
+            $scope.fotoPreview = true;
+        } else {
+            $scope.fotoPreview = false;
+        }
+    });
 
     $scope.updatePlate = function (){
         if($scope.currentPlate.category != undefined && $scope.currentPlate.name != undefined && $scope.currentPlate.price != undefined){
@@ -187,7 +197,6 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             xhr.addEventListener('load', updateFinished, false);
             xhr.open('PUT',"/api/v1/plates/" + $scope.currentPlate.id);
             xhr.setRequestHeader('Accept','application/json, text/plain, */*');
-            xhr.setRequestHeader('authorization', $rootScope.auth);
             xhr.send(formData);
         } else {
             toastr.error("El nombre, la categoria y el precio no pueden estar vacios.");
@@ -346,7 +355,7 @@ hoyComoApp.directive("ngFileSelect", function(fileReader, $timeout) {
       if(file) {
         reader.readAsDataURL(file);
       } else{
-          return $q.reject();
+        return $q.reject();
       }
       return deferred.promise;
     };

@@ -4,6 +4,7 @@ hoyComoApp.controller('mainCtrl', function ($scope, $http, $window, $rootScope, 
 if($window.localStorage.getItem("route")){
         $scope.content = "/dash";
         $rootScope.menu = JSON.parse($window.localStorage.getItem("menu"));
+        $rootScope.myInfo = JSON.parse($window.localStorage.getItem("myInfo"));
     } else {
     $scope.content = "/login";
     }
@@ -21,8 +22,15 @@ if($window.localStorage.getItem("route")){
             }
         }).success(function(data, status, headers, config){
             $rootScope.menu = data;
-            $rootScope.auth = headers('authorization');
-            $scope.content = "/dash";
+            $http({
+                url: "/api/v1/users/myinfo",
+                method: "GET"
+            }).success(function(data, status, headers, config){
+                $rootScope.myInfo = {};
+                $rootScope.myInfo.user = data.username;
+                if (data.commerce) $rootScope.myInfo.commerce = data.commerce.businessName;
+                $scope.content = "/dash";
+            })
         }).error(function(err){
             toastr.error(err.message);
         });
@@ -32,11 +40,13 @@ if($window.localStorage.getItem("route")){
             $scope.content = "/login";
             $window.localStorage.removeItem("route");
             $window.localStorage.removeItem("menu");
+            $window.localStorage.removeItem("myInfo");
     });
     
     $scope.$on("reload", function (event, args) {
         $window.localStorage.setItem("route", args);
         $window.localStorage.setItem("menu", JSON.stringify($rootScope.menu));
+        $window.localStorage.setItem("myInfo", JSON.stringify($rootScope.myInfo));
     });
         
 });
@@ -51,13 +61,14 @@ hoyComoApp.controller('loginCtrl', function ($scope, $http, $filter, $window, $r
 });
 
 hoyComoApp.controller('dashCtrl', function ($scope, $http, $filter, $window, $rootScope) {
-
+    $scope.myInfo = $rootScope.myInfo;
+    $scope.commerceName = $rootScope.commerceName;
     $scope.menu = $rootScope.menu;
-if($window.localStorage.getItem("route")){
-    $scope.dashContent = $window.localStorage.getItem("route");
+    if($window.localStorage.getItem("route")){
+        $scope.dashContent = $window.localStorage.getItem("route");
 
-} else {
-    $scope.dashContent = $scope.menu[0].route;
+    } else {
+        $scope.dashContent = $scope.menu[0].route;
     }
     //se setea la primera opcion al entrar, deberia guardarse la que esta seleccionada
 

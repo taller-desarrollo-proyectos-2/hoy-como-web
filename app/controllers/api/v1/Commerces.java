@@ -4,6 +4,7 @@ import annotations.Authenticate;
 import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import exceptions.CreationException;
+import exceptions.UpdateException;
 import models.Commerce;
 import models.CommerceUser;
 import play.Logger;
@@ -87,6 +88,46 @@ public class Commerces extends Controller {
             Ebean.endTransaction();
         }
 
+    }
+
+    @Authenticate(types = "BACKOFFICE")
+    public static Result update(Long id){
+        Ebean.beginTransaction();
+        try {
+            Form<Commerce> form = Form.form(Commerce.class).bindFromRequest();
+            if (form.hasErrors()) {
+                logger.error("Error en el json de modificacion de comercio", form.errorsAsJson());
+                return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Error en los parametros de modificacion del comercio"));
+            }
+            //Guardo la imagen del comercio
+            Http.MultipartFormData formData = request().body().asMultipartFormData();
+            //Obtengo y guardo el comercio
+            Commerce commerce = form.get();
+            
+            if(formData != null){
+                Http.MultipartFormData.FilePart pictureFilePart = formData.getFile("picture");
+                if(pictureFilePart != null) {
+                    if (FolderServices.fileExists(FolderServices.getCommerceFolder(commerce) + pictureFilePart.getFilename()) && !Commerce.findByProperty("id", id).getPictureFileName().equals(pictureFilePart.getFilename())) {
+                        logger.error("Imagen con nombre ya utilizado");
+                        return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Nombre de imagen ya utilizado"));
+                    }//Elimino el archivo imagen y creo el nuevo
+                    new File(FolderServices.getCommerceFolder(commerce) + Commerce.findByProperty("id", id).getPictureFileName()).delete();
+                    pictureFilePart.getFile().renameTo(new File(FolderServices.getCommerceFolder(commerce) + pictureFilePart.getFilename()));
+                }
+            }
+
+            CommerceServices.update(id, commerce);
+            Ebean.commitTransaction();
+            return ok(Json.toJson(commerce));
+        }catch(UpdateException e){
+            logger.error("Error actualizando el comercio", e.getMessage());
+            return badRequest(JsonNodeFactory.instance.objectNode().put("message",e.getMessage()));
+        }catch(Exception e){
+            logger.error("Error interno intentando actualizar", e);
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando actualizar el comercio"));
+        }finally{
+            Ebean.endTransaction();
+        }
     }
 
     @Authenticate(types = {"BACKOFFICE", "FACEBOOK"})

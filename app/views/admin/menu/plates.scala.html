@@ -22,7 +22,7 @@
                         <th class="col-sm-1">Imagen</th>
                         <th class="col-sm-3">Nombre</th>
                         <th class="col-sm-2">Precio</th>
-                        <th class="col-sm-2">Categoria</th>
+                        <th class="col-sm-2">Categoría</th>
                         <th class="col-sm-1" style="text-align: center;">Activo</th>
                         <th class="col-sm-3" style="text-align: center;">Acciones</th>
                     </thead>
@@ -69,11 +69,12 @@
                             <input type="number" class="form-control m-bottom-10" ng-model='currentPlate.price' >
                             <label  class="m-top-10 control-label">Imagen</label>
                             <form enctype="multipart/form-data" id="plateForm">
-                                <input id="fileInput" type="file" class="form-control" name="picture" form="plateForm" ng-file-select="onFileSelect($files)" ng-model="imageSrc">
+                                <input id="fileInput" type="file" class="form-control" name="picture" form="plateForm" ng-file-select="onFileSelect($files)" ng-change ="updateVisibility()" ng-model="imageSrc">
                             </form>
                         </div>
                         <div class="col-sm-6" style="display: flex; align-items: center; justify-content: center;">
-                            <img style="max-height:200px; max-width: 100%;" ng-if="currentPlate.pictureFileName" ng-src="/api/v1/plates/{{currentPlate.id}}/picture">
+                            <img style="max-height:200px; max-width: 100%;" ng-if="currentPlate.pictureFileName && !fotoPreview" ng-src="/api/v1/plates/{{currentPlate.id}}/picture">
+                            <img style="max-height:200px; max-width: 100%;" ng-if="currentPlate.pictureFileName && fotoPreview" ng-src="{{imageSrc}}">
                             <img style="max-height:200px; max-width: 100%;" ng-if="!currentPlate.pictureFileName" ng-src="{{imageSrc}}">
                         </div>
                     </div>
@@ -90,11 +91,11 @@
                             </div>
                         </div>
                     <div class="row m-bottom-10">
-                        <label class="col-sm-6 control-label">Categoria</label>
+                        <label class="col-sm-6 control-label">Categoría</label>
                         <div class="col-sm-6" style="display:flex;">
                             <div style="width:80%;">
                                 <ui-select ng-model="currentPlate.category" >
-                                    <ui-select-match placeholder="Seleccione categoria..">
+                                    <ui-select-match placeholder="Seleccione categoría..">
                                         <span ng-bind="$select.selected.name"></span>
                                     </ui-select-match>
                                     <ui-select-choices repeat="category in (categories | filter: $select.search) track by category.id">
@@ -146,7 +147,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Agregar Categoria</h4>
+                    <h4 class="modal-title">Agregar Categoría</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row m-bottom-10">

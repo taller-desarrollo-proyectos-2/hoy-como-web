@@ -94,7 +94,22 @@ public class Plates extends Controller {
                 logger.error("Error en el json de modificacion de platos", form.errorsAsJson());
                 return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Error en los parametros de modificacion del plato"));
             }
+            //Guardo la imagen del plato
+            Http.MultipartFormData formData = request().body().asMultipartFormData();
             Plate plate = form.get();
+
+            if(formData != null){
+                Http.MultipartFormData.FilePart pictureFilePart = formData.getFile("picture");
+                if(pictureFilePart != null) {
+                    if (FolderServices.fileExists(FolderServices.getCommerceFolder(commerceUser.getCommerce()) + pictureFilePart.getFilename()) && !Plate.findByProperty("id", id).getPictureFileName().equals(pictureFilePart.getFilename())) {
+                        logger.error("Imagen con nombre ya utilizado");
+                        return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Nombre de imagen ya utilizado"));
+                    }
+                    //Elimino el archivo imagen y creo el nuevo
+                    new File(FolderServices.getCommerceFolder(commerceUser.getCommerce()) + Plate.findByProperty("id", id).getPictureFileName()).delete();
+                    pictureFilePart.getFile().renameTo(new File(FolderServices.getCommerceFolder(commerceUser.getCommerce()) + pictureFilePart.getFilename()));
+                }
+            }
             //Se actualiza el plato para el comercio especificado
             PlatesServices.update(id, plate, commerceUser.getCommerce());
             Ebean.commitTransaction();

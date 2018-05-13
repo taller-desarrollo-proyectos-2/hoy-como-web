@@ -4,10 +4,15 @@ import com.google.maps.GeocodingApi;
 import com.google.maps.GeocodingApiRequest;
 import com.google.maps.model.GeocodingResult;
 import exceptions.CreationException;
+import exceptions.UpdateException;
+import models.Address;
 import models.Commerce;
 import models.Location;
+import models.Phone;
 import play.Logger;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +39,38 @@ public class CommerceServices {
             throw new CreationException("Error validando direccion del comercio");
         }
         commerce.save();
+    }
+
+    public static void update(Long id, Commerce commerce) throws UpdateException {
+        Commerce dbCommerce = Commerce.findByProperty("id", id);
+        if(dbCommerce == null){
+            throw new UpdateException("Comercio con id inexistente");
+        }
+        if(!dbCommerce.getBusinessName().equals(commerce.getBusinessName()) && Commerce.findByProperty("businessName", commerce.getBusinessName()) != null){
+            throw new UpdateException("Razon social de comercio ya utilizada");
+        }
+        List<Phone> newAndOldPhones = new ArrayList();
+        if(!dbCommerce.getPhones().isEmpty()) {
+            dbCommerce.getPhones().get(0).delete();
+        }
+        for(Phone phone: commerce.getPhones()){
+            if(phone.getId() != null){
+                newAndOldPhones.add(Phone.findByProperty("id", phone.getId()));
+            }else{
+                newAndOldPhones.add(phone);
+            }
+        }
+        if(commerce.getLocation() != null){
+            if(commerce.getLocation().getId() != null){
+                commerce.setLocation(Location.findByProperty("id", commerce.getLocation().getId()));
+            }
+        }
+        if(commerce.getAddress().getId() != null){
+            commerce.setAddress(Address.findByProperties(Arrays.asList("id"), Arrays.asList(commerce.getAddress().getId())));
+        }
+        commerce.setPhones(newAndOldPhones);
+        commerce.setId(id);
+        commerce.update();
     }
 
     public static List<Commerce> findFilteredCommerces(Map<String, String[]> queryStrings){

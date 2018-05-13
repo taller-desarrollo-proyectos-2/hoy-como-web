@@ -51,6 +51,9 @@ public class OpeningTime extends Model {
     @Temporal(TemporalType.TIMESTAMP)
     private Date toHour;
 
+    @ManyToOne
+    private Commerce commerce;
+
     public Long getId() {
         return id;
     }
@@ -107,5 +110,14 @@ public class OpeningTime extends Model {
             System.out.println("Error tratando de formatear la fecha" +  e.getMessage());
         }
         this.to = to;
+    }
+
+    @JsonIgnore
+    public Commerce getCommerce() {
+        return commerce;
+    }
+
+    public void setCommerce(Commerce commerce) {
+        this.commerce = commerce;
     }
 }

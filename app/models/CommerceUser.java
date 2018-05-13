@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @DiscriminatorValue("COMMERCE")
@@ -32,7 +33,7 @@ public class CommerceUser extends BackofficeUser {
     @Override
     public JsonNode getPanel(){
         return Json.parse("[{\n" +
-                "\t\t\"showName\": \"Categorias\",\n" +
+                "\t\t\"showName\": \"Categorías\",\n" +
                 "\t\t\"route\": \"/web/categories\",\n" +
                 "\t\t\"icon\": \"glyphicon glyphicon-cutlery\"\n" +
                 "\t},{\n" +
@@ -43,6 +44,10 @@ public class CommerceUser extends BackofficeUser {
                 "\t\t\"showName\": \"Opcionales\",\n" +
                 "\t\t\"route\": \"/web/optionals\",\n" +
                 "\t\t\"icon\": \"glyphicon glyphicon-cutlery\"\n" +
+                "\t},{\n" +
+                "\t\t\"showName\": \"Pedidos\",\n" +
+                "\t\t\"route\": \"/web/commerce/requests\",\n" +
+                "\t\t\"icon\": \"fa fa-list-alt\"\n" +
                 "\t}]");
     }
 
@@ -52,5 +57,10 @@ public class CommerceUser extends BackofficeUser {
 
     public static CommerceUser findByProperty(String property, Object value){
         return FIND.where().eq(property, value).findUnique();
+    }
+
+    @Override
+    public void fillRequestMap(Map<String, String[]> map) {
+        map.put("singleRequests.plate.commerce.id", new String[]{this.getCommerce().getId().toString()});
     }
 }
