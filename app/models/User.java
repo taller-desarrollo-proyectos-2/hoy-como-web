@@ -1,14 +1,14 @@
 package models;
 
-import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
+import java.util.Map;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "USER_TYPE")
-public class User extends Model {
+public abstract class User extends Model {
 
     protected static final Finder<Long, User> FIND = new Finder<>(Long.class, User.class);
 
@@ -27,6 +27,13 @@ public class User extends Model {
     }
 
     public static User findByIdAndType(Long id, String[] types){
-        return FIND.where().eq("id", id).in("USER_TYPE", types).findUnique();
+        // CAST to Object[] to suppress warning.
+        return FIND.where().eq("id", id).in("USER_TYPE", (Object[])types).findUnique();
     }
+
+    public static User findByProperty(String property, Object value){
+        return FIND.where().eq(property,value).findUnique();
+    }
+
+    public abstract void fillRequestMap(Map<String, String[]> map);
 }

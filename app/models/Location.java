@@ -8,6 +8,8 @@ import javax.persistence.Id;
 @Entity
 public class Location extends Model {
 
+    protected static final Finder<Long, Location> FIND = new Finder<>(Long.class, Location.class);
+
     @Id
     private Long id;
 
@@ -42,5 +44,9 @@ public class Location extends Model {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public static Location findByProperty(String property, Object value){
+        return FIND.where().eq(property, value).findUnique();
     }
 }

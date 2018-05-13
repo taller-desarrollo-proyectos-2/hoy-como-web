@@ -1,4 +1,4 @@
-var hoyComoApp = angular.module('hoyComo', ['toastr']);
+var hoyComoApp = angular.module('hoyComo', ['toastr', 'ui.select', 'ui.bootstrap']);
 
 hoyComoApp.config(function(toastrConfig) {
     angular.extend(toastrConfig, {

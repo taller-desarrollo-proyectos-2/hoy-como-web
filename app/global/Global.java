@@ -1,13 +1,12 @@
 package global;
 
-import com.google.maps.GeoApiContext;
-import com.typesafe.config.ConfigFactory;
 import models.BackofficeUser;
+import models.CommerceCategory;
 import org.mindrot.jbcrypt.BCrypt;
 import play.Application;
 import play.GlobalSettings;
 import play.Logger;
-import services.GoogleServices;
+import services.FolderServices;
 
 public class Global extends GlobalSettings {
 
@@ -22,6 +21,8 @@ public class Global extends GlobalSettings {
                 rootUser.setPassword(BCrypt.hashpw("root", BCrypt.gensalt()));
                 rootUser.save();
             }
+            FolderServices.createMediaFolder();
+            CommerceCategory.initializeCategories();
         }catch(Exception e){
             logger.error("Error inicializando el usuario root", e);
         }

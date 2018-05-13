@@ -1,10 +1,15 @@
 package models;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.*;
 
+import com.avaje.ebean.ExpressionList;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+import services.FinderService;
 
 /**
  *
@@ -12,6 +17,19 @@ import play.db.ebean.Model;
  */
 @Entity
 public class Commerce extends Model{
+
+    private static float LATITUDE_DISTANCE = 0.00002713F;
+    private static float LONGITUDE_DISTANCE = 0.00002695F;
+
+    private static final Map<String, String> attributeMap;
+    static {
+        Map<String, String> map = new HashMap();
+        map.put("name", "name");
+        map.put("categories", "categories.name");
+        map.put("lat", "lat");
+        map.put("lng", "lng");
+        attributeMap = Collections.unmodifiableMap(map);
+    }
 
     protected static final Finder<Long, Commerce> FIND = new Finder<>(Long.class, Commerce.class);
 
@@ -29,7 +47,7 @@ public class Commerce extends Model{
     private String businessName;
 
     @ManyToMany
-    private List<Category> categories;
+    private List<CommerceCategory> categories;
     
     @OneToMany
     private List<Plate> plates;
@@ -50,6 +68,9 @@ public class Commerce extends Model{
 
     @OneToOne(cascade = CascadeType.ALL)
     private Location location;
+
+    @Constraints.Required(groups = Commerce.Creation.class)
+    private String pictureFileName;
 
     public Long getId() {
         return id;
@@ -75,11 +96,11 @@ public class Commerce extends Model{
         this.plates = plates;
     }
 
-    public List<Category> getCategories() {
+    public List<CommerceCategory> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Category> categories) {
+    public void setCategories(List<CommerceCategory> categories) {
         this.categories = categories;
     }
 
@@ -153,5 +174,44 @@ public class Commerce extends Model{
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public static Map<String, String[]> validateQuery(Map<String, String[]> query){
+        Map<String, String[]> validatedQuery = new HashMap();
+        for(Map.Entry entry : query.entrySet()){
+            if(attributeMap.containsKey(entry.getKey())){
+                validatedQuery.put(attributeMap.get(entry.getKey()), query.get(entry.getKey()));
+            }
+        }
+        return validatedQuery;
+    }
+
+    public static List<Commerce> findByMap(Map<String, String[]> map){
+        ExpressionList<Commerce> exp = FIND.where();
+        if(map.containsKey("lat") && map.containsKey("lng")){
+            exp = exp.ge("location.lat", Float.valueOf(map.get("lat")[0]) - LATITUDE_DISTANCE)
+                .le("location.lat", Float.valueOf(map.get("lat")[0]) + LATITUDE_DISTANCE)
+                .ge("location.lng", Float.valueOf(map.get("lng")[0]) - LONGITUDE_DISTANCE)
+                .lt("location.lng", Float.valueOf(map.get("lat")[0]) + LONGITUDE_DISTANCE);
+            map.remove("lat");
+            map.remove("lng");
+        }
+        return FinderService.findByMap(exp, map).findList();
+    }
+
+    public String getPictureFileName() {
+        return pictureFileName;
+    }
+
+    public void setPictureFileName(String pictureFileName) {
+        this.pictureFileName = pictureFileName;
+    }
+
+    public static Commerce findByProperties(List<String> properties, List<Object> values){
+        ExpressionList<Commerce> exp = FIND.where();
+        for(int i=0; i<properties.size(); i++){
+            exp.eq(properties.get(i), values.get(i));
+        }
+        return exp.findUnique();
     }
 }

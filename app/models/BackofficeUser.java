@@ -1,5 +1,6 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -8,6 +9,7 @@ import play.libs.Json;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.util.Map;
 
 @Entity
 @DiscriminatorValue("BACKOFFICE")
@@ -26,6 +28,11 @@ public class BackofficeUser extends User {
 
     public BackofficeUser(){ super(); }
 
+    @Override
+    public void fillRequestMap(Map<String, String[]> map) {
+
+    }
+
     public String getUsername() {
         return username;
     }
@@ -34,6 +41,7 @@ public class BackofficeUser extends User {
         this.username = username;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -55,6 +63,10 @@ public class BackofficeUser extends User {
                 "\t\t\"showName\": \"Usuarios\",\n" +
                 "\t\t\"route\": \"/web/commerce/users\",\n" +
                 "\t\t\"icon\": \"glyphicon glyphicon-user\"\n" +
+                "\t},{\n" +
+                "\t\t\"showName\": \"Pedidos\",\n" +
+                "\t\t\"route\": \"/web/root/requests\",\n" +
+                "\t\t\"icon\": \"fa fa-list-alt\"\n" +
                 "\t}]");
     }
 }

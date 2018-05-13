@@ -17,13 +17,17 @@
                 <div class="card-content table-responsive">
                     <table class="table">
                             <thead>
-                                    <th>Razon social</th>
+                                    <th>Razón social</th>
                                     <th>Nombre</th>
+                                    <th>Acciones</th>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="commerce in commerces">
                                         <td>{{commerce.businessName}}</td>
                                         <td>{{commerce.name}}</td>
+                                        <td>
+                                            <a style="cursor:pointer;" ng-click="toggleEditModal(commerce)">Editar</a>
+                                        </td>
                                     </tr>
                                 </tbody>
                     </table>
@@ -39,21 +43,39 @@
                <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 ng-if="!editModal" class="modal-title" id="commercesModalTitle">Agregar Comercio</h4>
+                        <h4 ng-if="!editModal" class="modal-title" id="commercesModalTitle">Crear Comercio</h4>
                         <h4 ng-if="editModal" class="modal-title" id="commercesModalTitle">Editar Comercio</h4>
     
                     </div>
                     <div class="modal-body">
-                        <div class="row m-bottom-10">
-                           <label  class="col-sm-6 control-label">Razon social</label>
-                           <div class="col-sm-6">
-                               <input type="text" class="form-control" ng-model='currentCommerce.businessName'>
-                           </div>
-                       </div>
-                       <div class="row m-bottom-10">
-                            <label  class="col-sm-6 control-label">Nombre</label>
+                        <div class="row">
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" ng-model='currentCommerce.name'>
+                                <label  class="control-label">Nombre</label>
+                                <input type="text" class="form-control m-bottom-10" ng-model='currentCommerce.name' >
+                                <label  class="m-top-10 control-label">Razón Social </label>
+                                <input type="text" class="form-control m-bottom-10" ng-model='currentCommerce.businessName' >
+                                <label  class="m-top-10 control-label">Imagen</label>
+                                <form enctype="multipart/form-data" id="commerceForm">
+                                    <input id="fileInput" type="file" class="form-control" name="picture" form="commerceForm" ng-file-select="onFileSelect($files)" ng-model="imageSrc">
+                                </form>
+                            </div>
+                            <div class="col-sm-6" style="display: flex; align-items: center; justify-content: center;">
+                                <img style="max-height:200px; max-width: 100%;" ng-if="currentCommerce.pictureFileName && !fotoPreview" ng-src="/api/v1/commerces/{{currentCommerce.id}}/picture">
+                                <img style="max-height:200px; max-width: 100%;" ng-if="currentCommerce.pictureFileName && fotoPreview" ng-src="{{imageSrc}}">
+                                <img style="max-height:200px; max-width: 100%;" ng-if="!currentCommerce.pictureFileName" ng-src="{{imageSrc}}">
+                            </div>
+                        </div>
+                        <div class="row m-bottom-10">
+                            <div class="col-sm-12">
+                                <label  class="control-label">Categorías</label>
+                                <ui-select multiple ng-model="currentCommerce.categories" >
+                                    <ui-select-match placeholder="Seleccione categoría..">
+                                        <span ng-bind="$item.name"></span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="category in (categories | filter: $select.search) track by category.id">
+                                        {{category.name}}<br>
+                                    </ui-select-choices>
+                                </ui-select>
                             </div>
                         </div>
                         <div class="row m-bottom-10">
@@ -63,7 +85,7 @@
                             </div>
                         </div>
                         <div class="row m-bottom-10">
-                            <label  class="col-sm-6 control-label">Numero</label>
+                            <label  class="col-sm-6 control-label">Número</label>
                             <div class="col-sm-6">
                                 <input type="number" class="form-control" ng-model='currentCommerce.address.number'>
                             </div>
@@ -75,21 +97,21 @@
                             </div>
                         </div>
                         <div class="row m-bottom-10">
-                            <label  class="col-sm-6 control-label">Numero de telefono</label>
+                            <label  class="col-sm-6 control-label">Número de telefono</label>
                             <div class="col-sm-6">
-                                <input type="number" class="form-control" ng-model='actualPhone.number'>
+                                <input type="text" class="form-control" ng-model='actualPhone.number'>
                             </div>
                         </div>
                         <div class="row m-bottom-10" >
-                            <label  class="col-sm-6 control-label">Horarios de atencion</label>
+                            <label  class="col-sm-6 control-label">Horarios de atención</label>
                             <div class="col-sm-6 ">
-                                <select class="col-sm-12" ng-options="day for day in days" ng-model="daySelected"></select>
+                                <select class="col-sm-12 form-control" ng-options="day for day in days" ng-model="daySelected"></select>
                                 <input style="margin-top:3px"  type="time" ng-model="from" />
                                 <input style="margin-top:3px"  type="time" ng-model="to">
                                 <button style="margin-top:3px" type="button" ng-click="addCurrentTime()">Agregar</button>
                             </div>
                             <div class="col-sm-12" ng-repeat="time in currentCommerce.times">
-                                <label class="" >{{time.day}} - Desde {{time.from | date : 'HH:mm'}} Hasta {{time.to | date : 'HH:mm'}}</label>
+                                <label class="" >{{time.day}} - Desde {{time.from | date : 'HH:mm'}}{{time.fromHour | date : 'HH:mm'}} Hasta {{time.to | date : 'HH:mm'}}{{time.toHour | date : 'HH:mm'}}</label>
                                 <i class="glyphicon glyphicon-remove" style="cursor:pointer" ng-click="deleteTime($index)"></i>
                             </div>
                         </div>
@@ -97,8 +119,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
-                        <button ng-if="!editModal" type="button" class="btn btn-primary pull-left"  ng-click="createCommerce(currentCommerce)">Agregar</button>
-                        <button ng-if="editModal" type="button" class="btn btn-primary pull-left"  ng-click="updateCommerce(currentCommerce)">Guardar</button>
+                        <button ng-if="!editModal" type="button" class="btn btn-primary pull-left"  ng-click="createCommerce()">Agregar</button>
+                        <button ng-if="editModal" type="button" class="btn btn-primary pull-left"  ng-click="updateCommerce()">Guardar</button>
                     </div>
                 </div>
             </div>

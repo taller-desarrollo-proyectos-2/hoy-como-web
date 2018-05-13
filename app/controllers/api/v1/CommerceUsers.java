@@ -1,8 +1,12 @@
 package controllers.api.v1;
 
 import annotations.Authenticate;
+import com.avaje.ebean.Ebean;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import exceptions.CreationException;
+import exceptions.DeleteException;
+import exceptions.UpdateException;
 import models.BackofficeUser;
 import models.Commerce;
 import models.CommerceUser;
@@ -21,18 +25,19 @@ public class CommerceUsers extends Controller {
 
     @Authenticate(types = "BACKOFFICE")
     public static Result create(){
+        Ebean.beginTransaction();
         try {
             Form<CommerceUser> form = Form.form(CommerceUser.class, BackofficeUser.Creation.class).bindFromRequest();
             //Chequeo que se hayan enviado los parametros necesarios
             if (form.hasErrors()) {
                 logger.info("Intento de creacion de usuario de comercio con parametros incorrectos", form.errorsAsJson());
-                return badRequest(form.errorsAsJson());
+                return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Errores en los campos de creacion"));
             }
 
             CommerceUser user = form.get();
 
             UsersService.create(user);
-
+            Ebean.commitTransaction();
             return ok(Json.toJson(user));
         }catch(CreationException e){
             logger.error(e.getMessage());
@@ -40,6 +45,33 @@ public class CommerceUsers extends Controller {
         }catch(Exception e){
             logger.error("Error while creating backoffice user", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando crear usuario"));
+        }finally{
+            Ebean.endTransaction();
+        }
+    }
+
+    @Authenticate(types = "BACKOFFICE")
+    public static Result update(Long id){
+        Ebean.beginTransaction();
+        try{
+            Form<CommerceUser> form = Form.form(CommerceUser.class).bindFromRequest();
+            if (form.hasErrors()) {
+                logger.error("Error en el json de modificacion de usuarios de comercio", form.errorsAsJson());
+                return badRequest(JsonNodeFactory.instance.objectNode().put("message", "Error en los parametros de modificacion del usuario de comercio"));
+            }
+            CommerceUser user = form.get();
+
+            UsersService.update(id, user);
+            Ebean.commitTransaction();
+            return ok(Json.toJson(user));
+        }catch(UpdateException e){
+            logger.error("Error actualizando el usuario de comercio", e.getMessage());
+            return badRequest(JsonNodeFactory.instance.objectNode().put("message",e.getMessage()));
+        }catch(Exception e){
+            logger.error("Error interno intentando actualizar el usuario de comercio", e);
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando actualizar el usuario de comercio"));
+        }finally{
+            Ebean.endTransaction();
         }
     }
 
@@ -50,6 +82,24 @@ public class CommerceUsers extends Controller {
         }catch(Exception e){
             logger.error("Error interno intentando listar usuarios", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando listar usuarios"));
+        }
+    }
+
+    @Authenticate(types = "BACKOFFICE")
+    public static Result delete(Long id){
+        Ebean.beginTransaction();
+        try {
+            UsersService.delete(id);
+            Ebean.commitTransaction();
+            return ok();
+        }catch(DeleteException e){
+            logger.error("Error borrando el usuario de comercio", e);
+            return badRequest(JsonNodeFactory.instance.objectNode().put("message", e.getMessage()));
+        }catch(Exception e){
+            logger.error("Error interno borrando el usuario de comercio", e);
+            return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando borrar el usuario de comercio"));
+        }finally {
+            Ebean.endTransaction();
         }
     }
 }

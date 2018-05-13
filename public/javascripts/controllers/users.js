@@ -3,6 +3,7 @@ hoyComoApp.controller('usersCtrl', function ($scope, $http, $window, $rootScope,
   
     $scope.users = [];
     $scope.commerces = [];
+    $scope.currentUser = {};
 
     indexCommerces();
     indexUsers();
@@ -21,12 +22,6 @@ hoyComoApp.controller('usersCtrl', function ($scope, $http, $window, $rootScope,
         });
     }
 
-    $scope.toggleCreateModal = function() {
-        $scope.editModal = false;
-        $scope.currentCommerce = {};
-        $("#commercesModal").modal("toggle");
-    };
-
     function indexUsers(){
         $http({
             url: "/api/v1/commerce/users",
@@ -42,29 +37,77 @@ hoyComoApp.controller('usersCtrl', function ($scope, $http, $window, $rootScope,
     }
 
     $scope.toggleCreateModal = function() {
+        if($scope.editModal) $scope.currentUser = {};
         $scope.editModal = false;
-        $scope.currentUser = {};
+        $("#usersModal").modal("toggle");
+    };
+
+    $scope.toggleEditModal = function(user) {
+        $scope.editModal = true;
+        angular.copy(user, $scope.currentUser);
         $("#usersModal").modal("toggle");
     };
     
-    $scope.createUser = function(user){
-            $http({
-                url: "/api/v1/commerce/users",
-                data: user,
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'authorization' : $rootScope.auth
-                }
-            }).success(function(){
-                $scope.currentUser = {};
-                $("#usersModal").modal("toggle");
-                indexUsers();
-                toastr.success("Usuario creado con exito.");
-            }).error(function(err){
-                $("#usersModal").modal("toggle");
-                toastr.error(err.message);
-            });
+    $scope.createUser = function(){
+        $http({
+            url: "/api/v1/commerce/users",
+            data: $scope.currentUser,
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'authorization' : $rootScope.auth
+            }
+        }).success(function(){
+            $scope.currentUser = {};
+            $("#usersModal").modal("toggle");
+            indexUsers();
+            toastr.success("Usuario creado con exito.");
+        }).error(function(err){
+            toastr.error(err.message);
+        });
     };
+
+    $scope.updateUser = function(){
+        delete $scope.currentUser.panel;
+        $scope.currentUser.commerce = {
+            id : $scope.currentUser.commerce.id
+        };
+        $http({
+            url: "/api/v1/commerce/users/" + $scope.currentUser.id,
+            data: $scope.currentUser,
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'authorization' : $rootScope.auth
+            }
+        }).success(function(){
+            $scope.currentUser = {};
+            $("#usersModal").modal("toggle");
+            indexUsers();
+            toastr.success("Usuario actualizado con exito.");
+        }).error(function(err){
+            toastr.error(err.message);
+        });
+    };
+
+    $scope.delete = function(user){
+        $http({
+            url: "/api/v1/commerce/users/" + user.id,
+            data: $scope.currentUser,
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'authorization' : $rootScope.auth
+            }
+        }).success(function(){
+            indexUsers();
+            toastr.success("Usuario eliminado con exito.");
+        }).error(function(err){
+            toastr.error(err.message);
+        });
+    };
+
 });

@@ -4,12 +4,14 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.typesafe.config.ConfigFactory;
+import exceptions.CreationException;
 import models.BackofficeUser;
 import models.FacebookUser;
 import org.mindrot.jbcrypt.BCrypt;
 import play.Logger;
 import play.data.Form;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
 
 import java.util.Calendar;
@@ -48,6 +50,7 @@ public class Authorization extends Controller {
 
             response().setHeader("authorization", "Bearer " + token);
 
+            Http.Context.current().session().put("authorization", "Bearer " + token);
             return ok(dbUser.getPanel());
         }catch(Exception e){
             logger.error("Error intentando autenticarse", e);
@@ -56,10 +59,10 @@ public class Authorization extends Controller {
     }
 
     public static Result facebookAuthenticate(){
-        try{
+        try {
             Form<FacebookUser> form = Form.form(FacebookUser.class, FacebookUser.Login.class).bindFromRequest();
 
-            if(form.hasErrors()){
+            if (form.hasErrors()) {
                 logger.error("Error, token no enviado en la peticion", form.errorsAsJson());
                 return badRequest(form.errorsAsJson());
             }
@@ -76,6 +79,9 @@ public class Authorization extends Controller {
 
             response().setHeader("authorization", "Bearer " + token);
             return ok();
+        }catch(CreationException e){
+            logger.error("ID de usuario incorrecto");
+            return badRequest(JsonNodeFactory.instance.objectNode().put("message", "ID de usuario incorrecto"));
         }catch(Exception e ){
             logger.error("Error interno intentando autenticarse con facebook", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando loguearse"));

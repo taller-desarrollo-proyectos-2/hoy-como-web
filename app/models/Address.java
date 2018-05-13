@@ -1,12 +1,18 @@
 package models;
 
+import com.avaje.ebean.ExpressionList;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.util.List;
 
 @Entity
 public class Address extends Model {
+
+    protected static final Finder<Long, Address> FIND = new Finder<>(Long.class, Address.class);
 
     @Id
     private Long id;
@@ -16,6 +22,9 @@ public class Address extends Model {
     private int number;
 
     private String additionalInformation;
+
+    @ManyToOne
+    private MobileUser user;
 
     public Long getId() {
         return id;
@@ -47,5 +56,22 @@ public class Address extends Model {
 
     public void setAdditionalInformation(String additionalInformation) {
         this.additionalInformation = additionalInformation;
+    }
+
+    public static Address findByProperties(List<String> properties, List<Object> values){
+        ExpressionList<Address> exp = FIND.where();
+        for(int i =0; i<properties.size(); i++){
+            exp.eq(properties.get(i), values.get(i));
+        }
+        return exp.findUnique();
+    }
+
+    @JsonIgnore
+    public MobileUser getUser() {
+        return user;
+    }
+
+    public void setUser(MobileUser user) {
+        this.user = user;
     }
 }
