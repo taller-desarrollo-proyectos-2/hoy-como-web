@@ -1,5 +1,6 @@
 package models;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -189,7 +190,9 @@ public class Commerce extends Model{
     }
 
     public double getScore(){
-        return (this.scoreCount / Qualification.countByCommerce(this.getId()));
+        int qualificationsCount = Qualification.countByCommerce(this.getId());
+        qualificationsCount = qualificationsCount == 0 ? 1 : qualificationsCount;
+        return new BigDecimal((Double.valueOf(this.scoreCount) / Double.valueOf(qualificationsCount))).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 
     public static Map<String, String[]> validateQuery(Map<String, String[]> query){
