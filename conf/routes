@@ -68,6 +68,8 @@ PUT         /api/v1/requests/:id            controllers.api.v1.Requests.update(i
 # QUALIFICATIONS
 
 POST        /api/v1/qualifications          controllers.api.v1.Qualifications.create()
+GET         /api/v1/qualifications          controllers.api.v1.Qualifications.list()
+PUT         /api/v1/qualifications/:id      controllers.api.v1.Qualifications.update(id : Long)
 
 # VIEWS
 

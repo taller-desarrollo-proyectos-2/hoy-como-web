@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import java.util.List;
 
 @Entity
 public class Qualification extends Model {
@@ -14,6 +15,8 @@ public class Qualification extends Model {
     protected static final Finder<Long, Qualification> FIND = new Finder<>(Long.class, Qualification.class);
 
     public interface Creation{}
+
+    public interface Update{}
 
     @Id
     private Long id;
@@ -30,6 +33,7 @@ public class Qualification extends Model {
 
     private String comment;
 
+    @Constraints.Required(groups = Update.class)
     private String response;
 
     public Long getId() {
@@ -86,5 +90,9 @@ public class Qualification extends Model {
 
     public static int countByCommerce(Long commerceId){
         return FIND.where().eq("request.singleRequests.plate.commerce.id", commerceId).findRowCount();
+    }
+
+    public static List<Qualification> findListByProperty(String property, Object value){
+        return FIND.where().eq(property, value).findList();
     }
 }
