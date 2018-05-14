@@ -1,12 +1,11 @@
 package models;
 
+import com.avaje.ebean.annotation.CreatedTimestamp;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -35,6 +34,10 @@ public class Qualification extends Model {
 
     @Constraints.Required(groups = Update.class)
     private String response;
+
+    @CreatedTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date qualifiedAt;
 
     public Long getId() {
         return id;
@@ -94,5 +97,13 @@ public class Qualification extends Model {
 
     public static List<Qualification> findListByProperty(String property, Object value){
         return FIND.where().eq(property, value).findList();
+    }
+
+    public Date getQualifiedAt() {
+        return qualifiedAt;
+    }
+
+    public void setQualifiedAt(Date qualifiedAt) {
+        this.qualifiedAt = qualifiedAt;
     }
 }

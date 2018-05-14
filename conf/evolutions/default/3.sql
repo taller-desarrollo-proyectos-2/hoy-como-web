@@ -8,6 +8,7 @@ create table qualification (
   comment                   varchar(255),
   response                  varchar(255),
   score                     int,
+  qualified_at              datetime,
   constraint pk_qualification primary key (id))
 ;
 
