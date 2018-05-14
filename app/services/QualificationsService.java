@@ -1,18 +1,18 @@
 package services;
 
+import models.Commerce;
 import models.MobileUser;
 import models.Qualification;
+import models.Request;
 
 public class QualificationsService {
 
     public static void create(Qualification qualification, MobileUser user){
-        Qualification dbQualif = Qualification.findByProperty("request.id", qualification.getRequest().getId());
-        if(dbQualif != null){
-            // TODO - Restarle el puntaje de la calificacion de db.
-            dbQualif.delete();
-        }
         qualification.setUser(user);
         qualification.save();
-        // TODO - Agregar al comercio el total de puntaje y sumarle uno a la cantidad de calificaciones.
+        //Busco el comerico al que corresponde la calificacion.
+        Commerce commerce = Commerce.findByProperty("plates.id", Request.findByProperty("id", qualification.getRequest().getId()).getSingleRequests().get(0).getPlate().getId());
+        commerce.setScoreCount(commerce.getScoreCount() + qualification.getScore());
+        commerce.update();
     }
 }

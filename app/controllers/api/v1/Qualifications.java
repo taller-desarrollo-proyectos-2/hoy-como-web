@@ -1,5 +1,6 @@
 package controllers.api.v1;
 
+import annotations.Authenticate;
 import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import models.MobileUser;
@@ -16,6 +17,7 @@ public class Qualifications extends Controller {
 
     private static Logger.ALogger logger = Logger.of("qualifications-api");
 
+    @Authenticate(types = "FACEBOOK")
     public static Result create(){
         Ebean.beginTransaction();
         try{
@@ -35,6 +37,8 @@ public class Qualifications extends Controller {
         }catch(Exception e){
             logger.error("Error creando calificacion", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error intentando crear la calificacion"));
+        }finally{
+            Ebean.endTransaction();
         }
     }
 }

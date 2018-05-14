@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.persistence.*;
 
 import com.avaje.ebean.ExpressionList;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import services.FinderService;
@@ -71,6 +72,8 @@ public class Commerce extends Model{
 
     @Constraints.Required(groups = Commerce.Creation.class)
     private String pictureFileName;
+
+    private long scoreCount;
 
     public Long getId() {
         return id;
@@ -174,6 +177,19 @@ public class Commerce extends Model{
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    @JsonIgnore
+    public long getScoreCount() {
+        return scoreCount;
+    }
+
+    public void setScoreCount(long scoreCount) {
+        this.scoreCount = scoreCount;
+    }
+
+    public double getScore(){
+        return (this.scoreCount / Qualification.countByCommerce(this.getId()));
     }
 
     public static Map<String, String[]> validateQuery(Map<String, String[]> query){

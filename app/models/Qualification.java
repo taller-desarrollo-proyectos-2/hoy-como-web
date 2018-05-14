@@ -23,9 +23,9 @@ public class Qualification extends Model {
     private Request request;
 
     @ManyToOne
-    @Constraints.Required(groups = Creation.class)
     private MobileUser user;
 
+    @Constraints.Required(groups = Creation.class)
     private int score;
 
     private String comment;
@@ -82,5 +82,9 @@ public class Qualification extends Model {
 
     public static Qualification findByProperty(String property, Object value){
         return FIND.where().eq(property,value).findUnique();
+    }
+
+    public static int countByCommerce(Long commerceId){
+        return FIND.where().eq("request.singleRequests.plate.commerce.id", commerceId).findRowCount();
     }
 }
