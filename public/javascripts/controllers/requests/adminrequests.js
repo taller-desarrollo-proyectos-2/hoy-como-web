@@ -101,5 +101,10 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
             }
           });
     };
+
+    $scope.viewRejectReason = (request) => {
+        $scope.cancelationReason = request.reason;
+        $("#viewCancelationModal").modal("toggle");
+    };
 });
 
