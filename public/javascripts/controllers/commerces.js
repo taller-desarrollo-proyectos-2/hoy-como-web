@@ -1,5 +1,5 @@
 
-hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter) {
+hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootScope, toastr, $filter, $compile, GoogleMaps) {
     $scope.commerces = [];
     $scope.currentCommerce = {};
     $scope.editModal = true;
@@ -50,6 +50,7 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
             $scope.currentCommerce = {};
             $scope.fotoPreview = false;
             $scope.actualPhone = {};
+            $scope.cleanMapAddress();
         }
         $scope.editModal = false;
         $("#commercesModal").modal("toggle");
@@ -63,6 +64,7 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
         angular.copy(commerce, $scope.currentCommerce);
         $scope.actualPhone = $scope.currentCommerce.phones[0];
         $("#commercesModal").modal("toggle");
+        $scope.loadMapAddress($scope.currentCommerce.address.street, $scope.currentCommerce.address.number);
     };
 
     $scope.createCommerce = function (){
@@ -209,4 +211,34 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
             $scope.fotoPreview = false;
         }
     });
+
+
+    //------------------------mapa---------------------------
+
+
+    var map = angular.element("#playground");
+
+    $scope.markers = "Ciudad autonoma de Buenos Aires";
+
+    $scope.updateMap = function (address) {
+        if(!address){
+            toastr.error("Complete calle y numero para ver en mapa");
+        } else {
+            if(!address.number || !address.street){
+                toastr.error("Complete calle y numero para ver en mapa");
+            } else {
+                $scope.loadMapAddress(address.street, address.number);
+            }
+        }
+    }
+
+    $scope.loadMapAddress = (street,number) =>{
+        $scope.markers = number + " " + street + " Argentina";
+        $compile(map)($scope);
+    };
+
+    $scope.cleanMapAddress = () =>{
+        $scope.markers = "Ciudad autonoma de Buenos Aires";
+        $compile(map)($scope);
+    };
 });

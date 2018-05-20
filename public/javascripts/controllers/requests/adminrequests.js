@@ -48,7 +48,7 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
 
     $scope.cancelRequest = (reason) => {
         var data = {status: $scope.statusEnum.cancelledByCommerce,
-                    reason: reason};
+            rejectedReason: reason};
         if(reason === undefined || reason === "") {
             toastr.error("El motivo de cancelación no puede estar vacio.");
         } else {
@@ -103,7 +103,7 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
     };
 
     $scope.viewRejectReason = (request) => {
-        $scope.cancelationReason = request.reason;
+        $scope.cancelationReason = request.rejectedReason;
         $("#viewCancelationModal").modal("toggle");
     };
 });

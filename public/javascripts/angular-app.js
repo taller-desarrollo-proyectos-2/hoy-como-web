@@ -1,4 +1,4 @@
-var hoyComoApp = angular.module('hoyComo', ['toastr', 'ui.select', 'ui.bootstrap']);
+var hoyComoApp = angular.module('hoyComo', ['toastr', 'ui.select', 'ui.bootstrap', 'GoogleMaps']);
 
 hoyComoApp.config(function(toastrConfig) {
     angular.extend(toastrConfig, {
