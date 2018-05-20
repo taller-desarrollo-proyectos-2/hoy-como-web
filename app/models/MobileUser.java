@@ -1,5 +1,6 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
@@ -20,6 +21,8 @@ public class MobileUser extends User {
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Address> addresses;
+
+    private String appToken;
 
     public List<Commerce> getFavourites() {
         return favourites;
@@ -52,5 +55,14 @@ public class MobileUser extends User {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    @JsonIgnore
+    public String getAppToken() {
+        return appToken;
+    }
+
+    public void setAppToken(String appToken) {
+        this.appToken = appToken;
     }
 }

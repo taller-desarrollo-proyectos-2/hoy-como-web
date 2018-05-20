@@ -67,4 +67,13 @@ public class CommerceUser extends BackofficeUser {
     public void fillRequestMap(Map<String, String[]> map) {
         map.put("singleRequests.plate.commerce.id", new String[]{this.getCommerce().getId().toString()});
     }
+
+    public int getLeadTime(){
+        List<Request> commerceRequests = Request.findListByProperty("singleRequests.plate.commerce.id", this.getId());
+        int total = 0;
+        for(Request req : commerceRequests){
+            total += req.getLeadTime();
+        }
+        return commerceRequests.isEmpty() ? 30 : total/commerceRequests.size();
+    }
 }

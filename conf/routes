@@ -19,6 +19,9 @@ GET         /api/v1/commerce/users        controllers.api.v1.CommerceUsers.list(
 # MOBILE USERS
 
 GET         /api/v1/mobile/users/addresses  controllers.api.v1.MobileUsers.myAddresses()
+PUT         /api/v1/mobile/users            controllers.api.v1.MobileUsers.update()
+PUT         /api/v1/mobile/favourite/:id    controllers.api.v1.MobileUsers.addToFavourite(id : Long)
+DELETE      /api/v1/mobile/favourite/:id    controllers.api.v1.MobileUsers.removeFromFavourite(id : Long)
 
 # AUTHENTICATE
 

@@ -65,6 +65,10 @@ public class Request extends Model {
     @OneToOne(cascade = CascadeType.ALL)
     private PaymentType paymentType;
 
+    private Long leadTime;
+
+    private String rejectedReason;
+
     public Long getId() {
         return id;
     }
@@ -144,5 +148,25 @@ public class Request extends Model {
 
     public void setPaymentType(PaymentType paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public Long getLeadTime() {
+        return leadTime;
+    }
+
+    public void setLeadTime(Long leadTime) {
+        this.leadTime = leadTime;
+    }
+
+    public static List<Request> findListByProperty(String property, Object value){
+        return FIND.where().eq(property, value).findList();
+    }
+
+    public String getRejectedReason() {
+        return rejectedReason;
+    }
+
+    public void setRejectedReason(String rejectedReason) {
+        this.rejectedReason = rejectedReason;
     }
 }

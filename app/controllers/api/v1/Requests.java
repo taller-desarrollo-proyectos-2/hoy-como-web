@@ -79,14 +79,14 @@ public class Requests extends Controller {
         }
     }
 
-    @Authenticate(types = "COMMERCE")
+    @Authenticate(types = {"COMMERCE", "FACEBOOK"})
     public static Result update(Long id){
         Ebean.beginTransaction();
         try {
-            CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
+            User user = User.findByProperty("id", Http.Context.current().args.get("userId"));
             Form<Request> form = Form.form(Request.class).bindFromRequest();
 
-            if(commerceUser == null){
+            if(user == null){
                 logger.info("Usuario no encontrado para actualizar el pedido");
                 return notFound(JsonNodeFactory.instance.objectNode().put("message", "Usuario no encontrado para actualizar el pedido"));
             }

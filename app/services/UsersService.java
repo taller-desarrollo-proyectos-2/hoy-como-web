@@ -6,6 +6,7 @@ import exceptions.UpdateException;
 import models.BackofficeUser;
 import models.Commerce;
 import models.CommerceUser;
+import models.MobileUser;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class UsersService {
@@ -35,6 +36,30 @@ public class UsersService {
             throw new UpdateException("Nombre de usuario ya utilizado");
         }
         user.setId(id);
+        user.update();
+    }
+
+    public static void update(Long id, MobileUser user){
+        user.setId(id);
+        user.update();
+    }
+
+    public static void addToFavourite(Long commerceId, MobileUser user) throws UpdateException{
+        Commerce dbCommerce = Commerce.findByProperty("id", commerceId);
+        if(dbCommerce == null){
+            throw new UpdateException("Comercio inexistente para asociar al usuario");
+        }
+        user.getFavourites().add(dbCommerce);
+        user.update();
+    }
+
+    public static void removeFromFavourite(Long commerceId, MobileUser user){
+        for(Commerce commerce : user.getFavourites()){
+            if(commerce.getId().equals(commerceId)){
+                user.getFavourites().remove(commerce);
+                break;
+            }
+        }
         user.update();
     }
 
