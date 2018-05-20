@@ -46,12 +46,6 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
         });
     };
 
-    $scope.toggleCancelationModal = (request) =>{
-        $scope.currentRequest = request;
-        $("#cancelationModal").modal("toggle");
-        $scope.cancelationReason = undefined;
-    };
-
     $scope.cancelRequest = (reason) => {
         var data = {status: $scope.statusEnum.cancelledByCommerce,
                     reason: reason};
@@ -75,6 +69,12 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
     };
 
     //--------------- MODALS --------------------//
+
+    $scope.toggleCancelationModal = (request) =>{
+        $scope.currentRequest = request;
+        $("#cancelationModal").modal("toggle");
+        $scope.cancelationReason = undefined;
+    };
 
     $scope.openUserDetailsModal = (user, destination) =>{
         const modalInstance = $uibModal.open({

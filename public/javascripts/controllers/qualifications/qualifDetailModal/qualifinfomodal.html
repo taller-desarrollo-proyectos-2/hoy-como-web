@@ -2,32 +2,50 @@
         <h3 class="modal-title">Información de Calificación</h3>
     </div>
     <div class="modal-body">
-        <div class="row">
+        <div class="row m-bottom-10">
             <div class="col-sm-6">
-                Nombre:
+                {{qualif.qualifiedAt | date : "dd/MM HH:mm"}}
             </div>
             <div class="col-sm-6">
-                {{user.fullName}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                Direccion:
-            </div>
-            <div class="col-sm-6">
-                {{destination.street}} {{destination.number}}
+                <div class="rating" data-rating="{{qualif.score}}">
+                    <i class="star-1">★</i>
+                    <i class="star-2">★</i>
+                    <i class="star-3">★</i>
+                    <i class="star-4">★</i>
+                    <i class="star-5">★</i>
+                </div>
             </div>
         </div>
-        <div ng-if="destination.additionalInformation" class="row">
+        <div class="row m-bottom-10">
             <div class="col-sm-6">
-                Información extra:
+                Usuario:
             </div>
             <div class="col-sm-6">
-                {{destination.additionalInformation}}
+                {{qualif.user.fullName}}
+            </div>
+        </div>
+        <div class="row m-bottom-10">
+            <div class="col-sm-6">
+                Comentario:
+            </div>
+            <div class="col-sm-6">
+                {{qualif.comment}}
+            </div>
+        </div>
+        <div class="row m-bottom-10">
+            <div class="col-sm-6">
+                Replica:
+            </div>
+            <div ng-if="qualif.response"class="col-sm-6">
+                {{qualif.response}}
+            </div>
+            <div ng-if="!qualif.response"class="col-sm-6">
+                <input type="text" class="form-control" ng-model="data.response">
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="cancel()">Cerrar</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">Cerrar</button>
+        <button ng-if="!qualif.response" class="btn btn-primary pull-left" type="button" ng-click="reply()">Guardar</button>
     </div>
         
