@@ -3,7 +3,9 @@ package services;
 import exceptions.UpdateException;
 import models.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class QualificationsService {
 
@@ -16,8 +18,16 @@ public class QualificationsService {
         commerce.update();
     }
 
-    public static List<Qualification> list(MobileUser user){
-        return Qualification.findListByProperty("user.id", user.getId());
+    public static List<Qualification> list(MobileUser user, Map<String, String[]> queryString){
+        if(queryString.isEmpty()) {
+            return Qualification.findListByProperty("user.id", user.getId());
+        }else{
+            if(queryString.containsKey("commerceId")) {
+                return Qualification.findListByProperty("request.singleRequests.plate.commerce.id", queryString.get("commerceId")[0]);
+            }else{
+                return new ArrayList();
+            }
+        }
     }
 
     public static List<Qualification> list(CommerceUser user){

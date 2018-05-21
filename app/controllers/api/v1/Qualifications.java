@@ -16,6 +16,7 @@ import services.SerializerService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Qualifications extends Controller {
 
@@ -50,10 +51,11 @@ public class Qualifications extends Controller {
     public static Result list(){
         try{
             List<Qualification> qualifications = new ArrayList();
+            Map<String, String[]> queryString = request().queryString();
             CommerceUser commerceUser = CommerceUser.findByProperty("id", Http.Context.current().args.get("userId"));
             if(commerceUser == null){
                 MobileUser mobileUser = MobileUser.findByProperty("id", Http.Context.current().args.get("userId"));
-                qualifications = QualificationsService.list(mobileUser);
+                qualifications = QualificationsService.list(mobileUser, queryString);
             }else{
                 qualifications = QualificationsService.list(commerceUser);
             }

@@ -8,6 +8,8 @@ import com.typesafe.config.ConfigFactory;
 import models.MobileUser;
 import models.Request;
 import models.Request.Status;
+import play.Logger;
+import play.libs.F;
 import play.libs.WS;
 
 import java.io.FileInputStream;
@@ -15,6 +17,9 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 
 public class GoogleServices {
 
@@ -36,7 +41,7 @@ public class GoogleServices {
     private static String getAccessToken() throws IOException {
         GoogleCredential googleCredential = GoogleCredential
                 .fromStream(new FileInputStream("hoycomo-fcm.json"))
-                .createScoped(Arrays.asList());
+                .createScoped(Arrays.asList("https://www.googleapis.com/auth/firebase.messaging"));
         googleCredential.refreshToken();
         return googleCredential.getAccessToken();
     }
@@ -62,12 +67,20 @@ public class GoogleServices {
         }
         if(!message.isEmpty()) {
             ObjectNode body = JsonNodeFactory.instance.objectNode();
-            body.put("to", destinationUser.getAppToken());
-            body.set("data", JsonNodeFactory.instance.objectNode().put("message", message));
+            body.put("validate_only", false)
+                                .set("message", JsonNodeFactory.instance.objectNode()
+                                                .put("data", new HashMap<String, String>().put("message", message))
+                                                .put("token", destinationUser.getAppToken()));
             WS.url("https://fcm.googleapis.com/v1/projects/hoycomo-201312/messages:send")
                     .setHeader("Authorization", "Bearer " + getAccessToken())
-                    .setContentType("application/json")
-                    .post(body);
+                    .setContentType("application/json; UTF-8")
+                    .post(body).flatMap(new F.Function<WS.Response, F.Promise<ObjectNode>>() {
+                @Override
+                public F.Promise<ObjectNode> apply(WS.Response response) throws Throwable {
+                    Logger.of("googleservices-sendfcm").error("response: ", response.asJson());
+                    return F.Promise.pure(JsonNodeFactory.instance.objectNode());
+                }
+            });
         }
     }
 }

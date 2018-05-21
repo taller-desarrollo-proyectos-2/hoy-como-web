@@ -45,7 +45,7 @@ public class RequestsService {
             try {
                 GoogleServices.sendNotification(request, destinationUser);
             }catch(IOException e){
-                Logger.of("app-notifications").error("Error enviando notificacion de cambio de estado");
+                Logger.of("app-notifications").error("Error enviando notificacion de cambio de estado", e);
             }
         }
     }
