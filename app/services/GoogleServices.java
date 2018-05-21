@@ -78,7 +78,7 @@ public class GoogleServices {
             body.put("validate_only", false)
                                 .set("message", JsonNodeFactory.instance.objectNode()
                                                 .put("token", destinationUser.getAppToken())
-                                                .set("data", JsonNodeFactory.instance.objectNode().put("message", message)));
+                                                .set("notification", JsonNodeFactory.instance.objectNode().put("body", message)));
             WS.url("https://fcm.googleapis.com/v1/projects/hoycomo-201312/messages:send")
                     .setHeader("Authorization", "Bearer " + getAccessToken())
                     .setContentType("application/json; UTF-8")
