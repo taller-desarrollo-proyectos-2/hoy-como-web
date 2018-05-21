@@ -96,7 +96,7 @@ public class Qualification extends Model {
     }
 
     public static List<Qualification> findListByProperty(String property, Object value){
-        return FIND.where().eq(property, value).findList();
+        return FIND.where().eq(property, value).orderBy("qualifiedAt DESC").findList();
     }
 
     public Date getQualifiedAt() {

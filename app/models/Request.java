@@ -130,7 +130,7 @@ public class Request extends Model {
         return validatedQuery;
     }
     public static List<Request> findByMap(Map<String, String[]> map){
-        return FinderService.findByMap(FIND.where(), map).findList();
+        return FinderService.findByMap(FIND.where(), map).orderBy("initAt DESC").findList();
     }
 
     public static Request findByProperty(String property, Object value){
