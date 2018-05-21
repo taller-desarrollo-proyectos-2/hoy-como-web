@@ -233,4 +233,16 @@ public class Commerce extends Model{
         }
         return exp.findUnique();
     }
+
+    public int getLeadTime(){
+        List<Request> commerceRequests = Request.findListByProperty("singleRequests.plate.commerce.id", this.getId());
+        int total = 0;int requests = 0;
+        for(Request req : commerceRequests){
+            if(req.getLeadTime() != null){
+                total+= req.getLeadTime();
+                requests++;
+            }
+        }
+        return requests == 0 ? 30 : total/commerceRequests.size();
+    }
 }
