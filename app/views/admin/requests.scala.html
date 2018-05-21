@@ -27,7 +27,7 @@
                             <td style="text-align: left;">
                                 <i ng-click="openRequestDetailsModal(request)" class="icon-info fa fa-info-circle" aria-hidden="true"></i>
                             </td>
-                            <td>$ 100,00</td>
+                            <td>$ {{request.total}}</td>
                             <td>
                                 <span ng-if="request.status == statusEnum.waitingConfirmation" class="label label-info">A confirmar</span>
                                 <span ng-if="request.status == statusEnum.onPreparation" class="label label-warning">Aceptado</span>
