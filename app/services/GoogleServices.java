@@ -77,7 +77,7 @@ public class GoogleServices {
                     .post(body).flatMap(new F.Function<WS.Response, F.Promise<ObjectNode>>() {
                 @Override
                 public F.Promise<ObjectNode> apply(WS.Response response) throws Throwable {
-                    Logger.of("googleservices-sendfcm").error("response: ", response.asJson());
+                    Logger.of("googleservices-sendfcm").error("response: ", response.asJson().toString());
                     return F.Promise.pure(JsonNodeFactory.instance.objectNode());
                 }
             });

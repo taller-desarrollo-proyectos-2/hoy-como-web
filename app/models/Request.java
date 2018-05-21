@@ -69,6 +69,9 @@ public class Request extends Model {
 
     private String rejectedReason;
 
+    @Transient
+    private int total;
+
     public Long getId() {
         return id;
     }
@@ -168,5 +171,16 @@ public class Request extends Model {
 
     public void setRejectedReason(String rejectedReason) {
         this.rejectedReason = rejectedReason;
+    }
+
+    public int getTotal(){
+        int total = 0;
+        for(SingleRequest req: this.getSingleRequests()){
+            total+= (req.getPlate().getPrice()*req.getQuantity());
+            for(Optional opt: req.getOptionals()){
+                total+= opt.getPrice()*req.getQuantity();
+            }
+        }
+        return total;
     }
 }
