@@ -35,10 +35,12 @@ public class QualificationsService {
     }
 
     public static void update(Long id, Qualification qualification) throws UpdateException{
-        if(Qualification.findByProperty("id", id) == null){
+        Qualification dbQualification = Qualification.findByProperty("id", id);
+        if(dbQualification == null){
             throw new UpdateException("Calificacion de id inexistente");
         }
         qualification.setId(id);
+        qualification.setScore(dbQualification.getScore());
         qualification.update();
     }
 }
