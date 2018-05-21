@@ -23,19 +23,27 @@ import java.util.HashMap;
 
 public class GoogleServices {
 
-    private static GeoApiContext context = null;
+    private static GeoApiContext contextCoord = null;
+    private static GeoApiContext contextMatrix = null;
 
-    protected GoogleServices(GeoApiContext context){
-        this.context = context;
-    }
-
-    public static GeoApiContext getContext(){
-        if(context == null){
-            context = new GeoApiContext.Builder()
-                    .apiKey(ConfigFactory.load().getString("google.api.key"))
-                    .build();
+    public static GeoApiContext getContext(String type){
+        switch(type) {
+            case "matrix":
+                if (contextMatrix == null) {
+                    contextMatrix = new GeoApiContext.Builder()
+                            .apiKey(ConfigFactory.load().getString("google.distance.key"))
+                            .build();
+                }
+                return contextMatrix;
+            case "coordinates":
+                if (contextCoord == null) {
+                    contextCoord = new GeoApiContext.Builder()
+                            .apiKey(ConfigFactory.load().getString("google.api.key"))
+                            .build();
+                }
+                return contextCoord;
         }
-        return context;
+        return contextCoord;
     }
 
     private static String getAccessToken() throws IOException {
@@ -69,8 +77,8 @@ public class GoogleServices {
             ObjectNode body = JsonNodeFactory.instance.objectNode();
             body.put("validate_only", false)
                                 .set("message", JsonNodeFactory.instance.objectNode()
-                                                .put("data", new HashMap<String, String>().put("message", message))
-                                                .put("token", destinationUser.getAppToken()));
+                                                .put("token", destinationUser.getAppToken())
+                                                .set("data", JsonNodeFactory.instance.objectNode().put("message", message)));
             WS.url("https://fcm.googleapis.com/v1/projects/hoycomo-201312/messages:send")
                     .setHeader("Authorization", "Bearer " + getAccessToken())
                     .setContentType("application/json; UTF-8")
