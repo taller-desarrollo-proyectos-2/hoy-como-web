@@ -130,3 +130,8 @@
 .label-danger{
     background-color: #d9534f;
 }
+
+google-maps {
+    display: block;
+    min-height: 150px;
+}

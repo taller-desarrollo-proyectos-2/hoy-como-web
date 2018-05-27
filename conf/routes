@@ -19,6 +19,9 @@ GET         /api/v1/commerce/users        controllers.api.v1.CommerceUsers.list(
 # MOBILE USERS
 
 GET         /api/v1/mobile/users/addresses  controllers.api.v1.MobileUsers.myAddresses()
+PUT         /api/v1/mobile/users            controllers.api.v1.MobileUsers.update()
+PUT         /api/v1/mobile/favourite/:id    controllers.api.v1.MobileUsers.addToFavourite(id : Long)
+DELETE      /api/v1/mobile/favourite/:id    controllers.api.v1.MobileUsers.removeFromFavourite(id : Long)
 
 # AUTHENTICATE
 
@@ -65,6 +68,12 @@ POST        /api/v1/requests                controllers.api.v1.Requests.create()
 GET         /api/v1/requests                controllers.api.v1.Requests.list()
 PUT         /api/v1/requests/:id            controllers.api.v1.Requests.update(id : Long)
 
+# QUALIFICATIONS
+
+POST        /api/v1/qualifications          controllers.api.v1.Qualifications.create()
+GET         /api/v1/qualifications          controllers.api.v1.Qualifications.list()
+PUT         /api/v1/qualifications/:id      controllers.api.v1.Qualifications.update(id : Long)
+
 # VIEWS
 
 GET         /                               controllers.web.Dash.showMainScreen()
@@ -82,3 +91,4 @@ GET         /web/optionals                  controllers.web.Menu.showOptionals()
 GET         /web/plates                     controllers.web.Menu.showPlates()
 GET         /web/commerce/requests          controllers.web.Requests.showCommerceRequests()
 GET         /web/root/requests              controllers.web.Requests.showRootRequests()
+GET         /web/commerce/qualifications    controllers.web.Qualifications.showCommerceQualifications()

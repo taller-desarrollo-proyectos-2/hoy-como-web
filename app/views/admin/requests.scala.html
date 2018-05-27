@@ -27,7 +27,7 @@
                             <td style="text-align: left;">
                                 <i ng-click="openRequestDetailsModal(request)" class="icon-info fa fa-info-circle" aria-hidden="true"></i>
                             </td>
-                            <td>$ 100,00</td>
+                            <td>$ {{request.total}}</td>
                             <td>
                                 <span ng-if="request.status == statusEnum.waitingConfirmation" class="label label-info">A confirmar</span>
                                 <span ng-if="request.status == statusEnum.onPreparation" class="label label-warning">Aceptado</span>
@@ -49,6 +49,9 @@
                                 <div ng-if="request.status == statusEnum.onPreparation">
                                     <a style="cursor:pointer;" ng-click="updateRequestStatus(request, statusEnum.onTheWay)">Marcar en camino</a>,
                                     <a style="cursor:pointer;" ng-click="toggleCancelationModal(request)">Cancelar</a>
+                                </div>
+                                <div ng-if="request.status == statusEnum.cancelledByCommerce">
+                                    <a style="cursor:pointer;" ng-click="viewRejectReason(request)">Ver motivo de cancelación</a>
                                 </div>
                             </td>
                         </tr>
@@ -78,6 +81,28 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Volver</button>
                     <button type="button" class="btn btn-primary pull-left" ng-click="cancelRequest(cancelationReason)">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="viewCancelationModal" tabindex="-1" role="dialog" aria-labelledby="cantelationModal" aria-hidden="true">
+        <div class="modal-dialog"> 
+           <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Motivo de cancelación</h4>
+
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {{cancelationReason}}
+                        </div>
+                   </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Volver</button>
                 </div>
             </div>
         </div>

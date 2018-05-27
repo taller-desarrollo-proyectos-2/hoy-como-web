@@ -48,6 +48,10 @@ public class CommerceUser extends BackofficeUser {
                 "\t\t\"showName\": \"Pedidos\",\n" +
                 "\t\t\"route\": \"/web/commerce/requests\",\n" +
                 "\t\t\"icon\": \"fa fa-list-alt\"\n" +
+                "\t},{\n" +
+                "\t\t\"showName\": \"Calificaciones\",\n" +
+                "\t\t\"route\": \"/web/commerce/qualifications\",\n" +
+                "\t\t\"icon\": \"fa fa-star-o\"\n" +
                 "\t}]");
     }
 

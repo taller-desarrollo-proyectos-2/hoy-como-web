@@ -46,15 +46,9 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
         });
     };
 
-    $scope.toggleCancelationModal = (request) =>{
-        $scope.currentRequest = request;
-        $("#cancelationModal").modal("toggle");
-        $scope.cancelationReason = undefined;
-    };
-
     $scope.cancelRequest = (reason) => {
         var data = {status: $scope.statusEnum.cancelledByCommerce,
-                    reason: reason};
+            rejectedReason: reason};
         if(reason === undefined || reason === "") {
             toastr.error("El motivo de cancelación no puede estar vacio.");
         } else {
@@ -75,6 +69,12 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
     };
 
     //--------------- MODALS --------------------//
+
+    $scope.toggleCancelationModal = (request) =>{
+        $scope.currentRequest = request;
+        $("#cancelationModal").modal("toggle");
+        $scope.cancelationReason = undefined;
+    };
 
     $scope.openUserDetailsModal = (user, destination) =>{
         const modalInstance = $uibModal.open({
@@ -100,6 +100,11 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
                 number: () =>  request.id
             }
           });
+    };
+
+    $scope.viewRejectReason = (request) => {
+        $scope.cancelationReason = request.rejectedReason;
+        $("#viewCancelationModal").modal("toggle");
     };
 });
 

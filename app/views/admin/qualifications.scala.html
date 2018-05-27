@@ -1,0 +1,50 @@
+<div class="container screen-container" ng-controller="qualifCtrl">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 page-header center-elems">
+            <h1>
+                Calificaciones
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-content table-responsive">
+                    <table class="table">
+                        <thead>
+                            <th class="col-sm-2">Fecha</th>
+                            <th class="col-sm-2">Puntaje</th>
+                            <th class="col-sm-2">Usuario</th>
+                            <th class="col-sm-2">Comentario</th>
+                            <th class="col-sm-2">Réplica</th>
+                            <th class="col-sm-2">Pedido</th>
+                        </thead>
+                        <tbody>
+                            <tr class="highlightRow" ng-repeat="qualification in qualifications">
+                                <td ng-click="openQualifDetailsModal(qualification)">{{qualification.qualifiedAt | date : "dd/MM HH:mm"}}</td>
+                                <td ng-click="openQualifDetailsModal(qualification)">
+                                    <div class="rating" data-rating="{{qualification.score}}">
+                                        <i class="star-1">★</i>
+                                        <i class="star-2">★</i>
+                                        <i class="star-3">★</i>
+                                        <i class="star-4">★</i>
+                                        <i class="star-5">★</i>
+                                    </div>
+                                </td>
+                                <td ng-click="openQualifDetailsModal(qualification)">{{qualification.user.fullName}}</td>
+                                <td ng-click="openQualifDetailsModal(qualification)" class="truncate">{{qualification.comment}}</td>
+                                <td ng-click="openQualifDetailsModal(qualification)" class="truncate">
+                                    <span ng-if="qualification.response">{{qualification.response}}</span>
+                                    <i ng-if="!qualification.response" class="icon-info fa fa-comment-o" aria-hidden="true"></i>
+                                </td>
+                                <td>
+                                    <i ng-click="openRequestDetailsModal(qualification.request)" class="icon-info fa fa-info-circle" aria-hidden="true"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

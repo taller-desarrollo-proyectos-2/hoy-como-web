@@ -1,5 +1,7 @@
 package services;
 
+import com.google.maps.DistanceMatrixApi;
+import com.google.maps.DistanceMatrixApiRequest;
 import com.google.maps.GeocodingApi;
 import com.google.maps.GeocodingApiRequest;
 import com.google.maps.model.GeocodingResult;
@@ -25,7 +27,7 @@ public class CommerceServices {
         if(Commerce.findByProperty("name", commerce.getName()) != null){
             throw new CreationException("Comercio con nombre ya creado");
         }
-        GeocodingApiRequest req =  GeocodingApi.newRequest(GoogleServices.getContext())
+        GeocodingApiRequest req =  GeocodingApi.newRequest(GoogleServices.getContext("coordinates"))
                 .address(commerce.getAddress().getNumber() + " " +  commerce.getAddress().getStreet() + "Argentina");
 
         // Async
