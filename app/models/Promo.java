@@ -1,24 +1,42 @@
 package models;
 
+import com.avaje.ebean.annotation.CreatedTimestamp;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 /**
  *
  * @author facundocaldora
  */
+@Entity
 public class Promo {
 
+    @Id
+    private Long id;
+
+    @Temporal(value = TemporalType.TIMESTAMP)
+    @CreatedTimestamp
     private Date startAt;
 
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Date endAt;
 
     private String name;
 
-    private float percentage;
+    private String description;
 
-    private float discountAmount;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Bundle> bundles;
+
+    private boolean active;
+
+    private Float price;
+
+    @ManyToOne
+    private Commerce commerce;
 
     public String getName() {
         return name;
@@ -44,19 +62,52 @@ public class Promo {
         this.endAt = endAt;
     }
 
-    public float getPercentage() {
-        return percentage;
+    public Long getId() {
+        return id;
     }
 
-    public void setPercentage(float percentage) {
-        this.percentage = percentage;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public float getDiscountAmount() {
-        return discountAmount;
+    public List<Bundle> getBundles() {
+        return bundles;
     }
 
-    public void setDiscountAmount(float discountAmount) {
-        this.discountAmount = discountAmount;
+    public void setBundles(List<Bundle> bundles) {
+        this.bundles = bundles;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @JsonIgnore
+    public Commerce getCommerce() {
+        return commerce;
+    }
+
+    public void setCommerce(Commerce commerce) {
+        this.commerce = commerce;
     }
 }
