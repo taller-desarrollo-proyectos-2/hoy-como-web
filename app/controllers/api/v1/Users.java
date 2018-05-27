@@ -23,7 +23,7 @@ public class Users extends Controller {
             }
             return ok(Json.toJson(user));
         }catch(Exception e){
-            logger.error("Error interno obteniendo informacion del usuario");
+            logger.error("Error interno obteniendo informacion del usuario", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno obteniendo informacion del usuario"));
         }
     }

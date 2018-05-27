@@ -1,5 +1,6 @@
 package models;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.Map;
 import javax.persistence.*;
 
 import com.avaje.ebean.ExpressionList;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import services.FinderService;
@@ -71,6 +73,8 @@ public class Commerce extends Model{
 
     @Constraints.Required(groups = Commerce.Creation.class)
     private String pictureFileName;
+
+    private long scoreCount;
 
     public Long getId() {
         return id;
@@ -176,6 +180,21 @@ public class Commerce extends Model{
         this.location = location;
     }
 
+    @JsonIgnore
+    public long getScoreCount() {
+        return scoreCount;
+    }
+
+    public void setScoreCount(long scoreCount) {
+        this.scoreCount = scoreCount;
+    }
+
+    public double getScore(){
+        int qualificationsCount = Qualification.countByCommerce(this.getId());
+        qualificationsCount = qualificationsCount == 0 ? 1 : qualificationsCount;
+        return new BigDecimal((Double.valueOf(this.scoreCount) / Double.valueOf(qualificationsCount))).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
     public static Map<String, String[]> validateQuery(Map<String, String[]> query){
         Map<String, String[]> validatedQuery = new HashMap();
         for(Map.Entry entry : query.entrySet()){
@@ -213,5 +232,17 @@ public class Commerce extends Model{
             exp.eq(properties.get(i), values.get(i));
         }
         return exp.findUnique();
+    }
+
+    public int getLeadTime(){
+        List<Request> commerceRequests = Request.findListByProperty("singleRequests.plate.commerce.id", this.getId());
+        int total = 0;int requests = 0;
+        for(Request req : commerceRequests){
+            if(req.getLeadTime() != null){
+                total+= req.getLeadTime();
+                requests++;
+            }
+        }
+        return requests == 0 ? 30 : total/commerceRequests.size();
     }
 }

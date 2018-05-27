@@ -65,6 +65,13 @@ public class Request extends Model {
     @OneToOne(cascade = CascadeType.ALL)
     private PaymentType paymentType;
 
+    private Long leadTime;
+
+    private String rejectedReason;
+
+    @Transient
+    private int total;
+
     public Long getId() {
         return id;
     }
@@ -123,7 +130,7 @@ public class Request extends Model {
         return validatedQuery;
     }
     public static List<Request> findByMap(Map<String, String[]> map){
-        return FinderService.findByMap(FIND.where(), map).findList();
+        return FinderService.findByMap(FIND.where(), map).orderBy("initAt DESC").findList();
     }
 
     public static Request findByProperty(String property, Object value){
@@ -144,5 +151,36 @@ public class Request extends Model {
 
     public void setPaymentType(PaymentType paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public Long getLeadTime() {
+        return leadTime;
+    }
+
+    public void setLeadTime(Long leadTime) {
+        this.leadTime = leadTime;
+    }
+
+    public static List<Request> findListByProperty(String property, Object value){
+        return FIND.where().eq(property, value).findList();
+    }
+
+    public String getRejectedReason() {
+        return rejectedReason;
+    }
+
+    public void setRejectedReason(String rejectedReason) {
+        this.rejectedReason = rejectedReason;
+    }
+
+    public int getTotal(){
+        int total = 0;
+        for(SingleRequest req: this.getSingleRequests()){
+            total+= (req.getPlate().getPrice()*req.getQuantity());
+            for(Optional opt: req.getOptionals()){
+                total+= opt.getPrice()*req.getQuantity();
+            }
+        }
+        return total;
     }
 }
