@@ -165,6 +165,13 @@ public class Request extends Model {
         return FIND.where().eq(property, value).findList();
     }
 
+    public Long getCommerceId(){
+        if(this.singleRequests.isEmpty()){
+            return null;
+        }
+        return Plate.findByProperty("id", this.singleRequests.get(0).getPlate().getId()).getCommerce().getId();
+    }
+
     public String getRejectedReason() {
         return rejectedReason;
     }
@@ -173,8 +180,8 @@ public class Request extends Model {
         this.rejectedReason = rejectedReason;
     }
 
-    public int getTotal(){
-        int total = 0;
+    public double getTotal(){
+        double total = 0;
         for(SingleRequest req: this.getSingleRequests()){
             total+= (req.getPlate().getPrice()*req.getQuantity());
             for(Optional opt: req.getOptionals()){
@@ -182,5 +189,9 @@ public class Request extends Model {
             }
         }
         return total;
+    }
+
+    public boolean isQualified(){
+        return (Qualification.findByProperty("request.id", this.getId()) != null);
     }
 }
