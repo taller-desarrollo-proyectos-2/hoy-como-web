@@ -93,7 +93,7 @@
                     <div ng-if="currentPlate.onPromotion" class="row m-bottom-10">
                             <label class="col-sm-6 control-label">Descuento</label>
                             <div class="col-sm-6">
-                                <select class="form-control" ng-model="currentPlate.discount" ng-options="option as option.value for option in discountOptions track by option.value">
+                                <select class="form-control" ng-options="option.value as option.show for option in discountOptions" ng-model="currentPlate.discount" >
                                 </select>
                             </div>
                         </div>

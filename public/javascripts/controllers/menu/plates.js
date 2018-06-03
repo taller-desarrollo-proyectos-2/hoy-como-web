@@ -9,7 +9,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
     $scope.imageSrc = "assets/images/uploadImage.png";
     $scope.fotoPreview = false;
 
-    $scope.discountOptions = [{value: 5, show: "5%"},{value:10, show: "10%"}];
+    $scope.discountOptions = [{value: 5, show: "5%"}, {value:10, show: "10%"}, {value:15, show: "15%"}, {value:20, show: "20%"}, {value:30, show: "30%"}, {value:40, show: "40%"}];
 
     indexPlates();
     indexCategories();
@@ -149,6 +149,11 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
                 formData.append('optionals[' + index + '].id', opt.id);
                 index++;
             }
+            if($scope.currentPlate.onPromotion){
+                formData.append("discount", $scope.currentPlate.discount);
+            } else {
+                formData.append("discount", 0);
+            }
             xhr = new XMLHttpRequest();
             xhr.addEventListener('load', createFinish, false);
             xhr.open('POST',"/api/v1/plates");
@@ -197,11 +202,10 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             }
             formData.append("onPromotion", $scope.currentPlate.onPromotion);
             if($scope.currentPlate.onPromotion){
-                formData.append("discount", $scope.currentPlate.discount.value);
+                formData.append("discount", $scope.currentPlate.discount);
             } else {
                 formData.append("discount", 0);
             }
-
             xhr = new XMLHttpRequest();
             xhr.addEventListener('load', updateFinished, false);
             xhr.open('PUT',"/api/v1/plates/" + $scope.currentPlate.id);
