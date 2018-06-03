@@ -22,5 +22,9 @@ public class Dash extends Controller {
       public static Result showDash() {
             return ok(views.html.dash.render());
         }
+
+      public static Result showMonitor(){
+            return ok(views.html.admin.monitor.render());
+      }
     
 }

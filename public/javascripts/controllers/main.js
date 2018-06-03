@@ -86,7 +86,11 @@ hoyComoApp.controller('dashCtrl', function ($scope, $http, $filter, $window, $ro
     };
     
     $(window).on('beforeunload', function(){
-            $scope.$parent.$emit('reload', $scope.dashContent);
+        $scope.$parent.$emit('reload', $scope.dashContent);
+    });
+
+    $scope.$on("dashContent", function (event, args) {
+        $scope.setContent(args.route);
     });
 
 });
