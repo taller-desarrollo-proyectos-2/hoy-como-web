@@ -1,6 +1,8 @@
 package models;
 
+import com.avaje.ebean.ExpressionList;
 import com.avaje.ebean.annotation.EnumValue;
+import org.joda.time.DateTime;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import services.FinderService;
@@ -191,7 +193,30 @@ public class Request extends Model {
         return total;
     }
 
-    public boolean isQualified(){
+    public boolean isQualified() {
         return (Qualification.findByProperty("request.id", this.getId()) != null);
+    }
+    public static int countByPropertiesAt(List<String> properties, List<Object> values, DateTime from, DateTime to){
+        ExpressionList<Request> exp = FIND.where();
+        for(int i=0; i<properties.size(); i++){
+            exp.eq(properties.get(i), values.get(i));
+        }
+        exp.ge("initAt",from).le("initAt", to);
+        return exp.findRowCount();
+    }
+
+    public static double countMoneyByCommerceAndDate(Long commerceId, DateTime from, DateTime to){
+        List<Request> requests = FIND.where().eq("singleRequests.plate.commerce.id", commerceId)
+                                                .ge("initAt", from)
+                                                .le("initAt", to).findList();
+        double total = 0;
+        for(Request req: requests){
+            total += req.getTotal();
+        }
+        return total;
+    }
+
+    public static List<Request> findListByPropertyAt(String property, Object value, DateTime from, DateTime to){
+        return FIND.where().eq(property, value).ge("initAt", from).le("initAt", to).findList();
     }
 }
