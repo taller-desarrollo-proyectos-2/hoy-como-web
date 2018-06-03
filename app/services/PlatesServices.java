@@ -37,6 +37,9 @@ public class PlatesServices {
                 throw new UpdateException("Nombre de plato ya utilizado");
             }
         }
+        if(plate.getPrice() == 0){
+            plate.setPrice(dbPlate.getPrice());
+        }
         plate.setId(id);
         plate.setCommerce(commerce);
         plate.update();
