@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12 col-lg-12 page-header center-elems">
             <h1>
-                Dashboard {{date | date:"dd/MM"}}
+                Indicadores del {{date | date:"dd/MM"}}
             </h1>
         </div>
     </div>
@@ -16,7 +16,7 @@
                             <i class="fa fa-hand-pointer-o fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">1</div>
+                            <div class="huge">{{indicators.pendingRequests}}</div>
                             <div>Pedidos pendientes</div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                             <i class="fa fa-hourglass-half fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">2</div>
+                            <div class="huge">{{indicators.deliveredRequests}}</div>
                             <div>Pedidos entregados</div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                             <i class="fa fa-star fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">3</div>
+                            <div class="huge">{{indicators.historicQualif}}</div>
                             <div>Calificación Histórica</div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                             <i class="fa fa-clock-o fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">4</div>
+                            <div class="huge">{{indicators.historicLeadTime}} m</div>
                             <div>Lead Time Histórico</div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                             <i class="fa fa-hourglass-half fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">5</div>
+                            <div class="huge">{{indicators.acceptedRequests}}</div>
                             <div>Pedidos en preparación</div>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                             <i class="fa fa-user-times fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">6</div>
+                            <div class="huge">{{indicators.cancelledRequests}}</div>
                             <div>Pedidos anulados</div>
                         </div>
                     </div>
@@ -150,7 +150,7 @@
                             <i class="fa fa-star fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">7</div>
+                            <div class="huge">{{indicators.dailyQualif}}</div>
                             <div>Calificación</div>
                         </div>
                     </div>
@@ -172,7 +172,7 @@
                             <i class="fa fa-clock-o fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">8</div>
+                            <div class="huge">{{indicators.dailyLeadTime}} m</div>
                             <div>Lead time</div>
                         </div>
                     </div>
@@ -196,7 +196,7 @@
                             <i class="fa fa-motorcycle fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">9</div>
+                            <div class="huge">{{indicators.requestsOnTheWay}}</div>
                             <div>Pedidos en camino</div>
                         </div>
                     </div>
@@ -218,7 +218,7 @@
                             <i class="fa fa-line-chart fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">10</div>
+                            <div class="huge">{{indicators.requestsRatio}}</div>
                             <div>Entregados/Anulados</div>
                         </div>
                     </div>
@@ -240,7 +240,7 @@
                             <i class="fa fa-usd fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">11</div>
+                            <div class="huge">$ {{indicators.totalMoney | number:2}}</div>
                             <div>Total Facturado</div>
                         </div>
                     </div>
@@ -262,7 +262,7 @@
                             <i class="fa fa-usd fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">12</div>
+                            <div class="huge">$ {{indicators.totalTax | number:2}}</div>
                             <div>Comisión</div>
                         </div>
                     </div>
