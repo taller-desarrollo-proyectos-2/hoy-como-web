@@ -21,7 +21,7 @@ create table bundle (
   constraint pk_bundle primary key (id))
 ;
 
-alter table plate add discount double;
+alter table plate add discount double default 0;
 
 alter table promo add constraint fk_promo_commerce_20 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
 create index ix_promo_commerce_1 on promo (commerce_id);

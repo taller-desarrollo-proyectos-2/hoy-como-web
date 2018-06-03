@@ -205,7 +205,7 @@ public class  Plate extends Model{
     }
 
     public boolean isOnPromotion(){
-        return this.discount != null;
+        return this.discount != 0;
     }
 
 }
