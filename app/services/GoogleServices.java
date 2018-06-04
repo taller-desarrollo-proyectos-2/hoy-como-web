@@ -75,11 +75,11 @@ public class GoogleServices {
                 break;
         }
         if(!message.isEmpty()) {
+            ObjectNode messageNode = JsonNodeFactory.instance.objectNode();
+            messageNode.put("token", destinationUser.getAppToken()).set("notification", JsonNodeFactory.instance.objectNode().put("body", message));
+            messageNode.set("data", JsonNodeFactory.instance.objectNode().put("requestId", request.getId().toString()));
             ObjectNode body = JsonNodeFactory.instance.objectNode();
-            body.put("validate_only", false)
-                                .set("message", JsonNodeFactory.instance.objectNode()
-                                                .put("token", destinationUser.getAppToken())
-                                                .set("notification", JsonNodeFactory.instance.objectNode().put("body", message)));
+            body.put("validate_only", false).set("message", messageNode);
             WS.url("https://fcm.googleapis.com/v1/projects/hoycomo-201312/messages:send")
                     .setHeader("Authorization", "Bearer " + getAccessToken())
                     .setContentType("application/json; UTF-8")
