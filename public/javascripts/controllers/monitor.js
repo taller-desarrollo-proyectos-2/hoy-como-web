@@ -1,4 +1,4 @@
-hoyComoApp.controller('monitorCtrl', function ($scope, $http, $window, $rootScope, toastr, $q) {
+hoyComoApp.controller('monitorCtrl', function ($scope, $http, $window, $rootScope, toastr, $q, $interval) {
    
     $scope.indicators = {};
     $scope.date = new Date();
@@ -10,6 +10,14 @@ hoyComoApp.controller('monitorCtrl', function ($scope, $http, $window, $rootScop
     }
 
     getIndicators();
+
+    var polling = $interval(function () {
+        getIndicators();
+    }, 5000);
+
+    $scope.$on("$destroy", function () {
+        $interval.cancel(polling);
+    });
 
     function getIndicators(){
         var dailyIndicators = $http({method: 'GET', url: "/api/v1/dashboard/info?from=" + $scope.date.toISOString()});
@@ -26,9 +34,13 @@ hoyComoApp.controller('monitorCtrl', function ($scope, $http, $window, $rootScop
             $scope.indicators.historicQualif = results[1].data.commerce.score;
             $scope.indicators.dailyQualif = results[0].data.qualifications.score;
             $scope.indicators.historicLeadTime = results[1].data.commerce.leadTime;
-            $scope.indicators.dailyLeadTime = results[0].data.leadTime;
+            $scope.indicators.dailyLeadTime = results[0].data.leadTime + " m";
             $scope.indicators.totalMoney = results[0].data.money;
-            $scope.indicators.totalTax = results[0].data.money * HOY_COMO_TAX;
+            $scope.indicators.qualifsWithoutResponse = results[0].data.qualifications.withoutResponse * HOY_COMO_TAX;
+            $scope.showDailyQualif = true;
+            if($scope.indicators.dailyQualif == 0) $scope.showDailyQualif = false; 
+            $scope.showDailyLeadTime = true;
+            if($scope.indicators.dailyLeadTime == "0 m") $scope.showDailyLeadTime = false; 
         });
     }
 

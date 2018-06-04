@@ -150,7 +150,8 @@
                             <i class="fa fa-star fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">{{indicators.dailyQualif}}</div>
+                            <div ng-if="showDailyQualif" class="huge">{{indicators.dailyQualif}}</div>
+                            <div ng-if="!showDailyQualif" style="font-size:20px;">No hay calificaciones aún.</div>
                             <div>Calificación</div>
                         </div>
                     </div>
@@ -172,7 +173,8 @@
                             <i class="fa fa-clock-o fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">{{indicators.dailyLeadTime}} m</div>
+                            <div ng-if="showDailyLeadTime" class="huge">{{indicators.dailyLeadTime}}</div>
+                            <div ng-if="!showDailyLeadTime" style="font-size:25px;">No hay pedidos aún.</div>
                             <div>Lead time</div>
                         </div>
                     </div>
@@ -240,7 +242,7 @@
                             <i class="fa fa-usd fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">$ {{indicators.totalMoney | number:2}}</div>
+                            <div class="huge">{{indicators.totalMoney | number:2}}</div>
                             <div>Total Facturado</div>
                         </div>
                     </div>
@@ -259,16 +261,16 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-usd fa-5x"></i>
+                            <i class="fa fa-comment-o fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">$ {{indicators.totalTax | number:2}}</div>
-                            <div>Comisión</div>
+                            <div class="huge">{{indicators.qualifsWithoutResponse}}</div>
+                            <div>Calificaciones sin réplica</div>
                         </div>
                     </div>
                 </div>
                 <a href="#">
-                    <div class="panel-footer">
+                    <div class="panel-footer" ng-click="setContent('/web/commerce/qualifications')">
                         <span class="pull-left">Ver detalle</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
