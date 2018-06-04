@@ -58,6 +58,8 @@ public class  Plate extends Model{
 
     private String description;
 
+    private Integer discount;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedAt;
 
@@ -192,6 +194,18 @@ public class  Plate extends Model{
 
     public static List<Plate> findByMap(Map<String, String[]> map){
         return FinderService.findByMap(FIND.where(), map).findList();
+    }
+
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
+
+    public boolean isOnPromotion(){
+        return this.discount != 0;
     }
 
 }

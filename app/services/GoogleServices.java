@@ -66,11 +66,12 @@ public class GoogleServices {
                 message = "Su pedido ya está en camino!";
                 break;
             case DELIVERED:
+                message = "Su pedido ya fué entregado! ¿Está todo en orden?";
                 break;
             case CANCELLED_BY_USER:
                 break;
             case CANCELLED_BY_COMMERCE:
-                message = "Su pedido ha sido cancelado por el comercio";
+                message = "Su pedido ha sido cancelado por el comercio, razón: "+ request.getRejectedReason();
                 break;
         }
         if(!message.isEmpty()) {

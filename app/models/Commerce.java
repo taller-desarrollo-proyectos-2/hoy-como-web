@@ -264,4 +264,25 @@ public class Commerce extends Model{
         qualificationsCount = qualificationsCount == 0 ? 1 : qualificationsCount;
         return new BigDecimal((scoreCount / qualificationsCount)).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
     }
+
+    public double getAveragePrice(){
+        List<Request> commerceRequests = Request.findListByProperty("singleRequests.plate.commerce.id", this.getId());
+        if(commerceRequests.isEmpty()){
+            return 0D;
+        }
+        double total = 0;
+        for(Request req: commerceRequests){
+            double sr = 0;
+            for(SingleRequest singleRequest: req.getSingleRequests()){
+                sr += singleRequest.getPlate().getPrice();
+                for(Optional opt: singleRequest.getOptionals()){
+                    sr+= opt.getPrice();
+                }
+            }
+            if(!req.getSingleRequests().isEmpty()){
+                total += (sr/req.getSingleRequests().size());
+            }
+        }
+        return (total/commerceRequests.size());
+    }
 }
