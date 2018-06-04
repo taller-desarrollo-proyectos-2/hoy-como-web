@@ -23,6 +23,8 @@ create table bundle (
 
 alter table plate add discount double default 0;
 
+alter table request add total double default 0;
+
 alter table promo add constraint fk_promo_commerce_20 foreign key (commerce_id) references commerce (id) on delete restrict on update restrict;
 create index ix_promo_commerce_1 on promo (commerce_id);
 
@@ -35,6 +37,8 @@ create index ix_bundle_plate_3 on bundle (plate_id);
 # --- !Downs
 
 alter table plate drop column discount;
+
+alter table request drop column total;
 
 alter table promo drop foreign key fk_promo_commerce_20;
 drop index ix_promo_commerce_1 on promo;

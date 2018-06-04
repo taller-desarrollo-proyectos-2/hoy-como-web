@@ -71,8 +71,7 @@ public class Request extends Model {
 
     private String rejectedReason;
 
-    @Transient
-    private int total;
+    private double total;
 
     public Long getId() {
         return id;
@@ -183,13 +182,6 @@ public class Request extends Model {
     }
 
     public double getTotal(){
-        double total = 0;
-        for(SingleRequest req: this.getSingleRequests()){
-            total+= (req.getPlate().getPrice()*req.getQuantity());
-            for(Optional opt: req.getOptionals()){
-                total+= opt.getPrice()*req.getQuantity();
-            }
-        }
         return total;
     }
 
@@ -218,5 +210,16 @@ public class Request extends Model {
 
     public static List<Request> findListByPropertyAt(String property, Object value, DateTime from, DateTime to){
         return FIND.where().eq(property, value).ge("initAt", from).le("initAt", to).findList();
+    }
+
+    public void addTotal(){
+        double total = 0;
+        for(SingleRequest req: this.getSingleRequests()){
+            total+= (Plate.findByProperty("id", req.getPlate().getId()).getPrice()*req.getQuantity())*(req.getPlate().getDiscount()/100D);
+            for(Optional opt: req.getOptionals()){
+                total+= Optional.findByProperty("id", opt.getId()).getPrice()*req.getQuantity()*(req.getPlate().getDiscount()/100D);
+            }
+        }
+        this.total = total;
     }
 }
