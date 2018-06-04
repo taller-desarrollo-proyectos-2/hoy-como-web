@@ -1,6 +1,8 @@
 package models;
 
+import com.avaje.ebean.ExpressionList;
 import com.avaje.ebean.annotation.CreatedTimestamp;
+import org.joda.time.DateTime;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
@@ -105,5 +107,21 @@ public class Qualification extends Model {
 
     public void setQualifiedAt(Date qualifiedAt) {
         this.qualifiedAt = qualifiedAt;
+    }
+
+    public static int countByPropertiesEQAndNEAt(List<String> propertiesE, List<Object> valuesE,List<String> propertiesNE, List<Object> valuesNE, DateTime from, DateTime to){
+        ExpressionList<Qualification> exp = FIND.where();
+        for(int i=0; i<propertiesE.size(); i++){
+            exp.eq(propertiesE.get(i), valuesE.get(i));
+        }
+        for(int i=0; i<propertiesNE.size(); i++){
+            exp.ne(propertiesNE.get(i), valuesNE.get(i));
+        }
+        exp.ge("qualifiedAt", from).le("qualifiedAt", to);
+        return exp.findRowCount();
+    }
+
+    public static List<Qualification> findListByPropertyAt(String property, Object value, DateTime from, DateTime to){
+        return FIND.where().eq(property, value).ge("qualifiedAt", from).le("qualifiedAt", to).findList();
     }
 }
