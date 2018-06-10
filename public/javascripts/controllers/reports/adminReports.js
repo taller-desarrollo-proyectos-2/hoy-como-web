@@ -15,5 +15,9 @@ hoyComoApp.controller('reportsCtrl', function ($scope, $http, $window, $rootScop
         }
     };
 
+    $scope.back = () =>{
+        $scope.validPeriodSelected = false;
+    };
+
 
 });

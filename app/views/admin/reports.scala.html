@@ -8,7 +8,9 @@
                 <input style="width: 20%;" type="date" class="pull-right form-control m-right-10" placeholder="Desde.." ng-model="data.from">
                 <span class="pull-right m-right-10">Hasta: </span>
                 <input style="width: 20%;" type="date" class="pull-right form-control m-right-10" placeholder="Hasta.." ng-model="data.to">
-            <button class="btn btn-primary pull-right"  ng-click="checkPeriod()">Ver Reporte</button>
+            <button ng-if="!validPeriodSelected" class="btn btn-primary pull-right"  ng-click="checkPeriod()">Ver Reporte</button>
+            <button ng-if="validPeriodSelected" class="btn btn-primary pull-right m-right-10"  ng-click="export()">Exportar</button>
+            <button ng-if="validPeriodSelected" class="btn btn-primary pull-right"  ng-click="back()">Volver</button>
         </div>
     </div>
     <div ng-if="validPeriodSelected" class="row">
