@@ -135,3 +135,9 @@ google-maps {
     display: block;
     min-height: 150px;
 }
+
+.transp, .transp:hover,.transp:focus,.transp:active{
+    outline: none;
+    background-color: transparent;
+    border: none;
+}
