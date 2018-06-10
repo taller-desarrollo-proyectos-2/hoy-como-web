@@ -19,12 +19,16 @@
                             <thead>
                                     <th>Razón social</th>
                                     <th>Nombre</th>
+                                    <th>Suspendido</th>
                                     <th>Acciones</th>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="commerce in commerces">
+                                    <tr ng-class="{comSuspended: commerce.suspended}" ng-repeat="commerce in commerces">
                                         <td>{{commerce.businessName}}</td>
                                         <td>{{commerce.name}}</td>
+                                        <td>
+                                            <input type="checkbox" ng-model="commerce.suspended" ng-change="toggleSuspend(commerce)">
+                                        </td>
                                         <td>
                                             <a style="cursor:pointer;" ng-click="toggleEditModal(commerce)">Editar</a>
                                         </td>

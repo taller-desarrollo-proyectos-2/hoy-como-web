@@ -241,4 +241,12 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
         $scope.markers = "Ciudad autonoma de Buenos Aires";
         $compile(map)($scope);
     };
+
+    $scope.toggleSuspend = function(commerce){
+        if(commerce.suspended) {
+            toastr.success("Comercio suspendido con éxito");
+        } else {
+            toastr.success("Comercio habilitado con éxito.")
+        }
+    };
 });
