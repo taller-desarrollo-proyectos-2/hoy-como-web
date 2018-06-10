@@ -1,0 +1,34 @@
+<div class="container screen-container" ng-controller="reportsCtrl">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 page-header center-elems">
+                <h1>
+                    Reportes
+                </h1>
+                <span style="margin-left:auto;" class="pull-right m-right-10">Desde: </span>
+                <input style="width: 20%;" type="date" class="pull-right form-control m-right-10" placeholder="Desde.." ng-model="data.from">
+                <span class="pull-right m-right-10">Hasta: </span>
+                <input style="width: 20%;" type="date" class="pull-right form-control m-right-10" placeholder="Hasta.." ng-model="data.to">
+            <button class="btn btn-primary pull-right"  ng-click="checkPeriod()">Ver Reporte</button>
+        </div>
+    </div>
+    <div ng-if="validPeriodSelected" class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-content table-responsive">
+                    <table class="table">
+                        <thead>
+                            <th class="col-sm-2 align-left">Día</th>
+                            <th class="col-sm-2 align-left">Pedidos Entregados</th>
+                            <th class="col-sm-2 align-left">Lead Time</th>
+                            <th class="col-sm-2 align-left">Calificación</th>
+                            <th class="col-sm-2 align-left">Facturado</th>
+                            <th class="col-sm-2 align-left">Fee</th>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

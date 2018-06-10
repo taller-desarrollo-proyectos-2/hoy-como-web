@@ -97,3 +97,4 @@ GET         /web/commerce/requests          controllers.web.Requests.showCommerc
 GET         /web/root/requests              controllers.web.Requests.showRootRequests()
 GET         /web/commerce/qualifications    controllers.web.Qualifications.showCommerceQualifications()
 GET         /web/monitor                    controllers.web.Dash.showMonitor()
+GET         /web/commerce/reports                    controllers.web.Reports.showCommerceReports()

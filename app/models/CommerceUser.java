@@ -56,6 +56,10 @@ public class CommerceUser extends BackofficeUser {
                 "\t\t\"showName\": \"Calificaciones\",\n" +
                 "\t\t\"route\": \"/web/commerce/qualifications\",\n" +
                 "\t\t\"icon\": \"fa fa-star-o\"\n" +
+                "\t},{\n" +
+                "\t\t\"showName\": \"Reportes\",\n" +
+                "\t\t\"route\": \"/web/commerce/reports\",\n" +
+                "\t\t\"icon\": \"fa fa-bar-chart\"\n" +
                 "\t}]");
     }
 
