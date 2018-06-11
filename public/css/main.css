@@ -139,3 +139,9 @@ google-maps {
 .comSuspended{
     background-color: #d9534f;
 }
+
+.transp, .transp:hover,.transp:focus,.transp:active{
+    outline: none;
+    background-color: transparent;
+    border: none;
+}
