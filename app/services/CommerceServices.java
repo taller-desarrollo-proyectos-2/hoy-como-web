@@ -67,7 +67,7 @@ public class CommerceServices {
                 commerce.setLocation(Location.findByProperty("id", commerce.getLocation().getId()));
             }
         }
-        if(commerce.getAddress().getId() != null){
+        if(commerce.getAddress() != null && commerce.getAddress().getId() != null){
             commerce.setAddress(Address.findByProperties(Arrays.asList("id"), Arrays.asList(commerce.getAddress().getId())));
         }
         commerce.setPhones(newAndOldPhones);

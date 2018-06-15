@@ -72,7 +72,9 @@ public class Commerce extends Model{
     @Constraints.Required(groups = Commerce.Creation.class)
     private String pictureFileName;
 
-    private long scoreCount;
+    private Boolean suspended;
+
+    private Long scoreCount;
 
     public Long getId() {
         return id;
@@ -190,12 +192,13 @@ public class Commerce extends Model{
     public double getScore(){
         int qualificationsCount = Qualification.countByCommerce(this.getId());
         qualificationsCount = qualificationsCount == 0 ? 1 : qualificationsCount;
-        return new BigDecimal((Double.valueOf(this.scoreCount) / Double.valueOf(qualificationsCount))).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+        long scoreCount = this.scoreCount != null ? this.scoreCount : 0L;
+        return new BigDecimal((scoreCount/ qualificationsCount)).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 
     public static Map<String, String[]> validateQuery(Map<String, String[]> query){
-        Map<String, String[]> validatedQuery = new HashMap();
-        for(Map.Entry entry : query.entrySet()){
+        Map<String, String[]> validatedQuery = new HashMap<>();
+        for(Map.Entry<String, String[]> entry : query.entrySet()){
             if(attributeMap.containsKey(entry.getKey())){
                 validatedQuery.put(attributeMap.get(entry.getKey()), query.get(entry.getKey()));
             }
@@ -284,5 +287,13 @@ public class Commerce extends Model{
             }
         }
         return (total/commerceRequests.size());
+    }
+
+    public Boolean isSuspended() {
+        return suspended;
+    }
+
+    public void setSuspended(Boolean suspended) {
+        this.suspended = suspended;
     }
 }
