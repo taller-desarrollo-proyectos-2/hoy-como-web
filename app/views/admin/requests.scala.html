@@ -16,7 +16,36 @@
                         <th class="col-sm-2 align-left">Hora inicio</th>
                         <th class="col-sm-1 align-left">Detalle</th>
                         <th class="col-sm-2 align-left">Precio</th>
-                        <th class="col-sm-2 align-left">Estado</th>
+                        <th class="col-sm-2 align-left">
+                            Estado
+                            <button uib-popover-template="'filter-status-popover.html'"
+                                type="button" class="transp"
+                                popover-placement="bottom"
+                                popover-trigger="'outsideClick'"
+                                ><i class="fa fa-filter" aria-hidden="true"></i></button>
+
+                                <script type="text/ng-template" id="filter-status-popover.html">
+                                    <div id="popoverBody">
+                                        <div class="row col-sm-12">
+                                            <label><input type="checkbox" name="checkbox" value="value" ng-model="filter.status.pending"> Pendiente</label>
+                                        </div>
+                                        <div class="row col-sm-12">
+                                            <label><input type="checkbox" name="checkbox" value="value" ng-model="filter.status.accepted"> Aceptado</label>
+                                        </div>
+                                        <div class="row col-sm-12">
+                                            <label><input type="checkbox" name="checkbox" value="value" ng-model="filter.status.delivered"> Entregado</label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <button type="button" class="btn btn-primary form-control"  ng-click="cancelOrder(currentOrder.id)">Filtrar</button>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <button type="button" class="btn btn-default form-control" ng-click=cleanStatusFilters()>Limpiar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </script>
+                        </th>
                         <th class="col-sm-2 align-left">Usuario</th>
                         <th class="col-sm-2 align-left">Acciones</th>
                     </thead>

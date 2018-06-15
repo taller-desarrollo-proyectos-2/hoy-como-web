@@ -31,6 +31,7 @@ public class Requests extends Controller {
             List<Request> requests = RequestsService.findFilteredRequests(queryStrings, user);
             return ok(SerializerService.serializeList(requests));
         }catch(Exception e){
+            logger.error("Error interno intentando listar pedidos", e);
             return internalServerError(JsonNodeFactory.instance.objectNode().put("message", "Error interno intentando listar pedidos"));
         }
     }
