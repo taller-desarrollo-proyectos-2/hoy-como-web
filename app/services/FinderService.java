@@ -7,10 +7,16 @@ import java.util.Map;
 public class FinderService {
 
     public static ExpressionList findByMap(ExpressionList<?> exp, Map<String, String[]> map){
-        for(Map.Entry entry: map.entrySet()){
+        for(Map.Entry<String, String[]> entry: map.entrySet()){
             exp = exp.conjunction().disjunction();
             for(String value : map.get(entry.getKey())){
-                exp.eq(entry.getKey().toString(), value.equals("null") ? null : value);
+                if(entry.getKey().startsWith("from")) {
+                    exp.ge(entry.getKey().split("_")[1], value);
+                }else if(entry.getKey().startsWith("to")) {
+                    exp.le(entry.getKey().split("_")[1], value);
+                }else{
+                    exp.eq(entry.getKey(), value.equals("null") ? null : value);
+                }
             }
             exp = exp.endJunction().endJunction();
         }
