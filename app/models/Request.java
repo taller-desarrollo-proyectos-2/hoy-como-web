@@ -1,6 +1,8 @@
 package models;
 
+import com.avaje.ebean.ExpressionList;
 import com.avaje.ebean.annotation.EnumValue;
+import org.joda.time.DateTime;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import services.FinderService;
@@ -69,8 +71,7 @@ public class Request extends Model {
 
     private String rejectedReason;
 
-    @Transient
-    private int total;
+    private double total;
 
     public Long getId() {
         return id;
@@ -165,6 +166,13 @@ public class Request extends Model {
         return FIND.where().eq(property, value).findList();
     }
 
+    public Long getCommerceId(){
+        if(this.singleRequests.isEmpty()){
+            return null;
+        }
+        return Plate.findByProperty("id", this.singleRequests.get(0).getPlate().getId()).getCommerce().getId();
+    }
+
     public String getRejectedReason() {
         return rejectedReason;
     }
@@ -173,14 +181,45 @@ public class Request extends Model {
         this.rejectedReason = rejectedReason;
     }
 
-    public int getTotal(){
-        int total = 0;
-        for(SingleRequest req: this.getSingleRequests()){
-            total+= (req.getPlate().getPrice()*req.getQuantity());
-            for(Optional opt: req.getOptionals()){
-                total+= opt.getPrice()*req.getQuantity();
-            }
+    public double getTotal(){
+        return total;
+    }
+
+    public boolean isQualified() {
+        return (Qualification.findByProperty("request.id", this.getId()) != null);
+    }
+    public static int countByPropertiesAt(List<String> properties, List<Object> values, DateTime from, DateTime to){
+        ExpressionList<Request> exp = FIND.where();
+        for(int i=0; i<properties.size(); i++){
+            exp.eq(properties.get(i), values.get(i));
+        }
+        exp.ge("initAt",from).le("initAt", to);
+        return exp.findRowCount();
+    }
+
+    public static double countMoneyByCommerceAndDate(Long commerceId, DateTime from, DateTime to){
+        List<Request> requests = FIND.where().eq("singleRequests.plate.commerce.id", commerceId)
+                                                .ge("initAt", from)
+                                                .le("initAt", to).findList();
+        double total = 0;
+        for(Request req: requests){
+            total += req.getTotal();
         }
         return total;
+    }
+
+    public static List<Request> findListByPropertyAt(String property, Object value, DateTime from, DateTime to){
+        return FIND.where().eq(property, value).ge("initAt", from).le("initAt", to).findList();
+    }
+
+    public void addTotal(){
+        double total = 0;
+        for(SingleRequest req: this.getSingleRequests()){
+            total+= (Plate.findByProperty("id", req.getPlate().getId()).getPrice()*req.getQuantity())*(req.getPlate().getDiscount()/100D);
+            for(Optional opt: req.getOptionals()){
+                total+= Optional.findByProperty("id", opt.getId()).getPrice()*req.getQuantity()*(req.getPlate().getDiscount()/100D);
+            }
+        }
+        this.total = total;
     }
 }

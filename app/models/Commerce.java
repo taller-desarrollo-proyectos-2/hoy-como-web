@@ -1,14 +1,12 @@
 package models;
 
 import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import javax.persistence.*;
 
 import com.avaje.ebean.ExpressionList;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.joda.time.DateTime;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import services.FinderService;
@@ -236,13 +234,55 @@ public class Commerce extends Model{
 
     public int getLeadTime(){
         List<Request> commerceRequests = Request.findListByProperty("singleRequests.plate.commerce.id", this.getId());
-        int total = 0;int requests = 0;
+        int total = 0;
         for(Request req : commerceRequests){
             if(req.getLeadTime() != null){
                 total+= req.getLeadTime();
-                requests++;
             }
         }
-        return requests == 0 ? 30 : total/commerceRequests.size();
+        return commerceRequests.isEmpty() ? 30 : total/commerceRequests.size();
+    }
+
+    public int findLeadTimeBetweenDates(DateTime from, DateTime to){
+        List<Request> commerceRequests = Request.findListByPropertyAt("singleRequests.plate.commerce.id", this.getId(), from, to);
+        int total = 0;
+        for(Request req : commerceRequests){
+            if(req.getLeadTime() != null){
+                total+= req.getLeadTime();
+            }
+        }
+        return commerceRequests.isEmpty() ? 0 : total/commerceRequests.size();
+    }
+
+    public double findScoreBetweenDates(DateTime from, DateTime to){
+        List<Qualification> qualifs = Qualification.findListByPropertyAt("request.singleRequests.plate.commerce.id",this.getId(), from, to);
+        double qualificationsCount = qualifs.size();
+        double scoreCount = 0;
+        for(Qualification qualif : qualifs){
+            scoreCount += qualif.getScore();
+        }
+        qualificationsCount = qualificationsCount == 0 ? 1 : qualificationsCount;
+        return new BigDecimal((scoreCount / qualificationsCount)).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
+    public double getAveragePrice(){
+        List<Request> commerceRequests = Request.findListByProperty("singleRequests.plate.commerce.id", this.getId());
+        if(commerceRequests.isEmpty()){
+            return 0D;
+        }
+        double total = 0;
+        for(Request req: commerceRequests){
+            double sr = 0;
+            for(SingleRequest singleRequest: req.getSingleRequests()){
+                sr += singleRequest.getPlate().getPrice();
+                for(Optional opt: singleRequest.getOptionals()){
+                    sr+= opt.getPrice();
+                }
+            }
+            if(!req.getSingleRequests().isEmpty()){
+                total += (sr/req.getSingleRequests().size());
+            }
+        }
+        return (total/commerceRequests.size());
     }
 }

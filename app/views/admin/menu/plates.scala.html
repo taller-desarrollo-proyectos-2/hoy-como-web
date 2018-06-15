@@ -85,11 +85,24 @@
                         </div>
                     </div>
                     <div class="row m-bottom-10">
-                            <label class="col-sm-6 control-label">Apto Celíacos</label>
+                        <label class="col-sm-6 control-label">Promoción</label>
+                        <div class="col-sm-6">
+                            <input type="checkbox" ng-model='currentPlate.onPromotion' >
+                        </div>
+                    </div>
+                    <div ng-if="currentPlate.onPromotion" class="row m-bottom-10">
+                            <label class="col-sm-6 control-label">Descuento</label>
                             <div class="col-sm-6">
-                                <input type="checkbox" ng-model='currentPlate.glutenFree' >
+                                <select class="form-control" ng-options="option.value as option.show for option in discountOptions" ng-model="currentPlate.discount" >
+                                </select>
                             </div>
                         </div>
+                    <div class="row m-bottom-10">
+                        <label class="col-sm-6 control-label">Apto Celíacos</label>
+                        <div class="col-sm-6">
+                            <input type="checkbox" ng-model='currentPlate.glutenFree' >
+                        </div>
+                    </div>
                     <div class="row m-bottom-10">
                         <label class="col-sm-6 control-label">Categoría</label>
                         <div class="col-sm-6" style="display:flex;">

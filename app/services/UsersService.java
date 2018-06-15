@@ -22,6 +22,9 @@ public class UsersService {
         if(Commerce.findByProperty("id", user.getCommerce().getId()) == null){
             throw new CreationException("Comercio inexistente para asociar al usuario");
         }
+        if(user.getPassword().length() < 10){
+            throw new CreationException("Contraseña muy corta, minimo 10 caracteres");
+        }
         //Seteo la password hasheada
         user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         user.save();

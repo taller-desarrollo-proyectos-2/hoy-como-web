@@ -23,6 +23,7 @@ public class RequestsService {
         }
         request.setStatus(Request.Status.WAITING_CONFIRMATION);
         request.setInitAt(new Date());
+        request.addTotal();
         request.save();
     }
 

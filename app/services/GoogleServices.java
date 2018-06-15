@@ -66,19 +66,20 @@ public class GoogleServices {
                 message = "Su pedido ya está en camino!";
                 break;
             case DELIVERED:
+                message = "Su pedido ya fué entregado! ¿Está todo en orden?";
                 break;
             case CANCELLED_BY_USER:
                 break;
             case CANCELLED_BY_COMMERCE:
-                message = "Su pedido ha sido cancelado por el comercio";
+                message = "Su pedido ha sido cancelado por el comercio, razón: "+ request.getRejectedReason();
                 break;
         }
         if(!message.isEmpty()) {
+            ObjectNode messageNode = JsonNodeFactory.instance.objectNode();
+            messageNode.put("token", destinationUser.getAppToken()).set("notification", JsonNodeFactory.instance.objectNode().put("body", message));
+            messageNode.set("data", JsonNodeFactory.instance.objectNode().put("requestId", request.getId().toString()));
             ObjectNode body = JsonNodeFactory.instance.objectNode();
-            body.put("validate_only", false)
-                                .set("message", JsonNodeFactory.instance.objectNode()
-                                                .put("token", destinationUser.getAppToken())
-                                                .set("notification", JsonNodeFactory.instance.objectNode().put("body", message)));
+            body.put("validate_only", false).set("message", messageNode);
             WS.url("https://fcm.googleapis.com/v1/projects/hoycomo-201312/messages:send")
                     .setHeader("Authorization", "Bearer " + getAccessToken())
                     .setContentType("application/json; UTF-8")

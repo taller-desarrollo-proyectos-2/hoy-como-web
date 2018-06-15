@@ -38,6 +38,7 @@ public class FacebookUser extends MobileUser {
             }
             user.setFullName(fbResponse.get("name").asText());
             user.save();
+            dbUser = new FacebookUser();
             dbUser.setId(user.getId());
         }
         return dbUser;
