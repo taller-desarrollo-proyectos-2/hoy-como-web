@@ -9,6 +9,10 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 GET         /api/v1/dashboard/info        controllers.api.v1.Dashboard.info()
 
+# REPORTS
+
+GET         /api/v1/reports               controllers.api.v1.Reports.list()
+
 # USERS
 
 GET         /api/v1/users/myinfo          controllers.api.v1.Users.myInfo()

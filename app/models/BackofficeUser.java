@@ -9,6 +9,7 @@ import play.libs.Json;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -68,5 +69,10 @@ public class BackofficeUser extends User {
                 "\t\t\"route\": \"/web/root/requests\",\n" +
                 "\t\t\"icon\": \"fa fa-list-alt\"\n" +
                 "\t}]");
+    }
+
+    @Override
+    public List<Commerce> myCommerces(){
+        return Commerce.findAll();
     }
 }

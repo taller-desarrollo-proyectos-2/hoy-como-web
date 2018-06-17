@@ -8,6 +8,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -74,5 +75,10 @@ public class CommerceUser extends BackofficeUser {
     @Override
     public void fillRequestMap(Map<String, String[]> map) {
         map.put("singleRequests.plate.commerce.id", new String[]{this.getCommerce().getId().toString()});
+    }
+
+    @Override
+    public List<Commerce> myCommerces(){
+        return Arrays.asList(this.getCommerce());
     }
 }

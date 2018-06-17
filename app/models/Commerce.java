@@ -265,6 +265,17 @@ public class Commerce extends Model{
         return new BigDecimal((scoreCount / qualificationsCount)).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 
+    public double findScoreFromRequests(List<Request> requests){
+        List<Qualification> qualifs = Qualification.findFromRequests(requests);
+        double scoreCount = 0;
+        double qualificationsCount = qualifs.size();
+        for(Qualification qualif : qualifs){
+            scoreCount += qualif.getScore();
+        }
+        qualificationsCount = qualificationsCount == 0 ? 1 : qualificationsCount;
+        return new BigDecimal((scoreCount / qualificationsCount)).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
     public double getAveragePrice(){
         List<Request> commerceRequests = Request.findListByProperty("singleRequests.plate.commerce.id", this.getId());
         if(commerceRequests.isEmpty()){

@@ -41,6 +41,11 @@ public class MobileUser extends User {
         map.put("user.id", new String[]{this.getId().toString()});
     }
 
+    @Override
+    public List<Commerce> myCommerces() {
+        return null;
+    }
+
     public List<Address> getAddresses() {
         return addresses;
     }
