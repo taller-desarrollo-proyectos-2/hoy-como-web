@@ -22,6 +22,7 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
                     ];
 
     $scope.selectedStatus = $scope.status[0];
+    $scope.selectedDates = {};
 
     $scope.selectStatus = function(status){
         $scope.selectedStatus = status;
@@ -30,6 +31,21 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
 
     $scope.isActive = function(state){
         return (state.filter === $scope.selectedStatus.filter);
+    };
+
+    $scope.setDateFilters = function (){
+        $scope.selectedDates.from = $scope.filter.date.from;
+        $scope.selectedDates.to = $scope.filter.date.to;
+        index();
+        toastr.success("Los filtros de fecha han sido actualizados.");
+        $scope.datesFiltered = true;
+    };
+
+    $scope.clearDateFilters = function (){
+        $scope.selectedDates = {};
+        index();
+        toastr.success("Los filtros de fecha han sido limpiados.");
+        $scope.datesFiltered = false;
     };
 
     $scope.filter = {};
@@ -47,12 +63,16 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
         var filtersList = [];
         var filterString = "";
         if ($scope.selectedStatus.filter != '') filtersList.push({key:"status", value: $scope.selectedStatus.filter});
+        if ($scope.selectedDates.from) filtersList.push({key:"from", value: $scope.selectedDates.from.toISOString()});
+        if ($scope.selectedDates.to) filtersList.push({key:"to", value: $scope.selectedDates.to.toISOString()});
         if (filtersList.length > 0) filterString = "?";
         for(filter of filtersList){
             filterString += filter.key;
             filterString += "=";
             filterString += filter.value;
+            filterString += "&";
         }
+        if (filterString.length > 0) filterString.slice(0, filterString.length-1);
         return filterString;
     }
 

@@ -141,3 +141,7 @@ google-maps {
     background-color: transparent;
     border: none;
 }
+
+.activeFilter {
+    color: #337ab7;
+}
