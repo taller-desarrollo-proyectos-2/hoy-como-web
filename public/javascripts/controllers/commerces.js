@@ -91,6 +91,7 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
                 formData.append('times[' + index + '].to', time.to);
                 index++;
             }
+            formData.append("suspended", false);
             xhr = new XMLHttpRequest();
             xhr.addEventListener('load', createFinish, false);
             xhr.open('POST',"/api/v1/commerces");
@@ -242,11 +243,24 @@ hoyComoApp.controller('commercesCtrl', function ($scope, $http, $window, $rootSc
         $compile(map)($scope);
     };
 
-    $scope.toggleSuspend = function(commerce){
-        if(commerce.suspended) {
-            toastr.success("Comercio suspendido con éxito");
-        } else {
-            toastr.success("Comercio habilitado con éxito.")
-        }
+    $scope.toggleSuspend = function (commerce){
+        var data = {
+            "suspended" : commerce.suspended
+        };
+        $http({
+            url: "/api/v1/commerces/" + commerce.id,
+            data: data,
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).success(function(){
+            var state = (commerce.suspended) ? "habilitado" : "suspendido";
+            toastr.success("Comercio " + state +" con exito.");
+            indexPlates();
+        }).error(function(err){
+            toastr.error(err.message);
+        });
     };
 });
