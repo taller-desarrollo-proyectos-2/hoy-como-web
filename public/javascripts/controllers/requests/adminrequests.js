@@ -11,6 +11,27 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
                         onTheWay: "ON_THE_WAY" 
                     };
 
+    $scope.status = [
+                        { showName: "Todos", filter: ''},
+                        { showName: "Pendiente", filter: $scope.statusEnum.waitingConfirmation},
+                        { showName: "En Preparación", filter: $scope.statusEnum.onPreparation},
+                        { showName: "En Camino", filter: $scope.statusEnum.onTheWay},
+                        { showName: "Entregado", filter: $scope.statusEnum.delivered},
+                        { showName: "Cancelado", filter: $scope.statusEnum.cancelledByUser},
+                        { showName: "Rechazado", filter: $scope.statusEnum.cancelledByCommerce}
+                    ];
+
+    $scope.selectedStatus = $scope.status[0];
+
+    $scope.selectStatus = function(status){
+        $scope.selectedStatus = status;
+        index();
+    };
+
+    $scope.isActive = function(state){
+        return (state.filter === $scope.selectedStatus.filter);
+    };
+
     $scope.filter = {};
     index();
 
@@ -22,9 +43,23 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
         $interval.cancel(polling);
     });
 
+    function generateFiltersString (){
+        var filtersList = [];
+        var filterString = "";
+        if ($scope.selectedStatus.filter != '') filtersList.push({key:"status", value: $scope.selectedStatus.filter});
+        if (filtersList.length > 0) filterString = "?";
+        for(filter of filtersList){
+            filterString += filter.key;
+            filterString += "=";
+            filterString += filter.value;
+        }
+        return filterString;
+    }
+
     function index() {
+        var filters = generateFiltersString();
         $http({
-            url: "/api/v1/requests",
+            url: "/api/v1/requests" + filters,
             method: "GET"
         }).success(function(data, status, headers, config){
             $scope.requests = data;
