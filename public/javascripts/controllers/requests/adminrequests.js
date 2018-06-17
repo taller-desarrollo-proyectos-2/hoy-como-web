@@ -63,8 +63,8 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
         var filtersList = [];
         var filterString = "";
         if ($scope.selectedStatus.filter != '') filtersList.push({key:"status", value: $scope.selectedStatus.filter});
-        if ($scope.selectedDates.from) filtersList.push({key:"from", value: $scope.selectedDates.from.toISOString()});
-        if ($scope.selectedDates.to) filtersList.push({key:"to", value: $scope.selectedDates.to.toISOString()});
+        if ($scope.selectedDates.from) filtersList.push({key:"from", value: $scope.selectedDates.from.toISOString().split('T')[0]});
+        if ($scope.selectedDates.to) filtersList.push({key:"to", value: $scope.selectedDates.to.toISOString().split('T')[0]});
         if (filtersList.length > 0) filterString = "?";
         for(filter of filtersList){
             filterString += filter.key;
