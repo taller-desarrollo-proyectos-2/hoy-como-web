@@ -254,6 +254,16 @@ public class Commerce extends Model{
         return commerceRequests.isEmpty() ? 0 : total/commerceRequests.size();
     }
 
+    public int findLeadTimeFromRequests(List<Request> commerceRequests){
+        int total = 0;
+        for(Request req : commerceRequests){
+            if(req.getLeadTime() != null){
+                total+= req.getLeadTime();
+            }
+        }
+        return commerceRequests.isEmpty() ? 0 : total/commerceRequests.size();
+    }
+
     public double findScoreBetweenDates(DateTime from, DateTime to){
         List<Qualification> qualifs = Qualification.findListByPropertyAt("request.singleRequests.plate.commerce.id",this.getId(), from, to);
         double qualificationsCount = qualifs.size();
