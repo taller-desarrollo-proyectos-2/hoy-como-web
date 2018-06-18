@@ -8,7 +8,9 @@ import play.db.ebean.Model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Qualification extends Model {
@@ -123,5 +125,13 @@ public class Qualification extends Model {
 
     public static List<Qualification> findListByPropertyAt(String property, Object value, DateTime from, DateTime to){
         return FIND.where().eq(property, value).ge("qualifiedAt", from).le("qualifiedAt", to).findList();
+    }
+
+    public static List<Qualification> findFromRequests(List<Request> requests){
+        Set<Long> reqIds = new HashSet<>();
+        for(Request req : requests){
+            reqIds.add(req.getId());
+        }
+        return FIND.where().in("request.id", reqIds).findList();
     }
 }

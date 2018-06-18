@@ -11,7 +11,8 @@ libraryDependencies ++= Seq(
   "org.mindrot" % "jbcrypt" % "0.3m",
   "com.google.maps" % "google-maps-services" % "0.2.7",
   "com.google.api-client" % "google-api-client" % "1.23.0",
-  "org.slf4j" % "slf4j-nop" % "1.7.25"
+  "org.slf4j" % "slf4j-nop" % "1.7.25",
+  "org.apache.poi" % "poi-ooxml" % "3.17"
 )
 
 resolvers := Seq("typesafe" at "http://repo.typesafe.com/typesafe/releases/")

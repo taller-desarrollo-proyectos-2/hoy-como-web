@@ -11,7 +11,13 @@ public class FinderService {
         for(Map.Entry<String, String[]> entry: map.entrySet()){
             exp = exp.conjunction().disjunction();
             for(String value : map.get(entry.getKey())){
-                exp.eq(entry.getKey(), value.equals("null") ? null : value);
+                if(entry.getKey().startsWith("from")) {
+                    exp.ge(entry.getKey().split("_")[1], value);
+                }else if(entry.getKey().startsWith("to")) {
+                    exp.le(entry.getKey().split("_")[1], value);
+                }else{
+                    exp.eq(entry.getKey(), value.equals("null") ? null : value);
+                }
             }
             exp = exp.endJunction().endJunction();
         }

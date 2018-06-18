@@ -18,8 +18,8 @@ import services.FinderService;
 @Entity
 public class Commerce extends Model{
 
-    private static float LATITUDE_DISTANCE = 0.00002713F;
-    private static float LONGITUDE_DISTANCE = 0.00002695F;
+    private static double LATITUDE_DISTANCE = 0.00002713D;
+    private static double LONGITUDE_DISTANCE = 0.00002695D;
 
     private static final Map<String, String> attributeMap;
     static {
@@ -209,10 +209,12 @@ public class Commerce extends Model{
     public static List<Commerce> findByMap(Map<String, String[]> map){
         ExpressionList<Commerce> exp = FIND.where();
         if(map.containsKey("lat") && map.containsKey("lng")){
-            exp = exp.ge("location.lat", Float.valueOf(map.get("lat")[0]) - LATITUDE_DISTANCE)
-                .le("location.lat", Float.valueOf(map.get("lat")[0]) + LATITUDE_DISTANCE)
-                .ge("location.lng", Float.valueOf(map.get("lng")[0]) - LONGITUDE_DISTANCE)
-                .lt("location.lng", Float.valueOf(map.get("lat")[0]) + LONGITUDE_DISTANCE);
+            double lat = Double.valueOf(map.get("lat")[0]);
+            double lng = Double.valueOf(map.get("lng")[0]);
+            exp = exp.gt("location.lat", lat - LATITUDE_DISTANCE)
+                .lt("location.lat", lat + LATITUDE_DISTANCE)
+                .gt("location.lng", lng - LONGITUDE_DISTANCE)
+                .lt("location.lng", lng + LONGITUDE_DISTANCE);
             map.remove("lat");
             map.remove("lng");
         }
@@ -257,10 +259,31 @@ public class Commerce extends Model{
         return commerceRequests.isEmpty() ? 0 : total/commerceRequests.size();
     }
 
+    public double findLeadTimeFromRequests(List<Request> commerceRequests){
+        double total = 0;
+        for(Request req : commerceRequests){
+            if(req.getLeadTime() != null){
+                total+= req.getLeadTime();
+            }
+        }
+        return commerceRequests.isEmpty() ? 0 : total/commerceRequests.size();
+    }
+
     public double findScoreBetweenDates(DateTime from, DateTime to){
         List<Qualification> qualifs = Qualification.findListByPropertyAt("request.singleRequests.plate.commerce.id",this.getId(), from, to);
         double qualificationsCount = qualifs.size();
         double scoreCount = 0;
+        for(Qualification qualif : qualifs){
+            scoreCount += qualif.getScore();
+        }
+        qualificationsCount = qualificationsCount == 0 ? 1 : qualificationsCount;
+        return new BigDecimal((scoreCount / qualificationsCount)).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
+    public double findScoreFromRequests(List<Request> requests){
+        List<Qualification> qualifs = Qualification.findFromRequests(requests);
+        double scoreCount = 0;
+        double qualificationsCount = qualifs.size();
         for(Qualification qualif : qualifs){
             scoreCount += qualif.getScore();
         }
