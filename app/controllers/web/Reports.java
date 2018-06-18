@@ -15,4 +15,8 @@ public class Reports extends Controller {
         return ok(views.html.admin.reports.render());
     }
 
+    public static Result showRootReports() {
+        return ok(views.html.root.reports.render());
+    }
+
 }
