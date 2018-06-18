@@ -15,6 +15,41 @@ hoyComoApp.controller('requestsRootCtrl', function ($scope, $http, $interval, $w
 
     $scope.polling = undefined;
 
+    $scope.status = [
+        { showName: "Todos", filter: ''},
+        { showName: "Pendiente", filter: $scope.statusEnum.waitingConfirmation},
+        { showName: "En Preparación", filter: $scope.statusEnum.onPreparation},
+        { showName: "En Camino", filter: $scope.statusEnum.onTheWay},
+        { showName: "Entregado", filter: $scope.statusEnum.delivered},
+        { showName: "Cancelado", filter: $scope.statusEnum.cancelledByUser},
+        { showName: "Rechazado", filter: $scope.statusEnum.cancelledByCommerce}
+    ];
+
+    $scope.selectedStatus = $scope.status[0];
+    $scope.selectedDates = {};
+
+    $scope.selectStatus = function(status){
+        $scope.selectedStatus = status;
+        $scope.index();;
+    };
+
+    $scope.isActive = function(state){
+        return (state.filter === $scope.selectedStatus.filter);
+    };
+
+    function generateFiltersString (){
+        var filtersList = [];
+        var filterString = "";
+        if ($scope.selectedStatus.filter != '') filtersList.push({key:"status", value: $scope.selectedStatus.filter});
+        for(filter of filtersList){
+            filterString += "&";
+            filterString += filter.key;
+            filterString += "=";
+            filterString += filter.value;
+        }
+        return filterString;
+    }
+
     indexCommerces();
 
     function indexCommerces() {
@@ -29,8 +64,9 @@ hoyComoApp.controller('requestsRootCtrl', function ($scope, $http, $interval, $w
     }
 
     $scope.index = function() {
+        var filters = generateFiltersString();
         $http({
-            url: "/api/v1/requests?commerceId=" + $scope.currentCommerce.id,
+            url: "/api/v1/requests?commerceId=" + $scope.currentCommerce.id + filters,
             method: "GET"
         }).success(function(data, status, headers, config){
             $scope.requests = data;

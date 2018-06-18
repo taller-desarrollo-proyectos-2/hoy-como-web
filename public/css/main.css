@@ -58,6 +58,10 @@
     text-align: left;
 }
 
+.align-right{
+    text-align: right;
+}
+
 .m-bottom-10 {
     margin-bottom: 10px;
 }

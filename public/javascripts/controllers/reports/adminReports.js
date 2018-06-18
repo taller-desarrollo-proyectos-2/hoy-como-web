@@ -4,7 +4,8 @@ hoyComoApp.controller('reportsCtrl', function ($scope, $http, $window, $rootScop
     $scope.data.from = new Date();
     $scope.data.from.setMonth($scope.data.from.getMonth()-1);
     $scope.data.to = new Date();
-    $scope.validPeriodSelected = false;
+    $scope.validPeriodSelected = true;
+    getData();
 
     $scope.checkPeriod = () =>{
         if (!$scope.data.from) toastr.error("Se debe seleccionar una fecha inicial para visualizar el reporte"); 
@@ -39,6 +40,7 @@ hoyComoApp.controller('reportsCtrl', function ($scope, $http, $window, $rootScop
             method: "GET"
         }).success(function(data, status, headers, config){
             $scope.reports = data;
+            calculateTotals();
         }).error(function(err){
             toastr.error(err.message);
         });
@@ -68,5 +70,37 @@ hoyComoApp.controller('reportsCtrl', function ($scope, $http, $window, $rootScop
             xhr.open('GET', url);
             xhr.send();
     };
+
+    function calculateTotals(){
+        $scope.totals = {};
+        $scope.totals.totalRequests = 0;
+        $scope.totals.totalBilled = 0;
+        $scope.totals.totalFee = 0;
+        $scope.totals.avgLeadTime = 0;
+        $scope.totals.avgQualif = 0;
+        var totalQualifs = 0;
+        var totalLeadTimes = 0;
+        for(var report of $scope.reports){
+            $scope.totals.totalRequests += report.requests;
+            $scope.totals.totalBilled += report.billed;
+            $scope.totals.totalFee += report.fee;
+            if (report.leadTime != 0){
+                $scope.totals.avgLeadTime += report.leadTime;
+                totalLeadTimes ++;
+            } 
+            if (report.score != 0){
+                $scope.totals.avgQualif += report.score;
+                totalQualifs ++;
+            } 
+        }
+        if(totalQualifs){
+            $scope.califs = true;
+            $scope.totals.avgQualif /= totalQualifs;
+        } else {
+            $scope.califs = false;
+            $scope.totals.avgQualif = "No hubieron calificaciones"
+        }
+        $scope.totals.avgLeadTime /= totalLeadTimes;
+    }
 
 });
