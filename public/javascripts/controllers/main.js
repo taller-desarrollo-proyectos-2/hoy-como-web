@@ -28,7 +28,10 @@ if($window.localStorage.getItem("route")){
             }).success(function(data, status, headers, config){
                 $rootScope.myInfo = {};
                 $rootScope.myInfo.user = data.username;
-                if (data.commerce) $rootScope.myInfo.commerce = data.commerce.businessName;
+                if (data.commerce) {
+                    $rootScope.myInfo.commerce = data.commerce.businessName;
+                    if(data.commerce.suspended) toastr.info("Su comercio se encuentra suspendido y no podrá recibir pedidos en el futuro, pongase en contacto con hoy como para obtener mas información.");
+                }
                 $scope.content = "/dash";
             })
         }).error(function(err){
