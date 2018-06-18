@@ -18,8 +18,8 @@ import services.FinderService;
 @Entity
 public class Commerce extends Model{
 
-    private static float LATITUDE_DISTANCE = 0.00002713F;
-    private static float LONGITUDE_DISTANCE = 0.00002695F;
+    private static double LATITUDE_DISTANCE = 0.00002713D;
+    private static double LONGITUDE_DISTANCE = 0.00002695D;
 
     private static final Map<String, String> attributeMap;
     static {
@@ -206,10 +206,12 @@ public class Commerce extends Model{
     public static List<Commerce> findByMap(Map<String, String[]> map){
         ExpressionList<Commerce> exp = FIND.where();
         if(map.containsKey("lat") && map.containsKey("lng")){
-            exp = exp.ge("location.lat", Float.valueOf(map.get("lat")[0]) - LATITUDE_DISTANCE)
-                .le("location.lat", Float.valueOf(map.get("lat")[0]) + LATITUDE_DISTANCE)
-                .ge("location.lng", Float.valueOf(map.get("lng")[0]) - LONGITUDE_DISTANCE)
-                .lt("location.lng", Float.valueOf(map.get("lat")[0]) + LONGITUDE_DISTANCE);
+            double lat = Double.valueOf(map.get("lat")[0]);
+            double lng = Double.valueOf(map.get("lng")[0]);
+            exp = exp.gt("location.lat", lat - LATITUDE_DISTANCE)
+                .lt("location.lat", lat + LATITUDE_DISTANCE)
+                .gt("location.lng", lng - LONGITUDE_DISTANCE)
+                .lt("location.lng", lng + LONGITUDE_DISTANCE);
             map.remove("lat");
             map.remove("lng");
         }

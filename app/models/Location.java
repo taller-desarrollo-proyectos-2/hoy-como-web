@@ -13,9 +13,9 @@ public class Location extends Model {
     @Id
     private Long id;
 
-    private double lat;
+    private Double lat;
 
-    private double lng;
+    private Double lng;
 
     public Location(double lat, double lng){
         this.lat = lat;
