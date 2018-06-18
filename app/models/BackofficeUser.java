@@ -71,6 +71,10 @@ public class BackofficeUser extends User {
                 "\t\t\"showName\": \"Pedidos\",\n" +
                 "\t\t\"route\": \"/web/root/requests\",\n" +
                 "\t\t\"icon\": \"fa fa-list-alt\"\n" +
+                "\t},{\n" +
+                "\t\t\"showName\": \"Reportes\",\n" +
+                "\t\t\"route\": \"/web/root/reports\",\n" +
+                "\t\t\"icon\": \"fa fa-list-alt\"\n" +
                 "\t}]");
     }
 
