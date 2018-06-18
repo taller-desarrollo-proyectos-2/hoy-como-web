@@ -73,7 +73,7 @@ public class Request extends Model {
 
     private String rejectedReason;
 
-    private double total;
+    private Double total;
 
     public Long getId() {
         return id;
@@ -217,9 +217,11 @@ public class Request extends Model {
     public void addTotal(){
         double total = 0;
         for(SingleRequest req: this.getSingleRequests()){
-            total+= (Plate.findByProperty("id", req.getPlate().getId()).getPrice()*req.getQuantity())*(req.getPlate().getDiscount()/100D);
+            Plate plate = Plate.findByProperty("id", req.getPlate().getId());
+            total+= (plate.getPrice()*req.getQuantity() - plate.getPrice()*req.getQuantity()*(plate.getDiscount()/100D));
             for(Optional opt: req.getOptionals()){
-                total+= Optional.findByProperty("id", opt.getId()).getPrice()*req.getQuantity()*(req.getPlate().getDiscount()/100D);
+                Optional dbOpt = Optional.findByProperty("id", opt.getId());
+                total+= (dbOpt.getPrice()*req.getQuantity() - dbOpt.getPrice()*req.getQuantity()*(plate.getDiscount()/100D));
             }
         }
         this.total = total;

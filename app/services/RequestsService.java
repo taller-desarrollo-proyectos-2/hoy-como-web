@@ -38,7 +38,7 @@ public class RequestsService {
             Commerce destination = Commerce.findByProperty("id", dbRequest.getSingleRequests().get(0).getPlate().getCommerce().getId());
             DistanceMatrixApiRequest req = DistanceMatrixApi.newRequest(GoogleServices.getContext("matrix"))
                     .origins(destination.getLocation().getLat() + "," + destination.getLocation().getLng())
-                    .destinations(dbRequest.getDestination().getStreet() + " " + dbRequest.getDestination().getNumber())
+                    .destinations(dbRequest.getDestination().getStreet() + " " + dbRequest.getDestination().getNumber() + " Argentina")
                     .units(Unit.METRIC);
             // Async
             long timeToDestination;
