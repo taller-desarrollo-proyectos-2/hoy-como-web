@@ -254,8 +254,8 @@ public class Commerce extends Model{
         return commerceRequests.isEmpty() ? 0 : total/commerceRequests.size();
     }
 
-    public int findLeadTimeFromRequests(List<Request> commerceRequests){
-        int total = 0;
+    public double findLeadTimeFromRequests(List<Request> commerceRequests){
+        double total = 0;
         for(Request req : commerceRequests){
             if(req.getLeadTime() != null){
                 total+= req.getLeadTime();

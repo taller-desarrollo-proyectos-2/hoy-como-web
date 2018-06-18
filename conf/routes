@@ -12,6 +12,7 @@ GET         /api/v1/dashboard/info        controllers.api.v1.Dashboard.info()
 # REPORTS
 
 GET         /api/v1/reports               controllers.api.v1.Reports.list()
+GET         /api/v1/reports/export        controllers.api.v1.Reports.export()
 
 # USERS
 

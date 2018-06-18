@@ -1,6 +1,9 @@
 package models;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
 import play.data.validation.Constraints;
 import play.libs.Json;
 
@@ -80,5 +83,15 @@ public class CommerceUser extends BackofficeUser {
     @Override
     public List<Commerce> myCommerces(){
         return Arrays.asList(this.getCommerce());
+    }
+
+    @Override
+    public String getHeaderForReport() {
+        return "REPORTE DE COMERCIO" +  " - " +  this.getCommerce().getBusinessName();
+    }
+
+    @Override
+    public String[] getReportColumns(){
+        return new String[]{"Día", "Pedidos Entregados", "Lead Time", "Calificación", "Facturado", "Fee"};
     }
 }
