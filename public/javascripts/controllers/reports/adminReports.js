@@ -43,4 +43,30 @@ hoyComoApp.controller('reportsCtrl', function ($scope, $http, $window, $rootScop
             toastr.error(err.message);
         });
     }
+
+
+    $scope.export = function(){
+
+        var from = $scope.data.from.toISOString().split("T")[0];
+        var to = $scope.data.to.toISOString().split("T")[0];
+        var url= "/api/v1/reports/export?from=" + from + "&to=" + to;
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = function() {
+              if(this.status === 200){
+                var a = document.createElement('a');
+                a.href = window.URL.createObjectURL(xhr.response); // xhr.response is a blob
+                a.style.display = 'none';
+                a.download = "Reporte.xls";
+                document.body.appendChild(a);
+                a.click();
+                delete a;
+              }else{
+                    toastr.error("Error exportando reporte.");
+              }
+            };
+            xhr.open('GET', url);
+            xhr.send();
+    };
+
 });
