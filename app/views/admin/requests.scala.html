@@ -19,28 +19,28 @@
                 <thead>
                         <th class="col-sm-1 align-left">#</th>
                         <th class="col-sm-2 align-left">Hora inicio
-                                <!-- <button uib-popover-template="'filter-date-popover.html'"
+                                <button uib-popover-template="'filter-date-popover.html'"
                                 type="button" class="transp"
                                 popover-placement="bottom"
                                 popover-trigger="'outsideClick'"
-                                ><i class="fa fa-filter" ng-class="{ activeFilter : datesFiltered }" aria-hidden="true"></i></button> -->
+                                ><i class="fa fa-filter" ng-class="{ activeFilter : datesFiltered }" aria-hidden="true"></i></button>
 
                                 <script type="text/ng-template" id="filter-date-popover.html">
                                     <div id="popoverBody">
                                         <div class="row">
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-12">
                                                 Desde:
                                             </div>
-                                            <div class="col-sm-8">
-                                                <input type="date" class="form-control" ng-model="filter.date.from">
+                                            <div class="col-sm-12">
+                                                <input type="datetime-local" class="form-control" ng-model="filter.date.from">
                                             </div>
                                         </div>
                                         <div class="row m-top-10 m-bottom-10">
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-12">
                                                 Hasta:
                                             </div>
-                                            <div class="col-sm-8">
-                                                <input type="date" class="form-control" ng-model="filter.date.to">
+                                            <div class="col-sm-12">
+                                                <input type="datetime-local" class="form-control" ng-model="filter.date.to">
                                             </div>
                                         </div>
                                         <div class="row">

@@ -42,6 +42,7 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
     };
 
     $scope.clearDateFilters = function (){
+        $scope.filter.date = null;
         $scope.selectedDates = {};
         index();
         toastr.success("Los filtros de fecha han sido limpiados.");
@@ -63,8 +64,8 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
         var filtersList = [];
         var filterString = "";
         if ($scope.selectedStatus.filter != '') filtersList.push({key:"status", value: $scope.selectedStatus.filter});
-        if ($scope.selectedDates.from) filtersList.push({key:"from", value: $scope.selectedDates.from.toISOString().split('T')[0]});
-        if ($scope.selectedDates.to) filtersList.push({key:"to", value: $scope.selectedDates.to.toISOString().split('T')[0]});
+        if ($scope.selectedDates.from) filtersList.push({key:"from", value: formatDate($scope.selectedDates.from)});
+        if ($scope.selectedDates.to) filtersList.push({key:"to", value: formatDate($scope.selectedDates.to)});
         if (filtersList.length > 0) filterString = "?";
         for(filter of filtersList){
             filterString += filter.key;
@@ -74,6 +75,26 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
         }
         if (filterString.length > 0) filterString.slice(0, filterString.length-1);
         return filterString;
+    }
+
+    function formatDate(date){
+        var string = "";
+        string += date.getFullYear();
+        string += "-";
+        string += date.getMonth()+1;
+        string += "-";
+        string += date.getDate();
+        string += "T";
+        if(date.getHours() < 10) string += "0";
+        string += date.getHours();
+        string += ":";
+        if(date.getMinutes() < 10) string += "0";
+        string += date.getMinutes();
+        string += ":";
+        if(date.getSeconds() < 10) string += "0";
+        string += date.getSeconds();
+        string += "Z";
+        return string;
     }
 
     function index() {
