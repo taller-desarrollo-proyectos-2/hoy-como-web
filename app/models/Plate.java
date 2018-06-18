@@ -59,7 +59,6 @@ public class  Plate extends Model{
     private String description;
 
     private Integer discount;
-
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedAt;
 
@@ -183,8 +182,8 @@ public class  Plate extends Model{
     }
 
     public static Map<String, String[]> validateQuery(Map<String,String[]> map){
-        Map<String, String[]> validatedQuery = new HashMap();
-        for(Map.Entry entry : map.entrySet()){
+        Map<String, String[]> validatedQuery = new HashMap<>();
+        for(Map.Entry<String,String[]> entry : map.entrySet()){
             if(attributeMap.containsKey(entry.getKey())){
                 validatedQuery.put(attributeMap.get(entry.getKey()), map.get(entry.getKey()));
             }

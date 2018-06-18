@@ -136,6 +136,10 @@ google-maps {
     min-height: 150px;
 }
 
+.comSuspended{
+    background-color: #d9534f;
+}
+
 .transp, .transp:hover,.transp:focus,.transp:active{
     outline: none;
     background-color: transparent;
