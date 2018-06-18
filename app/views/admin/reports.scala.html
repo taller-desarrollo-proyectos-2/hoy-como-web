@@ -4,12 +4,12 @@
                 <h1>
                     Reportes
                 </h1>
-                <span style="margin-left:auto;" class="pull-right m-right-10">Desde: </span>
-                <input style="width: 20%;" type="date" class="pull-right form-control m-right-10" placeholder="Desde.." ng-model="data.from">
-                <span class="pull-right m-right-10">Hasta: </span>
-                <input style="width: 20%;" type="date" class="pull-right form-control m-right-10" placeholder="Hasta.." ng-model="data.to">
+                <span ng-if="!validPeriodSelected" style="margin-left:auto;" class="pull-right m-right-10">Desde: </span>
+                <input ng-if="!validPeriodSelected" style="width: 20%;" type="date" class="pull-right form-control m-right-10" placeholder="Desde.." ng-model="data.from">
+                <span ng-if="!validPeriodSelected" class="pull-right m-right-10">Hasta: </span>
+                <input ng-if="!validPeriodSelected" style="width: 20%;" type="date" class="pull-right form-control m-right-10" placeholder="Hasta.." ng-model="data.to">
             <button ng-if="!validPeriodSelected" class="btn btn-primary pull-right"  ng-click="checkPeriod()">Ver Reporte</button>
-            <button ng-if="validPeriodSelected" class="btn btn-primary pull-right m-right-10"  ng-click="export()">Exportar</button>
+            <button style="margin-left:auto;" ng-if="validPeriodSelected" class="btn btn-primary pull-right m-right-10"  ng-click="export()">Exportar</button>
             <button ng-if="validPeriodSelected" class="btn btn-primary pull-right"  ng-click="back()">Volver</button>
         </div>
     </div>
@@ -27,6 +27,14 @@
                             <th class="col-sm-2 align-left">Fee</th>
                         </thead>
                         <tbody>
+                            <tr ng-repeat="report in reports">
+                                <td>{{report.day | date:"dd-MM-yyyy"}}</td>
+                                <td>{{report.requests}}</td>
+                                <td>{{report.leadTime}}</td>
+                                <td>{{report.score}}</td>
+                                <td>{{report.billed}}</td>
+                                <td>{{report.fee}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
