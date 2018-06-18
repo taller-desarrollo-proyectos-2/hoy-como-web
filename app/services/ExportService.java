@@ -41,7 +41,7 @@ public class ExportService {
         titleCell.setCellValue(user.getHeaderForReport());
         titleCell.setCellStyle(headerCellStyle);
 
-        sheet.addMergedRegion(new CellRangeAddress(0,1,0,columns.length));
+        sheet.addMergedRegion(new CellRangeAddress(0,1,0,columns.length-1));
 
         Row headersRow = sheet.createRow(2);
 
@@ -74,21 +74,23 @@ public class ExportService {
             Iterator<JsonNode> it = report.iterator();
             int actualCellNum = 0;
             while(it.hasNext()){
-                Cell cell = row.createCell(actualCellNum);
-                cell.setCellStyle(valueCellStyle);
                 JsonNode actualNode = it.next();
-                if(columns[actualCellNum].equals("Día")){
-                    try {
-                        cell.setCellValue(formatter.format(new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss").parse(actualNode.asText())));
-                    }catch(Exception e){
-                        throw new ExportException("No se pudo darle formato a la fecha indicada");
+                if(columns.length > actualCellNum) {
+                    Cell cell = row.createCell(actualCellNum);
+                    cell.setCellStyle(valueCellStyle);
+                    if (columns[actualCellNum].equals("Día")) {
+                        try {
+                            cell.setCellValue(formatter.format(new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss").parse(actualNode.asText())));
+                        } catch (Exception e) {
+                            throw new ExportException("No se pudo darle formato a la fecha indicada");
+                        }
+                    } else if (columns[actualCellNum].equals("Comercio")) {
+                        cell.setCellValue(actualNode.get("businessName").asText());
+                    } else {
+                        cell.setCellValue(actualNode.asText());
                     }
-                }else if(columns[actualCellNum].equals("Comercio")) {
-                    cell.setCellValue(actualNode.get("businessName").asText());
-                }else{
-                    cell.setCellValue(actualNode.asText());
+                    actualCellNum++;
                 }
-                actualCellNum++;
             }
             startingRow++;
         }
