@@ -1,6 +1,8 @@
 package models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
@@ -39,6 +41,21 @@ public class MobileUser extends User {
     @Override
     public void fillRequestMap(Map<String, String[]> map) {
         map.put("user.id", new String[]{this.getId().toString()});
+    }
+
+    @Override
+    public List<Commerce> myCommerces() {
+        return null;
+    }
+
+    @Override
+    public String getHeaderForReport() {
+       return "";
+    }
+
+    @Override
+    public String[] getReportColumns() {
+        return new String[0];
     }
 
     public List<Address> getAddresses() {

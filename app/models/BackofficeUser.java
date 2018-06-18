@@ -4,11 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
 import play.data.validation.Constraints;
 import play.libs.Json;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -67,6 +71,25 @@ public class BackofficeUser extends User {
                 "\t\t\"showName\": \"Pedidos\",\n" +
                 "\t\t\"route\": \"/web/root/requests\",\n" +
                 "\t\t\"icon\": \"fa fa-list-alt\"\n" +
+                "\t},{\n" +
+                "\t\t\"showName\": \"Reportes\",\n" +
+                "\t\t\"route\": \"/web/root/reports\",\n" +
+                "\t\t\"icon\": \"fa fa-list-alt\"\n" +
                 "\t}]");
+    }
+
+    @Override
+    public List<Commerce> myCommerces(){
+        return Commerce.findAll();
+    }
+
+    @Override
+    public String getHeaderForReport() {
+        return "REPORTE COMERCIOS HOYCOMO";
+    }
+
+    @Override
+    public String[] getReportColumns() {
+        return new String[]{"Día", "Pedidos Entregados", "Lead Time", "Calificación", "Facturado", "Fee", "Comercio"};
     }
 }

@@ -1,0 +1,46 @@
+<div class="container screen-container" ng-controller="reportsCtrl">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 page-header center-elems">
+                <h1>
+                    Reportes
+                </h1>
+                <span ng-if="!validPeriodSelected" style="margin-left:auto;" class="pull-right m-right-10">Desde: </span>
+                <input ng-if="!validPeriodSelected" style="width: 20%;" type="date" class="pull-right form-control m-right-10" placeholder="Desde.." ng-model="data.from">
+                <span ng-if="!validPeriodSelected" class="pull-right m-right-10">Hasta: </span>
+                <input ng-if="!validPeriodSelected" style="width: 20%;" type="date" class="pull-right form-control m-right-10" placeholder="Hasta.." ng-model="data.to">
+            <button ng-if="!validPeriodSelected" class="btn btn-primary pull-right"  ng-click="checkPeriod()">Ver Reporte</button>
+            <button style="margin-left:auto;" ng-if="validPeriodSelected" class="btn btn-primary pull-right m-right-10"  ng-click="export()">Exportar</button>
+            <button ng-if="validPeriodSelected" class="btn btn-primary pull-right"  ng-click="back()">Volver</button>
+        </div>
+    </div>
+    <div ng-if="validPeriodSelected" class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-content table-responsive">
+                    <table class="table">
+                        <thead>
+                            <th class="col-sm-1 align-left">Día</th>
+                            <th class="col-sm-2 align-left">Pedidos Entregados</th>
+                            <th class="col-sm-2 align-left">Lead Time</th>
+                            <th class="col-sm-1 align-left">Calificación</th>
+                            <th class="col-sm-2 align-left">Facturado</th>
+                            <th class="col-sm-2 align-left">Fee</th>
+                            <th class="col-sm-2 align-left">Comercio</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="report in reports">
+                                <td>{{report.day | date:"dd-MM-yyyy"}}</td>
+                                <td>{{report.requests}}</td>
+                                <td>{{report.leadTime}}</td>
+                                <td>{{report.score}}</td>
+                                <td>{{report.billed}}</td>
+                                <td>{{report.fee}}</td>
+                                <td>{{report.commerce.businessName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,6 +9,11 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 GET         /api/v1/dashboard/info        controllers.api.v1.Dashboard.info()
 
+# REPORTS
+
+GET         /api/v1/reports               controllers.api.v1.Reports.list()
+GET         /api/v1/reports/export        controllers.api.v1.Reports.export()
+
 # USERS
 
 GET         /api/v1/users/myinfo          controllers.api.v1.Users.myInfo()
@@ -97,3 +102,5 @@ GET         /web/commerce/requests          controllers.web.Requests.showCommerc
 GET         /web/root/requests              controllers.web.Requests.showRootRequests()
 GET         /web/commerce/qualifications    controllers.web.Qualifications.showCommerceQualifications()
 GET         /web/monitor                    controllers.web.Dash.showMonitor()
+GET         /web/commerce/reports           controllers.web.Reports.showCommerceReports()
+GET         /web/root/reports               controllers.web.Reports.showRootReports()

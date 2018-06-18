@@ -35,6 +35,8 @@ public class Request extends Model {
         map.put("userId", "user.id");
         map.put("plateId", "singleRequests.plate.id");
         map.put("commerceId", "singleRequests.plate.commerce.id");
+        map.put("from", "from_initAt");
+        map.put("to", "to_initAt");
         attributeMap = Collections.unmodifiableMap(map);
     }
 
@@ -122,8 +124,8 @@ public class Request extends Model {
     }
 
     public static Map<String, String[]> validateQuery(Map<String,String[]> map){
-        Map<String, String[]> validatedQuery = new HashMap();
-        for(Map.Entry entry : map.entrySet()){
+        Map<String, String[]> validatedQuery = new HashMap<>();
+        for(Map.Entry<String, String[]> entry : map.entrySet()){
             if(attributeMap.containsKey(entry.getKey())){
                 validatedQuery.put(attributeMap.get(entry.getKey()), map.get(entry.getKey()));
             }

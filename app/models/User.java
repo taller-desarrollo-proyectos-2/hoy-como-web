@@ -1,8 +1,10 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -36,4 +38,12 @@ public abstract class User extends Model {
     }
 
     public abstract void fillRequestMap(Map<String, String[]> map);
+
+    public abstract List<Commerce> myCommerces();
+
+    @JsonIgnore
+    public abstract String getHeaderForReport();
+
+    @JsonIgnore
+    public abstract String[] getReportColumns();
 }

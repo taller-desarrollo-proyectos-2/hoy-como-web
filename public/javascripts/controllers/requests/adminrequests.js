@@ -11,6 +11,7 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
                         onTheWay: "ON_THE_WAY" 
                     };
 
+    $scope.filter = {};
     index();
 
     var polling = $interval(function () {
@@ -106,5 +107,10 @@ hoyComoApp.controller('requestsAdminCtrl', function ($scope, $http, $interval, $
         $scope.cancelationReason = request.rejectedReason;
         $("#viewCancelationModal").modal("toggle");
     };
+
+    $scope.cleanStatusFilters = function (){
+        $scope.filter.status = {};
+    };
 });
+
 
