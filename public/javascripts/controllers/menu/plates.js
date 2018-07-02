@@ -128,6 +128,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
             $("#optionalsModal").modal("toggle");
             $("#platesModal").modal("toggle");
             indexOptionals();
+            $scope.currentOptional = {};
             toastr.success("Opcional creado con exito.");
         }).error(function(err){
             toastr.error(err.message);
@@ -168,7 +169,7 @@ hoyComoApp.controller('platesCtrl', function ($scope, $http, $window, $rootScope
         if(this.status === 200){
             $('#plateForm').get(0).reset();
             toastr.success("Plato creado con exito.");
-            $scope.currentPlate = {};
+            $scope.currentPlate = {optionals : [], glutenFree: false};
             $scope.imageSrc = "assets/images/uploadImage.png";
             $("#platesModal").modal("toggle");
             indexPlates();
