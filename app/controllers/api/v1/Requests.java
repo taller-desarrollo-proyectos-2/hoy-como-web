@@ -55,6 +55,11 @@ public class Requests extends Controller {
             }
 
             Request request = form.get();
+            if(Commerce.findByProperty("id",request.getCommerceId()).isSuspended()){
+                logger.error("Intentando hacer un pedido en un comercio suspendido");
+                return badRequest(JsonNodeFactory.instance.objectNode().put("message", "El comercio al que desea pedir se encuentra suspendido"));
+            }
+
             PaymentType payment;
             if (form.data().get("paymentType.PAYMENT_TYPE").equals("CREDIT_CARD")){
                 payment = new CreditCard(form.data().get("paymentType.number"),
@@ -63,6 +68,10 @@ public class Requests extends Controller {
                                         new SimpleDateFormat("yyyy-MM-dd").parse(form.data().get("paymentType.expirationDate")));
             }else{
                 payment = new Cash(Float.valueOf(form.data().get("paymentType.payWith")));
+            }
+            if(Commerce.findByProperty("id", request.getCommerceId()).isSuspended()){
+                logger.error("Intentando hacer un pedido a un comercio suspendido");
+                return badRequest(JsonNodeFactory.instance.objectNode().put("message", "El comercio se encuentra suspendido"));
             }
             request.setPaymentType(payment);
             request.setUser(mobileUser);

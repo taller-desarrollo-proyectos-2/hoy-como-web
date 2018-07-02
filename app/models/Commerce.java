@@ -26,6 +26,7 @@ public class Commerce extends Model{
         Map<String, String> map = new HashMap();
         map.put("name", "name");
         map.put("categories", "categories.name");
+        map.put("suspended", "suspended");
         map.put("lat", "lat");
         map.put("lng", "lng");
         attributeMap = Collections.unmodifiableMap(map);
